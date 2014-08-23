@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="coedil99.PersistentModel.DistintaLavorazione" table="DistintaLavorazione" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<list name="ORM_Elemento__List_" lazy="true" cascade="all-delete-orphan" inverse="false">
+			<key column="DistintaLavorazioneID" not-null="false"/>
+			<index column="DistintaLavorazioneIndex" type="integer"/>
+			<one-to-many class="coedil99.PersistentModel.ElementoDistinta"/>
+		</list>
+	</class>
+</hibernate-mapping>
