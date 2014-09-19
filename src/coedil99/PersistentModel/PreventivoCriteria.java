@@ -20,10 +20,8 @@ import org.orm.criteria.*;
 
 public class PreventivoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression id_preventivo;
 	public final DateExpression data;
 	public final BooleanExpression firmato;
-	public final StringExpression destinazioneMateriale;
 	public final StringExpression elementoStrutturale;
 	public final IntegerExpression cartellino;
 	public final StringExpression nome;
@@ -31,10 +29,8 @@ public class PreventivoCriteria extends AbstractORMCriteria {
 	public PreventivoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		id_preventivo = new StringExpression("id_preventivo", this);
 		data = new DateExpression("data", this);
 		firmato = new BooleanExpression("firmato", this);
-		destinazioneMateriale = new StringExpression("destinazioneMateriale", this);
 		elementoStrutturale = new StringExpression("elementoStrutturale", this);
 		cartellino = new IntegerExpression("cartellino", this);
 		nome = new StringExpression("nome", this);
@@ -45,7 +41,11 @@ public class PreventivoCriteria extends AbstractORMCriteria {
 	}
 	
 	public PreventivoCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
+	}
+	
+	public IndirizzoCriteria createDestinazioneMaterialeCriteria() {
+		return new IndirizzoCriteria(createCriteria("destinazioneMateriale"));
 	}
 	
 	public ListaRintracciabilitaCriteria createListaRintracciabilitaCriteria() {

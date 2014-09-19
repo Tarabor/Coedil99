@@ -38,7 +38,7 @@ public class ItemSetCollection extends org.orm.util.ORMSet {
 	 */
 	public void add(Item value) {
 		if (value != null) {
-			super.add(value, value._ormAdapter);
+			super.add(value, null);
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class ItemSetCollection extends org.orm.util.ORMSet {
 	 * @param value the persistent object
 	 */
 	public void remove(Item value) {
-		super.remove(value, value._ormAdapter);
+		super.remove(value, null);
 	}
 	
 	/**
@@ -72,8 +72,8 @@ public class ItemSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>descrizione</li>
-	 * <li>id_item</li>
-	 * <li>listinoIndex</li>
+	 * <li>peso</li>
+	 * <li>prezzo</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -86,8 +86,8 @@ public class ItemSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>descrizione</li>
-	 * <li>id_item</li>
-	 * <li>listinoIndex</li>
+	 * <li>peso</li>
+	 * <li>prezzo</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
@@ -97,7 +97,7 @@ public class ItemSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return coedil99.PersistentModel.Coedil99PersistentManager.instance();
+		return coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance();
 	}
 	
 }

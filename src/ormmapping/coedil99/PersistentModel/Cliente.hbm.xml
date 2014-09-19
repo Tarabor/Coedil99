@@ -13,9 +13,10 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
+		<many-to-one name="indirizzo" column="IndirizzoID" class="coedil99.PersistentModel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		</many-to-one>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="indirizzo" column="Indirizzo" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="codiceFiscale" column="CodiceFiscale" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="PartitaIva" column="PartitaIva" type="string" length="255" not-null="false" lazy="false"/>
 	</class>

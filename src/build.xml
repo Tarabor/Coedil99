@@ -12,8 +12,7 @@
 	<target depends="init" name="build">
 		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
 			<classpath refid="build.classpath"/>
-			<include name="coedil99/application/Controller/ctrlMain.java"/>
-			<include name="coedil99/application/Controller/ctrlElaboraPreventivo.java"/>
+			<include name="coedil99/PersistentModel/APersistentModel.java"/>
 		</javac>
 	</target>
 </project>

@@ -18,15 +18,15 @@ import org.orm.cfg.JDBCConnectionSetting;
 import org.hibernate.*;
 import java.util.Properties;
 
-public class Coedil99PersistentManager extends PersistentManager {
-	private static final String PROJECT_NAME = "Coedil99";
+public class Coedil99rev1modPersistentManager extends PersistentManager {
+	private static final String PROJECT_NAME = "Coedil99rev1mod";
 	private static PersistentManager _instance = null;
 	private static SessionType _sessionType = SessionType.THREAD_BASE;
 	private static int _timeToAlive = 60000;
 	private static JDBCConnectionSetting _connectionSetting = null;
 	private static Properties _extraProperties = null;
 	
-	private Coedil99PersistentManager() throws PersistentException {
+	private Coedil99rev1modPersistentManager() throws PersistentException {
 		super(_connectionSetting, _sessionType, _timeToAlive, new String[] {}, _extraProperties);
 		setFlushMode(FlushMode.AUTO);
 	}
@@ -37,7 +37,7 @@ public class Coedil99PersistentManager extends PersistentManager {
 	
 	public static synchronized final PersistentManager instance() throws PersistentException {
 		if (_instance == null) {
-			_instance = new Coedil99PersistentManager();
+			_instance = new Coedil99rev1modPersistentManager();
 		}
 		
 		return _instance;

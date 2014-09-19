@@ -21,27 +21,23 @@ import org.orm.criteria.*;
 public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
-	public final StringExpression id_item;
-	public final IntegerExpression listinoIndex;
+	public final DoubleExpression peso;
+	public final DoubleExpression prezzo;
 	
 	public ItemDetachedCriteria() {
 		super(coedil99.PersistentModel.Item.class, coedil99.PersistentModel.ItemCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
-		id_item = new StringExpression("id_item", this.getDetachedCriteria());
-		listinoIndex = new IntegerExpression("listinoIndex", this.getDetachedCriteria());
+		peso = new DoubleExpression("peso", this.getDetachedCriteria());
+		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
 	}
 	
 	public ItemDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ItemCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
-		id_item = new StringExpression("id_item", this.getDetachedCriteria());
-		listinoIndex = new IntegerExpression("listinoIndex", this.getDetachedCriteria());
-	}
-	
-	public ListinoDetachedCriteria createListinoCriteria() {
-		return new ListinoDetachedCriteria(createCriteria("listino"));
+		peso = new DoubleExpression("peso", this.getDetachedCriteria());
+		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
 	}
 	
 	public Item uniqueItem(PersistentSession session) {

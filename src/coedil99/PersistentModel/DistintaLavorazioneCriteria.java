@@ -31,7 +31,7 @@ public class DistintaLavorazioneCriteria extends AbstractORMCriteria {
 	}
 	
 	public DistintaLavorazioneCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
 	public ElementoDistintaCriteria createElemento__List_Criteria() {

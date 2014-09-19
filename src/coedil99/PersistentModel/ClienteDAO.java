@@ -20,7 +20,7 @@ import java.util.List;
 public class ClienteDAO {
 	public static Cliente loadClienteByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadClienteByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class ClienteDAO {
 	
 	public static Cliente getClienteByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getClienteByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class ClienteDAO {
 	
 	public static Cliente loadClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadClienteByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class ClienteDAO {
 	
 	public static Cliente getClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getClienteByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class ClienteDAO {
 	
 	public static Cliente[] listClienteByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listClienteByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class ClienteDAO {
 	
 	public static Cliente[] listClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listClienteByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class ClienteDAO {
 	
 	public static Cliente loadClienteByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadClienteByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class ClienteDAO {
 	
 	public static Cliente loadClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadClienteByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class ClienteDAO {
 	
 	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateClienteByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class ClienteDAO {
 	
 	public static java.util.Iterator iterateClienteByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateClienteByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -258,7 +258,7 @@ public class ClienteDAO {
 	
 	public static boolean save(coedil99.PersistentModel.Cliente cliente) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().saveObject(cliente);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(cliente);
 			return true;
 		}
 		catch (Exception e) {
@@ -269,7 +269,7 @@ public class ClienteDAO {
 	
 	public static boolean delete(coedil99.PersistentModel.Cliente cliente) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().deleteObject(cliente);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(cliente);
 			return true;
 		}
 		catch (Exception e) {
@@ -280,7 +280,7 @@ public class ClienteDAO {
 	
 	public static boolean refresh(coedil99.PersistentModel.Cliente cliente) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().refresh(cliente);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(cliente);
 			return true;
 		}
 		catch (Exception e) {
@@ -291,7 +291,7 @@ public class ClienteDAO {
 	
 	public static boolean evict(coedil99.PersistentModel.Cliente cliente) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().evict(cliente);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(cliente);
 			return true;
 		}
 		catch (Exception e) {

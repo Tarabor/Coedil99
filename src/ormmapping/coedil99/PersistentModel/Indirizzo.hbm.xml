@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="coedil99.PersistentModel.Indirizzo" table="Indirizzo" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="via" column="Via" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="comune" column="Comune" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="numero" column="Numero" type="integer" not-null="true" lazy="false"/>
+	</class>
+</hibernate-mapping>

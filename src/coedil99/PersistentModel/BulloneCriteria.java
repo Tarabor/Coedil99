@@ -18,41 +18,37 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
-public class BulloniCriteria extends AbstractORMCriteria {
+public class BulloneCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
-	public final StringExpression id_item;
-	public final IntegerExpression listinoIndex;
+	public final DoubleExpression peso;
+	public final DoubleExpression prezzo;
 	public final FloatExpression diametro;
 	
-	public BulloniCriteria(Criteria criteria) {
+	public BulloneCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		descrizione = new StringExpression("descrizione", this);
-		id_item = new StringExpression("id_item", this);
-		listinoIndex = new IntegerExpression("listinoIndex", this);
+		peso = new DoubleExpression("peso", this);
+		prezzo = new DoubleExpression("prezzo", this);
 		diametro = new FloatExpression("diametro", this);
 	}
 	
-	public BulloniCriteria(PersistentSession session) {
-		this(session.createCriteria(Bulloni.class));
+	public BulloneCriteria(PersistentSession session) {
+		this(session.createCriteria(Bullone.class));
 	}
 	
-	public BulloniCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+	public BulloneCriteria() throws PersistentException {
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
-	public ListinoCriteria createListinoCriteria() {
-		return new ListinoCriteria(createCriteria("listino"));
+	public Bullone uniqueBullone() {
+		return (Bullone) super.uniqueResult();
 	}
 	
-	public Bulloni uniqueBulloni() {
-		return (Bulloni) super.uniqueResult();
-	}
-	
-	public Bulloni[] listBulloni() {
+	public Bullone[] listBullone() {
 		java.util.List list = super.list();
-		return (Bulloni[]) list.toArray(new Bulloni[list.size()]);
+		return (Bullone[]) list.toArray(new Bullone[list.size()]);
 	}
 }
 

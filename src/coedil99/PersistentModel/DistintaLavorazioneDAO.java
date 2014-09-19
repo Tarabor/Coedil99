@@ -20,7 +20,7 @@ import java.util.List;
 public class DistintaLavorazioneDAO {
 	public static DistintaLavorazione loadDistintaLavorazioneByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadDistintaLavorazioneByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione getDistintaLavorazioneByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getDistintaLavorazioneByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione loadDistintaLavorazioneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadDistintaLavorazioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione getDistintaLavorazioneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getDistintaLavorazioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione[] listDistintaLavorazioneByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listDistintaLavorazioneByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione[] listDistintaLavorazioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listDistintaLavorazioneByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione loadDistintaLavorazioneByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadDistintaLavorazioneByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static DistintaLavorazione loadDistintaLavorazioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadDistintaLavorazioneByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static java.util.Iterator iterateDistintaLavorazioneByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateDistintaLavorazioneByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static java.util.Iterator iterateDistintaLavorazioneByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateDistintaLavorazioneByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -258,7 +258,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static boolean save(coedil99.PersistentModel.DistintaLavorazione distintaLavorazione) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().saveObject(distintaLavorazione);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(distintaLavorazione);
 			return true;
 		}
 		catch (Exception e) {
@@ -269,7 +269,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static boolean delete(coedil99.PersistentModel.DistintaLavorazione distintaLavorazione) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().deleteObject(distintaLavorazione);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(distintaLavorazione);
 			return true;
 		}
 		catch (Exception e) {
@@ -280,7 +280,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static boolean refresh(coedil99.PersistentModel.DistintaLavorazione distintaLavorazione) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().refresh(distintaLavorazione);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(distintaLavorazione);
 			return true;
 		}
 		catch (Exception e) {
@@ -291,7 +291,7 @@ public class DistintaLavorazioneDAO {
 	
 	public static boolean evict(coedil99.PersistentModel.DistintaLavorazione distintaLavorazione) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().evict(distintaLavorazione);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(distintaLavorazione);
 			return true;
 		}
 		catch (Exception e) {

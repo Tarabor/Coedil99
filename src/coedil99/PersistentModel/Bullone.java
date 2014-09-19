@@ -13,18 +13,23 @@
  */
 package coedil99.PersistentModel;
 
-public class Lastre extends coedil99.PersistentModel.Item {
-	public Lastre() {
+public class Bullone extends coedil99.PersistentModel.Item {
+	public Bullone() {
 	}
 	
-	private float materiale;
+	private float diametro;
 	
-	public void setMateriale(float value) {
-		this.materiale = value;
+	public void setDiametro(float value) {
+		this.diametro = value;
 	}
 	
-	public float getMateriale() {
-		return materiale;
+	public float getDiametro() {
+		return diametro;
+	}
+	
+	public void calcolaPrezzo() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

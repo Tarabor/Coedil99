@@ -10,7 +10,7 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
-		<set name="ORM_Item" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_Item__List_" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="ListinoID" not-null="false"/>
 			<one-to-many class="coedil99.PersistentModel.Item"/>
 		</set>

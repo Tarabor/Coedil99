@@ -31,11 +31,11 @@ public class ListinoCriteria extends AbstractORMCriteria {
 	}
 	
 	public ListinoCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
-	public ItemCriteria createItemCriteria() {
-		return new ItemCriteria(createCriteria("ORM_Item"));
+	public ItemCriteria createItem__List_Criteria() {
+		return new ItemCriteria(createCriteria("ORM_Item__List_"));
 	}
 	
 	public Listino uniqueListino() {

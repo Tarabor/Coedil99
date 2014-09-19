@@ -23,15 +23,11 @@ public class ElementoDistinta extends coedil99.PersistentModel.APersistentModel 
 	
 	private String indicazione;
 	
-	private double diametro;
+	private int NPezzi;
 	
 	private double misuraDiTaglio;
 	
-	private int NPezzi;
-	
 	private int tipoSagoma;
-	
-	private double peso;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -53,12 +49,12 @@ public class ElementoDistinta extends coedil99.PersistentModel.APersistentModel 
 		return indicazione;
 	}
 	
-	public void setDiametro(double value) {
-		this.diametro = value;
+	public void setNPezzi(int value) {
+		this.NPezzi = value;
 	}
 	
-	public double getDiametro() {
-		return diametro;
+	public int getNPezzi() {
+		return NPezzi;
 	}
 	
 	public void setMisuraDiTaglio(double value) {
@@ -69,28 +65,12 @@ public class ElementoDistinta extends coedil99.PersistentModel.APersistentModel 
 		return misuraDiTaglio;
 	}
 	
-	public void setNPezzi(int value) {
-		this.NPezzi = value;
-	}
-	
-	public int getNPezzi() {
-		return NPezzi;
-	}
-	
 	public void setTipoSagoma(int value) {
 		this.tipoSagoma = value;
 	}
 	
 	public int getTipoSagoma() {
 		return tipoSagoma;
-	}
-	
-	public void setPeso(double value) {
-		this.peso = value;
-	}
-	
-	public double getPeso() {
-		return peso;
 	}
 	
 	public void setItem(coedil99.PersistentModel.Item value) {

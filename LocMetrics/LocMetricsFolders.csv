@@ -1,0 +1,20 @@
+Folder,Files,LOC,SLOC-P,SLOC-L,MVG,BLOC,C&SLOC,CLOC,CWORD,HCLOC,HCWORD
+Total,76,9582,6790,5075,1004,1422,18,1370,6320,562,2583
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src,76,9582,6790,5075,1004,1422,18,1370,6320,562,2583
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99,75,9490,6735,5035,989,1420,18,1335,6216,552,2530
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\Model,5,144,115,89,8,26,0,3,11,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\PersistentModel,47,5882,4285,3047,838,821,0,776,3544,552,2530
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\application,2,115,95,76,3,20,0,0,0,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\application\Controller,2,115,95,76,3,20,0,0,0,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\ui,14,2125,1660,1403,41,374,3,91,229,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\ui\content,4,863,715,611,5,125,0,23,40,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\ui\template,6,417,312,254,21,72,3,33,135,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\utility,6,1186,554,399,99,167,15,465,2432,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\utility\au,5,1128,508,364,91,155,15,465,2432,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\utility\au\com,5,1128,508,364,91,155,15,465,2432,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\utility\au\com\bytecode,5,1128,508,364,91,155,15,465,2432,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\coedil99\utility\au\com\bytecode\opencsv,5,1128,508,364,91,155,15,465,2432,0,0
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\org,1,92,55,40,15,2,0,35,104,10,53
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\org\eclipse,1,92,55,40,15,2,0,35,104,10,53
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\org\eclipse\wb,1,92,55,40,15,2,0,35,104,10,53
+C:\Users\Marco Taraborrelli\workspace\Coedil99\src\org\eclipse\wb\swing,1,92,55,40,15,2,0,35,104,10,53

@@ -20,7 +20,7 @@ import java.util.List;
 public class ElementoDistintaDAO {
 	public static ElementoDistinta loadElementoDistintaByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadElementoDistintaByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta getElementoDistintaByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getElementoDistintaByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta loadElementoDistintaByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadElementoDistintaByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta getElementoDistintaByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getElementoDistintaByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta[] listElementoDistintaByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listElementoDistintaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta[] listElementoDistintaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listElementoDistintaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta loadElementoDistintaByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadElementoDistintaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class ElementoDistintaDAO {
 	
 	public static ElementoDistinta loadElementoDistintaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadElementoDistintaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class ElementoDistintaDAO {
 	
 	public static java.util.Iterator iterateElementoDistintaByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateElementoDistintaByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class ElementoDistintaDAO {
 	
 	public static java.util.Iterator iterateElementoDistintaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateElementoDistintaByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -258,7 +258,7 @@ public class ElementoDistintaDAO {
 	
 	public static boolean save(coedil99.PersistentModel.ElementoDistinta elementoDistinta) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().saveObject(elementoDistinta);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(elementoDistinta);
 			return true;
 		}
 		catch (Exception e) {
@@ -269,7 +269,7 @@ public class ElementoDistintaDAO {
 	
 	public static boolean delete(coedil99.PersistentModel.ElementoDistinta elementoDistinta) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().deleteObject(elementoDistinta);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(elementoDistinta);
 			return true;
 		}
 		catch (Exception e) {
@@ -280,7 +280,7 @@ public class ElementoDistintaDAO {
 	
 	public static boolean refresh(coedil99.PersistentModel.ElementoDistinta elementoDistinta) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().refresh(elementoDistinta);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(elementoDistinta);
 			return true;
 		}
 		catch (Exception e) {
@@ -291,7 +291,7 @@ public class ElementoDistintaDAO {
 	
 	public static boolean evict(coedil99.PersistentModel.ElementoDistinta elementoDistinta) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().evict(elementoDistinta);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(elementoDistinta);
 			return true;
 		}
 		catch (Exception e) {

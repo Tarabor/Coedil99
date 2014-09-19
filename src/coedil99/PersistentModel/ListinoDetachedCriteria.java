@@ -31,8 +31,8 @@ public class ListinoDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 	}
 	
-	public ItemDetachedCriteria createItemCriteria() {
-		return new ItemDetachedCriteria(createCriteria("ORM_Item"));
+	public ItemDetachedCriteria createItem__List_Criteria() {
+		return new ItemDetachedCriteria(createCriteria("ORM_Item__List_"));
 	}
 	
 	public Listino uniqueListino(PersistentSession session) {

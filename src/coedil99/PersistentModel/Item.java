@@ -17,28 +17,13 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 	public Item() {
 	}
 	
-	private void this_setOwner(Object owner, int key) {
-		if (key == coedil99.PersistentModel.ORMConstants.KEY_ITEM_LISTINO) {
-			this.listino = (coedil99.PersistentModel.Listino) owner;
-		}
-	}
-	
-	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public void setOwner(Object owner, int key) {
-			this_setOwner(owner, key);
-		}
-		
-	};
-	
 	private int ID;
-	
-	private coedil99.PersistentModel.Listino listino;
 	
 	private String descrizione;
 	
-	private String id_item;
+	private double peso;
 	
-	private Integer listinoIndex;
+	private double prezzo;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -60,59 +45,27 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 		return descrizione;
 	}
 	
-	public void setId_item(String value) {
-		this.id_item = value;
+	public void setPeso(double value) {
+		this.peso = value;
 	}
 	
-	public String getId_item() {
-		return id_item;
+	public double getPeso() {
+		return peso;
 	}
 	
-	public void setListinoIndex(int value) {
-		setListinoIndex(new Integer(value));
+	public void setPrezzo(double value) {
+		this.prezzo = value;
 	}
 	
-	public void setListinoIndex(Integer value) {
-		this.listinoIndex = value;
+	public double getPrezzo() {
+		return prezzo;
 	}
 	
-	public Integer getListinoIndex() {
-		return listinoIndex;
-	}
+	public abstract void calcolaPrezzo();
 	
-	public void setListino(coedil99.PersistentModel.Listino value) {
-		if (listino != null) {
-			listino.item.remove(this);
-		}
-		if (value != null) {
-			value.item.add(this);
-		}
-	}
+	public abstract float getDiametro();
 	
-	public coedil99.PersistentModel.Listino getListino() {
-		return listino;
-	}
-	
-	/**
-	 * This method is for internal use only.
-	 */
-	public void setORM_Listino(coedil99.PersistentModel.Listino value) {
-		this.listino = value;
-	}
-	
-	private coedil99.PersistentModel.Listino getORM_Listino() {
-		return listino;
-	}
-	
-	public String getIdItem() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setIdItem(String codice) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
+	public abstract void setDiametro(float diametro);
 	
 	public String toString() {
 		return String.valueOf(getID());

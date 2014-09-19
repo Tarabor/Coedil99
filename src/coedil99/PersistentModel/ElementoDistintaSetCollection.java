@@ -72,11 +72,9 @@ public class ElementoDistintaSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>indicazione</li>
-	 * <li>diametro</li>
-	 * <li>misuraDiTaglio</li>
 	 * <li>NPezzi</li>
+	 * <li>misuraDiTaglio</li>
 	 * <li>tipoSagoma</li>
-	 * <li>peso</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -89,11 +87,9 @@ public class ElementoDistintaSetCollection extends org.orm.util.ORMSet {
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
 	 * <li>indicazione</li>
-	 * <li>diametro</li>
-	 * <li>misuraDiTaglio</li>
 	 * <li>NPezzi</li>
+	 * <li>misuraDiTaglio</li>
 	 * <li>tipoSagoma</li>
-	 * <li>peso</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array
@@ -103,7 +99,7 @@ public class ElementoDistintaSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return coedil99.PersistentModel.Coedil99PersistentManager.instance();
+		return coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance();
 	}
 	
 }

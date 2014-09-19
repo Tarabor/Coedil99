@@ -20,7 +20,7 @@ import java.util.List;
 public class ListinoDAO {
 	public static Listino loadListinoByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadListinoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class ListinoDAO {
 	
 	public static Listino getListinoByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getListinoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class ListinoDAO {
 	
 	public static Listino loadListinoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadListinoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class ListinoDAO {
 	
 	public static Listino getListinoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getListinoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class ListinoDAO {
 	
 	public static Listino[] listListinoByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listListinoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class ListinoDAO {
 	
 	public static Listino[] listListinoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listListinoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class ListinoDAO {
 	
 	public static Listino loadListinoByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadListinoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class ListinoDAO {
 	
 	public static Listino loadListinoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadListinoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class ListinoDAO {
 	
 	public static java.util.Iterator iterateListinoByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateListinoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class ListinoDAO {
 	
 	public static java.util.Iterator iterateListinoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateListinoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -258,7 +258,7 @@ public class ListinoDAO {
 	
 	public static boolean save(coedil99.PersistentModel.Listino listino) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().saveObject(listino);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(listino);
 			return true;
 		}
 		catch (Exception e) {
@@ -269,7 +269,7 @@ public class ListinoDAO {
 	
 	public static boolean delete(coedil99.PersistentModel.Listino listino) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().deleteObject(listino);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(listino);
 			return true;
 		}
 		catch (Exception e) {
@@ -278,42 +278,9 @@ public class ListinoDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(coedil99.PersistentModel.Listino listino) {
-		try {
-			coedil99.PersistentModel.Item[] lItems = listino.item.toArray();
-			for(int i = 0; i < lItems.length; i++) {
-				lItems[i].setListino(null);
-			}
-			return delete(listino);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public static boolean deleteAndDissociate(coedil99.PersistentModel.Listino listino, org.orm.PersistentSession session) {
-		try {
-			coedil99.PersistentModel.Item[] lItems = listino.item.toArray();
-			for(int i = 0; i < lItems.length; i++) {
-				lItems[i].setListino(null);
-			}
-			try {
-				session.delete(listino);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 	public static boolean refresh(coedil99.PersistentModel.Listino listino) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().refresh(listino);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(listino);
 			return true;
 		}
 		catch (Exception e) {
@@ -324,7 +291,7 @@ public class ListinoDAO {
 	
 	public static boolean evict(coedil99.PersistentModel.Listino listino) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().evict(listino);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(listino);
 			return true;
 		}
 		catch (Exception e) {

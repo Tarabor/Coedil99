@@ -19,17 +19,15 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	
 	private int ID;
 	
+	private coedil99.PersistentModel.Indirizzo destinazioneMateriale;
+	
 	private coedil99.PersistentModel.ListaRintracciabilita listaRintracciabilita;
 	
 	private coedil99.PersistentModel.DistintaLavorazione distinta;
 	
-	private String id_preventivo;
-	
 	private java.util.Date data;
 	
 	private boolean firmato;
-	
-	private String destinazioneMateriale;
 	
 	private String elementoStrutturale;
 	
@@ -51,14 +49,6 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 		return getID();
 	}
 	
-	public void setId_preventivo(String value) {
-		this.id_preventivo = value;
-	}
-	
-	public String getId_preventivo() {
-		return id_preventivo;
-	}
-	
 	public void setData(java.util.Date value) {
 		this.data = value;
 	}
@@ -73,14 +63,6 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	
 	public boolean getFirmato() {
 		return firmato;
-	}
-	
-	public void setDestinazioneMateriale(String value) {
-		this.destinazioneMateriale = value;
-	}
-	
-	public String getDestinazioneMateriale() {
-		return destinazioneMateriale;
 	}
 	
 	public void setElementoStrutturale(String value) {
@@ -113,6 +95,14 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	
 	public coedil99.PersistentModel.Cliente getCliente() {
 		return cliente;
+	}
+	
+	public void setDestinazioneMateriale(coedil99.PersistentModel.Indirizzo value) {
+		this.destinazioneMateriale = value;
+	}
+	
+	public coedil99.PersistentModel.Indirizzo getDestinazioneMateriale() {
+		return destinazioneMateriale;
 	}
 	
 	public void setDistinta(coedil99.PersistentModel.DistintaLavorazione value) {

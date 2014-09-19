@@ -4,6 +4,9 @@ package coedil99.application.Controller;
 import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.ClienteDAO;
+import coedil99.PersistentModel.ElementoDistinta;
+import coedil99.PersistentModel.Indirizzo;
+import coedil99.PersistentModel.ItemDAO;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.PreventivoDAO;
 import coedil99.ui.Coedil99View;
@@ -30,17 +33,22 @@ public class ctrlElaboraPreventivo {
 		Coedil99View.getInstance().setStatusBar("Nuovo preventivo creato");
 	}
 	
-	public void salvaPreventivo( String data, String destMateriale, String elemStrutt, String cartellino,boolean firmato, Object [][] distinta) {
+	public void salvaPreventivo( String data, String elemStrutt, String cartellino,boolean firmato, Object [][] distinta) {
 		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
 		mp.setDistinta(distinta);
 		Preventivo p = ((Preventivo)mp.getPersistentModel());
-		p.setDestinazioneMateriale(destMateriale);
+		Indirizzo address = p.getCliente().getIndirizzo();
+		p.setDestinazioneMateriale(address);
 		p.setElementoStrutturale(elemStrutt);
 		int i = Integer.parseInt(cartellino);
 		p.setCartellino(i);
 		p.setFirmato(firmato);
 		p.setNome(p.getCliente().getCognome()+" "+p.getData().getTime());
 		p.setData(Service.getDatadb(data));
+		ArrayList<ElementoDistinta> elementi = mp.getDistinta();
+		for (ElementoDistinta ed : elementi) {
+			ItemDAO.save(ed.getItem());
+		}
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");
@@ -50,7 +58,7 @@ public class ctrlElaboraPreventivo {
 		Coedil99View.getInstance().showNewClienti();
 	}
 	
-	public void salvaNuovoCliente(String nome, String cognome, String indirizzo, String codiceFiscale, String partitaIva) {
+	public void salvaNuovoCliente(String nome, String cognome, Indirizzo indirizzo, String codiceFiscale, String partitaIva) {
 		Cliente c = new Cliente();
 		c.setNome(nome);
 		c.setCognome(cognome);

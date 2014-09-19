@@ -18,8 +18,8 @@ public class Listino {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == coedil99.PersistentModel.ORMConstants.KEY_LISTINO_ITEM) {
-			return ORM_item;
+		if (key == coedil99.PersistentModel.ORMConstants.KEY_LISTINO_ITEM__LIST_) {
+			return ORM_item__List_;
 		}
 		
 		return null;
@@ -34,7 +34,7 @@ public class Listino {
 	
 	private int ID;
 	
-	private java.util.Set ORM_item = new java.util.HashSet();
+	private java.util.Set ORM_item__List_ = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -48,15 +48,15 @@ public class Listino {
 		return getID();
 	}
 	
-	private void setORM_Item(java.util.Set value) {
-		this.ORM_item = value;
+	private void setORM_Item__List_(java.util.Set value) {
+		this.ORM_item__List_ = value;
 	}
 	
-	private java.util.Set getORM_Item() {
-		return ORM_item;
+	private java.util.Set getORM_Item__List_() {
+		return ORM_item__List_;
 	}
 	
-	public final coedil99.PersistentModel.ItemSetCollection item = new coedil99.PersistentModel.ItemSetCollection(this, _ormAdapter, coedil99.PersistentModel.ORMConstants.KEY_LISTINO_ITEM, coedil99.PersistentModel.ORMConstants.KEY_ITEM_LISTINO, coedil99.PersistentModel.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final coedil99.PersistentModel.ItemSetCollection item__List_ = new coedil99.PersistentModel.ItemSetCollection(this, _ormAdapter, coedil99.PersistentModel.ORMConstants.KEY_LISTINO_ITEM__LIST_, coedil99.PersistentModel.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getID());

@@ -18,42 +18,38 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
-public class TraviDetachedCriteria extends AbstractORMDetachedCriteria {
+public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
-	public final StringExpression id_item;
-	public final IntegerExpression listinoIndex;
+	public final DoubleExpression peso;
+	public final DoubleExpression prezzo;
 	public final FloatExpression lunghezza;
 	
-	public TraviDetachedCriteria() {
-		super(coedil99.PersistentModel.Travi.class, coedil99.PersistentModel.TraviCriteria.class);
+	public TraveDetachedCriteria() {
+		super(coedil99.PersistentModel.Trave.class, coedil99.PersistentModel.TraveCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
-		id_item = new StringExpression("id_item", this.getDetachedCriteria());
-		listinoIndex = new IntegerExpression("listinoIndex", this.getDetachedCriteria());
+		peso = new DoubleExpression("peso", this.getDetachedCriteria());
+		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
 		lunghezza = new FloatExpression("lunghezza", this.getDetachedCriteria());
 	}
 	
-	public TraviDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, coedil99.PersistentModel.TraviCriteria.class);
+	public TraveDetachedCriteria(DetachedCriteria aDetachedCriteria) {
+		super(aDetachedCriteria, coedil99.PersistentModel.TraveCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
-		id_item = new StringExpression("id_item", this.getDetachedCriteria());
-		listinoIndex = new IntegerExpression("listinoIndex", this.getDetachedCriteria());
+		peso = new DoubleExpression("peso", this.getDetachedCriteria());
+		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
 		lunghezza = new FloatExpression("lunghezza", this.getDetachedCriteria());
 	}
 	
-	public ListinoDetachedCriteria createListinoCriteria() {
-		return new ListinoDetachedCriteria(createCriteria("listino"));
+	public Trave uniqueTrave(PersistentSession session) {
+		return (Trave) super.createExecutableCriteria(session).uniqueResult();
 	}
 	
-	public Travi uniqueTravi(PersistentSession session) {
-		return (Travi) super.createExecutableCriteria(session).uniqueResult();
-	}
-	
-	public Travi[] listTravi(PersistentSession session) {
+	public Trave[] listTrave(PersistentSession session) {
 		List list = super.createExecutableCriteria(session).list();
-		return (Travi[]) list.toArray(new Travi[list.size()]);
+		return (Trave[]) list.toArray(new Trave[list.size()]);
 	}
 }
 

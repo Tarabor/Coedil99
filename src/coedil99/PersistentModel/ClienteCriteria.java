@@ -22,7 +22,6 @@ public class ClienteCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final StringExpression indirizzo;
 	public final StringExpression codiceFiscale;
 	public final StringExpression PartitaIva;
 	
@@ -31,7 +30,6 @@ public class ClienteCriteria extends AbstractORMCriteria {
 		ID = new IntegerExpression("ID", this);
 		nome = new StringExpression("nome", this);
 		cognome = new StringExpression("cognome", this);
-		indirizzo = new StringExpression("indirizzo", this);
 		codiceFiscale = new StringExpression("codiceFiscale", this);
 		PartitaIva = new StringExpression("PartitaIva", this);
 	}
@@ -41,7 +39,11 @@ public class ClienteCriteria extends AbstractORMCriteria {
 	}
 	
 	public ClienteCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
+	}
+	
+	public IndirizzoCriteria createIndirizzoCriteria() {
+		return new IndirizzoCriteria(createCriteria("indirizzo"));
 	}
 	
 	public Cliente uniqueCliente() {

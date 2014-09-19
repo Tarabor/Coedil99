@@ -21,21 +21,17 @@ import org.orm.criteria.*;
 public class ElementoDistintaCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression indicazione;
-	public final DoubleExpression diametro;
-	public final DoubleExpression misuraDiTaglio;
 	public final IntegerExpression NPezzi;
+	public final DoubleExpression misuraDiTaglio;
 	public final IntegerExpression tipoSagoma;
-	public final DoubleExpression peso;
 	
 	public ElementoDistintaCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		indicazione = new StringExpression("indicazione", this);
-		diametro = new DoubleExpression("diametro", this);
-		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this);
 		NPezzi = new IntegerExpression("NPezzi", this);
+		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this);
 		tipoSagoma = new IntegerExpression("tipoSagoma", this);
-		peso = new DoubleExpression("peso", this);
 	}
 	
 	public ElementoDistintaCriteria(PersistentSession session) {
@@ -43,7 +39,7 @@ public class ElementoDistintaCriteria extends AbstractORMCriteria {
 	}
 	
 	public ElementoDistintaCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
 	public ItemCriteria createItemCriteria() {

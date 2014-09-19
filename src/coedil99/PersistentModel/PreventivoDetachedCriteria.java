@@ -20,10 +20,8 @@ import org.orm.criteria.*;
 
 public class PreventivoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression id_preventivo;
 	public final DateExpression data;
 	public final BooleanExpression firmato;
-	public final StringExpression destinazioneMateriale;
 	public final StringExpression elementoStrutturale;
 	public final IntegerExpression cartellino;
 	public final StringExpression nome;
@@ -31,10 +29,8 @@ public class PreventivoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public PreventivoDetachedCriteria() {
 		super(coedil99.PersistentModel.Preventivo.class, coedil99.PersistentModel.PreventivoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		id_preventivo = new StringExpression("id_preventivo", this.getDetachedCriteria());
 		data = new DateExpression("data", this.getDetachedCriteria());
 		firmato = new BooleanExpression("firmato", this.getDetachedCriteria());
-		destinazioneMateriale = new StringExpression("destinazioneMateriale", this.getDetachedCriteria());
 		elementoStrutturale = new StringExpression("elementoStrutturale", this.getDetachedCriteria());
 		cartellino = new IntegerExpression("cartellino", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
@@ -43,13 +39,15 @@ public class PreventivoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public PreventivoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.PreventivoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		id_preventivo = new StringExpression("id_preventivo", this.getDetachedCriteria());
 		data = new DateExpression("data", this.getDetachedCriteria());
 		firmato = new BooleanExpression("firmato", this.getDetachedCriteria());
-		destinazioneMateriale = new StringExpression("destinazioneMateriale", this.getDetachedCriteria());
 		elementoStrutturale = new StringExpression("elementoStrutturale", this.getDetachedCriteria());
 		cartellino = new IntegerExpression("cartellino", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
+	}
+	
+	public IndirizzoDetachedCriteria createDestinazioneMaterialeCriteria() {
+		return new IndirizzoDetachedCriteria(createCriteria("destinazioneMateriale"));
 	}
 	
 	public ListaRintracciabilitaDetachedCriteria createListaRintracciabilitaCriteria() {

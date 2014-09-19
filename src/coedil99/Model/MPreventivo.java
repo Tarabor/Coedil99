@@ -1,11 +1,17 @@
 package coedil99.Model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import coedil99.PersistentModel.Bullone;
+import coedil99.PersistentModel.BulloneDAO;
 import coedil99.PersistentModel.DistintaLavorazione;
 import coedil99.PersistentModel.DistintaLavorazioneDAO;
 import coedil99.PersistentModel.ElementoDistinta;
 import coedil99.PersistentModel.ElementoDistintaDAO;
 import coedil99.PersistentModel.Preventivo;
+import coedil99.PersistentModel.Trave;
+import coedil99.PersistentModel.TraveDAO;
 
 public class MPreventivo extends AModel {
 	
@@ -29,6 +35,8 @@ public class MPreventivo extends AModel {
 			 p.setDistinta(d);
 		}							
 		ElementoDistinta e;
+		Trave trave = TraveDAO.createTrave();
+		Bullone bullone = BulloneDAO.createBullone();
 		for(int r = 0; r < data.length; r++){
 			
 			if(r >= d.elemento__List_.size()){
@@ -36,27 +44,45 @@ public class MPreventivo extends AModel {
 				d.elemento__List_.add(e);
 			}
 			else
-				e = d.elemento__List_.get(r);
+			e = d.elemento__List_.get(r);
+			e.setItem(bullone);
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			e.setDiametro(Double.parseDouble(String.valueOf(data[r][DIAMETRO_INDEX])));
+			e.getItem().setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX])));
 			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
-			e.setTipoSagoma((int)data[r][TIPOSAGOMA_INDEX]);
+			e.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX])));
 			
 		}
 	}
-	public Object [][] getDistinta(){
+	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
 		int rows = d.elemento__List_.size();
 		Object [][] objD = new Object[rows][5];
 		for(int r = 0; r < rows; r++){
 			objD[r][0] = (Object)(d.elemento__List_.get(r).getIndicazione());
 			objD[r][1] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][2] = (Object)(d.elemento__List_.get(r).getDiametro());
+			objD[r][2] = (Object)(d.elemento__List_.get(r).getItem().getDiametro());
 			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 			objD[r][4] = (Object)(d.elemento__List_.get(r).getTipoSagoma());
 		}
 		return objD;
+	}
+	
+	public ArrayList<ElementoDistinta> getDistinta(){
+		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
+		int rows = d.elemento__List_.size();
+		Object [][] objD = new Object[rows][5];
+		ArrayList<ElementoDistinta> dlList = new ArrayList<>();
+		for(int r = 0; r < rows; r++){
+			
+			dlList.add(d.elemento__List_.get(r));
+			objD[r][0] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[r][1] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			objD[r][2] = (Object)(d.elemento__List_.get(r).getItem().getDiametro());
+			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[r][4] = (Object)(d.elemento__List_.get(r).getTipoSagoma());
+		}
+		return dlList;
 	}
 
 	public double totalePesiDistinte() {
@@ -76,7 +102,7 @@ public class MPreventivo extends AModel {
 		try{
 			DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
 			int rows = d.elemento__List_.size();
-			Object [][] objD = this.getDistinta();
+			Object [][] objD = this.getDistintaObj();
 			for(int r = 0; r < rows; r++){
 				int num = (int) objD[r][1];
 				double diam = (double) objD[r][2];

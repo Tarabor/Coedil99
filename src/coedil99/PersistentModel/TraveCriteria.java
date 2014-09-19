@@ -18,41 +18,37 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
-public class TraviCriteria extends AbstractORMCriteria {
+public class TraveCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
-	public final StringExpression id_item;
-	public final IntegerExpression listinoIndex;
+	public final DoubleExpression peso;
+	public final DoubleExpression prezzo;
 	public final FloatExpression lunghezza;
 	
-	public TraviCriteria(Criteria criteria) {
+	public TraveCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		descrizione = new StringExpression("descrizione", this);
-		id_item = new StringExpression("id_item", this);
-		listinoIndex = new IntegerExpression("listinoIndex", this);
+		peso = new DoubleExpression("peso", this);
+		prezzo = new DoubleExpression("prezzo", this);
 		lunghezza = new FloatExpression("lunghezza", this);
 	}
 	
-	public TraviCriteria(PersistentSession session) {
-		this(session.createCriteria(Travi.class));
+	public TraveCriteria(PersistentSession session) {
+		this(session.createCriteria(Trave.class));
 	}
 	
-	public TraviCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+	public TraveCriteria() throws PersistentException {
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
-	public ListinoCriteria createListinoCriteria() {
-		return new ListinoCriteria(createCriteria("listino"));
+	public Trave uniqueTrave() {
+		return (Trave) super.uniqueResult();
 	}
 	
-	public Travi uniqueTravi() {
-		return (Travi) super.uniqueResult();
-	}
-	
-	public Travi[] listTravi() {
+	public Trave[] listTrave() {
 		java.util.List list = super.list();
-		return (Travi[]) list.toArray(new Travi[list.size()]);
+		return (Trave[]) list.toArray(new Trave[list.size()]);
 	}
 }
 

@@ -22,7 +22,6 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final StringExpression indirizzo;
 	public final StringExpression codiceFiscale;
 	public final StringExpression PartitaIva;
 	
@@ -31,7 +30,6 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
-		indirizzo = new StringExpression("indirizzo", this.getDetachedCriteria());
 		codiceFiscale = new StringExpression("codiceFiscale", this.getDetachedCriteria());
 		PartitaIva = new StringExpression("PartitaIva", this.getDetachedCriteria());
 	}
@@ -41,9 +39,12 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
-		indirizzo = new StringExpression("indirizzo", this.getDetachedCriteria());
 		codiceFiscale = new StringExpression("codiceFiscale", this.getDetachedCriteria());
 		PartitaIva = new StringExpression("PartitaIva", this.getDetachedCriteria());
+	}
+	
+	public IndirizzoDetachedCriteria createIndirizzoCriteria() {
+		return new IndirizzoDetachedCriteria(createCriteria("indirizzo"));
 	}
 	
 	public Cliente uniqueCliente(PersistentSession session) {

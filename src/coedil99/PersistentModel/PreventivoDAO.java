@@ -20,7 +20,7 @@ import java.util.List;
 public class PreventivoDAO {
 	public static Preventivo loadPreventivoByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadPreventivoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo getPreventivoByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getPreventivoByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo loadPreventivoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadPreventivoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo getPreventivoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getPreventivoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo[] listPreventivoByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listPreventivoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo[] listPreventivoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listPreventivoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo loadPreventivoByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadPreventivoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class PreventivoDAO {
 	
 	public static Preventivo loadPreventivoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadPreventivoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class PreventivoDAO {
 	
 	public static java.util.Iterator iteratePreventivoByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iteratePreventivoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class PreventivoDAO {
 	
 	public static java.util.Iterator iteratePreventivoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iteratePreventivoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -258,7 +258,7 @@ public class PreventivoDAO {
 	
 	public static boolean save(coedil99.PersistentModel.Preventivo preventivo) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().saveObject(preventivo);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(preventivo);
 			return true;
 		}
 		catch (Exception e) {
@@ -269,7 +269,7 @@ public class PreventivoDAO {
 	
 	public static boolean delete(coedil99.PersistentModel.Preventivo preventivo) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().deleteObject(preventivo);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(preventivo);
 			return true;
 		}
 		catch (Exception e) {
@@ -280,7 +280,7 @@ public class PreventivoDAO {
 	
 	public static boolean refresh(coedil99.PersistentModel.Preventivo preventivo) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().refresh(preventivo);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(preventivo);
 			return true;
 		}
 		catch (Exception e) {
@@ -291,7 +291,7 @@ public class PreventivoDAO {
 	
 	public static boolean evict(coedil99.PersistentModel.Preventivo preventivo) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().evict(preventivo);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(preventivo);
 			return true;
 		}
 		catch (Exception e) {

@@ -1,9 +1,12 @@
 package coedil99.ui.content;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Component;
@@ -20,27 +23,38 @@ import javax.swing.Box;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
+import coedil99.PersistentModel.Indirizzo;
 import coedil99.application.Controller.ctrlElaboraPreventivo;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
+
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.DropMode;
 import javax.swing.border.EtchedBorder;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+
 import java.awt.SystemColor;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+import com.mchange.v2.codegen.bean.IndirectingSerializableExtension;
+
 import javax.swing.SpringLayout;
+
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
@@ -188,6 +202,9 @@ public class newCliente extends JFrame {
 		String codiceFiscale = this.campoTesto_3.getText();
 		String partitaIva = this.campoTesto_4.getText();
 		
-		Coedil99View.getInstance().getController().salvaNuovoCliente(nome, cognome, indirizzo, codiceFiscale, partitaIva);
+		Indirizzo address = new Indirizzo();
+		address.setVia(indirizzo);
+		
+		Coedil99View.getInstance().getController().salvaNuovoCliente(nome, cognome, address, codiceFiscale, partitaIva);
 	}
 }

@@ -13,8 +13,8 @@
  */
 package coedil99.PersistentModel;
 
-public class Travi extends coedil99.PersistentModel.Item {
-	public Travi() {
+public class Trave extends coedil99.PersistentModel.Item {
+	public Trave() {
 	}
 	
 	private float lunghezza;
@@ -27,8 +27,21 @@ public class Travi extends coedil99.PersistentModel.Item {
 		return lunghezza;
 	}
 	
+	public void calcolaPrezzo() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
+	
 	public String toString() {
 		return super.toString();
+	}
+	
+public void setDiametro(float f) {
+		
+	}
+	
+	public float getDiametro() {
+		return 0;
 	}
 	
 }

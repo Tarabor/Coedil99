@@ -428,7 +428,6 @@ public class TabContent extends JPanel {
 		this.distinta.changeSelection(0, 0, false, false);
 		Coedil99View.getInstance().getController().
 		salvaPreventivo(this.data.getText(),
-					    this.destinazioneMateriale.getText(),
 					    this.elementoStrutturale.getText(),
 					    this.cartellino.getText(),
 					    this.btnFirma.isSelected(),

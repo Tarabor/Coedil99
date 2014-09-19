@@ -22,11 +22,11 @@ public class Cliente extends coedil99.PersistentModel.APersistentModel {
 	
 	private int ID;
 	
+	private coedil99.PersistentModel.Indirizzo indirizzo;
+	
 	private String nome;
 	
 	private String cognome;
-	
-	private String indirizzo;
 	
 	private String codiceFiscale;
 	
@@ -60,14 +60,6 @@ public class Cliente extends coedil99.PersistentModel.APersistentModel {
 		return cognome;
 	}
 	
-	public void setIndirizzo(String value) {
-		this.indirizzo = value;
-	}
-	
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-	
 	public void setCodiceFiscale(String value) {
 		this.codiceFiscale = value;
 	}
@@ -82,6 +74,14 @@ public class Cliente extends coedil99.PersistentModel.APersistentModel {
 	
 	public String getPartitaIva() {
 		return PartitaIva;
+	}
+	
+	public void setIndirizzo(coedil99.PersistentModel.Indirizzo value) {
+		this.indirizzo = value;
+	}
+	
+	public coedil99.PersistentModel.Indirizzo getIndirizzo() {
+		return indirizzo;
 	}
 	
 	public String toString() {

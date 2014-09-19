@@ -13,22 +13,35 @@
  */
 package coedil99.PersistentModel;
 
-public class Bulloni extends coedil99.PersistentModel.Item {
-	public Bulloni() {
+public class Lastra extends coedil99.PersistentModel.Item {
+	public Lastra() {
 	}
 	
-	private float diametro;
+	private String materiale;
 	
-	public void setDiametro(float value) {
-		this.diametro = value;
+	public void setMateriale(String value) {
+		this.materiale = value;
 	}
 	
-	public float getDiametro() {
-		return diametro;
+	public String getMateriale() {
+		return materiale;
+	}
+	
+	public void calcolaPrezzo() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {
 		return super.toString();
+	}
+	
+	public void setDiametro(float f) {
+		
+	}
+	
+	public float getDiametro() {
+		return 0;
 	}
 	
 }

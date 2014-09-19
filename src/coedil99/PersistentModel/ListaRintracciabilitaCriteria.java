@@ -35,7 +35,7 @@ public class ListaRintracciabilitaCriteria extends AbstractORMCriteria {
 	}
 	
 	public ListaRintracciabilitaCriteria() throws PersistentException {
-		this(coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession());
+		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
 	public ListaRintracciabilita uniqueListaRintracciabilita() {

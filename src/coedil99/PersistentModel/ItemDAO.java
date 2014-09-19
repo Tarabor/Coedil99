@@ -20,7 +20,7 @@ import java.util.List;
 public class ItemDAO {
 	public static Item loadItemByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadItemByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -31,7 +31,7 @@ public class ItemDAO {
 	
 	public static Item getItemByORMID(int ID) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getItemByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -42,7 +42,7 @@ public class ItemDAO {
 	
 	public static Item loadItemByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadItemByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -53,7 +53,7 @@ public class ItemDAO {
 	
 	public static Item getItemByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return getItemByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -104,7 +104,7 @@ public class ItemDAO {
 	
 	public static Item[] listItemByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listItemByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -115,7 +115,7 @@ public class ItemDAO {
 	
 	public static Item[] listItemByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return listItemByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -161,7 +161,7 @@ public class ItemDAO {
 	
 	public static Item loadItemByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadItemByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -172,7 +172,7 @@ public class ItemDAO {
 	
 	public static Item loadItemByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return loadItemByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -199,7 +199,7 @@ public class ItemDAO {
 	
 	public static java.util.Iterator iterateItemByQuery(String condition, String orderBy) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateItemByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -210,7 +210,7 @@ public class ItemDAO {
 	
 	public static java.util.Iterator iterateItemByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession();
+			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
 			return iterateItemByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -254,7 +254,7 @@ public class ItemDAO {
 	
 	public static boolean save(coedil99.PersistentModel.Item item) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().saveObject(item);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(item);
 			return true;
 		}
 		catch (Exception e) {
@@ -265,7 +265,7 @@ public class ItemDAO {
 	
 	public static boolean delete(coedil99.PersistentModel.Item item) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().deleteObject(item);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(item);
 			return true;
 		}
 		catch (Exception e) {
@@ -274,42 +274,9 @@ public class ItemDAO {
 		}
 	}
 	
-	public static boolean deleteAndDissociate(coedil99.PersistentModel.Item item) {
-		try {
-			if(item.getListino() != null) {
-				item.getListino().item.remove(item);
-			}
-			
-			return delete(item);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public static boolean deleteAndDissociate(coedil99.PersistentModel.Item item, org.orm.PersistentSession session) {
-		try {
-			if(item.getListino() != null) {
-				item.getListino().item.remove(item);
-			}
-			
-			try {
-				session.delete(item);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 	public static boolean refresh(coedil99.PersistentModel.Item item) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().refresh(item);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(item);
 			return true;
 		}
 		catch (Exception e) {
@@ -320,7 +287,7 @@ public class ItemDAO {
 	
 	public static boolean evict(coedil99.PersistentModel.Item item) {
 		try {
-			coedil99.PersistentModel.Coedil99PersistentManager.instance().getSession().evict(item);
+			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(item);
 			return true;
 		}
 		catch (Exception e) {

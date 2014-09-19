@@ -21,32 +21,26 @@ import org.orm.criteria.*;
 public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression indicazione;
-	public final DoubleExpression diametro;
-	public final DoubleExpression misuraDiTaglio;
 	public final IntegerExpression NPezzi;
+	public final DoubleExpression misuraDiTaglio;
 	public final IntegerExpression tipoSagoma;
-	public final DoubleExpression peso;
 	
 	public ElementoDistintaDetachedCriteria() {
 		super(coedil99.PersistentModel.ElementoDistinta.class, coedil99.PersistentModel.ElementoDistintaCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		indicazione = new StringExpression("indicazione", this.getDetachedCriteria());
-		diametro = new DoubleExpression("diametro", this.getDetachedCriteria());
-		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this.getDetachedCriteria());
 		NPezzi = new IntegerExpression("NPezzi", this.getDetachedCriteria());
+		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this.getDetachedCriteria());
 		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
-		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 	}
 	
 	public ElementoDistintaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ElementoDistintaCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		indicazione = new StringExpression("indicazione", this.getDetachedCriteria());
-		diametro = new DoubleExpression("diametro", this.getDetachedCriteria());
-		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this.getDetachedCriteria());
 		NPezzi = new IntegerExpression("NPezzi", this.getDetachedCriteria());
+		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this.getDetachedCriteria());
 		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
-		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 	}
 	
 	public ItemDetachedCriteria createItemCriteria() {

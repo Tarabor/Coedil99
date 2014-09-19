@@ -6,11 +6,11 @@ import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
+
 
 
 import javax.swing.JFrame;
@@ -26,7 +26,6 @@ import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -36,6 +35,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 import javax.swing.JInternalFrame;
+
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.newCliente;
 import coedil99.ui.template.Scheda;
@@ -177,14 +177,14 @@ public class Coedil99View extends JFrame {
 			tabbedPane.setTitleAt(index, p.getNome());
 		if( p.getCliente() != null)
 			tb.setCliente(p.getCliente().getCognome()+" "+p.getCliente().getNome());
-		tb.setDestinazioneMateriale(p.getDestinazioneMateriale());
+		tb.setDestinazioneMateriale(p.getCliente().getIndirizzo().getVia()+", "+p.getCliente().getIndirizzo().getComune());
 		tb.setElementoStrutturale(p.getElementoStrutturale());
 		tb.setPagina("1");
 		tb.setCartellino(Integer.toString(p.getCartellino()));
 		tb.setData(p.getData().toString());
 		tb.setFirma(p.getFirmato());
 		if( p.getDistinta()!= null)
-			tb.setDistinta(mp.getDistinta());
+			tb.setDistinta( mp.getDistintaObj());
 	}
 	
 	public void setStatusBar(String stato) {
