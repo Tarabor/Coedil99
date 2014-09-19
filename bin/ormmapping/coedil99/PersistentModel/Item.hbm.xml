@@ -11,18 +11,16 @@ License Type: Purchased
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
-		<many-to-one name="listino" cascade="lock" column="ListinoID" class="coedil99.PersistentModel.Listino" not-null="false" lazy="no-proxy" access="field">
-		</many-to-one>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="id_item" column="Id_item" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="listinoIndex" column="ListinoIndex" type="integer" not-null="false" lazy="false"/>
-		<subclass name="coedil99.PersistentModel.Lastre" discriminator-value="Lastre" lazy="false">
-			<property name="materiale" column="Materiale" type="float" not-null="false" lazy="false"/>
+		<property name="peso" column="Peso" type="double" not-null="false" lazy="false"/>
+		<property name="prezzo" column="Prezzo" type="double" not-null="false" lazy="false"/>
+		<subclass name="coedil99.PersistentModel.Lastra" discriminator-value="Lastre" lazy="false">
+			<property name="materiale" column="Materiale" type="string" length="255" not-null="false" lazy="false"/>
 		</subclass>
-		<subclass name="coedil99.PersistentModel.Travi" discriminator-value="Travi" lazy="false">
+		<subclass name="coedil99.PersistentModel.Trave" discriminator-value="Travi" lazy="false">
 			<property name="lunghezza" column="Lunghezza" type="float" not-null="false" lazy="false"/>
 		</subclass>
-		<subclass name="coedil99.PersistentModel.Bulloni" discriminator-value="Bulloni" lazy="false">
+		<subclass name="coedil99.PersistentModel.Bullone" discriminator-value="Bulloni" lazy="false">
 			<property name="diametro" column="Diametro" type="float" not-null="false" lazy="false"/>
 		</subclass>
 	</class>
