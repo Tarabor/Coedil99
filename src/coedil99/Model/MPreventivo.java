@@ -3,6 +3,7 @@ package coedil99.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import coedil99.PersistentModel.APersistentModel;
 import coedil99.PersistentModel.Bullone;
 import coedil99.PersistentModel.BulloneDAO;
 import coedil99.PersistentModel.DistintaLavorazione;
@@ -13,13 +14,23 @@ import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.Trave;
 import coedil99.PersistentModel.TraveDAO;
 
-public class MPreventivo extends AModel {
+public class MPreventivo implements AModel {
 	
 	private int INDICAZIONE_INDEX 	 = 0;
 	private int N_PEZZI_INDEX 	     = 1;
 	private int DIAMETRO_INDEX 		 = 2;
 	private int MISURADITAGLIO_INDEX = 3;
 	private int TIPOSAGOMA_INDEX 	 = 4;
+	
+	public APersistentModel model;
+	
+	public APersistentModel getPersistentModel() {
+		return this.model;
+	}
+
+	public void setPersistentModel(APersistentModel model) {
+		this.model = model;
+	}
 
 	public MPreventivo(){}
 	
@@ -37,6 +48,7 @@ public class MPreventivo extends AModel {
 		ElementoDistinta e;
 		Trave trave = TraveDAO.createTrave();
 		Bullone bullone = BulloneDAO.createBullone();
+		bullone.setPrezzo(5.0);
 		for(int r = 0; r < data.length; r++){
 			
 			if(r >= d.elemento__List_.size()){

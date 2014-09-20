@@ -1,6 +1,18 @@
 package coedil99.Model;
 
-public class MElementoDistinta extends AModel {
+import coedil99.PersistentModel.APersistentModel;
+
+public class MElementoDistinta implements AModel {
+	
+	public APersistentModel model;
+	
+	public APersistentModel getPersistentModel() {
+		return this.model;
+	}
+
+	public void setPersistentModel(APersistentModel model) {
+		this.model = model;
+	}
 
 	public MElementoDistinta() {
 		throw new UnsupportedOperationException();

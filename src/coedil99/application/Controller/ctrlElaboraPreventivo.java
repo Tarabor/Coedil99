@@ -1,15 +1,18 @@
 package coedil99.application.Controller;
 
 
+import coedil99.Model.MDistintaLavorazione;
 import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.ClienteDAO;
+import coedil99.PersistentModel.DistintaLavorazione;
 import coedil99.PersistentModel.ElementoDistinta;
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.PersistentModel.ItemDAO;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.PreventivoDAO;
 import coedil99.ui.Coedil99View;
+import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
 
 import java.util.ArrayList;
@@ -97,7 +100,6 @@ public class ctrlElaboraPreventivo {
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 1){
 			Coedil99View.getInstance().setSaveVisible(true);
 		}
-		this.totalePreventivo();
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
 	
@@ -110,10 +112,17 @@ public class ctrlElaboraPreventivo {
 		}
 	}
 	
-	public void totalePreventivo() {
-		Coedil99View.getInstance().setTotale(
-				this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo())
-				.calcolaPrezzo());
+	public void totalePreventivo(Object [][] distinta) {
+		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
+		mp.setDistinta(distinta);
+		
+
+		DistintaLavorazione dl = ((Preventivo)mp.getPersistentModel()).getDistinta();
+		
+		MDistintaLavorazione dist = new MDistintaLavorazione();
+		dist.addObserver(TabContent.getInstance());
+		dist.setPersistentModel(dl);
+		dist.calcolaPrezzo();
 		
 	}
 }

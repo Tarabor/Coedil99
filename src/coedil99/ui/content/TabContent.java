@@ -31,6 +31,10 @@ import javax.swing.ListSelectionModel;
 
 
 
+
+
+
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -50,19 +54,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
+import coedil99.Model.MDistintaLavorazione;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.ImageSelector;
 import coedil99.utility.Service;
+
 import javax.swing.JToggleButton;
 
-public class TabContent extends JPanel {
+public class TabContent extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private static TabContent instance;
 	
 	private JTable distinta;
 	private JTextField destinazioneMateriale;
@@ -93,7 +102,7 @@ public class TabContent extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TabContent() {
+	public TabContent() {		
 		setBorder(new EmptyBorder(50, 0, 0, 0));
 		setMinimumSize(new Dimension(0, 0));
 		setBackground(Color.WHITE);
@@ -199,6 +208,7 @@ public class TabContent extends JPanel {
 		tchtClienteimpresa.setText("  CLIENTE/IMPRESA");
 		verticalBox_2.add(tchtClienteimpresa);
 		tchtClienteimpresa.setHorizontalAlignment(SwingConstants.LEFT);
+		
 		
 		cliente = new CampoTesto();
 		cliente.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
@@ -376,6 +386,15 @@ public class TabContent extends JPanel {
 		});
 		popMenu.add(cancItem);
 	}
+	
+	public static TabContent getInstance(){
+		if(instance == null)
+			instance = new TabContent();
+		
+		return instance;
+	}
+	
+	
 	public void setDistinta(Object[][] distinta) {
 		this.distinta.setModel(new DefaultTableModel((distinta), this.tableHeader));
 		this.distinta.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(new ImageSelector()));
@@ -437,8 +456,8 @@ public class TabContent extends JPanel {
 	private class RowListener implements KeyListener {
 		 public void keyPressed(KeyEvent e) {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
+				 Coedil99View.getInstance().getController().totalePreventivo(Service.getTableData((DefaultTableModel)distinta.getModel()));
 				 ((DefaultTableModel) distinta.getModel()).addRow(new Object[] {"", 0, 0, 0, ""});
-				 Coedil99View.getInstance().getController().totalePreventivo();
              }
 		    }
 		public void keyReleased(KeyEvent arg0){}
@@ -461,4 +480,12 @@ public class TabContent extends JPanel {
 	public void setTotale(double totale) {
 		campoTesto_1.setText(String.valueOf(totale)+" $");
 	}
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		campoTesto_1.setText(String.valueOf(arg)+" $");
+		campoTesto_1.validate();
+	}
+	
+	
 }

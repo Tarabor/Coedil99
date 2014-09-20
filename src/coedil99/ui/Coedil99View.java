@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -43,6 +44,7 @@ import coedil99.ui.template.btnToolBar;
 import coedil99.ui.content.Start;
 
 
+import coedil99.Model.MDistintaLavorazione;
 import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.Preventivo;
@@ -55,6 +57,8 @@ public class Coedil99View extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private ctrlElaboraPreventivo controller = new ctrlElaboraPreventivo();
+	
+	MDistintaLavorazione distintaLavorazione = new MDistintaLavorazione();
 
 	private static Coedil99View instance;
 	private OpenPreventiviView op;
@@ -122,7 +126,6 @@ public class Coedil99View extends JFrame {
 	}
 	
 	public void nuovaScheda(){
-		
 		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.defaulttitle"), new TabContent());
 		this.tabbedPane.setTabComponentAt(this.tab_count , new Scheda(this.tabbedPane));
 		this.tabbedPane.setSelectedIndex(this.tab_count);

@@ -2,15 +2,12 @@ package coedil99.Model;
 
 import coedil99.PersistentModel.APersistentModel;
 
-public abstract class AModel {
-	public APersistentModel model;
+public interface AModel {
 	
 
-	public APersistentModel getPersistentModel() {
-		return this.model;
-	}
+	
+	public APersistentModel getPersistentModel();
 
-	public void setPersistentModel(APersistentModel model) {
-		this.model = model;
-	}
+	public void setPersistentModel(APersistentModel model);
+	
 }
