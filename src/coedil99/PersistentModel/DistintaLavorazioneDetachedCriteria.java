@@ -20,15 +20,18 @@ import org.orm.criteria.*;
 
 public class DistintaLavorazioneDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
+	public final DoubleExpression totale;
 	
 	public DistintaLavorazioneDetachedCriteria() {
 		super(coedil99.PersistentModel.DistintaLavorazione.class, coedil99.PersistentModel.DistintaLavorazioneCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		totale = new DoubleExpression("totale", this.getDetachedCriteria());
 	}
 	
 	public DistintaLavorazioneDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.DistintaLavorazioneCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		totale = new DoubleExpression("totale", this.getDetachedCriteria());
 	}
 	
 	public ElementoDistintaDetachedCriteria createElemento__List_Criteria() {

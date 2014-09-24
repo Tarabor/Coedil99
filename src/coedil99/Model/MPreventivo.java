@@ -47,7 +47,7 @@ public class MPreventivo implements AModel {
 		}							
 		ElementoDistinta e;
 		Trave trave = TraveDAO.createTrave();
-		Bullone bullone = BulloneDAO.createBullone();
+		Bullone bullone = BulloneDAO.createBullone(); //per ora abbiamo inserito un bullone di default
 		bullone.setPrezzo(5.0);
 		for(int r = 0; r < data.length; r++){
 			
@@ -60,7 +60,7 @@ public class MPreventivo implements AModel {
 			e.setItem(bullone);
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			e.getItem().setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX])));
+			((Bullone) e.getItem()).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX]))); //per ora abbiamo inserito un bullone di default
 			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
 			e.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX])));
 			
@@ -73,7 +73,7 @@ public class MPreventivo implements AModel {
 		for(int r = 0; r < rows; r++){
 			objD[r][0] = (Object)(d.elemento__List_.get(r).getIndicazione());
 			objD[r][1] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][2] = (Object)(d.elemento__List_.get(r).getItem().getDiametro());
+			objD[r][2] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); //per ora abbiamo inserito un bullone di default
 			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 			objD[r][4] = (Object)(d.elemento__List_.get(r).getTipoSagoma());
 		}
@@ -90,7 +90,7 @@ public class MPreventivo implements AModel {
 			dlList.add(d.elemento__List_.get(r));
 			objD[r][0] = (Object)(d.elemento__List_.get(r).getIndicazione());
 			objD[r][1] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][2] = (Object)(d.elemento__List_.get(r).getItem().getDiametro());
+			objD[r][2] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro();
 			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 			objD[r][4] = (Object)(d.elemento__List_.get(r).getTipoSagoma());
 		}

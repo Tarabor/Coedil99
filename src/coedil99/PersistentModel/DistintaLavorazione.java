@@ -34,6 +34,8 @@ public class DistintaLavorazione extends coedil99.PersistentModel.APersistentMod
 	
 	private int ID;
 	
+	private double totale;
+	
 	private java.util.List ORM_elemento__List_ = new java.util.ArrayList();
 	
 	private void setID(int value) {
@@ -46,6 +48,14 @@ public class DistintaLavorazione extends coedil99.PersistentModel.APersistentMod
 	
 	public int getORMID() {
 		return getID();
+	}
+	
+	public void setTotale(double value) {
+		this.totale = value;
+	}
+	
+	public double getTotale() {
+		return totale;
 	}
 	
 	private void setORM_Elemento__List_(java.util.List value) {

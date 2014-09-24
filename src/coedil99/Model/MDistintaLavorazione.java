@@ -1,5 +1,6 @@
 package coedil99.Model;
 
+import java.awt.EventQueue;
 import java.util.List;
 import java.util.Observable;
 
@@ -8,7 +9,7 @@ import coedil99.PersistentModel.DistintaLavorazione;
 import coedil99.PersistentModel.ElementoDistinta;
 import coedil99.ui.content.TabContent;
 
-public class MDistintaLavorazione extends Observable implements AModel {
+public class MDistintaLavorazione extends Observable implements AModel, Runnable {
 	
 	public APersistentModel model;
 
@@ -17,15 +18,32 @@ public class MDistintaLavorazione extends Observable implements AModel {
 	}
 	
 	public void calcolaPrezzo() {
-		Double totale = 0.0;
+		Double totale;
 		DistintaLavorazione d = (DistintaLavorazione) this.getPersistentModel();
+		totale = new Double(d.getTotale());
 		for (int i = 0; i < d.elemento__List_.size(); i++) {
 			ElementoDistinta el = d.elemento__List_.get(i);
 			totale += (el.getNPezzi() * el.getItem().getPrezzo());
 		}
-		this.setChanged();
-		this.notifyObservers(totale);
+		this.run();
 	}
+	
+	@Override
+    public void run() {
+        // Do work
+        System.out.println("Thread in run: " + Thread.currentThread());
+        this.setChanged();
+
+        // Notify the observers on the EDT.
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                System.out.println("Thread in invokeLater: " + Thread.currentThread());
+                notifyObservers("Update!");
+            }
+        });
+    }
 	
 	public APersistentModel getPersistentModel() {
 		return this.model;

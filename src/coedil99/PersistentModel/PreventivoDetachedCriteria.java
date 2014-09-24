@@ -20,30 +20,30 @@ import org.orm.criteria.*;
 
 public class PreventivoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final DateExpression data;
-	public final BooleanExpression firmato;
 	public final StringExpression elementoStrutturale;
 	public final IntegerExpression cartellino;
 	public final StringExpression nome;
+	public final BooleanExpression firmato;
+	public final DateExpression data;
 	
 	public PreventivoDetachedCriteria() {
 		super(coedil99.PersistentModel.Preventivo.class, coedil99.PersistentModel.PreventivoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		data = new DateExpression("data", this.getDetachedCriteria());
-		firmato = new BooleanExpression("firmato", this.getDetachedCriteria());
 		elementoStrutturale = new StringExpression("elementoStrutturale", this.getDetachedCriteria());
 		cartellino = new IntegerExpression("cartellino", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
+		firmato = new BooleanExpression("firmato", this.getDetachedCriteria());
+		data = new DateExpression("data", this.getDetachedCriteria());
 	}
 	
 	public PreventivoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.PreventivoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		data = new DateExpression("data", this.getDetachedCriteria());
-		firmato = new BooleanExpression("firmato", this.getDetachedCriteria());
 		elementoStrutturale = new StringExpression("elementoStrutturale", this.getDetachedCriteria());
 		cartellino = new IntegerExpression("cartellino", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
+		firmato = new BooleanExpression("firmato", this.getDetachedCriteria());
+		data = new DateExpression("data", this.getDetachedCriteria());
 	}
 	
 	public IndirizzoDetachedCriteria createDestinazioneMaterialeCriteria() {

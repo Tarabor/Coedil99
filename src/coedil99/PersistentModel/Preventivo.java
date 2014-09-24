@@ -25,10 +25,6 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	
 	private coedil99.PersistentModel.DistintaLavorazione distinta;
 	
-	private java.util.Date data;
-	
-	private boolean firmato;
-	
 	private String elementoStrutturale;
 	
 	private int cartellino;
@@ -36,6 +32,10 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	private String nome;
 	
 	private coedil99.PersistentModel.Cliente cliente;
+	
+	private boolean firmato;
+	
+	private java.util.Date data;
 	
 	private void setID(int value) {
 		this.ID = value;

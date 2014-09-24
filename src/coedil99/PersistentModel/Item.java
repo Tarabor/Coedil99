@@ -61,12 +61,6 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 		return prezzo;
 	}
 	
-	public abstract void calcolaPrezzo();
-	
-	public abstract float getDiametro();
-	
-	public abstract void setDiametro(float diametro);
-	
 	public String toString() {
 		return String.valueOf(getID());
 	}

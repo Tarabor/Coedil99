@@ -71,6 +71,8 @@ public class newCliente extends JFrame {
 	private CampoTesto campoTesto_2;
 	private CampoTesto campoTesto_3;
 	private CampoTesto campoTesto_4;
+	private CampoTesto campoTesto_5;
+	private CampoTesto campoTesto_6;
 	
 
 	/**
@@ -114,11 +116,11 @@ public class newCliente extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				RowSpec.decode("max(23dlu;default)"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
-				FormFactory.RELATED_GAP_ROWSPEC,
-				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
@@ -152,33 +154,53 @@ public class newCliente extends JFrame {
 		campoTesto_2.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_2, "6, 10, fill, default");
 		
+		Etichetta etichetta_6 = new Etichetta("NUMERO");
+		etichetta_6.setText("  NUMERO");
+		getContentPane().add(etichetta_6, "2, 12");
+		
+		campoTesto_6 = new CampoTesto();
+		campoTesto_6.setColumns(10);
+		campoTesto_6.setAlignmentX(0.0f);
+		getContentPane().add(campoTesto_6, "6, 12, left, default");
+		
+		Etichetta etichetta_5 = new Etichetta("COMUNE");
+		etichetta_5.setText("  COMUNE");
+		etichetta_5.setHorizontalTextPosition(SwingConstants.LEFT);
+		etichetta_5.setHorizontalAlignment(SwingConstants.LEFT);
+		getContentPane().add(etichetta_5, "2, 14");
+		
+		campoTesto_5 = new CampoTesto();
+		campoTesto_5.setColumns(10);
+		campoTesto_5.setAlignmentX(0.0f);
+		getContentPane().add(campoTesto_5, "6, 14, fill, default");
+		
 		Etichetta etichetta_3 = new Etichetta("CODICE FISCALE");
 		etichetta_3.setText("  CODICE FISCALE");
 		etichetta_3.setHorizontalTextPosition(SwingConstants.LEFT);
 		etichetta_3.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(etichetta_3, "2, 12");
+		getContentPane().add(etichetta_3, "2, 16");
 		
 		campoTesto_3 = new CampoTesto();
 		campoTesto_3.setColumns(10);
 		campoTesto_3.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_3, "6, 12, fill, default");
+		getContentPane().add(campoTesto_3, "6, 16, fill, default");
 		
 		Etichetta etichetta_4 = new Etichetta("PARTITA IVA");
 		etichetta_4.setText("  PARTITA IVA");
 		etichetta_4.setHorizontalTextPosition(SwingConstants.LEFT);
 		etichetta_4.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(etichetta_4, "2, 14");
+		getContentPane().add(etichetta_4, "2, 18");
 		
 		campoTesto_4 = new CampoTesto();
 		campoTesto_4.setColumns(10);
 		campoTesto_4.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_4, "6, 14, fill, default");
+		getContentPane().add(campoTesto_4, "6, 18, fill, default");
 		
 		JButton btnSalva = new JButton("Salva");
 		btnSalva.setMaximumSize(new Dimension(50, 23));
 		btnSalva.setMinimumSize(new Dimension(50, 23));
 		btnSalva.setPreferredSize(new Dimension(150, 50));
-		getContentPane().add(btnSalva, "6, 18, center, default");
+		getContentPane().add(btnSalva, "6, 22, center, default");
 		setAlwaysOnTop (true);
 		//setBorder(new LineBorder(SystemColor.desktop));
 		setMinimumSize(new Dimension(700, 350));
@@ -199,12 +221,12 @@ public class newCliente extends JFrame {
 		String nome = this.campoTesto.getText();
 		String cognome = this.campoTesto_1.getText();
 		String indirizzo = this.campoTesto_2.getText();
+		String numero = this.campoTesto_6.getText();
+		String comune = this.campoTesto_5.getText();
 		String codiceFiscale = this.campoTesto_3.getText();
 		String partitaIva = this.campoTesto_4.getText();
 		
-		Indirizzo address = new Indirizzo();
-		address.setVia(indirizzo);
 		
-		Coedil99View.getInstance().getController().salvaNuovoCliente(nome, cognome, address, codiceFiscale, partitaIva);
+		Coedil99View.getInstance().getController().salvaNuovoCliente(nome, cognome, indirizzo, numero, comune, codiceFiscale, partitaIva);
 	}
 }

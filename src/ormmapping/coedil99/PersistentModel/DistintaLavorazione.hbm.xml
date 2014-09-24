@@ -10,6 +10,7 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
+		<property name="totale" column="Totale" type="double" not-null="true" lazy="false"/>
 		<list name="ORM_Elemento__List_" lazy="true" cascade="all-delete-orphan" inverse="false">
 			<key column="DistintaLavorazioneID" not-null="false"/>
 			<index column="DistintaLavorazioneIndex" type="integer"/>

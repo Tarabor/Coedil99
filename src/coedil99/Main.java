@@ -23,7 +23,7 @@ public class Main {
 			}
 		};
 		SwingUtilities.invokeLater(RunGui);
-		try {
+		/*try {
 				SwingUtilities.invokeAndWait(RunGui);
 				
 			} catch (InvocationTargetException e) {
@@ -32,6 +32,6 @@ public class Main {
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();
-			}	
+			}	*/
 	}
 }

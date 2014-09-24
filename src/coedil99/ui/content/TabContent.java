@@ -483,6 +483,7 @@ public class TabContent extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		System.out.println("Thread in update: " + Thread.currentThread());
 		campoTesto_1.setText(String.valueOf(arg)+" $");
 		campoTesto_1.validate();
 	}

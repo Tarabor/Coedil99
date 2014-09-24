@@ -178,9 +178,11 @@ public class Coedil99View extends JFrame {
 		Preventivo p = (Preventivo)mp.getPersistentModel();
 		if (p.getNome() != null)
 			tabbedPane.setTitleAt(index, p.getNome());
-		if( p.getCliente() != null)
+		if( p.getCliente() != null) {
 			tb.setCliente(p.getCliente().getCognome()+" "+p.getCliente().getNome());
-		tb.setDestinazioneMateriale(p.getCliente().getIndirizzo().getVia()+", "+p.getCliente().getIndirizzo().getComune());
+			String indirizzo = p.getCliente().getIndirizzo().getVia() + " " + p.getCliente().getIndirizzo().getNumero() + ", " + p.getCliente().getIndirizzo().getComune();
+			tb.setDestinazioneMateriale(indirizzo);
+		}
 		tb.setElementoStrutturale(p.getElementoStrutturale());
 		tb.setPagina("1");
 		tb.setCartellino(Integer.toString(p.getCartellino()));

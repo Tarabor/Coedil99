@@ -61,11 +61,15 @@ public class ctrlElaboraPreventivo {
 		Coedil99View.getInstance().showNewClienti();
 	}
 	
-	public void salvaNuovoCliente(String nome, String cognome, Indirizzo indirizzo, String codiceFiscale, String partitaIva) {
+	public void salvaNuovoCliente(String nome, String cognome, String indirizzo, String numero, String comune, String codiceFiscale, String partitaIva) {
+		Indirizzo i = new Indirizzo(); //setto prima l'indirizzo
+		i.setVia(indirizzo);
+		i.setComune(comune);
+		i.setNumero(Integer.valueOf(numero)); 
 		Cliente c = new Cliente();
 		c.setNome(nome);
 		c.setCognome(cognome);
-		c.setIndirizzo(indirizzo);
+		c.setIndirizzo(i);
 		c.setCodiceFiscale(codiceFiscale);
 		c.setPartitaIva(partitaIva);
 		ClienteDAO.save(c);

@@ -27,7 +27,12 @@ public class Bullone extends coedil99.PersistentModel.Item {
 		return diametro;
 	}
 	
-	public void calcolaPrezzo() {
+	public double getPrezzo() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
+	
+	public void setPrezzo(double prezzo) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

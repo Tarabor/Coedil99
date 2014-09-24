@@ -27,21 +27,18 @@ public class Trave extends coedil99.PersistentModel.Item {
 		return lunghezza;
 	}
 	
-	public void calcolaPrezzo() {
+	public double getPrezzo() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
+	
+	public void setPrezzo(double prezzo) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {
 		return super.toString();
-	}
-	
-public void setDiametro(float f) {
-		
-	}
-	
-	public float getDiametro() {
-		return 0;
 	}
 	
 }
