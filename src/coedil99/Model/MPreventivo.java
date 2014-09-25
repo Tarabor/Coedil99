@@ -10,17 +10,19 @@ import coedil99.PersistentModel.DistintaLavorazione;
 import coedil99.PersistentModel.DistintaLavorazioneDAO;
 import coedil99.PersistentModel.ElementoDistinta;
 import coedil99.PersistentModel.ElementoDistintaDAO;
+import coedil99.PersistentModel.Item;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.Trave;
 import coedil99.PersistentModel.TraveDAO;
 
 public class MPreventivo implements AModel {
 	
-	private int INDICAZIONE_INDEX 	 = 0;
-	private int N_PEZZI_INDEX 	     = 1;
-	private int DIAMETRO_INDEX 		 = 2;
-	private int MISURADITAGLIO_INDEX = 3;
-	private int TIPOSAGOMA_INDEX 	 = 4;
+	private int ITEM_INDEX 	 = 0;
+	private int INDICAZIONE_INDEX 	 = 1;
+	private int N_PEZZI_INDEX 	     = 2;
+	private int DIAMETRO_INDEX 		 = 3;
+	private int MISURADITAGLIO_INDEX = 4;
+	private int TIPOSAGOMA_INDEX 	 = 5;
 	
 	public APersistentModel model;
 	
@@ -57,10 +59,25 @@ public class MPreventivo implements AModel {
 			}
 			else
 			e = d.elemento__List_.get(r);
-			e.setItem(bullone);
+			Class valueClass = null;
+			try {
+				valueClass = Class.forName((String) "coedil99.PersistentModel." + data[r][ITEM_INDEX]);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Item i = null;
+			
+			try {
+				i = (Item) valueClass.newInstance();
+			} catch (InstantiationException | IllegalAccessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.setItem(i);
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			((Bullone) e.getItem()).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX]))); //per ora abbiamo inserito un bullone di default
+			//((Bullone) e.getItem()).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX]))); //per ora abbiamo inserito un bullone di default
 			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
 			e.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX])));
 			

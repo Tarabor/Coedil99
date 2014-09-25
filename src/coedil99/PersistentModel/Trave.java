@@ -27,14 +27,14 @@ public class Trave extends coedil99.PersistentModel.Item {
 		return lunghezza;
 	}
 	
+	@Override
 	public double getPrezzo() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return super.getPrezzo();
 	}
 	
+	@Override
 	public void setPrezzo(double prezzo) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		super.setPrezzo(prezzo);
 	}
 	
 	public String toString() {

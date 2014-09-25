@@ -26,15 +26,14 @@ public class Bullone extends coedil99.PersistentModel.Item {
 	public float getDiametro() {
 		return diametro;
 	}
-	
+	@Override
 	public double getPrezzo() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return super.getPrezzo();
 	}
 	
+	@Override
 	public void setPrezzo(double prezzo) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		super.setPrezzo(prezzo);
 	}
 	
 	public String toString() {

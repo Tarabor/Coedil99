@@ -58,7 +58,6 @@ public class Coedil99View extends JFrame {
 	
 	private ctrlElaboraPreventivo controller = new ctrlElaboraPreventivo();
 	
-	MDistintaLavorazione distintaLavorazione = new MDistintaLavorazione();
 
 	private static Coedil99View instance;
 	private OpenPreventiviView op;

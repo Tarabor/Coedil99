@@ -121,7 +121,7 @@ public class ctrlElaboraPreventivo {
 		mp.setDistinta(distinta);
 		
 
-		DistintaLavorazione dl = ((Preventivo)mp.getPersistentModel()).getDistinta();
+		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
 		
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.addObserver(TabContent.getInstance());
