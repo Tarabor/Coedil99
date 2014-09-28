@@ -13,7 +13,7 @@ import javax.swing.ListCellRenderer;
 
 public class ImageSelector extends JComboBox{
 
-	String[] elementi = {"Trave1", "Trave2", "Trave3"};
+	String[] elementi = { "Sagoma1", "Sagoma2", "Sagoma3"};
 	ImageIcon[] images;
 
 	public ImageSelector() {

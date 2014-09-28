@@ -17,7 +17,7 @@ import coedil99.PersistentModel.TraveDAO;
 
 public class MPreventivo implements AModel {
 	
-	private int ITEM_INDEX 	 = 0;
+	private int ITEM_INDEX 	 		 = 0;
 	private int INDICAZIONE_INDEX 	 = 1;
 	private int N_PEZZI_INDEX 	     = 2;
 	private int DIAMETRO_INDEX 		 = 3;
@@ -48,17 +48,14 @@ public class MPreventivo implements AModel {
 			 p.setDistinta(d);
 		}							
 		ElementoDistinta e;
-		Trave trave = TraveDAO.createTrave();
-		Bullone bullone = BulloneDAO.createBullone(); //per ora abbiamo inserito un bullone di default
-		bullone.setPrezzo(5.0);
 		for(int r = 0; r < data.length; r++){
-			
+
 			if(r >= d.elemento__List_.size()){
 				e = ElementoDistintaDAO.createElementoDistinta();
 				d.elemento__List_.add(e);
 			}
 			else
-			e = d.elemento__List_.get(r);
+				e = d.elemento__List_.get(r);
 			Class valueClass = null;
 			try {
 				valueClass = Class.forName((String) "coedil99.PersistentModel." + data[r][ITEM_INDEX]);
@@ -67,32 +64,67 @@ public class MPreventivo implements AModel {
 				e1.printStackTrace();
 			}
 			Item i = null;
-			
+
 			try {
 				i = (Item) valueClass.newInstance();
 			} catch (InstantiationException | IllegalAccessException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			e.setItem(i);
+			//i.setPrezzo(5); bisogna farlo all'avvio
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			//((Bullone) e.getItem()).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX]))); //per ora abbiamo inserito un bullone di default
-			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
-			e.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX])));
+			if (i.getClass().getName().equals("coedil99.PersistentModel.Bullone")) {
+				((Bullone) i).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX])));
+			} else {
+				//e.getItem().setDiametro(0); item non ha ancora l'operazione setDiametro
+			}
 			
+			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
+			if ((data[r][TIPOSAGOMA_INDEX]).equals("/")) {
+				i.setTipoSagoma(0);
+			} else {
+				i.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX]))+1);
+			}
+			
+			//imposto il prezzo, probabilmente sarebbe meglio inserire una Map nella classe listino anzichè una Lista
+			switch(i.getClass().getName()) {
+		    case "coedil99.PersistentModel.Bullone":
+		    	MBullone bullone = new MBullone();
+		    	bullone.setPersistentModel(i);
+		    	bullone.setPrezzo(5);
+		    	break;
+		    case "coedil99.PersistentModel.Trave":
+		    	MTrave trave = new MTrave();
+		    	trave.setPersistentModel(i);
+		    	trave.setPrezzo(5);
+		    	break;
+		    case "coedil99.PersistentModel.Lastra":
+		    	MLastra lastra = new MLastra();
+		    	lastra.setPersistentModel(i);
+		    	lastra.setPrezzo(5);
+		    	break;
+			}
+			
+			e.setItem(i);
+
 		}
 	}
 	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
 		int rows = d.elemento__List_.size();
-		Object [][] objD = new Object[rows][5];
+		Object [][] objD = new Object[rows][6];
 		for(int r = 0; r < rows; r++){
-			objD[r][0] = (Object)(d.elemento__List_.get(r).getIndicazione());
-			objD[r][1] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][2] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); //per ora abbiamo inserito un bullone di default
-			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
-			objD[r][4] = (Object)(d.elemento__List_.get(r).getTipoSagoma());
+			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
+			objD[r][1] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[r][2] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			if (((Item) (d.elemento__List_.get(r)).getItem()).getClass().getName().equals("coedil99.PersistentModel.Bullone")) { //controllo se è un bullone e ha diametro
+				objD[r][3] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); 
+			} else {
+				objD[r][3] = 0; //altrimenti diametro è 0
+			}
+			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[r][5] = (Object) ((Item) (d.elemento__List_.get(r)).getItem()).getTipoSagoma();
 		}
 		return objD;
 	}
@@ -100,16 +132,21 @@ public class MPreventivo implements AModel {
 	public ArrayList<ElementoDistinta> getDistinta(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
 		int rows = d.elemento__List_.size();
-		Object [][] objD = new Object[rows][5];
+		Object [][] objD = new Object[rows][6];
 		ArrayList<ElementoDistinta> dlList = new ArrayList<>();
 		for(int r = 0; r < rows; r++){
 			
 			dlList.add(d.elemento__List_.get(r));
-			objD[r][0] = (Object)(d.elemento__List_.get(r).getIndicazione());
-			objD[r][1] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][2] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro();
-			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
-			objD[r][4] = (Object)(d.elemento__List_.get(r).getTipoSagoma());
+			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName());
+			objD[r][1] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[r][2] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			if (((Item) (d.elemento__List_.get(r)).getItem()).getClass().getName().equals("Bullone")) {
+				objD[r][3] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); 
+			} else {
+				objD[r][3] = 0;
+			}
+			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[r][5] = (Object) ((Item) (d.elemento__List_.get(r)).getItem()).getTipoSagoma();
 		}
 		return dlList;
 	}

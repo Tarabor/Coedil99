@@ -27,8 +27,6 @@ public class ElementoDistinta extends coedil99.PersistentModel.APersistentModel 
 	
 	private double misuraDiTaglio;
 	
-	private int tipoSagoma;
-	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -63,14 +61,6 @@ public class ElementoDistinta extends coedil99.PersistentModel.APersistentModel 
 	
 	public double getMisuraDiTaglio() {
 		return misuraDiTaglio;
-	}
-	
-	public void setTipoSagoma(int value) {
-		this.tipoSagoma = value;
-	}
-	
-	public int getTipoSagoma() {
-		return tipoSagoma;
 	}
 	
 	public void setItem(coedil99.PersistentModel.Item value) {

@@ -23,7 +23,6 @@ public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteri
 	public final StringExpression indicazione;
 	public final IntegerExpression NPezzi;
 	public final DoubleExpression misuraDiTaglio;
-	public final IntegerExpression tipoSagoma;
 	
 	public ElementoDistintaDetachedCriteria() {
 		super(coedil99.PersistentModel.ElementoDistinta.class, coedil99.PersistentModel.ElementoDistintaCriteria.class);
@@ -31,7 +30,6 @@ public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteri
 		indicazione = new StringExpression("indicazione", this.getDetachedCriteria());
 		NPezzi = new IntegerExpression("NPezzi", this.getDetachedCriteria());
 		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this.getDetachedCriteria());
-		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
 	}
 	
 	public ElementoDistintaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -40,7 +38,6 @@ public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteri
 		indicazione = new StringExpression("indicazione", this.getDetachedCriteria());
 		NPezzi = new IntegerExpression("NPezzi", this.getDetachedCriteria());
 		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this.getDetachedCriteria());
-		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
 	}
 	
 	public ItemDetachedCriteria createItemCriteria() {

@@ -13,16 +13,17 @@ public class Main {
 		final SplashScreen  splash = new SplashScreen();
 		splash.setVisible(true); 
 		
-		Runnable RunGui = new Runnable() {
+	
+		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
 				
+				
 				Coedil99View.getInstance().setVisible(true);
 				splash.setVisible(false);
 			}
-		};
-		SwingUtilities.invokeLater(RunGui);
+		});
 		/*try {
 				SwingUtilities.invokeAndWait(RunGui);
 				

@@ -23,6 +23,7 @@ public class BulloneDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
+	public final IntegerExpression tipoSagoma;
 	public final FloatExpression diametro;
 	
 	public BulloneDetachedCriteria() {
@@ -31,6 +32,7 @@ public class BulloneDetachedCriteria extends AbstractORMDetachedCriteria {
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
+		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
 		diametro = new FloatExpression("diametro", this.getDetachedCriteria());
 	}
 	
@@ -40,6 +42,7 @@ public class BulloneDetachedCriteria extends AbstractORMDetachedCriteria {
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
+		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
 		diametro = new FloatExpression("diametro", this.getDetachedCriteria());
 	}
 	

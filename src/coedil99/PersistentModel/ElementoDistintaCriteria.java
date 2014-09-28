@@ -23,7 +23,6 @@ public class ElementoDistintaCriteria extends AbstractORMCriteria {
 	public final StringExpression indicazione;
 	public final IntegerExpression NPezzi;
 	public final DoubleExpression misuraDiTaglio;
-	public final IntegerExpression tipoSagoma;
 	
 	public ElementoDistintaCriteria(Criteria criteria) {
 		super(criteria);
@@ -31,7 +30,6 @@ public class ElementoDistintaCriteria extends AbstractORMCriteria {
 		indicazione = new StringExpression("indicazione", this);
 		NPezzi = new IntegerExpression("NPezzi", this);
 		misuraDiTaglio = new DoubleExpression("misuraDiTaglio", this);
-		tipoSagoma = new IntegerExpression("tipoSagoma", this);
 	}
 	
 	public ElementoDistintaCriteria(PersistentSession session) {

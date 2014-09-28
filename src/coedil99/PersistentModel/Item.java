@@ -17,13 +17,15 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 	public Item() {
 	}
 	
-	private int ID;
+	protected int ID;
 	
-	private String descrizione;
+	protected String descrizione;
 	
-	private double peso;
+	protected double peso;
 	
-	private double prezzo;
+	protected double prezzo;
+	
+	protected int tipoSagoma;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -53,12 +55,16 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 		return peso;
 	}
 	
-	public void setPrezzo(double value) {
-		this.prezzo = value;
+	public abstract void setPrezzo(double value);
+	
+	public abstract double getPrezzo();
+	
+	public void setTipoSagoma(int value) {
+		this.tipoSagoma = value;
 	}
 	
-	public double getPrezzo() {
-		return prezzo;
+	public int getTipoSagoma() {
+		return tipoSagoma;
 	}
 	
 	public String toString() {

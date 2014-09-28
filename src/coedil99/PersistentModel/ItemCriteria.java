@@ -23,6 +23,7 @@ public class ItemCriteria extends AbstractORMCriteria {
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
+	public final IntegerExpression tipoSagoma;
 	
 	public ItemCriteria(Criteria criteria) {
 		super(criteria);
@@ -30,6 +31,7 @@ public class ItemCriteria extends AbstractORMCriteria {
 		descrizione = new StringExpression("descrizione", this);
 		peso = new DoubleExpression("peso", this);
 		prezzo = new DoubleExpression("prezzo", this);
+		tipoSagoma = new IntegerExpression("tipoSagoma", this);
 	}
 	
 	public ItemCriteria(PersistentSession session) {

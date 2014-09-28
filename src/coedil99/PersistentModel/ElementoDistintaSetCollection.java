@@ -74,7 +74,6 @@ public class ElementoDistintaSetCollection extends org.orm.util.ORMSet {
 	 * <li>indicazione</li>
 	 * <li>NPezzi</li>
 	 * <li>misuraDiTaglio</li>
-	 * <li>tipoSagoma</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -89,7 +88,6 @@ public class ElementoDistintaSetCollection extends org.orm.util.ORMSet {
 	 * <li>indicazione</li>
 	 * <li>NPezzi</li>
 	 * <li>misuraDiTaglio</li>
-	 * <li>tipoSagoma</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array

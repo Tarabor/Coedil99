@@ -23,6 +23,7 @@ public class LastraCriteria extends AbstractORMCriteria {
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
+	public final IntegerExpression tipoSagoma;
 	public final StringExpression materiale;
 	
 	public LastraCriteria(Criteria criteria) {
@@ -31,6 +32,7 @@ public class LastraCriteria extends AbstractORMCriteria {
 		descrizione = new StringExpression("descrizione", this);
 		peso = new DoubleExpression("peso", this);
 		prezzo = new DoubleExpression("prezzo", this);
+		tipoSagoma = new IntegerExpression("tipoSagoma", this);
 		materiale = new StringExpression("materiale", this);
 	}
 	

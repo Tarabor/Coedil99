@@ -23,6 +23,7 @@ public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
+	public final IntegerExpression tipoSagoma;
 	public final FloatExpression lunghezza;
 	
 	public TraveDetachedCriteria() {
@@ -31,6 +32,7 @@ public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
+		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
 		lunghezza = new FloatExpression("lunghezza", this.getDetachedCriteria());
 	}
 	
@@ -40,6 +42,7 @@ public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
+		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
 		lunghezza = new FloatExpression("lunghezza", this.getDetachedCriteria());
 	}
 	

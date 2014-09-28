@@ -23,7 +23,10 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.Box;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 import javax.swing.ListSelectionModel;
 
 import java.awt.GridBagLayout;
@@ -54,6 +57,7 @@ import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.ImageSelector;
+import coedil99.ui.template.MyTableModel;
 import coedil99.ui.template.SelectItem;
 import coedil99.utility.Service;
 
@@ -90,6 +94,14 @@ public class TabContent extends JPanel implements Observer {
 	private String [] tableHeader = new String[] {
 			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "DIAM", "MISURA DI TAGLIO", "TIPO SAGOMA"
 		};
+	
+	protected String[] columnToolTips = {
+			"Il tipo di elemento che si desidera inserire in distinta",
+		    null, // "First Name" assumed obvious
+		    null, // "Last Name" assumed obvious
+		    "Il diametro del bullone",
+		    "La misura di taglio dell'elemento",
+		    "Il tipo di sagoma della lastra o della trave"};
 	
 
 	/**
@@ -347,7 +359,22 @@ public class TabContent extends JPanel implements Observer {
 		add(panel_4, gbc_panel_4);
 		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		distinta = new JTable();
+		distinta = new JTable(new MyTableModel()) { //Alla creazione della tabella inseriamo i tooltips
+		  
+		    //Implement table header tool tips.
+		    protected JTableHeader createDefaultTableHeader() {
+		        return new JTableHeader(columnModel) {
+		            public String getToolTipText(MouseEvent e) {
+		                String tip = null;
+		                java.awt.Point p = e.getPoint();
+		                int index = columnModel.getColumnIndexAtX(p.x);
+		                int realIndex = 
+		                        columnModel.getColumn(index).getModelIndex();
+		                return columnToolTips[realIndex];
+		            }
+		        };
+		    }
+		};
 		distinta.setFont(FONT_TABLE);
 		distinta.setSelectionForeground(new Color(0, 0, 0));
 		distinta.setSelectionBackground(new Color(173, 216, 230));
@@ -357,26 +384,39 @@ public class TabContent extends JPanel implements Observer {
 		distinta.setRowSelectionAllowed(true);
 		distinta.setRowHeight(30);
 		distinta.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		distinta.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"", "", 0, 0, 0, ""},
-			},
-			this.tableHeader
-		));
 		selectStatica = new SelectItem();
 		selectStatica.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //da l'aspetto di un campo disabilitato
 				SelectItem cb = (SelectItem) e.getSource();
 		        String itemName = (String) cb.getSelectedItem();
 				if (itemName.equals("Bullone")) {
-					//distinta.setEnabled(false);
-					distinta.getColumnModel().getColumn(5).getCellEditor().cancelCellEditing();
+					final int selectedRow = distinta.getSelectedRow();
+					distinta.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer() {
+						public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+				                boolean hasFocus, int row, int column) {
+				            Component component =
+				                    super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				            component.setEnabled(selectedRow!=row);
+				            return component;
+				   }   
+					});
+				} else if (itemName.equals("Trave") || itemName.equals("Lastra")) {
+					final int selectedRow = distinta.getSelectedRow();
+					distinta.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
+						public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+				                boolean hasFocus, int row, int column) {
+				            Component component =
+				                    super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				            component.setEnabled(selectedRow!=row);
+				            return component;
+				   }   
+					});
 				}
 			}
 		});
-		distinta.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(selectStatica));
+		this.setUpTipoColumn(distinta, distinta.getColumnModel().getColumn(0));
 		distinta.getColumnModel().getColumn(0).setPreferredWidth(100);
 		distinta.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(new ImageSelector()));
 		distinta.getColumnModel().getColumn(5).setPreferredWidth(226);
@@ -410,9 +450,9 @@ public class TabContent extends JPanel implements Observer {
 	}
 	
 	private void deleteRow(){
-		((DefaultTableModel)this.distinta.getModel()).removeRow( this.distinta.getSelectedRow());
+		((MyTableModel)this.distinta.getModel()).removeRow( this.distinta.getSelectedRow());
 		if(this.distinta.getRowCount() == 0)
-			((DefaultTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, ""});
+			((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
 			
 	}
 	
@@ -451,6 +491,16 @@ public class TabContent extends JPanel implements Observer {
 		this.pagina.setText(pagina);
 	}
 	
+	public void setUpTipoColumn(JTable table, TableColumn tipColumn) {
+		tipColumn.setCellEditor(new DefaultCellEditor(selectStatica));
+
+		//Set up tool tips for the sport cells.
+		DefaultTableCellRenderer renderer =
+				new DefaultTableCellRenderer();
+		renderer.setToolTipText("Click per la selezione");
+		tipColumn.setCellRenderer(renderer);
+	}
+	
 	public void salva() {
 		this.distinta.changeSelection(0, 0, false, false);
 		Coedil99View.getInstance().getController().
@@ -458,14 +508,14 @@ public class TabContent extends JPanel implements Observer {
 					    this.elementoStrutturale.getText(),
 					    this.cartellino.getText(),
 					    this.btnFirma.isSelected(),
-					    Service.getTableData((DefaultTableModel)this.distinta.getModel()));
+					    Service.getTableData((MyTableModel)this.distinta.getModel()));
 	}
 	
 	private class RowListener implements KeyListener {
 		 public void keyPressed(KeyEvent e) {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-				 Coedil99View.getInstance().getController().totalePreventivo(Service.getTableData((DefaultTableModel)distinta.getModel()));
-				 ((DefaultTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, ""});
+				 Coedil99View.getInstance().getController().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
+				 ((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
              }
 		    }
 		public void keyReleased(KeyEvent arg0){}
@@ -490,10 +540,9 @@ public class TabContent extends JPanel implements Observer {
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		System.out.println("Thread in update: " + Thread.currentThread());
 		campoTesto_1.setText(String.valueOf(arg)+" $");
-		campoTesto_1.validate();
+		campoTesto_1.repaint();
 	}
 	
 	

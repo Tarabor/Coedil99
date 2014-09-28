@@ -23,6 +23,7 @@ public class TraveCriteria extends AbstractORMCriteria {
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
+	public final IntegerExpression tipoSagoma;
 	public final FloatExpression lunghezza;
 	
 	public TraveCriteria(Criteria criteria) {
@@ -31,6 +32,7 @@ public class TraveCriteria extends AbstractORMCriteria {
 		descrizione = new StringExpression("descrizione", this);
 		peso = new DoubleExpression("peso", this);
 		prezzo = new DoubleExpression("prezzo", this);
+		tipoSagoma = new IntegerExpression("tipoSagoma", this);
 		lunghezza = new FloatExpression("lunghezza", this);
 	}
 	

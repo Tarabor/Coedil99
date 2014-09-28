@@ -3,14 +3,19 @@ package coedil99.utility;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+
+
 
 
 import javax.swing.table.DefaultTableModel;
 
+import coedil99.ui.template.MyTableModel;
+
 public class Service {
 	
-		public static Object[][] getTableData (DefaultTableModel dtm) {
+		public static Object[][] getTableData (MyTableModel dtm) {
 		   
 		    int nRow = dtm.getRowCount() , nCol = dtm.getColumnCount();
 		    Object[][] tableData = new Object[nRow][nCol];
@@ -20,13 +25,14 @@ public class Service {
 		    return tableData;
 		}
 		
-		public static DefaultTableModel setTableData (Object[][] tableData) {
-			   
-			 int nRow = tableData.length , nCol = tableData[0].length;
-		    DefaultTableModel dtm = new DefaultTableModel(nRow,nCol);
+		public static MyTableModel setTableData (ArrayList<Object[]> tableData) {
+			int nRow = tableData.size();
+			int nCol = tableData.get(0).length;
+			
+			MyTableModel dtm = new MyTableModel();
 		    for (int i = 0 ; i <  nRow; i++)
 		        for (int j = 0 ; j <  nCol; j++)
-		             dtm.setValueAt( tableData[i][j],i,j);            		 
+		             dtm.setValueAt( tableData.get(i)[j],i,j);            		 
 		    return dtm;
 		}
 		

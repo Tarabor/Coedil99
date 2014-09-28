@@ -27,14 +27,12 @@ public class Lastra extends coedil99.PersistentModel.Item {
 		return materiale;
 	}
 	
-	@Override
 	public double getPrezzo() {
-		return super.getPrezzo();
+		return super.prezzo;
 	}
 	
-	@Override
 	public void setPrezzo(double prezzo) {
-		super.setPrezzo(prezzo);
+		super.prezzo = prezzo;
 	}
 	
 	public String toString() {

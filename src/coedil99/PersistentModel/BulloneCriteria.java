@@ -23,6 +23,7 @@ public class BulloneCriteria extends AbstractORMCriteria {
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
+	public final IntegerExpression tipoSagoma;
 	public final FloatExpression diametro;
 	
 	public BulloneCriteria(Criteria criteria) {
@@ -31,6 +32,7 @@ public class BulloneCriteria extends AbstractORMCriteria {
 		descrizione = new StringExpression("descrizione", this);
 		peso = new DoubleExpression("peso", this);
 		prezzo = new DoubleExpression("prezzo", this);
+		tipoSagoma = new IntegerExpression("tipoSagoma", this);
 		diametro = new FloatExpression("diametro", this);
 	}
 	

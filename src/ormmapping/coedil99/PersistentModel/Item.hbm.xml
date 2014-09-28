@@ -14,6 +14,7 @@ License Type: Purchased
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="peso" column="Peso" type="double" not-null="false" lazy="false"/>
 		<property name="prezzo" column="Prezzo" type="double" not-null="false" lazy="false"/>
+		<property name="tipoSagoma" column="TipoSagoma" type="integer" not-null="false" lazy="false"/>
 		<subclass name="coedil99.PersistentModel.Lastra" discriminator-value="Lastre" lazy="false">
 			<property name="materiale" column="Materiale" type="string" length="255" not-null="false" lazy="false"/>
 		</subclass>

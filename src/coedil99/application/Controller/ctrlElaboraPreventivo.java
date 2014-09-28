@@ -1,16 +1,28 @@
 package coedil99.application.Controller;
 
 
+import coedil99.Model.MBullone;
 import coedil99.Model.MDistintaLavorazione;
+import coedil99.Model.MLastra;
 import coedil99.Model.MPreventivo;
+import coedil99.Model.MTrave;
+import coedil99.PersistentModel.Bullone;
+import coedil99.PersistentModel.BulloneDAO;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.ClienteDAO;
 import coedil99.PersistentModel.DistintaLavorazione;
+import coedil99.PersistentModel.DistintaLavorazioneDAO;
 import coedil99.PersistentModel.ElementoDistinta;
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.PersistentModel.ItemDAO;
+import coedil99.PersistentModel.Lastra;
+import coedil99.PersistentModel.LastraDAO;
+import coedil99.PersistentModel.Listino;
+import coedil99.PersistentModel.ListinoDAO;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.PreventivoDAO;
+import coedil99.PersistentModel.Trave;
+import coedil99.PersistentModel.TraveDAO;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
@@ -29,7 +41,31 @@ public class ctrlElaboraPreventivo {
 		this.preventivi = new ArrayList<MPreventivo>();
 	}
 
-	public void creaPreventivo() {	
+	public void creaPreventivo() {
+		
+		/*  ci vuole un metodo di avviamento che carica il listino e setta tutti i prezzi degli item
+		 *  con una map per tenere traccia del prezzo?
+		Bullone b = BulloneDAO.createBullone();
+		Trave t = TraveDAO.createTrave();
+		Lastra l = LastraDAO.createLastra();
+		
+		MBullone bullone = new MBullone();
+		MLastra lastra = new MLastra();
+		MTrave trave = new MTrave();
+		bullone.setPersistentModel(b);
+		lastra.setPersistentModel(l);
+		trave.setPersistentModel(t);
+		
+		bullone.setPrezzo(5); //perchè il setPrezzo del persistent model non può contenere logica e per come è fatta  
+		lastra.setPrezzo(5);  //l'implementazione in MPreventivo non possiamo chiamare il setPrezzo del Model
+		trave.setPrezzo(5);
+		
+		Listino listino = ListinoDAO.createListino();
+		listino.item__List_.add(b);
+		listino.item__List_.add(t);
+		listino.item__List_.add(l);
+		ListinoDAO.save(listino); */
+		
 		Preventivo p = PreventivoDAO.createPreventivo();
 		p.setData(Service.getDatadb());
 		this.apriPreventivo(p);
@@ -49,9 +85,15 @@ public class ctrlElaboraPreventivo {
 		p.setNome(p.getCliente().getCognome()+" "+p.getData().getTime());
 		p.setData(Service.getDatadb(data));
 		ArrayList<ElementoDistinta> elementi = mp.getDistinta();
+		//Listino listino = ListinoDAO.loadListinoByORMID(1);
 		for (ElementoDistinta ed : elementi) {
 			ItemDAO.save(ed.getItem());
 		}
+		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
+		MDistintaLavorazione dist = new MDistintaLavorazione();
+		dist.setPersistentModel(dl);
+		dist.calcolaPrezzo();
+		//DistintaLavorazioneDAO.save(dl);
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");

@@ -87,7 +87,7 @@ public class Coedil99View extends JFrame {
 	private final String ICON_EXPLORER = "/coedil99/ui/img/explorer-icon.png";
 	
 	
-	private Coedil99View(){		
+	public Coedil99View(){		
 		this.initComponents();
 	}
 	
