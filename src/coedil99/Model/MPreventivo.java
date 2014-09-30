@@ -129,6 +129,27 @@ public class MPreventivo implements AModel {
 		return objD;
 	}
 	
+	public ArrayList<Object[]> getDistintaArrayList(){
+		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
+		int rows = d.elemento__List_.size();
+		ArrayList<Object[]> data = new ArrayList<>();
+		for(int r = 0; r < rows; r++){
+			Object [] objD = new Object[6];
+			objD[0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
+			objD[1] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[2] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			if (((Item) (d.elemento__List_.get(r)).getItem()).getClass().getName().equals("coedil99.PersistentModel.Bullone")) { //controllo se è un bullone e ha diametro
+				objD[3] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); 
+			} else {
+				objD[3] = 0; //altrimenti diametro è 0
+			}
+			objD[4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[5] = (Object) ((Item) (d.elemento__List_.get(r)).getItem()).getTipoSagoma();
+			data.add(objD);
+		}
+		return data;
+	}
+	
 	public ArrayList<ElementoDistinta> getDistinta(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
 		int rows = d.elemento__List_.size();

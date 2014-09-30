@@ -48,6 +48,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -443,8 +444,9 @@ public class TabContent extends JPanel implements Observer {
 	}
 	
 	
-	public void setDistinta(Object[][] distinta) {
-		this.distinta.setModel(new DefaultTableModel((distinta), this.tableHeader));
+	public void setDistinta(ArrayList<Object[]> dati) {
+		this.distinta.setModel(new MyTableModel(dati, this.tableHeader));
+		this.setUpTipoColumn(distinta, distinta.getColumnModel().getColumn(0));
 		this.distinta.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(new ImageSelector()));
 		this.distinta.getColumnModel().getColumn(5).setPreferredWidth(226);
 	}

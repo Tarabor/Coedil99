@@ -188,7 +188,7 @@ public class Coedil99View extends JFrame {
 		tb.setData(p.getData().toString());
 		tb.setFirma(p.getFirmato());
 		if( p.getDistinta()!= null)
-			tb.setDistinta( mp.getDistintaObj());
+			tb.setDistinta( mp.getDistintaArrayList());
 	}
 	
 	public void setStatusBar(String stato) {
