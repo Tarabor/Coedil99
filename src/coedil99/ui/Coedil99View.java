@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -38,6 +39,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JInternalFrame;
 
 import coedil99.ui.content.TabContent;
+import coedil99.ui.content.TabMagazzino;
 import coedil99.ui.content.newCliente;
 import coedil99.ui.template.Scheda;
 import coedil99.ui.template.btnToolBar;
@@ -122,6 +124,12 @@ public class Coedil99View extends JFrame {
 	public void nuovaScheda(){
 		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.defaulttitle"), new TabContent());
 		this.tabbedPane.setTabComponentAt(this.tab_count , new Scheda(this.tabbedPane));
+		this.tabbedPane.setSelectedIndex(this.tab_count);
+		this.tab_count++;
+	}
+	
+	public void nuovaSchedaItems(){
+		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.defaulttitle"), new TabMagazzino());
 		this.tabbedPane.setSelectedIndex(this.tab_count);
 		this.tab_count++;
 	}
@@ -287,6 +295,20 @@ public class Coedil99View extends JFrame {
 		JMenuItem mntmSalvaConNome = new JMenuItem(bundle.getString("gui.menu.file.saveName"));
 		mntmSalvaConNome.setEnabled(false);
 		mnFile.add(mntmSalvaConNome);
+		
+		JSeparator separator_3 = new JSeparator();
+		mnFile.add(separator_3);
+		
+		/*++++++Gestione Magazzino++++++*/
+		JMenuItem mntmGestioneMagazzino = new JMenuItem("Gestione magazzino");
+		mntmGestioneMagazzino.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				CtrlElaboraPreventivo.getInstance().apriItems();
+			}
+		});
+		mnFile.add(mntmGestioneMagazzino);
+		
 		
 		JSeparator separator = new JSeparator();
 		mnFile.add(separator);
