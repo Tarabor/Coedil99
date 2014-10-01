@@ -6,23 +6,22 @@ License Type: Purchased
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="coedil99.PersistentModel.Preventivo" table="Preventivo" lazy="false">
-		<id name="attribute" column="Attribute" type="integer" unsaved-value="0">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="destinazioneMateriale" column="IndirizzoAttribute" class="coedil99.PersistentModel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="destinazioneMateriale" column="IndirizzoID" class="coedil99.PersistentModel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="listaRintracciabilita" column="ListaRintracciabilitaAttribute" class="coedil99.PersistentModel.ListaRintracciabilita" cascade="save-update,lock,delete" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="listaRintracciabilita" column="ListaRintracciabilitaID" class="coedil99.PersistentModel.ListaRintracciabilita" cascade="save-update,lock,delete" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="distinta" column="DistintaLavorazioneAttribute" class="coedil99.PersistentModel.DistintaLavorazione" cascade="save-update,lock,delete" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="distinta" column="DistintaLavorazioneID" class="coedil99.PersistentModel.DistintaLavorazione" cascade="save-update,lock,delete" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="cliente" cascade="lock" column="ClienteAttribute" class="coedil99.PersistentModel.Cliente" not-null="false" lazy="no-proxy" access="field">
-		</many-to-one>
-		<property name="ID" column="ID" type="integer" not-null="true" lazy="false"/>
-		<property name="data" column="Data" type="date" not-null="false" lazy="false"/>
-		<property name="firmato" column="Firmato" type="boolean" not-null="true" lazy="false"/>
 		<property name="elementoStrutturale" column="ElementoStrutturale" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="cartellino" column="Cartellino" type="integer" not-null="true" lazy="false"/>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
+		<many-to-one name="cliente" cascade="lock" column="ClienteID" class="coedil99.PersistentModel.Cliente" not-null="false" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="firmato" column="Firmato" type="boolean" not-null="true" lazy="false"/>
+		<property name="data" column="Data" type="date" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

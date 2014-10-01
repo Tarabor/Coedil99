@@ -6,15 +6,14 @@ License Type: Purchased
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="coedil99.PersistentModel.ElementoMagazzino" table="ElementoMagazzino" lazy="false">
-		<id name="attribute" column="Attribute" type="integer" unsaved-value="0">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="_fornitore" cascade="lock" column="FornitoreAttribute" class="coedil99.PersistentModel.Fornitore" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="_fornitore" column="FornitoreID" class="coedil99.PersistentModel.Fornitore" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="item" cascade="lock" column="ItemAttribute" class="coedil99.PersistentModel.Item" not-null="true" lazy="no-proxy" access="field">
+		<many-to-one name="item" cascade="lock" column="ItemID" class="coedil99.PersistentModel.Item" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
-		<property name="ID" column="ID" type="integer" not-null="true" lazy="false"/>
 		<property name="quantita" column="Quantita" type="integer" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>
