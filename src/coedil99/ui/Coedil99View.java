@@ -56,8 +56,6 @@ public class Coedil99View extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private ctrlElaboraPreventivo controller = new ctrlElaboraPreventivo();
-	
 
 	private static Coedil99View instance;
 	private OpenPreventiviView op;
@@ -103,9 +101,6 @@ public class Coedil99View extends JFrame {
 		return bundle;
 	}
 	
-	public ctrlElaboraPreventivo getController(){
-		return this.controller;
-	}
 	
 	public int getCurrentPreventivo(){
 		return this.tabbedPane.getSelectedIndex();
@@ -242,7 +237,7 @@ public class Coedil99View extends JFrame {
 		mntmPreventivo1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				controller.creaPreventivo();
+				ctrlElaboraPreventivo.getInstance().creaPreventivo();
 			}
 		});
 		mnNuovo.add(mntmPreventivo1);
@@ -252,7 +247,7 @@ public class Coedil99View extends JFrame {
 		mntmPreventivo2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				controller.creaPreventivo();
+				ctrlElaboraPreventivo.getInstance().creaPreventivo();
 			}
 		});
 		this.popNuovo.add(mntmPreventivo2);
@@ -267,7 +262,7 @@ public class Coedil99View extends JFrame {
 		JMenuItem mntmApri = new JMenuItem(bundle.getString("gui.menu.file.open"));
 		mntmApri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.listaPreventivi();
+				ctrlElaboraPreventivo.getInstance().listaPreventivi();
 			}
 		});
 		mnFile.add(mntmApri);

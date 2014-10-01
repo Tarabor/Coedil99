@@ -98,7 +98,7 @@ public class OpenPreventiviView extends JFrame{
 		this.element.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                	Coedil99View.getInstance().getController().apriPreventivo(element.getSelectedValue());
+                	ctrlElaboraPreventivo.getInstance().apriPreventivo(element.getSelectedValue());
                 }
             }
         });
@@ -129,7 +129,7 @@ public class OpenPreventiviView extends JFrame{
 		JButton btnNewButton = new JButton("Apri");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Coedil99View.getInstance().getController().apriPreventivo(element.getSelectedValue());
+				ctrlElaboraPreventivo.getInstance().apriPreventivo(element.getSelectedValue());
 			}
 		});
 		panel_4.add(btnNewButton);

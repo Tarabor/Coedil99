@@ -1,9 +1,13 @@
 package coedil99.ui;
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
+
 import java.awt.GridLayout;
+
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListCellRenderer;
@@ -28,6 +32,7 @@ import coedil99.ui.template.Etichetta;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.ctrlElaboraPreventivo;
+import coedil99.application.Controller.ctrlGestisciClienti;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -86,7 +91,7 @@ public class OpenClientiView extends JFrame{
 		addCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Coedil99View.getInstance().getController().nuovoClientePopUp();
+				ctrlGestisciClienti.getInstance().nuovoClientePopUp();
 			}
 		});
 		
@@ -152,7 +157,7 @@ public class OpenClientiView extends JFrame{
 	}
 	
 	private void apriCliente(){
-			Coedil99View.getInstance().getController().apriCliente(element.getSelectedValue());
+		ctrlGestisciClienti.getInstance().apriCliente(element.getSelectedValue());
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {

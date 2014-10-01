@@ -31,6 +31,8 @@ import java.util.ArrayList;
 
 public class ctrlElaboraPreventivo {
 	
+	private static ctrlElaboraPreventivo instance;
+	
 	private ArrayList<MPreventivo> preventivi;
 
 	public ctrlElaboraPreventivo() {
@@ -39,6 +41,13 @@ public class ctrlElaboraPreventivo {
 
 	private void init() {
 		this.preventivi = new ArrayList<MPreventivo>();
+	}
+	
+	public static ctrlElaboraPreventivo getInstance(){
+		if(instance == null)
+			instance = new ctrlElaboraPreventivo();
+		
+		return instance;
 	}
 
 	public void creaPreventivo() {
@@ -99,33 +108,11 @@ public class ctrlElaboraPreventivo {
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");
 	}
 	
-	public void nuovoClientePopUp() { 
-		Coedil99View.getInstance().showNewClienti();
-	}
-	
-	public void salvaNuovoCliente(String nome, String cognome, String indirizzo, String numero, String comune, String codiceFiscale, String partitaIva) {
-		Indirizzo i = new Indirizzo(); //setto prima l'indirizzo
-		i.setVia(indirizzo);
-		i.setComune(comune);
-		i.setNumero(Integer.valueOf(numero)); 
-		Cliente c = new Cliente();
-		c.setNome(nome);
-		c.setCognome(cognome);
-		c.setIndirizzo(i);
-		c.setCodiceFiscale(codiceFiscale);
-		c.setPartitaIva(partitaIva);
-		ClienteDAO.save(c);
-		this.apriCliente(c);		
-		Coedil99View.getInstance().hideClienti();
-	}	
 
 	public void listaPreventivi() { 
 		Coedil99View.getInstance().showPreventivi(PreventivoDAO.listPreventivoByQuery(null, null));
 	}
 	
-	public void listaClienti() {
-		Coedil99View.getInstance().showClienti(ClienteDAO.listClienteByQuery(null, null));
-	}
 
 	public void eliminaPreventivo(int index){
 		
@@ -149,13 +136,14 @@ public class ctrlElaboraPreventivo {
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
 	
-	public void apriCliente(Cliente cliente) {
-		if(cliente != null){
-			MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
-			((Preventivo)mp.getPersistentModel()).setCliente(cliente);
-			Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
-			Coedil99View.getInstance().hideClienti();
-		}
+	
+	public MPreventivo getPreventivoCorrente() {
+		return this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
+	}
+	
+	public int getIndexPreventivoCorrente() {
+		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
+		return this.preventivi.indexOf(mp);
 	}
 	
 	public void totalePreventivo(Object [][] distinta) {
@@ -171,4 +159,6 @@ public class ctrlElaboraPreventivo {
 		dist.calcolaPrezzo();
 		
 	}
+	
+	
 }
