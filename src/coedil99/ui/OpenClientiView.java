@@ -31,8 +31,8 @@ import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.Preventivo;
-import coedil99.application.Controller.ctrlElaboraPreventivo;
-import coedil99.application.Controller.ctrlGestisciClienti;
+import coedil99.application.Controller.CtrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlGestisciClienti;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -91,7 +91,7 @@ public class OpenClientiView extends JFrame{
 		addCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ctrlGestisciClienti.getInstance().nuovoClientePopUp();
+				CtrlGestisciClienti.getInstance().nuovoClientePopUp();
 			}
 		});
 		
@@ -157,7 +157,7 @@ public class OpenClientiView extends JFrame{
 	}
 	
 	private void apriCliente(){
-		ctrlGestisciClienti.getInstance().apriCliente(element.getSelectedValue());
+		CtrlGestisciClienti.getInstance().apriCliente(element.getSelectedValue());
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {

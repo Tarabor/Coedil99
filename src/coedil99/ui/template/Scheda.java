@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicButtonUI;
 
-import coedil99.application.Controller.ctrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.ui.Coedil99View;
 
 
@@ -99,7 +99,7 @@ public class Scheda extends JPanel{
 	            int i = pane.indexOfTabComponent(Scheda.this);
 	            if (i != -1) {
 	            	     	
-	            	ctrlElaboraPreventivo.getInstance().eliminaPreventivo(i);
+	            	CtrlElaboraPreventivo.getInstance().eliminaPreventivo(i);
 	            }
 	       }
 		 //paint the cross

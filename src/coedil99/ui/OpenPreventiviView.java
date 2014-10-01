@@ -25,7 +25,7 @@ import javax.swing.JComboBox;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 import coedil99.PersistentModel.Preventivo;
-import coedil99.application.Controller.ctrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlElaboraPreventivo;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -98,7 +98,7 @@ public class OpenPreventiviView extends JFrame{
 		this.element.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                	ctrlElaboraPreventivo.getInstance().apriPreventivo(element.getSelectedValue());
+                	CtrlElaboraPreventivo.getInstance().apriPreventivo(element.getSelectedValue());
                 }
             }
         });
@@ -129,7 +129,7 @@ public class OpenPreventiviView extends JFrame{
 		JButton btnNewButton = new JButton("Apri");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ctrlElaboraPreventivo.getInstance().apriPreventivo(element.getSelectedValue());
+				CtrlElaboraPreventivo.getInstance().apriPreventivo(element.getSelectedValue());
 			}
 		});
 		panel_4.add(btnNewButton);

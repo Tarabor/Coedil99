@@ -54,8 +54,8 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import coedil99.Model.MDistintaLavorazione;
-import coedil99.application.Controller.ctrlElaboraPreventivo;
-import coedil99.application.Controller.ctrlGestisciClienti;
+import coedil99.application.Controller.CtrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlGestisciClienti;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
@@ -224,7 +224,7 @@ public class TabContent extends JPanel implements Observer {
 		cliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ctrlGestisciClienti.getInstance().listaClienti();
+				CtrlGestisciClienti.getInstance().listaClienti();
 			}
 		});
 		cliente.setBackground(Color.WHITE);
@@ -507,7 +507,7 @@ public class TabContent extends JPanel implements Observer {
 	
 	public void salva() {
 		this.distinta.changeSelection(0, 0, false, false);
-		ctrlElaboraPreventivo.getInstance().
+		CtrlElaboraPreventivo.getInstance().
 		salvaPreventivo(this.data.getText(),
 					    this.elementoStrutturale.getText(),
 					    this.cartellino.getText(),
@@ -518,7 +518,7 @@ public class TabContent extends JPanel implements Observer {
 	private class RowListener implements KeyListener {
 		 public void keyPressed(KeyEvent e) {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-				 ctrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
+				 CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
 				 ((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
              }
 		    }

@@ -24,8 +24,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
 import coedil99.PersistentModel.Indirizzo;
-import coedil99.application.Controller.ctrlElaboraPreventivo;
-import coedil99.application.Controller.ctrlGestisciClienti;
+import coedil99.application.Controller.CtrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlGestisciClienti;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
@@ -228,6 +228,6 @@ public class newCliente extends JFrame {
 		String partitaIva = this.campoTesto_4.getText();
 		
 		
-		ctrlGestisciClienti.getInstance().salvaNuovoCliente(nome, cognome, indirizzo, numero, comune, codiceFiscale, partitaIva);
+		CtrlGestisciClienti.getInstance().salvaNuovoCliente(nome, cognome, indirizzo, numero, comune, codiceFiscale, partitaIva);
 	}
 }

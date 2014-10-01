@@ -13,13 +13,13 @@ import coedil99.utility.Service;
 
 import java.util.ArrayList;
 
-public class ctrlGestisciClienti {
+public class CtrlGestisciClienti {
 	
-	private static ctrlGestisciClienti instance;
+	private static CtrlGestisciClienti instance;
 	
-	public static ctrlGestisciClienti getInstance(){
+	public static CtrlGestisciClienti getInstance(){
 		if(instance == null)
-			instance = new ctrlGestisciClienti();
+			instance = new CtrlGestisciClienti();
 		
 		return instance;
 	}
@@ -50,9 +50,9 @@ public class ctrlGestisciClienti {
 	
 	public void apriCliente(Cliente cliente) {
 		if(cliente != null){
-			MPreventivo mp = ctrlElaboraPreventivo.getInstance().getPreventivoCorrente();
+			MPreventivo mp = CtrlElaboraPreventivo.getInstance().getPreventivoCorrente();
 			((Preventivo)mp.getPersistentModel()).setCliente(cliente);
-			int indexPreventivo = ctrlElaboraPreventivo.getInstance().getIndexPreventivoCorrente();
+			int indexPreventivo = CtrlElaboraPreventivo.getInstance().getIndexPreventivoCorrente();
 			Coedil99View.getInstance().updatePreventivo(indexPreventivo, mp);
 			Coedil99View.getInstance().hideClienti();
 		}

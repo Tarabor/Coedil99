@@ -48,7 +48,7 @@ import coedil99.Model.MDistintaLavorazione;
 import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.Preventivo;
-import coedil99.application.Controller.ctrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlElaboraPreventivo;
 
 
 
@@ -237,7 +237,7 @@ public class Coedil99View extends JFrame {
 		mntmPreventivo1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ctrlElaboraPreventivo.getInstance().creaPreventivo();
+				CtrlElaboraPreventivo.getInstance().creaPreventivo();
 			}
 		});
 		mnNuovo.add(mntmPreventivo1);
@@ -247,7 +247,7 @@ public class Coedil99View extends JFrame {
 		mntmPreventivo2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ctrlElaboraPreventivo.getInstance().creaPreventivo();
+				CtrlElaboraPreventivo.getInstance().creaPreventivo();
 			}
 		});
 		this.popNuovo.add(mntmPreventivo2);
@@ -262,7 +262,7 @@ public class Coedil99View extends JFrame {
 		JMenuItem mntmApri = new JMenuItem(bundle.getString("gui.menu.file.open"));
 		mntmApri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ctrlElaboraPreventivo.getInstance().listaPreventivi();
+				CtrlElaboraPreventivo.getInstance().listaPreventivi();
 			}
 		});
 		mnFile.add(mntmApri);

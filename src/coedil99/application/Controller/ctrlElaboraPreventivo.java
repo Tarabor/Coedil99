@@ -29,13 +29,13 @@ import coedil99.utility.Service;
 
 import java.util.ArrayList;
 
-public class ctrlElaboraPreventivo {
+public class CtrlElaboraPreventivo {
 	
-	private static ctrlElaboraPreventivo instance;
+	private static CtrlElaboraPreventivo instance;
 	
 	private ArrayList<MPreventivo> preventivi;
 
-	public ctrlElaboraPreventivo() {
+	public CtrlElaboraPreventivo() {
 		this.init();
 	}
 
@@ -43,9 +43,9 @@ public class ctrlElaboraPreventivo {
 		this.preventivi = new ArrayList<MPreventivo>();
 	}
 	
-	public static ctrlElaboraPreventivo getInstance(){
+	public static CtrlElaboraPreventivo getInstance(){
 		if(instance == null)
-			instance = new ctrlElaboraPreventivo();
+			instance = new CtrlElaboraPreventivo();
 		
 		return instance;
 	}
