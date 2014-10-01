@@ -31,17 +31,17 @@ private static CtrlGestisciFornitori instance;
 		FornitoreDAO.save(f);
 	}	
 	
-	public void listaClienti() {
-		//Coedil99View.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null)); TO CHANGE VIEW
+	public void listaClienti() { //lista fornitori
+		//Coedil99View.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null)); 
 	}
 	
 	public void nuovoFornitorePopUp() { 
-		//Coedil99View.getInstance().showNewClienti(); TO IMPLEMENT
+		//Coedil99View.getInstance().showNewFornitori(); TO IMPLEMENT
 	}
 	
 	public void apriFornitore(Fornitore fornitore) {
 		if(fornitore != null){
-			/* TO IMPLEMENT
+			/* TO IMPLEMENT probabilmente l'implementazione sarà un po diversa
 			 * MPreventivo mp = CtrlElaboraPreventivo.getInstance().getPreventivoCorrente();
 			 *
 			((Preventivo)mp.getPersistentModel()).setCliente(cliente);

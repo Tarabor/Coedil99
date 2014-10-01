@@ -158,5 +158,12 @@ public class CtrlElaboraPreventivo {
 		
 	}
 	
+	/*++++++++++++++++ Gestione Magazzino ++++++++++++++++*/
+	
+	public void apriItems() {
+		Coedil99View.getInstance().nuovaSchedaItems();
+		Coedil99View.getInstance().setStatusBar("Items disponibile");
+	}
+	
 	
 }
