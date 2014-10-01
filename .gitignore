@@ -8,6 +8,7 @@ Desktop.ini
 *.cfg.xml
 
 bin/
+src/coedil99/PersistentModel/
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
