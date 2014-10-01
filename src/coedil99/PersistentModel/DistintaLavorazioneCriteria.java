@@ -19,11 +19,13 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class DistintaLavorazioneCriteria extends AbstractORMCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final DoubleExpression totale;
 	
 	public DistintaLavorazioneCriteria(Criteria criteria) {
 		super(criteria);
+		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		totale = new DoubleExpression("totale", this);
 	}

@@ -19,6 +19,7 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ItemCriteria extends AbstractORMCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
@@ -27,6 +28,7 @@ public class ItemCriteria extends AbstractORMCriteria {
 	
 	public ItemCriteria(Criteria criteria) {
 		super(criteria);
+		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		descrizione = new StringExpression("descrizione", this);
 		peso = new DoubleExpression("peso", this);

@@ -19,12 +19,14 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ListaRintracciabilitaDetachedCriteria extends AbstractORMDetachedCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression note;
 	public final DoubleExpression pesoTeorico;
 	
 	public ListaRintracciabilitaDetachedCriteria() {
 		super(coedil99.PersistentModel.ListaRintracciabilita.class, coedil99.PersistentModel.ListaRintracciabilitaCriteria.class);
+		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		note = new StringExpression("note", this.getDetachedCriteria());
 		pesoTeorico = new DoubleExpression("pesoTeorico", this.getDetachedCriteria());
@@ -32,6 +34,7 @@ public class ListaRintracciabilitaDetachedCriteria extends AbstractORMDetachedCr
 	
 	public ListaRintracciabilitaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ListaRintracciabilitaCriteria.class);
+		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		note = new StringExpression("note", this.getDetachedCriteria());
 		pesoTeorico = new DoubleExpression("pesoTeorico", this.getDetachedCriteria());

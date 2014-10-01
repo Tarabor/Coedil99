@@ -19,6 +19,7 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class IndirizzoCriteria extends AbstractORMCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression via;
 	public final StringExpression comune;
@@ -26,6 +27,7 @@ public class IndirizzoCriteria extends AbstractORMCriteria {
 	
 	public IndirizzoCriteria(Criteria criteria) {
 		super(criteria);
+		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		via = new StringExpression("via", this);
 		comune = new StringExpression("comune", this);

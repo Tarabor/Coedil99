@@ -17,8 +17,6 @@ import coedil99.PersistentModel.Indirizzo;
 import coedil99.PersistentModel.ItemDAO;
 import coedil99.PersistentModel.Lastra;
 import coedil99.PersistentModel.LastraDAO;
-import coedil99.PersistentModel.Listino;
-import coedil99.PersistentModel.ListinoDAO;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.PreventivoDAO;
 import coedil99.PersistentModel.Trave;

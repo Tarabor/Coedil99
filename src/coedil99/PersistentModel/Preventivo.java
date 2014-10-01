@@ -13,309 +13,11 @@
  */
 package coedil99.PersistentModel;
 
-import org.orm.*;
-import org.hibernate.Query;
-import java.util.List;
-
 public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	public Preventivo() {
 	}
 	
-	public static Preventivo loadPreventivoByORMID(int ID) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadPreventivoByORMID(session, ID);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo getPreventivoByORMID(int ID) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getPreventivoByORMID(session, ID);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByORMID(int ID, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadPreventivoByORMID(session, ID, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo getPreventivoByORMID(int ID, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getPreventivoByORMID(session, ID, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByORMID(PersistentSession session, int ID) {
-		try {
-			return (Preventivo) session.load(coedil99.PersistentModel.Preventivo.class, new Integer(ID));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo getPreventivoByORMID(PersistentSession session, int ID) {
-		try {
-			return (Preventivo) session.get(coedil99.PersistentModel.Preventivo.class, new Integer(ID));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
-		try {
-			return (Preventivo) session.load(coedil99.PersistentModel.Preventivo.class, new Integer(ID), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo getPreventivoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
-		try {
-			return (Preventivo) session.get(coedil99.PersistentModel.Preventivo.class, new Integer(ID), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo[] listPreventivoByQuery(String condition, String orderBy) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return listPreventivoByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo[] listPreventivoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return listPreventivoByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo[] listPreventivoByQuery(PersistentSession session, String condition, String orderBy) {
-		StringBuffer sb = new StringBuffer("From coedil99.PersistentModel.Preventivo as Preventivo");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			List list = query.list();
-			return (Preventivo[]) list.toArray(new Preventivo[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo[] listPreventivoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		StringBuffer sb = new StringBuffer("From coedil99.PersistentModel.Preventivo as Preventivo");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
-			List list = query.list();
-			return (Preventivo[]) list.toArray(new Preventivo[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByQuery(String condition, String orderBy) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadPreventivoByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadPreventivoByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByQuery(PersistentSession session, String condition, String orderBy) {
-		Preventivo[] preventivos = listPreventivoByQuery(session, condition, orderBy);
-		if (preventivos != null && preventivos.length > 0)
-			return preventivos[0];
-		else
-			return null;
-	}
-	
-	public static Preventivo loadPreventivoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		Preventivo[] preventivos = listPreventivoByQuery(session, condition, orderBy, lockMode);
-		if (preventivos != null && preventivos.length > 0)
-			return preventivos[0];
-		else
-			return null;
-	}
-	
-	public static java.util.Iterator iteratePreventivoByQuery(String condition, String orderBy) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return iteratePreventivoByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static java.util.Iterator iteratePreventivoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		try {
-			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return iteratePreventivoByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static java.util.Iterator iteratePreventivoByQuery(PersistentSession session, String condition, String orderBy) {
-		StringBuffer sb = new StringBuffer("From coedil99.PersistentModel.Preventivo as Preventivo");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static java.util.Iterator iteratePreventivoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
-		StringBuffer sb = new StringBuffer("From coedil99.PersistentModel.Preventivo as Preventivo");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("this", lockMode);
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static Preventivo loadPreventivoByCriteria(PreventivoCriteria preventivoCriteria) {
-		Preventivo[] preventivos = listPreventivoByCriteria(preventivoCriteria);
-		if(preventivos == null || preventivos.length == 0) {
-			return null;
-		}
-		return preventivos[0];
-	}
-	
-	public static Preventivo[] listPreventivoByCriteria(PreventivoCriteria preventivoCriteria) {
-		return preventivoCriteria.listPreventivo();
-	}
-	
-	public static Preventivo createPreventivo() {
-		return new coedil99.PersistentModel.Preventivo();
-	}
-	
-	public boolean save() {
-		try {
-			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().saveObject(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public boolean delete() {
-		try {
-			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().deleteObject(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public boolean refresh() {
-		try {
-			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().refresh(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public boolean evict() {
-		try {
-			coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession().evict(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	private int ID;
+	private int attribute;
 	
 	private coedil99.PersistentModel.Indirizzo destinazioneMateriale;
 	
@@ -323,28 +25,38 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	
 	private coedil99.PersistentModel.DistintaLavorazione distinta;
 	
+	private coedil99.PersistentModel.Cliente cliente;
+	
+	private int ID;
+	
+	private java.util.Date data;
+	
+	private boolean firmato;
+	
 	private String elementoStrutturale;
 	
 	private int cartellino;
 	
 	private String nome;
 	
-	private coedil99.PersistentModel.Cliente cliente;
+	private void setAttribute(int value) {
+		this.attribute = value;
+	}
 	
-	private boolean firmato;
+	public int getAttribute() {
+		return attribute;
+	}
 	
-	private java.util.Date data;
+	public int getORMID() {
+		return getAttribute();
+	}
 	
-	private void setID(int value) {
+	public void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
-	}
-	
-	public int getORMID() {
-		return getID();
 	}
 	
 	public void setData(java.util.Date value) {
@@ -435,7 +147,7 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	}
 	
 	public String toString() {
-		return String.valueOf(getID());
+		return String.valueOf(getAttribute());
 	}
 	
 }

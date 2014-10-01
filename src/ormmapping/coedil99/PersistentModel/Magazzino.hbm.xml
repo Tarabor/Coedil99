@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="coedil99.PersistentModel.Magazzino" table="Magazzino" lazy="false">
+		<id name="attribute" column="Attribute" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="ID" column="ID" type="integer" not-null="true" lazy="false"/>
+		<set name="ORM_ElementoMagazzino__list_" lazy="true" cascade="all-delete-orphan" inverse="false">
+			<key column="MagazzinoAttribute" not-null="false"/>
+			<one-to-many class="coedil99.PersistentModel.ElementoMagazzino"/>
+		</set>
+	</class>
+</hibernate-mapping>

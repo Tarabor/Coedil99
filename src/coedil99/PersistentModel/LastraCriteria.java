@@ -19,6 +19,7 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class LastraCriteria extends AbstractORMCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
@@ -28,6 +29,7 @@ public class LastraCriteria extends AbstractORMCriteria {
 	
 	public LastraCriteria(Criteria criteria) {
 		super(criteria);
+		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		descrizione = new StringExpression("descrizione", this);
 		peso = new DoubleExpression("peso", this);

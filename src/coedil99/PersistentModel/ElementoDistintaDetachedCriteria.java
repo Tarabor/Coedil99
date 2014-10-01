@@ -19,6 +19,7 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression indicazione;
 	public final IntegerExpression NPezzi;
@@ -26,6 +27,7 @@ public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteri
 	
 	public ElementoDistintaDetachedCriteria() {
 		super(coedil99.PersistentModel.ElementoDistinta.class, coedil99.PersistentModel.ElementoDistintaCriteria.class);
+		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		indicazione = new StringExpression("indicazione", this.getDetachedCriteria());
 		NPezzi = new IntegerExpression("NPezzi", this.getDetachedCriteria());
@@ -34,6 +36,7 @@ public class ElementoDistintaDetachedCriteria extends AbstractORMDetachedCriteri
 	
 	public ElementoDistintaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ElementoDistintaCriteria.class);
+		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		indicazione = new StringExpression("indicazione", this.getDetachedCriteria());
 		NPezzi = new IntegerExpression("NPezzi", this.getDetachedCriteria());

@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class ListaRintracciabilitaDAO {
-	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(int ID) {
+	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadListaRintracciabilitaByORMID(session, ID);
+			return loadListaRintracciabilitaByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita getListaRintracciabilitaByORMID(int ID) {
+	public static ListaRintracciabilita getListaRintracciabilitaByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getListaRintracciabilitaByORMID(session, ID);
+			return getListaRintracciabilitaByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadListaRintracciabilitaByORMID(session, ID, lockMode);
+			return loadListaRintracciabilitaByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita getListaRintracciabilitaByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static ListaRintracciabilita getListaRintracciabilitaByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getListaRintracciabilitaByORMID(session, ID, lockMode);
+			return getListaRintracciabilitaByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(PersistentSession session, int ID) {
+	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(PersistentSession session, int attribute) {
 		try {
-			return (ListaRintracciabilita) session.load(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(ID));
+			return (ListaRintracciabilita) session.load(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita getListaRintracciabilitaByORMID(PersistentSession session, int ID) {
+	public static ListaRintracciabilita getListaRintracciabilitaByORMID(PersistentSession session, int attribute) {
 		try {
-			return (ListaRintracciabilita) session.get(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(ID));
+			return (ListaRintracciabilita) session.get(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static ListaRintracciabilita loadListaRintracciabilitaByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (ListaRintracciabilita) session.load(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(ID), lockMode);
+			return (ListaRintracciabilita) session.load(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class ListaRintracciabilitaDAO {
 		}
 	}
 	
-	public static ListaRintracciabilita getListaRintracciabilitaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static ListaRintracciabilita getListaRintracciabilitaByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (ListaRintracciabilita) session.get(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(ID), lockMode);
+			return (ListaRintracciabilita) session.get(coedil99.PersistentModel.ListaRintracciabilita.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

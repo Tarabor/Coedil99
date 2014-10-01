@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Model quotesql="1" tablecharset="">
-  <Entity name="Preventivo">
-    <Column name="ID">
+  <Entity name="Magazzino">
+    <Column name="Attribute">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -13,10 +13,103 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="IndirizzoID">
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="Fornitore">
+    <Column name="Attribute">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Codice">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Telefono">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Ditta">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="ElementoMagazzino">
+    <Column name="Attribute">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="FornitoreAttribute">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.Indirizzo.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.PersistentModel.Fornitore.Attribute</ReferencedColumn>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="MagazzinoAttribute">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.PersistentModel.Magazzino.Attribute</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
@@ -25,10 +118,114 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ListaRintracciabilitaID">
+    <Column name="ItemAttribute">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.ListaRintracciabilita.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.PersistentModel.Item.Attribute</ReferencedColumn>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Quantita">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="Indirizzo">
+    <Column name="Attribute">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Via">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Comune">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Numero">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="Preventivo">
+    <Column name="Attribute">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="IndirizzoAttribute">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.PersistentModel.Indirizzo.Attribute</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
@@ -37,13 +234,70 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="DistintaLavorazioneID">
+    <Column name="ListaRintracciabilitaAttribute">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.DistintaLavorazione.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.PersistentModel.ListaRintracciabilita.Attribute</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="DistintaLavorazioneAttribute">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.PersistentModel.DistintaLavorazione.Attribute</ReferencedColumn>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ClienteAttribute">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.PersistentModel.Cliente.Attribute</ReferencedColumn>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Data">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>17</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Firmato">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>1</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -82,67 +336,9 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ClienteID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.Cliente.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Firmato">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>1</Type>
-      <Length>0</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Data">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>17</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
-  <Entity name="DistintaLavorazione">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Totale">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>6</Type>
-      <Length>0</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="Item">
-    <Column name="ID">
+    <Column name="Attribute">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -153,13 +349,12 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ListinoID">
+    <Column name="ID">
       <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.Listino.ID</ReferencedColumn>
+      <ForeignKey>false</ForeignKey>
       <Type>9</Type>
       <Length>0</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -171,6 +366,39 @@
       <Type>27</Type>
       <Length>255</Length>
       <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Peso">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>6</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Prezzo">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>6</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="TipoSagoma">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -220,99 +448,9 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ListinoIndex">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Peso">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>6</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Prezzo">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>6</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="TipoSagoma">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
-  <Entity name="Indirizzo">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Via">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Comune">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Numero">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
   </Entity>
   <Entity name="ElementoDistinta">
-    <Column name="ID">
+    <Column name="Attribute">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -323,10 +461,10 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="DistintaLavorazioneID">
+    <Column name="DistintaLavorazioneAttribute">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.DistintaLavorazione.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.PersistentModel.DistintaLavorazione.Attribute</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
@@ -335,13 +473,12 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ItemID">
+    <Column name="ID">
       <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.Item.ID</ReferencedColumn>
+      <ForeignKey>false</ForeignKey>
       <Type>9</Type>
       <Length>0</Length>
-      <Nullable>true</Nullable>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -369,17 +506,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="DistintaLavorazioneIndex">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>0</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="MisuraDiTaglio">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -391,36 +517,24 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-  </Entity>
-  <Entity name="ListaRintracciabilita">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
+    <Column name="ItemAttribute">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>coedil99.PersistentModel.Item.Attribute</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="Note">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>27</Type>
-      <Length>255</Length>
       <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="PesoTeorico">
+    <Column name="DistintaLavorazioneIndex">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>6</Type>
+      <Type>9</Type>
       <Length>0</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -428,7 +542,7 @@
     </Column>
   </Entity>
   <Entity name="Cliente">
-    <Column name="ID">
+    <Column name="Attribute">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -439,13 +553,24 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="IndirizzoID">
+    <Column name="IndirizzoAttribute">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>coedil99.PersistentModel.Indirizzo.ID</ReferencedColumn>
+      <ReferencedColumn>coedil99.PersistentModel.Indirizzo.Attribute</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -496,8 +621,8 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="Listino">
-    <Column name="ID">
+  <Entity name="DistintaLavorazione">
+    <Column name="Attribute">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
@@ -508,85 +633,173 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Totale">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>6</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
   </Entity>
-  <ForeignKey name="FKPreventivo697987">
+  <Entity name="ListaRintracciabilita">
+    <Column name="Attribute">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Note">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="PesoTeorico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>6</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <ForeignKey name="FKPreventivo1042">
     <ReferenceTable>Preventivo</ReferenceTable>
     <ReferencedTable>Cliente</ReferencedTable>
     <Columns>
-      <Column>ClienteID</Column>
+      <Column>ClienteAttribute</Column>
     </Columns>
     <RefColumns>
-      <Column>ID</Column>
+      <Column>Attribute</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKElementoDi858915">
-    <ReferenceTable>ElementoDistinta</ReferenceTable>
-    <ReferencedTable>Item</ReferencedTable>
-    <Columns>
-      <Column>ItemID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKItem97016">
-    <ReferenceTable>Item</ReferenceTable>
-    <ReferencedTable>Listino</ReferencedTable>
-    <Columns>
-      <Column>ListinoID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKPreventivo475952">
+  <ForeignKey name="FKPreventivo56570">
     <ReferenceTable>Preventivo</ReferenceTable>
     <ReferencedTable>DistintaLavorazione</ReferencedTable>
     <Columns>
-      <Column>DistintaLavorazioneID</Column>
+      <Column>DistintaLavorazioneAttribute</Column>
     </Columns>
     <RefColumns>
-      <Column>ID</Column>
+      <Column>Attribute</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKElementoDi581501">
+  <ForeignKey name="FKElementoDi162119">
     <ReferenceTable>ElementoDistinta</ReferenceTable>
     <ReferencedTable>DistintaLavorazione</ReferencedTable>
     <Columns>
-      <Column>DistintaLavorazioneID</Column>
+      <Column>DistintaLavorazioneAttribute</Column>
     </Columns>
     <RefColumns>
-      <Column>ID</Column>
+      <Column>Attribute</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKPreventivo780270">
+  <ForeignKey name="FKPreventivo347074">
     <ReferenceTable>Preventivo</ReferenceTable>
     <ReferencedTable>ListaRintracciabilita</ReferencedTable>
     <Columns>
-      <Column>ListaRintracciabilitaID</Column>
+      <Column>ListaRintracciabilitaAttribute</Column>
     </Columns>
     <RefColumns>
-      <Column>ID</Column>
+      <Column>Attribute</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKCliente579522">
+  <ForeignKey name="FKCliente801252">
     <ReferenceTable>Cliente</ReferenceTable>
     <ReferencedTable>Indirizzo</ReferencedTable>
     <Columns>
-      <Column>IndirizzoID</Column>
+      <Column>IndirizzoAttribute</Column>
     </Columns>
     <RefColumns>
-      <Column>ID</Column>
+      <Column>Attribute</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKPreventivo123093">
+  <ForeignKey name="FKPreventivo98637">
     <ReferenceTable>Preventivo</ReferenceTable>
     <ReferencedTable>Indirizzo</ReferencedTable>
     <Columns>
-      <Column>IndirizzoID</Column>
+      <Column>IndirizzoAttribute</Column>
     </Columns>
     <RefColumns>
-      <Column>ID</Column>
+      <Column>Attribute</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKElementoMa526194">
+    <ReferenceTable>ElementoMagazzino</ReferenceTable>
+    <ReferencedTable>Item</ReferencedTable>
+    <Columns>
+      <Column>ItemAttribute</Column>
+    </Columns>
+    <RefColumns>
+      <Column>Attribute</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKElementoMa891747">
+    <ReferenceTable>ElementoMagazzino</ReferenceTable>
+    <ReferencedTable>Magazzino</ReferencedTable>
+    <Columns>
+      <Column>MagazzinoAttribute</Column>
+    </Columns>
+    <RefColumns>
+      <Column>Attribute</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKElementoMa920707">
+    <ReferenceTable>ElementoMagazzino</ReferenceTable>
+    <ReferencedTable>Fornitore</ReferencedTable>
+    <Columns>
+      <Column>FornitoreAttribute</Column>
+    </Columns>
+    <RefColumns>
+      <Column>Attribute</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKElementoDi381628">
+    <ReferenceTable>ElementoDistinta</ReferenceTable>
+    <ReferencedTable>Item</ReferencedTable>
+    <Columns>
+      <Column>ItemAttribute</Column>
+    </Columns>
+    <RefColumns>
+      <Column>Attribute</Column>
     </RefColumns>
   </ForeignKey>
 </Model>

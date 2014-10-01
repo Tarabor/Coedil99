@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class PreventivoDAO {
-	public static Preventivo loadPreventivoByORMID(int ID) {
+	public static Preventivo loadPreventivoByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadPreventivoByORMID(session, ID);
+			return loadPreventivoByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo getPreventivoByORMID(int ID) {
+	public static Preventivo getPreventivoByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getPreventivoByORMID(session, ID);
+			return getPreventivoByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo loadPreventivoByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Preventivo loadPreventivoByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadPreventivoByORMID(session, ID, lockMode);
+			return loadPreventivoByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo getPreventivoByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Preventivo getPreventivoByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getPreventivoByORMID(session, ID, lockMode);
+			return getPreventivoByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo loadPreventivoByORMID(PersistentSession session, int ID) {
+	public static Preventivo loadPreventivoByORMID(PersistentSession session, int attribute) {
 		try {
-			return (Preventivo) session.load(coedil99.PersistentModel.Preventivo.class, new Integer(ID));
+			return (Preventivo) session.load(coedil99.PersistentModel.Preventivo.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo getPreventivoByORMID(PersistentSession session, int ID) {
+	public static Preventivo getPreventivoByORMID(PersistentSession session, int attribute) {
 		try {
-			return (Preventivo) session.get(coedil99.PersistentModel.Preventivo.class, new Integer(ID));
+			return (Preventivo) session.get(coedil99.PersistentModel.Preventivo.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo loadPreventivoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Preventivo loadPreventivoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (Preventivo) session.load(coedil99.PersistentModel.Preventivo.class, new Integer(ID), lockMode);
+			return (Preventivo) session.load(coedil99.PersistentModel.Preventivo.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class PreventivoDAO {
 		}
 	}
 	
-	public static Preventivo getPreventivoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Preventivo getPreventivoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (Preventivo) session.get(coedil99.PersistentModel.Preventivo.class, new Integer(ID), lockMode);
+			return (Preventivo) session.get(coedil99.PersistentModel.Preventivo.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

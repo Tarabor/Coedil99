@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class ClienteDAO {
-	public static Cliente loadClienteByORMID(int ID) {
+	public static Cliente loadClienteByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadClienteByORMID(session, ID);
+			return loadClienteByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente getClienteByORMID(int ID) {
+	public static Cliente getClienteByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getClienteByORMID(session, ID);
+			return getClienteByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente loadClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente loadClienteByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadClienteByORMID(session, ID, lockMode);
+			return loadClienteByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente getClienteByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente getClienteByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getClienteByORMID(session, ID, lockMode);
+			return getClienteByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente loadClienteByORMID(PersistentSession session, int ID) {
+	public static Cliente loadClienteByORMID(PersistentSession session, int attribute) {
 		try {
-			return (Cliente) session.load(coedil99.PersistentModel.Cliente.class, new Integer(ID));
+			return (Cliente) session.load(coedil99.PersistentModel.Cliente.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente getClienteByORMID(PersistentSession session, int ID) {
+	public static Cliente getClienteByORMID(PersistentSession session, int attribute) {
 		try {
-			return (Cliente) session.get(coedil99.PersistentModel.Cliente.class, new Integer(ID));
+			return (Cliente) session.get(coedil99.PersistentModel.Cliente.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente loadClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente loadClienteByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (Cliente) session.load(coedil99.PersistentModel.Cliente.class, new Integer(ID), lockMode);
+			return (Cliente) session.load(coedil99.PersistentModel.Cliente.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class ClienteDAO {
 		}
 	}
 	
-	public static Cliente getClienteByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static Cliente getClienteByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (Cliente) session.get(coedil99.PersistentModel.Cliente.class, new Integer(ID), lockMode);
+			return (Cliente) session.get(coedil99.PersistentModel.Cliente.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

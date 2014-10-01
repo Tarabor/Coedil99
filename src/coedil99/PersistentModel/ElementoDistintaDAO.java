@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class ElementoDistintaDAO {
-	public static ElementoDistinta loadElementoDistintaByORMID(int ID) {
+	public static ElementoDistinta loadElementoDistintaByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadElementoDistintaByORMID(session, ID);
+			return loadElementoDistintaByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta getElementoDistintaByORMID(int ID) {
+	public static ElementoDistinta getElementoDistintaByORMID(int attribute) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getElementoDistintaByORMID(session, ID);
+			return getElementoDistintaByORMID(session, attribute);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta loadElementoDistintaByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static ElementoDistinta loadElementoDistintaByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadElementoDistintaByORMID(session, ID, lockMode);
+			return loadElementoDistintaByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta getElementoDistintaByORMID(int ID, org.hibernate.LockMode lockMode) {
+	public static ElementoDistinta getElementoDistintaByORMID(int attribute, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getElementoDistintaByORMID(session, ID, lockMode);
+			return getElementoDistintaByORMID(session, attribute, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta loadElementoDistintaByORMID(PersistentSession session, int ID) {
+	public static ElementoDistinta loadElementoDistintaByORMID(PersistentSession session, int attribute) {
 		try {
-			return (ElementoDistinta) session.load(coedil99.PersistentModel.ElementoDistinta.class, new Integer(ID));
+			return (ElementoDistinta) session.load(coedil99.PersistentModel.ElementoDistinta.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta getElementoDistintaByORMID(PersistentSession session, int ID) {
+	public static ElementoDistinta getElementoDistintaByORMID(PersistentSession session, int attribute) {
 		try {
-			return (ElementoDistinta) session.get(coedil99.PersistentModel.ElementoDistinta.class, new Integer(ID));
+			return (ElementoDistinta) session.get(coedil99.PersistentModel.ElementoDistinta.class, new Integer(attribute));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta loadElementoDistintaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static ElementoDistinta loadElementoDistintaByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (ElementoDistinta) session.load(coedil99.PersistentModel.ElementoDistinta.class, new Integer(ID), lockMode);
+			return (ElementoDistinta) session.load(coedil99.PersistentModel.ElementoDistinta.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class ElementoDistintaDAO {
 		}
 	}
 	
-	public static ElementoDistinta getElementoDistintaByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
+	public static ElementoDistinta getElementoDistintaByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
 		try {
-			return (ElementoDistinta) session.get(coedil99.PersistentModel.ElementoDistinta.class, new Integer(ID), lockMode);
+			return (ElementoDistinta) session.get(coedil99.PersistentModel.ElementoDistinta.class, new Integer(attribute), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

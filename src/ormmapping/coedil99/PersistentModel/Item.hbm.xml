@@ -6,15 +6,16 @@ License Type: Purchased
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="coedil99.PersistentModel.Item" table="Item" lazy="false" discriminator-value="Item">
-		<id name="ID" column="ID" type="integer" unsaved-value="0">
+		<id name="attribute" column="Attribute" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
+		<property name="ID" column="ID" type="integer" not-null="true" lazy="false"/>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="peso" column="Peso" type="double" not-null="false" lazy="false"/>
-		<property name="prezzo" column="Prezzo" type="double" not-null="false" lazy="false"/>
-		<property name="tipoSagoma" column="TipoSagoma" type="integer" not-null="false" lazy="false"/>
+		<property name="peso" column="Peso" type="double" not-null="true" lazy="false"/>
+		<property name="prezzo" column="Prezzo" type="double" not-null="true" lazy="false"/>
+		<property name="tipoSagoma" column="TipoSagoma" type="integer" not-null="true" lazy="false"/>
 		<subclass name="coedil99.PersistentModel.Lastra" discriminator-value="Lastre" lazy="false">
 			<property name="materiale" column="Materiale" type="string" length="255" not-null="false" lazy="false"/>
 		</subclass>

@@ -19,6 +19,7 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
+	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
 	public final DoubleExpression peso;
@@ -27,6 +28,7 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public ItemDetachedCriteria() {
 		super(coedil99.PersistentModel.Item.class, coedil99.PersistentModel.ItemCriteria.class);
+		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
@@ -36,6 +38,7 @@ public class ItemDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public ItemDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ItemCriteria.class);
+		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
