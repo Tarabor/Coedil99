@@ -17,7 +17,7 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	public Preventivo() {
 	}
 	
-	private int attribute;
+	private int ID;
 	
 	private coedil99.PersistentModel.Indirizzo destinazioneMateriale;
 	
@@ -25,38 +25,28 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	
 	private coedil99.PersistentModel.DistintaLavorazione distinta;
 	
-	private coedil99.PersistentModel.Cliente cliente;
-	
-	private int ID;
-	
-	private java.util.Date data;
-	
-	private boolean firmato;
-	
 	private String elementoStrutturale;
 	
 	private int cartellino;
 	
 	private String nome;
 	
-	private void setAttribute(int value) {
-		this.attribute = value;
-	}
+	private coedil99.PersistentModel.Cliente cliente;
 	
-	public int getAttribute() {
-		return attribute;
-	}
+	private boolean firmato;
 	
-	public int getORMID() {
-		return getAttribute();
-	}
+	private java.util.Date data;
 	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setData(java.util.Date value) {
@@ -147,7 +137,7 @@ public class Preventivo extends coedil99.PersistentModel.APersistentModel {
 	}
 	
 	public String toString() {
-		return String.valueOf(getAttribute());
+		return String.valueOf(getID());
 	}
 	
 }

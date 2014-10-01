@@ -19,7 +19,6 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class FornitoreDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression codice;
 	public final StringExpression telefono;
@@ -27,7 +26,6 @@ public class FornitoreDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public FornitoreDetachedCriteria() {
 		super(coedil99.PersistentModel.Fornitore.class, coedil99.PersistentModel.FornitoreCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		codice = new StringExpression("codice", this.getDetachedCriteria());
 		telefono = new StringExpression("telefono", this.getDetachedCriteria());
@@ -36,7 +34,6 @@ public class FornitoreDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public FornitoreDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.FornitoreCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		codice = new StringExpression("codice", this.getDetachedCriteria());
 		telefono = new StringExpression("telefono", this.getDetachedCriteria());

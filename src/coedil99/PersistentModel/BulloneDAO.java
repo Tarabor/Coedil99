@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class BulloneDAO {
-	public static Bullone loadBulloneByORMID(int attribute) {
+	public static Bullone loadBulloneByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadBulloneByORMID(session, attribute);
+			return loadBulloneByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone getBulloneByORMID(int attribute) {
+	public static Bullone getBulloneByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getBulloneByORMID(session, attribute);
+			return getBulloneByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone loadBulloneByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Bullone loadBulloneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadBulloneByORMID(session, attribute, lockMode);
+			return loadBulloneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone getBulloneByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Bullone getBulloneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getBulloneByORMID(session, attribute, lockMode);
+			return getBulloneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone loadBulloneByORMID(PersistentSession session, int attribute) {
+	public static Bullone loadBulloneByORMID(PersistentSession session, int ID) {
 		try {
-			return (Bullone) session.load(coedil99.PersistentModel.Bullone.class, new Integer(attribute));
+			return (Bullone) session.load(coedil99.PersistentModel.Bullone.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone getBulloneByORMID(PersistentSession session, int attribute) {
+	public static Bullone getBulloneByORMID(PersistentSession session, int ID) {
 		try {
-			return (Bullone) session.get(coedil99.PersistentModel.Bullone.class, new Integer(attribute));
+			return (Bullone) session.get(coedil99.PersistentModel.Bullone.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone loadBulloneByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Bullone loadBulloneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Bullone) session.load(coedil99.PersistentModel.Bullone.class, new Integer(attribute), lockMode);
+			return (Bullone) session.load(coedil99.PersistentModel.Bullone.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class BulloneDAO {
 		}
 	}
 	
-	public static Bullone getBulloneByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Bullone getBulloneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Bullone) session.get(coedil99.PersistentModel.Bullone.class, new Integer(attribute), lockMode);
+			return (Bullone) session.get(coedil99.PersistentModel.Bullone.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -19,23 +19,20 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class MagazzinoDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	
 	public MagazzinoDetachedCriteria() {
 		super(coedil99.PersistentModel.Magazzino.class, coedil99.PersistentModel.MagazzinoCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 	}
 	
 	public MagazzinoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.MagazzinoCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 	}
 	
-	public ElementoMagazzinoDetachedCriteria createElementoMagazzino__list_Criteria() {
-		return new ElementoMagazzinoDetachedCriteria(createCriteria("ORM_ElementoMagazzino__list_"));
+	public ElementoMagazzinoDetachedCriteria createElementoMagazzino__List_Criteria() {
+		return new ElementoMagazzinoDetachedCriteria(createCriteria("ORM_ElementoMagazzino__List_"));
 	}
 	
 	public Magazzino uniqueMagazzino(PersistentSession session) {

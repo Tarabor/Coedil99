@@ -19,9 +19,9 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
+	public final IntegerExpression listinoIndex;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
 	public final IntegerExpression tipoSagoma;
@@ -29,9 +29,9 @@ public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public TraveDetachedCriteria() {
 		super(coedil99.PersistentModel.Trave.class, coedil99.PersistentModel.TraveCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
+		listinoIndex = new IntegerExpression("listinoIndex", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
 		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());
@@ -40,9 +40,9 @@ public class TraveDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public TraveDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.TraveCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		descrizione = new StringExpression("descrizione", this.getDetachedCriteria());
+		listinoIndex = new IntegerExpression("listinoIndex", this.getDetachedCriteria());
 		peso = new DoubleExpression("peso", this.getDetachedCriteria());
 		prezzo = new DoubleExpression("prezzo", this.getDetachedCriteria());
 		tipoSagoma = new IntegerExpression("tipoSagoma", this.getDetachedCriteria());

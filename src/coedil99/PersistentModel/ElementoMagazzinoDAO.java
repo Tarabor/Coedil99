@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class ElementoMagazzinoDAO {
-	public static ElementoMagazzino loadElementoMagazzinoByORMID(int attribute) {
+	public static ElementoMagazzino loadElementoMagazzinoByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadElementoMagazzinoByORMID(session, attribute);
+			return loadElementoMagazzinoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino getElementoMagazzinoByORMID(int attribute) {
+	public static ElementoMagazzino getElementoMagazzinoByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getElementoMagazzinoByORMID(session, attribute);
+			return getElementoMagazzinoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino loadElementoMagazzinoByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static ElementoMagazzino loadElementoMagazzinoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadElementoMagazzinoByORMID(session, attribute, lockMode);
+			return loadElementoMagazzinoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino getElementoMagazzinoByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static ElementoMagazzino getElementoMagazzinoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getElementoMagazzinoByORMID(session, attribute, lockMode);
+			return getElementoMagazzinoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino loadElementoMagazzinoByORMID(PersistentSession session, int attribute) {
+	public static ElementoMagazzino loadElementoMagazzinoByORMID(PersistentSession session, int ID) {
 		try {
-			return (ElementoMagazzino) session.load(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(attribute));
+			return (ElementoMagazzino) session.load(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino getElementoMagazzinoByORMID(PersistentSession session, int attribute) {
+	public static ElementoMagazzino getElementoMagazzinoByORMID(PersistentSession session, int ID) {
 		try {
-			return (ElementoMagazzino) session.get(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(attribute));
+			return (ElementoMagazzino) session.get(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino loadElementoMagazzinoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static ElementoMagazzino loadElementoMagazzinoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (ElementoMagazzino) session.load(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(attribute), lockMode);
+			return (ElementoMagazzino) session.load(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class ElementoMagazzinoDAO {
 		}
 	}
 	
-	public static ElementoMagazzino getElementoMagazzinoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static ElementoMagazzino getElementoMagazzinoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (ElementoMagazzino) session.get(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(attribute), lockMode);
+			return (ElementoMagazzino) session.get(coedil99.PersistentModel.ElementoMagazzino.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

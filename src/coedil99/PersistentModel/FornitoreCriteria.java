@@ -19,7 +19,6 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class FornitoreCriteria extends AbstractORMCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression codice;
 	public final StringExpression telefono;
@@ -27,7 +26,6 @@ public class FornitoreCriteria extends AbstractORMCriteria {
 	
 	public FornitoreCriteria(Criteria criteria) {
 		super(criteria);
-		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		codice = new StringExpression("codice", this);
 		telefono = new StringExpression("telefono", this);

@@ -34,34 +34,24 @@ public class ElementoMagazzino {
 		
 	};
 	
-	private int attribute;
+	private int ID;
 	
 	private coedil99.PersistentModel.Fornitore _fornitore;
 	
 	private coedil99.PersistentModel.Item item;
 	
-	private int ID;
-	
 	private int quantita;
 	
-	private void setAttribute(int value) {
-		this.attribute = value;
-	}
-	
-	public int getAttribute() {
-		return attribute;
-	}
-	
-	public int getORMID() {
-		return getAttribute();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setQuantita(int value) {
@@ -99,7 +89,7 @@ public class ElementoMagazzino {
 	}
 	
 	public String toString() {
-		return String.valueOf(getAttribute());
+		return String.valueOf(getID());
 	}
 	
 }

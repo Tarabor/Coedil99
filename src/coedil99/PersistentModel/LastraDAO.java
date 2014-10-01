@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class LastraDAO {
-	public static Lastra loadLastraByORMID(int attribute) {
+	public static Lastra loadLastraByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadLastraByORMID(session, attribute);
+			return loadLastraByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra getLastraByORMID(int attribute) {
+	public static Lastra getLastraByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getLastraByORMID(session, attribute);
+			return getLastraByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra loadLastraByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Lastra loadLastraByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadLastraByORMID(session, attribute, lockMode);
+			return loadLastraByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra getLastraByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Lastra getLastraByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getLastraByORMID(session, attribute, lockMode);
+			return getLastraByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra loadLastraByORMID(PersistentSession session, int attribute) {
+	public static Lastra loadLastraByORMID(PersistentSession session, int ID) {
 		try {
-			return (Lastra) session.load(coedil99.PersistentModel.Lastra.class, new Integer(attribute));
+			return (Lastra) session.load(coedil99.PersistentModel.Lastra.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra getLastraByORMID(PersistentSession session, int attribute) {
+	public static Lastra getLastraByORMID(PersistentSession session, int ID) {
 		try {
-			return (Lastra) session.get(coedil99.PersistentModel.Lastra.class, new Integer(attribute));
+			return (Lastra) session.get(coedil99.PersistentModel.Lastra.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra loadLastraByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Lastra loadLastraByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Lastra) session.load(coedil99.PersistentModel.Lastra.class, new Integer(attribute), lockMode);
+			return (Lastra) session.load(coedil99.PersistentModel.Lastra.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class LastraDAO {
 		}
 	}
 	
-	public static Lastra getLastraByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Lastra getLastraByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Lastra) session.get(coedil99.PersistentModel.Lastra.class, new Integer(attribute), lockMode);
+			return (Lastra) session.get(coedil99.PersistentModel.Lastra.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

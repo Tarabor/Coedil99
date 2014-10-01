@@ -19,7 +19,6 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class IndirizzoDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression via;
 	public final StringExpression comune;
@@ -27,7 +26,6 @@ public class IndirizzoDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public IndirizzoDetachedCriteria() {
 		super(coedil99.PersistentModel.Indirizzo.class, coedil99.PersistentModel.IndirizzoCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		via = new StringExpression("via", this.getDetachedCriteria());
 		comune = new StringExpression("comune", this.getDetachedCriteria());
@@ -36,7 +34,6 @@ public class IndirizzoDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public IndirizzoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.IndirizzoCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		via = new StringExpression("via", this.getDetachedCriteria());
 		comune = new StringExpression("comune", this.getDetachedCriteria());

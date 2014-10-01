@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class FornitoreDAO {
-	public static Fornitore loadFornitoreByORMID(int attribute) {
+	public static Fornitore loadFornitoreByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadFornitoreByORMID(session, attribute);
+			return loadFornitoreByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore getFornitoreByORMID(int attribute) {
+	public static Fornitore getFornitoreByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getFornitoreByORMID(session, attribute);
+			return getFornitoreByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore loadFornitoreByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Fornitore loadFornitoreByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadFornitoreByORMID(session, attribute, lockMode);
+			return loadFornitoreByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore getFornitoreByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Fornitore getFornitoreByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getFornitoreByORMID(session, attribute, lockMode);
+			return getFornitoreByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore loadFornitoreByORMID(PersistentSession session, int attribute) {
+	public static Fornitore loadFornitoreByORMID(PersistentSession session, int ID) {
 		try {
-			return (Fornitore) session.load(coedil99.PersistentModel.Fornitore.class, new Integer(attribute));
+			return (Fornitore) session.load(coedil99.PersistentModel.Fornitore.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore getFornitoreByORMID(PersistentSession session, int attribute) {
+	public static Fornitore getFornitoreByORMID(PersistentSession session, int ID) {
 		try {
-			return (Fornitore) session.get(coedil99.PersistentModel.Fornitore.class, new Integer(attribute));
+			return (Fornitore) session.get(coedil99.PersistentModel.Fornitore.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore loadFornitoreByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Fornitore loadFornitoreByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Fornitore) session.load(coedil99.PersistentModel.Fornitore.class, new Integer(attribute), lockMode);
+			return (Fornitore) session.load(coedil99.PersistentModel.Fornitore.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class FornitoreDAO {
 		}
 	}
 	
-	public static Fornitore getFornitoreByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Fornitore getFornitoreByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Fornitore) session.get(coedil99.PersistentModel.Fornitore.class, new Integer(attribute), lockMode);
+			return (Fornitore) session.get(coedil99.PersistentModel.Fornitore.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -17,32 +17,22 @@ public class ListaRintracciabilita extends coedil99.PersistentModel.APersistentM
 	public ListaRintracciabilita() {
 	}
 	
-	private int attribute;
-	
 	private int ID;
 	
 	private String note;
 	
 	private double pesoTeorico;
 	
-	private void setAttribute(int value) {
-		this.attribute = value;
-	}
-	
-	public int getAttribute() {
-		return attribute;
-	}
-	
-	public int getORMID() {
-		return getAttribute();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setNote(String value) {
@@ -62,7 +52,7 @@ public class ListaRintracciabilita extends coedil99.PersistentModel.APersistentM
 	}
 	
 	public String toString() {
-		return String.valueOf(getAttribute());
+		return String.valueOf(getID());
 	}
 	
 }

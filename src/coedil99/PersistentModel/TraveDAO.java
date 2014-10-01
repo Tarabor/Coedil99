@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class TraveDAO {
-	public static Trave loadTraveByORMID(int attribute) {
+	public static Trave loadTraveByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadTraveByORMID(session, attribute);
+			return loadTraveByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave getTraveByORMID(int attribute) {
+	public static Trave getTraveByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getTraveByORMID(session, attribute);
+			return getTraveByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave loadTraveByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Trave loadTraveByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadTraveByORMID(session, attribute, lockMode);
+			return loadTraveByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave getTraveByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Trave getTraveByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getTraveByORMID(session, attribute, lockMode);
+			return getTraveByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave loadTraveByORMID(PersistentSession session, int attribute) {
+	public static Trave loadTraveByORMID(PersistentSession session, int ID) {
 		try {
-			return (Trave) session.load(coedil99.PersistentModel.Trave.class, new Integer(attribute));
+			return (Trave) session.load(coedil99.PersistentModel.Trave.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave getTraveByORMID(PersistentSession session, int attribute) {
+	public static Trave getTraveByORMID(PersistentSession session, int ID) {
 		try {
-			return (Trave) session.get(coedil99.PersistentModel.Trave.class, new Integer(attribute));
+			return (Trave) session.get(coedil99.PersistentModel.Trave.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave loadTraveByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Trave loadTraveByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Trave) session.load(coedil99.PersistentModel.Trave.class, new Integer(attribute), lockMode);
+			return (Trave) session.load(coedil99.PersistentModel.Trave.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class TraveDAO {
 		}
 	}
 	
-	public static Trave getTraveByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Trave getTraveByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Trave) session.get(coedil99.PersistentModel.Trave.class, new Integer(attribute), lockMode);
+			return (Trave) session.get(coedil99.PersistentModel.Trave.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

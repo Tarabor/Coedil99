@@ -19,20 +19,17 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ElementoMagazzinoDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final IntegerExpression quantita;
 	
 	public ElementoMagazzinoDetachedCriteria() {
 		super(coedil99.PersistentModel.ElementoMagazzino.class, coedil99.PersistentModel.ElementoMagazzinoCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		quantita = new IntegerExpression("quantita", this.getDetachedCriteria());
 	}
 	
 	public ElementoMagazzinoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ElementoMagazzinoCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		quantita = new IntegerExpression("quantita", this.getDetachedCriteria());
 	}

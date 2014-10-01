@@ -24,7 +24,7 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	
 	final int KEY_ELEMENTOMAGAZZINO_ITEM = -386435735;
 	
-	final int KEY_MAGAZZINO_ELEMENTOMAGAZZINO__LIST_ = -2073045413;
+	final int KEY_MAGAZZINO_ELEMENTOMAGAZZINO__LIST_ = -2102598085;
 	
 	final int KEY_PREVENTIVO_CLIENTE = -1922690331;
 	

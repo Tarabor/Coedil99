@@ -19,13 +19,11 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ElementoMagazzinoCriteria extends AbstractORMCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final IntegerExpression quantita;
 	
 	public ElementoMagazzinoCriteria(Criteria criteria) {
 		super(criteria);
-		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		quantita = new IntegerExpression("quantita", this);
 	}

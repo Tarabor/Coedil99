@@ -19,7 +19,7 @@ public class Magazzino {
 	
 	private java.util.Set this_getSet (int key) {
 		if (key == coedil99.PersistentModel.ORMConstants.KEY_MAGAZZINO_ELEMENTOMAGAZZINO__LIST_) {
-			return ORM_elementoMagazzino__list_;
+			return ORM_elementoMagazzino__List_;
 		}
 		
 		return null;
@@ -32,25 +32,11 @@ public class Magazzino {
 		
 	};
 	
-	private int attribute;
-	
 	private int ID;
 	
-	private java.util.Set ORM_elementoMagazzino__list_ = new java.util.HashSet();
+	private java.util.Set ORM_elementoMagazzino__List_ = new java.util.HashSet();
 	
-	private void setAttribute(int value) {
-		this.attribute = value;
-	}
-	
-	public int getAttribute() {
-		return attribute;
-	}
-	
-	public int getORMID() {
-		return getAttribute();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
@@ -58,15 +44,19 @@ public class Magazzino {
 		return ID;
 	}
 	
-	private void setORM_ElementoMagazzino__list_(java.util.Set value) {
-		this.ORM_elementoMagazzino__list_ = value;
+	public int getORMID() {
+		return getID();
 	}
 	
-	private java.util.Set getORM_ElementoMagazzino__list_() {
-		return ORM_elementoMagazzino__list_;
+	private void setORM_ElementoMagazzino__List_(java.util.Set value) {
+		this.ORM_elementoMagazzino__List_ = value;
 	}
 	
-	public final coedil99.PersistentModel.ElementoMagazzinoSetCollection elementoMagazzino__list_ = new coedil99.PersistentModel.ElementoMagazzinoSetCollection(this, _ormAdapter, coedil99.PersistentModel.ORMConstants.KEY_MAGAZZINO_ELEMENTOMAGAZZINO__LIST_, coedil99.PersistentModel.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	private java.util.Set getORM_ElementoMagazzino__List_() {
+		return ORM_elementoMagazzino__List_;
+	}
+	
+	public final coedil99.PersistentModel.ElementoMagazzinoSetCollection elementoMagazzino__List_ = new coedil99.PersistentModel.ElementoMagazzinoSetCollection(this, _ormAdapter, coedil99.PersistentModel.ORMConstants.KEY_MAGAZZINO_ELEMENTOMAGAZZINO__LIST_, coedil99.PersistentModel.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public void aggiungiElementoMagazzino(coedil99.PersistentModel.ElementoMagazzino elem) {
 		//TODO: Implement Method
@@ -74,7 +64,7 @@ public class Magazzino {
 	}
 	
 	public String toString() {
-		return String.valueOf(getAttribute());
+		return String.valueOf(getID());
 	}
 	
 }

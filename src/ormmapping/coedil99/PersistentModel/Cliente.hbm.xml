@@ -9,13 +9,12 @@ License Type: Purchased
 		<meta attribute="class-description">
 			Oggetto persistente Cliente, utilizzato per gestire la persistenza sul DataBase
 		</meta>
-		<id name="attribute" column="Attribute" type="integer" unsaved-value="0">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="indirizzo" column="IndirizzoAttribute" class="coedil99.PersistentModel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="indirizzo" column="IndirizzoID" class="coedil99.PersistentModel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<property name="ID" column="ID" type="integer" not-null="true" lazy="false"/>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="codiceFiscale" column="CodiceFiscale" type="string" length="255" not-null="false" lazy="false"/>

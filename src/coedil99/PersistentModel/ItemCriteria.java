@@ -19,18 +19,18 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ItemCriteria extends AbstractORMCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression descrizione;
+	public final IntegerExpression listinoIndex;
 	public final DoubleExpression peso;
 	public final DoubleExpression prezzo;
 	public final IntegerExpression tipoSagoma;
 	
 	public ItemCriteria(Criteria criteria) {
 		super(criteria);
-		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		descrizione = new StringExpression("descrizione", this);
+		listinoIndex = new IntegerExpression("listinoIndex", this);
 		peso = new DoubleExpression("peso", this);
 		prezzo = new DoubleExpression("prezzo", this);
 		tipoSagoma = new IntegerExpression("tipoSagoma", this);

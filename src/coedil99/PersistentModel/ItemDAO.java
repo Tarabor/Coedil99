@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class ItemDAO {
-	public static Item loadItemByORMID(int attribute) {
+	public static Item loadItemByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadItemByORMID(session, attribute);
+			return loadItemByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item getItemByORMID(int attribute) {
+	public static Item getItemByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getItemByORMID(session, attribute);
+			return getItemByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item loadItemByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Item loadItemByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadItemByORMID(session, attribute, lockMode);
+			return loadItemByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item getItemByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Item getItemByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getItemByORMID(session, attribute, lockMode);
+			return getItemByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item loadItemByORMID(PersistentSession session, int attribute) {
+	public static Item loadItemByORMID(PersistentSession session, int ID) {
 		try {
-			return (Item) session.load(coedil99.PersistentModel.Item.class, new Integer(attribute));
+			return (Item) session.load(coedil99.PersistentModel.Item.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item getItemByORMID(PersistentSession session, int attribute) {
+	public static Item getItemByORMID(PersistentSession session, int ID) {
 		try {
-			return (Item) session.get(coedil99.PersistentModel.Item.class, new Integer(attribute));
+			return (Item) session.get(coedil99.PersistentModel.Item.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item loadItemByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Item loadItemByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Item) session.load(coedil99.PersistentModel.Item.class, new Integer(attribute), lockMode);
+			return (Item) session.load(coedil99.PersistentModel.Item.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class ItemDAO {
 		}
 	}
 	
-	public static Item getItemByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Item getItemByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Item) session.get(coedil99.PersistentModel.Item.class, new Integer(attribute), lockMode);
+			return (Item) session.get(coedil99.PersistentModel.Item.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

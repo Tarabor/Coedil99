@@ -19,12 +19,10 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class MagazzinoCriteria extends AbstractORMCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	
 	public MagazzinoCriteria(Criteria criteria) {
 		super(criteria);
-		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 	}
 	
@@ -36,8 +34,8 @@ public class MagazzinoCriteria extends AbstractORMCriteria {
 		this(coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession());
 	}
 	
-	public ElementoMagazzinoCriteria createElementoMagazzino__list_Criteria() {
-		return new ElementoMagazzinoCriteria(createCriteria("ORM_ElementoMagazzino__list_"));
+	public ElementoMagazzinoCriteria createElementoMagazzino__List_Criteria() {
+		return new ElementoMagazzinoCriteria(createCriteria("ORM_ElementoMagazzino__List_"));
 	}
 	
 	public Magazzino uniqueMagazzino() {

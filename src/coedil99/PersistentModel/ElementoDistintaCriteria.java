@@ -19,7 +19,6 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ElementoDistintaCriteria extends AbstractORMCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression indicazione;
 	public final IntegerExpression NPezzi;
@@ -27,7 +26,6 @@ public class ElementoDistintaCriteria extends AbstractORMCriteria {
 	
 	public ElementoDistintaCriteria(Criteria criteria) {
 		super(criteria);
-		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		indicazione = new StringExpression("indicazione", this);
 		NPezzi = new IntegerExpression("NPezzi", this);

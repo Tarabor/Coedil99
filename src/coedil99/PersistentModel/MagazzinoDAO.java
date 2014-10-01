@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class MagazzinoDAO {
-	public static Magazzino loadMagazzinoByORMID(int attribute) {
+	public static Magazzino loadMagazzinoByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadMagazzinoByORMID(session, attribute);
+			return loadMagazzinoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino getMagazzinoByORMID(int attribute) {
+	public static Magazzino getMagazzinoByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getMagazzinoByORMID(session, attribute);
+			return getMagazzinoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino loadMagazzinoByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Magazzino loadMagazzinoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadMagazzinoByORMID(session, attribute, lockMode);
+			return loadMagazzinoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino getMagazzinoByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Magazzino getMagazzinoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getMagazzinoByORMID(session, attribute, lockMode);
+			return getMagazzinoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino loadMagazzinoByORMID(PersistentSession session, int attribute) {
+	public static Magazzino loadMagazzinoByORMID(PersistentSession session, int ID) {
 		try {
-			return (Magazzino) session.load(coedil99.PersistentModel.Magazzino.class, new Integer(attribute));
+			return (Magazzino) session.load(coedil99.PersistentModel.Magazzino.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino getMagazzinoByORMID(PersistentSession session, int attribute) {
+	public static Magazzino getMagazzinoByORMID(PersistentSession session, int ID) {
 		try {
-			return (Magazzino) session.get(coedil99.PersistentModel.Magazzino.class, new Integer(attribute));
+			return (Magazzino) session.get(coedil99.PersistentModel.Magazzino.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino loadMagazzinoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Magazzino loadMagazzinoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Magazzino) session.load(coedil99.PersistentModel.Magazzino.class, new Integer(attribute), lockMode);
+			return (Magazzino) session.load(coedil99.PersistentModel.Magazzino.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class MagazzinoDAO {
 		}
 	}
 	
-	public static Magazzino getMagazzinoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Magazzino getMagazzinoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Magazzino) session.get(coedil99.PersistentModel.Magazzino.class, new Integer(attribute), lockMode);
+			return (Magazzino) session.get(coedil99.PersistentModel.Magazzino.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

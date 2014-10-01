@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class IndirizzoDAO {
-	public static Indirizzo loadIndirizzoByORMID(int attribute) {
+	public static Indirizzo loadIndirizzoByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadIndirizzoByORMID(session, attribute);
+			return loadIndirizzoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo getIndirizzoByORMID(int attribute) {
+	public static Indirizzo getIndirizzoByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getIndirizzoByORMID(session, attribute);
+			return getIndirizzoByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo loadIndirizzoByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Indirizzo loadIndirizzoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadIndirizzoByORMID(session, attribute, lockMode);
+			return loadIndirizzoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo getIndirizzoByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static Indirizzo getIndirizzoByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getIndirizzoByORMID(session, attribute, lockMode);
+			return getIndirizzoByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo loadIndirizzoByORMID(PersistentSession session, int attribute) {
+	public static Indirizzo loadIndirizzoByORMID(PersistentSession session, int ID) {
 		try {
-			return (Indirizzo) session.load(coedil99.PersistentModel.Indirizzo.class, new Integer(attribute));
+			return (Indirizzo) session.load(coedil99.PersistentModel.Indirizzo.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo getIndirizzoByORMID(PersistentSession session, int attribute) {
+	public static Indirizzo getIndirizzoByORMID(PersistentSession session, int ID) {
 		try {
-			return (Indirizzo) session.get(coedil99.PersistentModel.Indirizzo.class, new Integer(attribute));
+			return (Indirizzo) session.get(coedil99.PersistentModel.Indirizzo.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo loadIndirizzoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Indirizzo loadIndirizzoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Indirizzo) session.load(coedil99.PersistentModel.Indirizzo.class, new Integer(attribute), lockMode);
+			return (Indirizzo) session.load(coedil99.PersistentModel.Indirizzo.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class IndirizzoDAO {
 		}
 	}
 	
-	public static Indirizzo getIndirizzoByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static Indirizzo getIndirizzoByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (Indirizzo) session.get(coedil99.PersistentModel.Indirizzo.class, new Integer(attribute), lockMode);
+			return (Indirizzo) session.get(coedil99.PersistentModel.Indirizzo.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

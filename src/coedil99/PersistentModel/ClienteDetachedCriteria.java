@@ -19,7 +19,6 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression nome;
 	public final StringExpression cognome;
@@ -28,7 +27,6 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public ClienteDetachedCriteria() {
 		super(coedil99.PersistentModel.Cliente.class, coedil99.PersistentModel.ClienteCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
@@ -38,7 +36,6 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public ClienteDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, coedil99.PersistentModel.ClienteCriteria.class);
-		attribute = new IntegerExpression("attribute", this.getDetachedCriteria());
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());

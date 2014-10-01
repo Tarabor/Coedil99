@@ -70,7 +70,6 @@ public class ElementoDistintaListCollection extends org.orm.util.ORMList {
 	/**
 	 * Return an sorted array containing all of the persistent objects in ORMList
 	 * @param propertyName Name of the property for sorting:<ul>
-	 * <li>attribute</li>
 	 * <li>ID</li>
 	 * <li>indicazione</li>
 	 * <li>NPezzi</li>
@@ -85,7 +84,6 @@ public class ElementoDistintaListCollection extends org.orm.util.ORMList {
 	/**
 	 * Return an sorted array containing all of the persistent objects in ORMList
 	 * @param propertyName Name of the property for sorting:<ul>
-	 * <li>attribute</li>
 	 * <li>ID</li>
 	 * <li>indicazione</li>
 	 * <li>NPezzi</li>

@@ -19,14 +19,12 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class ListaRintracciabilitaCriteria extends AbstractORMCriteria {
-	public final IntegerExpression attribute;
 	public final IntegerExpression ID;
 	public final StringExpression note;
 	public final DoubleExpression pesoTeorico;
 	
 	public ListaRintracciabilitaCriteria(Criteria criteria) {
 		super(criteria);
-		attribute = new IntegerExpression("attribute", this);
 		ID = new IntegerExpression("ID", this);
 		note = new StringExpression("note", this);
 		pesoTeorico = new DoubleExpression("pesoTeorico", this);

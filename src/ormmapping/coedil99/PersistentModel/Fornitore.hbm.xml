@@ -6,11 +6,10 @@ License Type: Purchased
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="coedil99.PersistentModel.Fornitore" table="Fornitore" lazy="false">
-		<id name="attribute" column="Attribute" type="integer" unsaved-value="0">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<property name="ID" column="ID" type="integer" not-null="true" lazy="false"/>
 		<property name="codice" column="Codice" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="telefono" column="Telefono" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="ditta" column="Ditta" type="string" length="255" not-null="false" lazy="false"/>

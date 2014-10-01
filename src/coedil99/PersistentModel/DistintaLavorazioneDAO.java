@@ -18,10 +18,10 @@ import org.hibernate.Query;
 import java.util.List;
 
 public class DistintaLavorazioneDAO {
-	public static DistintaLavorazione loadDistintaLavorazioneByORMID(int attribute) {
+	public static DistintaLavorazione loadDistintaLavorazioneByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadDistintaLavorazioneByORMID(session, attribute);
+			return loadDistintaLavorazioneByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -29,10 +29,10 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione getDistintaLavorazioneByORMID(int attribute) {
+	public static DistintaLavorazione getDistintaLavorazioneByORMID(int ID) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getDistintaLavorazioneByORMID(session, attribute);
+			return getDistintaLavorazioneByORMID(session, ID);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione loadDistintaLavorazioneByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static DistintaLavorazione loadDistintaLavorazioneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return loadDistintaLavorazioneByORMID(session, attribute, lockMode);
+			return loadDistintaLavorazioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione getDistintaLavorazioneByORMID(int attribute, org.hibernate.LockMode lockMode) {
+	public static DistintaLavorazione getDistintaLavorazioneByORMID(int ID, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = coedil99.PersistentModel.Coedil99rev1modPersistentManager.instance().getSession();
-			return getDistintaLavorazioneByORMID(session, attribute, lockMode);
+			return getDistintaLavorazioneByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione loadDistintaLavorazioneByORMID(PersistentSession session, int attribute) {
+	public static DistintaLavorazione loadDistintaLavorazioneByORMID(PersistentSession session, int ID) {
 		try {
-			return (DistintaLavorazione) session.load(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(attribute));
+			return (DistintaLavorazione) session.load(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -72,9 +72,9 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione getDistintaLavorazioneByORMID(PersistentSession session, int attribute) {
+	public static DistintaLavorazione getDistintaLavorazioneByORMID(PersistentSession session, int ID) {
 		try {
-			return (DistintaLavorazione) session.get(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(attribute));
+			return (DistintaLavorazione) session.get(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(ID));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -82,9 +82,9 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione loadDistintaLavorazioneByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static DistintaLavorazione loadDistintaLavorazioneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (DistintaLavorazione) session.load(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(attribute), lockMode);
+			return (DistintaLavorazione) session.load(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class DistintaLavorazioneDAO {
 		}
 	}
 	
-	public static DistintaLavorazione getDistintaLavorazioneByORMID(PersistentSession session, int attribute, org.hibernate.LockMode lockMode) {
+	public static DistintaLavorazione getDistintaLavorazioneByORMID(PersistentSession session, int ID, org.hibernate.LockMode lockMode) {
 		try {
-			return (DistintaLavorazione) session.get(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(attribute), lockMode);
+			return (DistintaLavorazione) session.get(coedil99.PersistentModel.DistintaLavorazione.class, new Integer(ID), lockMode);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

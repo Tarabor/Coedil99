@@ -32,32 +32,22 @@ public class DistintaLavorazione extends coedil99.PersistentModel.APersistentMod
 		
 	};
 	
-	private int attribute;
-	
 	private int ID;
 	
 	private double totale;
 	
 	private java.util.List ORM_elemento__List_ = new java.util.ArrayList();
 	
-	private void setAttribute(int value) {
-		this.attribute = value;
-	}
-	
-	public int getAttribute() {
-		return attribute;
-	}
-	
-	public int getORMID() {
-		return getAttribute();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setTotale(double value) {
@@ -79,7 +69,7 @@ public class DistintaLavorazione extends coedil99.PersistentModel.APersistentMod
 	public final coedil99.PersistentModel.ElementoDistintaListCollection elemento__List_ = new coedil99.PersistentModel.ElementoDistintaListCollection(this, _ormAdapter, coedil99.PersistentModel.ORMConstants.KEY_DISTINTALAVORAZIONE_ELEMENTO__LIST_, coedil99.PersistentModel.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
-		return String.valueOf(getAttribute());
+		return String.valueOf(getID());
 	}
 	
 }

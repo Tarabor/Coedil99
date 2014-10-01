@@ -17,11 +17,11 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 	public Item() {
 	}
 	
-	private int attribute;
-	
 	protected int ID;
 	
 	protected String descrizione;
+	
+	private Integer listinoIndex;
 	
 	protected double peso;
 	
@@ -29,24 +29,16 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 	
 	protected int tipoSagoma;
 	
-	private void setAttribute(int value) {
-		this.attribute = value;
-	}
-	
-	public int getAttribute() {
-		return attribute;
-	}
-	
-	public int getORMID() {
-		return getAttribute();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setDescrizione(String value) {
@@ -81,8 +73,20 @@ public abstract class Item extends coedil99.PersistentModel.APersistentModel {
 		return tipoSagoma;
 	}
 	
+	public void setListinoIndex(int value) {
+		setListinoIndex(new Integer(value));
+	}
+	
+	public void setListinoIndex(Integer value) {
+		this.listinoIndex = value;
+	}
+	
+	public Integer getListinoIndex() {
+		return listinoIndex;
+	}
+	
 	public String toString() {
-		return String.valueOf(getAttribute());
+		return String.valueOf(getID());
 	}
 	
 }
