@@ -10,9 +10,10 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
-		<set name="ORM_ElementoMagazzino__List_" lazy="true" cascade="all-delete-orphan" inverse="false">
+		<list name="ORM_ElementoMagazzino__List_" lazy="true" cascade="all-delete-orphan" inverse="false">
 			<key column="MagazzinoID" not-null="false"/>
+			<index column="`Column`" type="integer"/>
 			<one-to-many class="coedil99.PersistentModel.ElementoMagazzino"/>
-		</set>
+		</list>
 	</class>
 </hibernate-mapping>

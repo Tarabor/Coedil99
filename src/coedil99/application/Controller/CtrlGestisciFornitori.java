@@ -1,8 +1,13 @@
 package coedil99.application.Controller;
 
 
+import coedil99.Model.MPreventivo;
+import coedil99.PersistentModel.Cliente;
+import coedil99.PersistentModel.ClienteDAO;
 import coedil99.PersistentModel.Fornitore;
 import coedil99.PersistentModel.FornitoreDAO;
+import coedil99.PersistentModel.Preventivo;
+import coedil99.ui.Coedil99View;
 
 import java.util.ArrayList;
 
@@ -25,5 +30,25 @@ private static CtrlGestisciFornitori instance;
 		f.setDitta(ditta);
 		FornitoreDAO.save(f);
 	}	
+	
+	public void listaClienti() {
+		//Coedil99View.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null)); TO CHANGE VIEW
+	}
+	
+	public void nuovoFornitorePopUp() { 
+		//Coedil99View.getInstance().showNewClienti(); TO IMPLEMENT
+	}
+	
+	public void apriFornitore(Fornitore fornitore) {
+		if(fornitore != null){
+			/* TO IMPLEMENT
+			 * MPreventivo mp = CtrlElaboraPreventivo.getInstance().getPreventivoCorrente();
+			 *
+			((Preventivo)mp.getPersistentModel()).setCliente(cliente);
+			int indexPreventivo = CtrlElaboraPreventivo.getInstance().getIndexPreventivoCorrente();
+			Coedil99View.getInstance().updatePreventivo(indexPreventivo, mp);
+			Coedil99View.getInstance().hideClienti();*/
+		}
+	}
 
 }
