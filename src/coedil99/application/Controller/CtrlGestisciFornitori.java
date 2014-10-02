@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class CtrlGestisciFornitori {
 	
-private static CtrlGestisciFornitori instance;
+	private static CtrlGestisciFornitori instance;
 	
 	public static CtrlGestisciFornitori getInstance(){
 		if(instance == null)

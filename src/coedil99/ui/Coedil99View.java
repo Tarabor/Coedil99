@@ -9,7 +9,12 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+
+
+
 
 
 
@@ -53,6 +58,7 @@ import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.Item;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
+import coedil99.application.Controller.CtrlGestisciMagazzino;
 
 
 
@@ -131,8 +137,8 @@ public class Coedil99View extends JFrame {
 		this.tab_count++;
 	}
 	
-	public void nuovaSchedaItems(){
-		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.defaulttitle"), new TabMagazzino());
+	public void nuovaSchedaMagazzino(ArrayList<Object[]> datiMagazzino){
+		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.magazzino"), new TabMagazzino(datiMagazzino));
 		this.tabbedPane.setSelectedIndex(this.tab_count);
 		this.tab_count++;
 	}
@@ -162,6 +168,11 @@ public class Coedil99View extends JFrame {
 	
 	public void showItems(Item [] items){
 		this.tb.setElements(items);
+		this.tb.setVisible(true);
+	}
+	
+	public void showElementiMagazzino(ArrayList<Object[]> dati){
+		this.tb.setMagazzino(dati);
 		this.tb.setVisible(true);
 	}
 	
@@ -232,6 +243,7 @@ public class Coedil99View extends JFrame {
 	    this.op = new OpenPreventiviView();
 		this.oc = new OpenClientiView();
 		this.nc = new newCliente();
+		//this.tb = new TabMagazzino(); lo faccio prima
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Coedil99View.class.getResource(ICON_FRAME)));
 		setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 		setTitle(bundle.getString("gui.frameTitle"));
@@ -316,7 +328,7 @@ public class Coedil99View extends JFrame {
 		mntmGestioneMagazzino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				CtrlElaboraPreventivo.getInstance().apriItems();
+				CtrlGestisciMagazzino.getInstance().apriMagazzino();
 			}
 		});
 		mnFile.add(mntmGestioneMagazzino);

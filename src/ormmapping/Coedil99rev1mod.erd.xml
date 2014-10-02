@@ -131,7 +131,7 @@
       <ReferencedColumn>coedil99.PersistentModel.Fornitore.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -155,7 +155,7 @@
       <ReferencedColumn>coedil99.PersistentModel.Item.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>0</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
