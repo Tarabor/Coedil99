@@ -166,4 +166,8 @@ public class CtrlElaboraPreventivo {
 	}
 	
 	
+	public void listaItems() { 
+		Coedil99View.getInstance().showItems(ItemDAO.listItemByQuery(null, null));
+	}
+	
 }

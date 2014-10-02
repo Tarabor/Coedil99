@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -49,6 +50,7 @@ import coedil99.ui.content.Start;
 import coedil99.Model.MDistintaLavorazione;
 import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
+import coedil99.PersistentModel.Item;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 
@@ -62,6 +64,7 @@ public class Coedil99View extends JFrame {
 	private static Coedil99View instance;
 	private OpenPreventiviView op;
 	private OpenClientiView oc;
+	private TabMagazzino tb;
 	private newCliente nc;
 	private ResourceBundle bundle;
 	
@@ -155,6 +158,15 @@ public class Coedil99View extends JFrame {
 	public void hideClienti(){
 		this.oc.setVisible(false);
 		this.nc.setVisible(false);
+	}
+	
+	public void showItems(Item [] items){
+		this.tb.setElements(items);
+		this.tb.setVisible(true);
+	}
+	
+	public void hideItems(){
+		this.tb.setVisible(false);
 	}
 	
 	public void showNewClienti(){
