@@ -71,7 +71,6 @@ public class MPreventivo implements AModel {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			//i.setPrezzo(5); bisogna farlo all'avvio
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
 			if (i.getClass().getName().equals("coedil99.PersistentModel.Bullone")) {
@@ -87,7 +86,7 @@ public class MPreventivo implements AModel {
 				i.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX]))+1);
 			}
 			
-			//imposto il prezzo, probabilmente sarebbe meglio inserire una Map nella classe listino anzichè una Lista
+			//imposto il prezzo
 			switch(i.getClass().getName()) {
 		    case "coedil99.PersistentModel.Bullone":
 		    	MBullone bullone = new MBullone();

@@ -82,15 +82,6 @@ public class Main {
 				splash.setVisible(false);
 			}
 		});
-		/*try {
-				SwingUtilities.invokeAndWait(RunGui);
-				
-			} catch (InvocationTargetException e) {
-				
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}	*/
+		
 	}
 }

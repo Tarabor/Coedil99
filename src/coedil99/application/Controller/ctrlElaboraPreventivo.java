@@ -92,7 +92,6 @@ public class CtrlElaboraPreventivo {
 		p.setNome(p.getCliente().getCognome()+" "+p.getData().getTime());
 		p.setData(Service.getDatadb(data));
 		ArrayList<ElementoDistinta> elementi = mp.getDistinta();
-		//Listino listino = ListinoDAO.loadListinoByORMID(1);
 		for (ElementoDistinta ed : elementi) {
 			ItemDAO.save(ed.getItem());
 		}
@@ -100,7 +99,6 @@ public class CtrlElaboraPreventivo {
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.setPersistentModel(dl);
 		dist.calcolaPrezzo();
-		//DistintaLavorazioneDAO.save(dl);
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");

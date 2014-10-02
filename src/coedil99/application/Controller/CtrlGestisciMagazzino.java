@@ -38,7 +38,4 @@ public class CtrlGestisciMagazzino {
 		Coedil99View.getInstance().showElementiMagazzino(dati);
 	}
 	
-	public void listaItems() { 
-		Coedil99View.getInstance().showItems(ItemDAO.listItemByQuery(null, null));
-	}
 }

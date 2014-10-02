@@ -43,7 +43,6 @@ import coedil99.ui.template.MagazzinoTableModel;
 public class TabMagazzino extends JPanel {
 	
 	private JTable magazzino;
-	private JList element;
 	
 	private String [] tableHeader = new String[] {
 			"ARTICOLO", "DESCRIZIONE", "MATERIALE", "PESO", "DIAMETRO", "LUNGHEZZA", "TIPO SAGOMA", "PREZZO", "N\u00B0 PEZZI", "FORNITORE"
@@ -146,17 +145,12 @@ public class TabMagazzino extends JPanel {
 		magazzino.setRowHeight(30);
 		magazzino.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		
-		//imposto i dati nella tabella
-		
 		
 		JScrollPane scrollPane = new JScrollPane(magazzino);
 		panel_2.add(scrollPane);
 
 	}
 	
-	public void setElements(Item[] listData){
-		this.element.setListData(listData);
-	}
 	
 	public void setMagazzino(ArrayList<Object[]> dati) {
 		this.magazzino.setModel(new MagazzinoTableModel(dati, this.tableHeader));

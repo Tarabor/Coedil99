@@ -166,11 +166,6 @@ public class Coedil99View extends JFrame {
 		this.nc.setVisible(false);
 	}
 	
-	public void showItems(Item [] items){
-		this.tb.setElements(items);
-		this.tb.setVisible(true);
-	}
-	
 	public void showElementiMagazzino(ArrayList<Object[]> dati){
 		this.tb.setMagazzino(dati);
 		this.tb.setVisible(true);
@@ -243,7 +238,6 @@ public class Coedil99View extends JFrame {
 	    this.op = new OpenPreventiviView();
 		this.oc = new OpenClientiView();
 		this.nc = new newCliente();
-		//this.tb = new TabMagazzino(); lo faccio prima
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Coedil99View.class.getResource(ICON_FRAME)));
 		setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 		setTitle(bundle.getString("gui.frameTitle"));
@@ -324,7 +318,7 @@ public class Coedil99View extends JFrame {
 		mnFile.add(separator_3);
 		
 		/*++++++Gestione Magazzino++++++*/
-		JMenuItem mntmGestioneMagazzino = new JMenuItem("Gestione magazzino");
+		JMenuItem mntmGestioneMagazzino = new JMenuItem(bundle.getString("gui.menu.file.magazzino"));
 		mntmGestioneMagazzino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -445,9 +439,7 @@ public class Coedil99View extends JFrame {
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBackground(UIManager.getColor("Button.background"));
 		tabbedPane.setBorder(new EmptyBorder(10, 10, 10, 10) );
-		//this.startPanel = new Start();
-		//splitPane.setRightComponent(this.startPanel);		
-		
+
 		splitPane.setRightComponent(tabbedPane);	
 		
 		
