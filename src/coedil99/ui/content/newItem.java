@@ -77,8 +77,11 @@ public class newItem extends JFrame {
 	private CampoTesto campoTesto_5;
 	private CampoTesto campoTesto_6;
 	private CampoTesto campoTesto_1;
+	private CampoTesto campoTesto_7;
 	private SelectItem  comboBox;
 	private ImageSelector comboBox_1;
+	private JTextField textField;
+	private JLabel lblNewLabel;
 	
 
 	/**
@@ -134,82 +137,93 @@ public class newItem extends JFrame {
 		tchtTipoElemento.setText("TIPO ELEMENTO");
 		tchtTipoElemento.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtTipoElemento.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtTipoElemento, "2, 6, left, default");
+		getContentPane().add(tchtTipoElemento, "2, 4, left, default");
 		
 		comboBox = new SelectItem();
-		getContentPane().add(comboBox, "6, 6, fill, default");
+		getContentPane().add(comboBox, "6, 4, fill, default");
 		
 		Etichetta tchtTipoSagoma = new Etichetta("TIPO SAGOMA");
 		tchtTipoSagoma.setText("TIPO SAGOMA");
 		tchtTipoSagoma.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtTipoSagoma.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtTipoSagoma, "2, 8, left, default");
+		getContentPane().add(tchtTipoSagoma, "2, 6, left, default");
 		
 		comboBox_1 = new ImageSelector();
-		getContentPane().add(comboBox_1, "6, 8, fill, default");
+		getContentPane().add(comboBox_1, "6, 6, fill, default");
 		
 		
 		Etichetta tchtDescrizione = new Etichetta("DESCRIZIONE");
 		tchtDescrizione.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtDescrizione.setText("DESCRIZIONE");
 		tchtDescrizione.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtDescrizione, "2, 10, left, default");
+		getContentPane().add(tchtDescrizione, "2, 8, left, default");
 		
 		campoTesto_1 = new CampoTesto();
 		campoTesto_1.setColumns(10);
 		campoTesto_1.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_1, "6, 10, fill, default");
+		getContentPane().add(campoTesto_1, "6, 8, fill, default");
 		
 		Etichetta tchtDiamentro = new Etichetta("DIAMETRO");
 		tchtDiamentro.setText("DIAMETRO");
-		getContentPane().add(tchtDiamentro, "2, 12");
+		getContentPane().add(tchtDiamentro, "2, 10");
 		
 		campoTesto_2 = new CampoTesto();
 		campoTesto_2.setColumns(10);
 		campoTesto_2.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_2, "6, 12, fill, default");
+		getContentPane().add(campoTesto_2, "6, 10, fill, default");
 		
 		Etichetta tchtMateriale = new Etichetta("MATERIALE");
 		tchtMateriale.setText("MATERIALE");
-		getContentPane().add(tchtMateriale, "2, 14");
+		getContentPane().add(tchtMateriale, "2, 12");
 		
 		campoTesto_6 = new CampoTesto();
 		campoTesto_6.setColumns(10);
 		campoTesto_6.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_6, "6, 14, left, default");
+		getContentPane().add(campoTesto_6, "6, 12, left, default");
 		
 		Etichetta tchtLunghezza = new Etichetta("LUNGHEZZA");
 		tchtLunghezza.setText("LUNGHEZZA");
 		tchtLunghezza.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtLunghezza.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtLunghezza, "2, 16");
+		getContentPane().add(tchtLunghezza, "2, 14");
 		
 		campoTesto_5 = new CampoTesto();
 		campoTesto_5.setColumns(10);
 		campoTesto_5.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_5, "6, 16, fill, default");
+		getContentPane().add(campoTesto_5, "6, 14, fill, default");
 		
 		Etichetta tchtPeso = new Etichetta("PESO");
 		tchtPeso.setText("PESO");
 		tchtPeso.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtPeso.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtPeso, "2, 18");
+		getContentPane().add(tchtPeso, "2, 16");
 		
 		campoTesto_3 = new CampoTesto();
 		campoTesto_3.setColumns(10);
 		campoTesto_3.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_3, "6, 18, fill, default");
+		getContentPane().add(campoTesto_3, "6, 16, fill, default");
 		
 		Etichetta tchtPrezzo = new Etichetta("PREZZO");
 		tchtPrezzo.setText("PREZZO");
 		tchtPrezzo.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtPrezzo.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtPrezzo, "2, 20");
+		getContentPane().add(tchtPrezzo, "2, 18");
 		
 		campoTesto_4 = new CampoTesto();
 		campoTesto_4.setColumns(10);
 		campoTesto_4.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_4, "6, 20, fill, default");
+		getContentPane().add(campoTesto_4, "6, 18, fill, default");
+		
+		Etichetta tchtFornitore = new Etichetta("FORNITORE");
+		tchtFornitore.setText("FORNITORE");
+		tchtFornitore.setHorizontalTextPosition(SwingConstants.LEFT);
+		tchtFornitore.setHorizontalAlignment(SwingConstants.LEFT);
+		getContentPane().add(tchtFornitore, "2, 20");
+		
+		campoTesto_7 = new CampoTesto();
+		campoTesto_7.setColumns(10);
+		campoTesto_7.setAlignmentX(0.0f);
+		getContentPane().add(campoTesto_7, "6, 20, fill, default");
 		
 		JButton btnSalva = new JButton("Salva");
 		btnSalva.setMaximumSize(new Dimension(50, 23));
