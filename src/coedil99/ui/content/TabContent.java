@@ -457,7 +457,6 @@ public class TabContent extends JPanel {
 		((MyTableModel)this.distinta.getModel()).removeRow( this.distinta.getSelectedRow());
 		if(this.distinta.getRowCount() == 0)
 			((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
-			
 	}
 	
 	public void setData(String data){
@@ -541,7 +540,6 @@ public class TabContent extends JPanel {
 
 	public void setTotale(double totale) {
 		campoTesto_1.setText(String.valueOf(totale)+" $");
-		campoTesto_1.repaint();
 	}
 	
 	

@@ -195,7 +195,8 @@ public class Coedil99View extends JFrame {
 	}
 	
 	public void updateUI(){
-	
+		this.validate();
+		this.repaint();
 	}
 	
 	

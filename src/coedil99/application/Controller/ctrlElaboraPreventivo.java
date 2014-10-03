@@ -161,8 +161,7 @@ public class CtrlElaboraPreventivo implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		
-		Coedil99View.getInstance().setTotale(Double.parseDouble(arg1.toString()));;
-		
+		Coedil99View.getInstance().setTotale(Double.parseDouble(arg1.toString()));	
 	}
 	
 }
