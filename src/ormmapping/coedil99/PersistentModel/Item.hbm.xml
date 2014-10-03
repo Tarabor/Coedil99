@@ -12,6 +12,7 @@ License Type: Purchased
 		</id>
 		<discriminator column="Discriminator" type="string"/>
 		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="listinoIndex" column="ListinoIndex" type="integer" not-null="false" lazy="false"/>
 		<property name="peso" column="Peso" type="double" not-null="false" lazy="false"/>
 		<property name="prezzo" column="Prezzo" type="double" not-null="false" lazy="false"/>
 		<property name="tipoSagoma" column="TipoSagoma" type="integer" not-null="false" lazy="false"/>

@@ -39,7 +39,6 @@ import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
 import coedil99.ui.template.MagazzinoTableModel;
 
-
 public class TabMagazzino extends JPanel {
 	
 	private JTable magazzino;
@@ -105,7 +104,7 @@ public class TabMagazzino extends JPanel {
 		JButton btnNewItem = new JButton("Aggiungi Elementi al Magazzino");
 		btnNewItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//CtrlGestisciMagazzino.getInstance().addItems(); USA QUESTO METODO PER FARE L'AGGIUNTA DEGLI ITEM AL MAGAZZINO
+				CtrlGestisciMagazzino.getInstance().addItem(); 
 			}
 		});
 		panel_1.add(btnNewItem, BorderLayout.CENTER);

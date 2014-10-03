@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -47,6 +48,7 @@ import javax.swing.JInternalFrame;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.TabMagazzino;
 import coedil99.ui.content.newCliente;
+import coedil99.ui.content.newItem;
 import coedil99.ui.template.Scheda;
 import coedil99.ui.template.btnToolBar;
 import coedil99.ui.content.Start;
@@ -72,6 +74,7 @@ public class Coedil99View extends JFrame {
 	private OpenClientiView oc;
 	private TabMagazzino tb;
 	private newCliente nc;
+	private newItem ni;
 	private ResourceBundle bundle;
 	
 	private JLabel lblStatusBar;
@@ -183,6 +186,14 @@ public class Coedil99View extends JFrame {
 		this.nc.setVisible(false);
 	}
 	
+	public void showNewItem(){
+		this.ni.setVisible(true);
+	}
+	
+	public void hideNewItem(){
+		this.ni.setVisible(false);
+	}
+	
 	public void updateUI(){
 	
 	}
@@ -238,6 +249,7 @@ public class Coedil99View extends JFrame {
 	    this.op = new OpenPreventiviView();
 		this.oc = new OpenClientiView();
 		this.nc = new newCliente();
+		this.ni = new newItem();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Coedil99View.class.getResource(ICON_FRAME)));
 		setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 		setTitle(bundle.getString("gui.frameTitle"));

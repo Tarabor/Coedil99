@@ -28,7 +28,7 @@ public class Main {
 		/*
 		 * CODICE INIZIALE PER POPOLARE IL DB
 		 * 
-		 *
+		 */
 		Bullone  b = new Bullone();
 		b.setDescrizione("abab");
 		b.setDiametro(5);
@@ -67,7 +67,7 @@ public class Main {
 		m.elementoMagazzino__List_.add(em);
 		m.elementoMagazzino__List_.add(em2);
 		MagazzinoDAO.save(m);
-		*/
+		
 	
 		
 		
