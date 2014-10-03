@@ -66,7 +66,7 @@ import coedil99.utility.Service;
 
 import javax.swing.JToggleButton;
 
-public class TabContent extends JPanel implements Observer {
+public class TabContent extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -541,11 +541,6 @@ public class TabContent extends JPanel implements Observer {
 
 	public void setTotale(double totale) {
 		campoTesto_1.setText(String.valueOf(totale)+" $");
-	}
-	@Override
-	public void update(Observable o, Object arg) {
-		System.out.println("Thread in update: " + Thread.currentThread());
-		campoTesto_1.setText(String.valueOf(arg)+" $");
 		campoTesto_1.repaint();
 	}
 	

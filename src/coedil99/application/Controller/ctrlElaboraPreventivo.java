@@ -26,8 +26,10 @@ import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class CtrlElaboraPreventivo {
+public class CtrlElaboraPreventivo implements Observer {
 	
 	private static CtrlElaboraPreventivo instance;
 	
@@ -150,9 +152,16 @@ public class CtrlElaboraPreventivo {
 		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
 		
 		MDistintaLavorazione dist = new MDistintaLavorazione();
-		dist.addObserver(TabContent.getInstance());
+		dist.addObserver(this);
 		dist.setPersistentModel(dl);
 		dist.calcolaPrezzo();
+		
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		
+		Coedil99View.getInstance().setTotale(Double.parseDouble(arg1.toString()));;
 		
 	}
 	

@@ -86,7 +86,7 @@ public class newItem extends JFrame {
 	public newItem() {
 		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(newItem.class.getResource("/coedil99/ui/img/frame-icon.png")));
-		setTitle("Aggiungi un nuovo cliente");
+		setTitle("Aggiungi un nuovo elemento");
 		getContentPane().setPreferredSize(new Dimension(0, 20));
 		getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
 				ColumnSpec.decode("60px"),
