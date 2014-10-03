@@ -65,7 +65,7 @@ public class CtrlElaboraPreventivo implements Observer {
 		lastra.setPersistentModel(l);
 		trave.setPersistentModel(t);
 		
-		bullone.setPrezzo(5); //perchè il setPrezzo del persistent model non può contenere logica e per come è fatta  
+		bullone.setPrezzo(5); //perchÃ¨ il setPrezzo del persistent model non puÃ² contenere logica e per come Ã¨ fatta  
 		lastra.setPrezzo(5);  //l'implementazione in MPreventivo non possiamo chiamare il setPrezzo del Model
 		trave.setPrezzo(5);
 		
