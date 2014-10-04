@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -26,6 +27,7 @@ import javax.swing.ListSelectionModel;
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciClienti;
+import coedil99.application.Controller.CtrlGestisciFornitori;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
@@ -50,6 +52,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -221,6 +225,14 @@ public class newItem extends JFrame {
 		getContentPane().add(tchtFornitore, "2, 20");
 		
 		campoTesto_7 = new CampoTesto();
+		campoTesto_7.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		campoTesto_7.setEditable(false);
+		campoTesto_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				CtrlGestisciFornitori.getInstance().listaFornitori();
+			}
+		});
 		campoTesto_7.setColumns(10);
 		campoTesto_7.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_7, "6, 20, fill, default");
@@ -230,10 +242,10 @@ public class newItem extends JFrame {
 		btnSalva.setMinimumSize(new Dimension(50, 23));
 		btnSalva.setPreferredSize(new Dimension(150, 50));
 		getContentPane().add(btnSalva, "6, 22, center, default");
-		setAlwaysOnTop (true);
+
 		//setBorder(new LineBorder(SystemColor.desktop));
-		setMinimumSize(new Dimension(700, 350));
-		setPreferredSize(new Dimension(800, 600));
+		setMinimumSize(new Dimension(700, 400));
+		setPreferredSize(new Dimension(800, 700));
 		setBackground(Color.WHITE);
 		
 		btnSalva.addActionListener(new ActionListener() {

@@ -20,6 +20,7 @@ import coedil99.ui.template.Etichetta;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class newFornitore extends JFrame {
 	
@@ -30,6 +31,8 @@ public class newFornitore extends JFrame {
 	private CampoTesto textField_2;
 	private CampoTesto textField;
 	public newFornitore() {
+		setMinimumSize(new Dimension(500, 250));
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		setTitle("Inserisci i dati relativi al Fornitore");
 		gridBagLayout.columnWidths = new int[]{222, 231, 84, 86, 0};

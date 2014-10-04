@@ -29,14 +29,15 @@ public class CtrlGestisciFornitori {
 		f.setTelefono(telefono);
 		f.setDitta(ditta);
 		FornitoreDAO.save(f);
+		Coedil99View.getInstance().hideNewFornitori();
 	}	
 	
-	public void listaClienti() { //lista fornitori
-		//Coedil99View.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null)); 
+	public void listaFornitori() {
+		Coedil99View.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null)); 
 	}
 	
 	public void nuovoFornitorePopUp() { 
-		//Coedil99View.getInstance().showNewFornitori(); TO IMPLEMENT
+		Coedil99View.getInstance().showNewFornitori();
 	}
 	
 	public void apriFornitore(Fornitore fornitore) {

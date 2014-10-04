@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 
 
+
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -45,9 +48,11 @@ import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 import javax.swing.JInternalFrame;
 
+import coedil99.ui.content.OpenFornitoriView;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.TabMagazzino;
 import coedil99.ui.content.newCliente;
+import coedil99.ui.content.newFornitore;
 import coedil99.ui.content.newItem;
 import coedil99.ui.template.Scheda;
 import coedil99.ui.template.btnToolBar;
@@ -57,6 +62,7 @@ import coedil99.ui.content.Start;
 import coedil99.Model.MDistintaLavorazione;
 import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
+import coedil99.PersistentModel.Fornitore;
 import coedil99.PersistentModel.Item;
 import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
@@ -72,9 +78,11 @@ public class Coedil99View extends JFrame {
 	private static Coedil99View instance;
 	private OpenPreventiviView op;
 	private OpenClientiView oc;
+	private OpenFornitoriView of;
 	private TabMagazzino tb;
 	private newCliente nc;
 	private newItem ni;
+	private newFornitore nf;
 	private ResourceBundle bundle;
 	
 	private JLabel lblStatusBar;
@@ -169,6 +177,23 @@ public class Coedil99View extends JFrame {
 		this.nc.setVisible(false);
 	}
 	
+	public void showFornitori(Fornitore [] fornitori){
+		this.of.setElements(fornitori);
+		this.of.setVisible(true);
+	}
+	
+	public void hideFornitori(){
+		this.of.setVisible(false);
+	}
+	
+	public void showNewFornitori() {
+		this.nf.setVisible(true);
+	}
+	
+	public void hideNewFornitori(){
+		this.nf.setVisible(false);
+	}
+	
 	public void showElementiMagazzino(ArrayList<Object[]> dati){
 		this.tb.setMagazzino(dati);
 		this.tb.setVisible(true);
@@ -203,6 +228,7 @@ public class Coedil99View extends JFrame {
 	public void updateCliente(String cliente){
 		((TabContent)this.tabbedPane.getSelectedComponent()).setCliente(cliente);
 	}
+	
 	
 	public void updatePreventivo(int index, MPreventivo mp){
 		
@@ -249,8 +275,11 @@ public class Coedil99View extends JFrame {
 		}
 	    this.op = new OpenPreventiviView();
 		this.oc = new OpenClientiView();
+		this.of = new OpenFornitoriView();
 		this.nc = new newCliente();
 		this.ni = new newItem();
+		this.nf = new newFornitore();
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Coedil99View.class.getResource(ICON_FRAME)));
 		setMinimumSize(new Dimension(MINIMUM_WIDTH, MINIMUM_HEIGHT));
 		setTitle(bundle.getString("gui.frameTitle"));
@@ -464,5 +493,8 @@ public class Coedil99View extends JFrame {
 		splitPane.setLeftComponent(navigator);
 		navigator.setVisible(true);
 	}
+
+
+	
 
 }
