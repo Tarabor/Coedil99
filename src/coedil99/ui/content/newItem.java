@@ -26,7 +26,6 @@ import javax.swing.ListSelectionModel;
 
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.application.Controller.CtrlGestisciClienti;
 import coedil99.application.Controller.CtrlGestisciFornitori;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
 import coedil99.ui.Coedil99View;

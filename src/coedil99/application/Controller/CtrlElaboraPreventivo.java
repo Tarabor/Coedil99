@@ -51,30 +51,6 @@ public class CtrlElaboraPreventivo implements Observer {
 	}
 
 	public void creaPreventivo() {
-		
-		/*  ci vuole un metodo di avviamento che carica il listino e setta tutti i prezzi degli item
-		 *  con una map per tenere traccia del prezzo?
-		Bullone b = BulloneDAO.createBullone();
-		Trave t = TraveDAO.createTrave();
-		Lastra l = LastraDAO.createLastra();
-		
-		MBullone bullone = new MBullone();
-		MLastra lastra = new MLastra();
-		MTrave trave = new MTrave();
-		bullone.setPersistentModel(b);
-		lastra.setPersistentModel(l);
-		trave.setPersistentModel(t);
-		
-		bullone.setPrezzo(5); //perchè il setPrezzo del persistent model non può contenere logica e per come è fatta  
-		lastra.setPrezzo(5);  //l'implementazione in MPreventivo non possiamo chiamare il setPrezzo del Model
-		trave.setPrezzo(5);
-		
-		Listino listino = ListinoDAO.createListino();
-		listino.item__List_.add(b);
-		listino.item__List_.add(t);
-		listino.item__List_.add(l);
-		ListinoDAO.save(listino); */
-		
 		Preventivo p = PreventivoDAO.createPreventivo();
 		p.setData(Service.getDatadb());
 		this.apriPreventivo(p);
@@ -156,6 +132,39 @@ public class CtrlElaboraPreventivo implements Observer {
 		dist.setPersistentModel(dl);
 		dist.calcolaPrezzo();
 		
+	}
+	
+	public void nuovoClientePopUp() { 
+		Coedil99View.getInstance().showNewClienti();
+	}
+	
+	public void salvaNuovoCliente(String nome, String cognome, String indirizzo, String numero, String comune, String codiceFiscale, String partitaIva) {
+		Indirizzo i = new Indirizzo(); //setto prima l'indirizzo
+		i.setVia(indirizzo);
+		i.setComune(comune);
+		i.setNumero(Integer.valueOf(numero)); 
+		Cliente c = new Cliente();
+		c.setNome(nome);
+		c.setCognome(cognome);
+		c.setIndirizzo(i);
+		c.setCodiceFiscale(codiceFiscale);
+		c.setPartitaIva(partitaIva);
+		ClienteDAO.save(c);
+		this.apriCliente(c);		
+		Coedil99View.getInstance().hideClienti();
+	}	
+	
+	public void listaClienti() {
+		Coedil99View.getInstance().showClienti(ClienteDAO.listClienteByQuery(null, null));
+	}
+	
+	public void apriCliente(Cliente cliente) {
+		if(cliente != null){
+			MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
+			((Preventivo)mp.getPersistentModel()).setCliente(cliente);
+			Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
+			Coedil99View.getInstance().hideClienti();
+		}
 	}
 
 	@Override

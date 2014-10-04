@@ -55,7 +55,6 @@ import java.util.ResourceBundle;
 
 import coedil99.Model.MDistintaLavorazione;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.application.Controller.CtrlGestisciClienti;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
@@ -224,7 +223,7 @@ public class TabContent extends JPanel {
 		cliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				CtrlGestisciClienti.getInstance().listaClienti();
+				CtrlElaboraPreventivo.getInstance().listaClienti();
 			}
 		});
 		cliente.setBackground(Color.WHITE);
