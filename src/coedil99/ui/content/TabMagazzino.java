@@ -104,7 +104,7 @@ public class TabMagazzino extends JPanel {
 		JButton btnNewItem = new JButton("Aggiungi Elementi al Magazzino");
 		btnNewItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CtrlGestisciMagazzino.getInstance().addItem(); 
+				CtrlGestisciMagazzino.getInstance().createElementoMagazzino(); 
 			}
 		});
 		panel_1.add(btnNewItem, BorderLayout.CENTER);
@@ -154,5 +154,6 @@ public class TabMagazzino extends JPanel {
 	public void setMagazzino(ArrayList<Object[]> dati) {
 		this.magazzino.setModel(new MagazzinoTableModel(dati, this.tableHeader));
 	}
+	
 
 }

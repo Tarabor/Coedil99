@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 
 
 
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -229,6 +231,9 @@ public class Coedil99View extends JFrame {
 		((TabContent)this.tabbedPane.getSelectedComponent()).setCliente(cliente);
 	}
 	
+	public void updateFornitore(String ditta) {
+		this.ni.updateFornitore(ditta);
+	}
 	
 	public void updatePreventivo(int index, MPreventivo mp){
 		
@@ -493,6 +498,9 @@ public class Coedil99View extends JFrame {
 		splitPane.setLeftComponent(navigator);
 		navigator.setVisible(true);
 	}
+
+
+	
 
 
 	

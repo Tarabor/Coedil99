@@ -30,6 +30,8 @@ public class CtrlGestisciFornitori {
 		f.setDitta(ditta);
 		FornitoreDAO.save(f);
 		Coedil99View.getInstance().hideNewFornitori();
+		Coedil99View.getInstance().hideFornitori();
+		Coedil99View.getInstance().updateFornitore(f.getDitta());
 	}	
 	
 	public void listaFornitori() {
@@ -40,16 +42,6 @@ public class CtrlGestisciFornitori {
 		Coedil99View.getInstance().showNewFornitori();
 	}
 	
-	public void apriFornitore(Fornitore fornitore) {
-		if(fornitore != null){
-			/* TO IMPLEMENT probabilmente l'implementazione sarà un po diversa
-			 * MPreventivo mp = CtrlElaboraPreventivo.getInstance().getPreventivoCorrente();
-			 *
-			((Preventivo)mp.getPersistentModel()).setCliente(cliente);
-			int indexPreventivo = CtrlElaboraPreventivo.getInstance().getIndexPreventivoCorrente();
-			Coedil99View.getInstance().updatePreventivo(indexPreventivo, mp);
-			Coedil99View.getInstance().hideClienti();*/
-		}
-	}
+	
 
 }

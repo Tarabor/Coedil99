@@ -9,6 +9,7 @@ import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.ClienteDAO;
 import coedil99.PersistentModel.ElementoMagazzino;
 import coedil99.PersistentModel.ElementoMagazzinoDAO;
+import coedil99.PersistentModel.Fornitore;
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.PersistentModel.Item;
 import coedil99.PersistentModel.ItemDAO;
@@ -19,10 +20,12 @@ import coedil99.PersistentModel.MagazzinoDAO;
 import coedil99.PersistentModel.Trave;
 import coedil99.PersistentModel.TraveDAO;
 import coedil99.ui.Coedil99View;
+import coedil99.ui.content.newItem;
 
 public class CtrlGestisciMagazzino {
 
 	private static CtrlGestisciMagazzino instance;
+	private ElementoMagazzino em;
 	
 	public static CtrlGestisciMagazzino getInstance(){
 		if(instance == null)
@@ -50,16 +53,14 @@ public class CtrlGestisciMagazzino {
 		Coedil99View.getInstance().showElementiMagazzino(dati);
 	}
 
-	public void addItem() {
-		Coedil99View.getInstance().showNewItem();
-		
+	public void createElementoMagazzino() {
+		this.em = ElementoMagazzinoDAO.createElementoMagazzino();
+		Coedil99View.getInstance().showNewItem();		
 	}
 	
 	
 	
 	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo) {
-		
-		ElementoMagazzino em = new ElementoMagazzino();
 		
 		if  ( tipoElemento.equals("Bullone") ) {
 			Bullone b = new Bullone(); 
@@ -99,6 +100,22 @@ public class CtrlGestisciMagazzino {
 		MagazzinoDAO.save(m);
 	}	
 	
+	
+	
+	public void apriFornitore(Fornitore fornitore) {
+		if(fornitore != null){
+			/* TO IMPLEMENT probabilmente l'implementazione sarà un po diversa
+			 * MPreventivo mp = CtrlElaboraPreventivo.getInstance().getPreventivoCorrente();
+			 *
+			((Preventivo)mp.getPersistentModel()).setCliente(cliente);
+			int indexPreventivo = CtrlElaboraPreventivo.getInstance().getIndexPreventivoCorrente();
+			Coedil99View.getInstance().updatePreventivo(indexPreventivo, mp);
+			*/
+			this.em.set_fornitore(fornitore);
+			Coedil99View.getInstance().updateFornitore(fornitore.getDitta());
+			Coedil99View.getInstance().hideFornitori();
+		}
+	}
 	
 	
 }

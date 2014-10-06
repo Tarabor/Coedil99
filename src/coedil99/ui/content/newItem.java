@@ -24,6 +24,7 @@ import javax.swing.Box;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
+import coedil99.PersistentModel.Fornitore;
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciFornitori;
@@ -73,6 +74,7 @@ public class newItem extends JFrame {
 	/**
 	 * 
 	 */
+	private static newItem instance;
 	private static final long serialVersionUID = 1L;
 	private CampoTesto campoTesto_2;
 	private CampoTesto campoTesto_3;
@@ -257,6 +259,15 @@ public class newItem extends JFrame {
 	    });     
 		
 	}
+	
+	
+	public static newItem getInstance(){
+		if(instance == null)
+			instance = new newItem();
+		
+		return instance;
+	}
+	
 	public void salvaItem() {
 		String tipoElemento = (String)this.comboBox.getSelectedItem();
 		Integer tipoSagoma = (Integer)this.comboBox_1.getSelectedItem();
@@ -270,4 +281,9 @@ public class newItem extends JFrame {
 		
 		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo);
 	}
+	
+	public void updateFornitore(String d){
+		this.campoTesto_7.setText(d);
+	}
+	
 }
