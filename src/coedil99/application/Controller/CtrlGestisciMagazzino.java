@@ -1,6 +1,7 @@
 package coedil99.application.Controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import coedil99.Model.MMagazzino;
 import coedil99.PersistentModel.Bullone;
@@ -10,6 +11,7 @@ import coedil99.PersistentModel.ClienteDAO;
 import coedil99.PersistentModel.ElementoMagazzino;
 import coedil99.PersistentModel.ElementoMagazzinoDAO;
 import coedil99.PersistentModel.Fornitore;
+import coedil99.PersistentModel.FornitoreDAO;
 import coedil99.PersistentModel.Indirizzo;
 import coedil99.PersistentModel.Item;
 import coedil99.PersistentModel.ItemDAO;
@@ -60,16 +62,33 @@ public class CtrlGestisciMagazzino {
 	
 	
 	
-	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo) {
-		
+	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo, String fornitore) {
+		//aggiungere variabile quantità per la funzione 
 		if  ( tipoElemento.equals("Bullone") ) {
-			Bullone b = new Bullone(); 
+			Bullone b = new Bullone();
 			b.setDescrizione(descrizione);
 			b.setPeso(Integer.valueOf(peso));
 			b.setPrezzo(Integer.valueOf(prezzo));
 			b.setDiametro(Integer.valueOf(diametro));
-			BulloneDAO.save(b);	
-			em.setItem(b);
+			Bullone b1 = new Bullone();
+			b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
+			if(b1 != null){
+				if(ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID") == null){
+					em.setItem(b1);
+					em.setQuantita(6);
+				}
+				else{
+					//incremento quantità em già esistente
+					ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID").setQuantita(10);
+					Iterator i = ElementoMagazzinoDAO.iterateElementoMagazzinoByQuery("", "ID"); //Iteratore agli elenti del magazzino
+					((ElementoMagazzino)i.next()).getItem().equals(b1); // elementoo corrente
+				}
+			}
+			else{
+				BulloneDAO.save(b);
+				em.setItem(b);
+				em.setQuantita(7);
+			}	
 		}
 		else if  ( tipoElemento.equals("Lastra") ) {
 			Lastra l = new Lastra();
@@ -91,8 +110,7 @@ public class CtrlGestisciMagazzino {
 			TraveDAO.save(t);	
 			em.setItem(t);
 		}
-		//em.set_fornitore(f);
-		em.setQuantita(666);
+		//em.setQuantita(666);
 		Coedil99View.getInstance().hideNewItem();
 		
 		Magazzino m = MagazzinoDAO.loadMagazzinoByORMID(1);

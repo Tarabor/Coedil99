@@ -12,7 +12,7 @@ License Type: Purchased
 		</id>
 		<many-to-one name="_fornitore" column="FornitoreID" class="coedil99.PersistentModel.Fornitore" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
-		<many-to-one name="item" cascade="lock" column="ItemID" class="coedil99.PersistentModel.Item" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="item" column="ItemID" class="coedil99.PersistentModel.Item" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="quantita" column="Quantita" type="integer" not-null="true" lazy="false"/>
 	</class>
