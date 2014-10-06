@@ -39,7 +39,6 @@ import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -128,6 +127,11 @@ public class Coedil99View extends JFrame {
 	
 	public int getCurrentPreventivo(){
 		return this.tabbedPane.getSelectedIndex();
+	}
+	
+	public TabContent getObserver(int index){
+		
+		return ((TabContent)this.tabbedPane.getComponentAt(index));
 	}
 	
 	public int getNumberofPreventivo(){

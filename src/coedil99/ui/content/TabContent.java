@@ -54,6 +54,8 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import coedil99.Model.MDistintaLavorazione;
+import coedil99.Model.MPreventivo;
+import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
@@ -65,7 +67,7 @@ import coedil99.utility.Service;
 
 import javax.swing.JToggleButton;
 
-public class TabContent extends JPanel {
+public class TabContent extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -539,6 +541,16 @@ public class TabContent extends JPanel {
 
 	public void setTotale(double totale) {
 		campoTesto_1.setText(String.valueOf(totale)+" $");
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		
+		//Coedil99View.getInstance().setTotale(Double.parseDouble(arg1.toString()));	
+		Preventivo p = (Preventivo)(((MPreventivo)arg1).getPersistentModel());
+		setElementoStrutturale(p.getElementoStrutturale());
+		if( p.getDistinta()!= null)
+			setDistinta( ((MPreventivo)arg1).getDistintaArrayList());
 	}
 	
 	

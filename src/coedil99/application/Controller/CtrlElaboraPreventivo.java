@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class CtrlElaboraPreventivo implements Observer {
+public class CtrlElaboraPreventivo {
 	
 	private static CtrlElaboraPreventivo instance;
 	
@@ -100,13 +100,16 @@ public class CtrlElaboraPreventivo implements Observer {
 
 	public void apriPreventivo(Preventivo p) {
 		MPreventivo mp = new MPreventivo(p);
+		
 		this.preventivi.add( mp );	
 		Coedil99View.getInstance().nuovaScheda();
-		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
+		//Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().hidePreventivi();
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 1){
 			Coedil99View.getInstance().setSaveVisible(true);
-		}
+		}	
+		mp.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
+		mp.notifyObservers(mp);
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
 	
@@ -128,7 +131,7 @@ public class CtrlElaboraPreventivo implements Observer {
 		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
 		
 		MDistintaLavorazione dist = new MDistintaLavorazione();
-		dist.addObserver(this);
+		dist.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
 		dist.setPersistentModel(dl);
 		dist.calcolaPrezzo();
 		
@@ -167,10 +170,5 @@ public class CtrlElaboraPreventivo implements Observer {
 		}
 	}
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		
-		Coedil99View.getInstance().setTotale(Double.parseDouble(arg1.toString()));	
-	}
-	
+
 }
