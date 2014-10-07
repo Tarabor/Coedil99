@@ -31,8 +31,13 @@ import java.util.Observer;
 
 public class CtrlElaboraPreventivo {
 	
+	/*
+	 * Istance of CtrlElaboraPreventivo
+	 */
 	private static CtrlElaboraPreventivo instance;
-	
+	/*
+	 * Array contenente i preventivi aperti
+	 */
 	private ArrayList<MPreventivo> preventivi;
 
 	public CtrlElaboraPreventivo() {
@@ -44,10 +49,7 @@ public class CtrlElaboraPreventivo {
 	}
 	
 	public static CtrlElaboraPreventivo getInstance(){
-		if(instance == null)
-			instance = new CtrlElaboraPreventivo();
-		
-		return instance;
+		return ((instance == null) ? instance = new CtrlElaboraPreventivo() : instance);	
 	}
 
 	public void creaPreventivo() {
@@ -58,17 +60,15 @@ public class CtrlElaboraPreventivo {
 	}
 	
 	public void salvaPreventivo( String data, String elemStrutt, String cartellino,boolean firmato, Object [][] distinta) {
-		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
+		MPreventivo mp = this.getPreventivoCorrente();
+		Preventivo  p  = ((Preventivo)mp.getPersistentModel());
 		mp.setDistinta(distinta);
-		Preventivo p = ((Preventivo)mp.getPersistentModel());
-		Indirizzo address = p.getCliente().getIndirizzo();
-		p.setDestinazioneMateriale(address);
+		p.setDestinazioneMateriale(p.getCliente().getIndirizzo());
 		p.setElementoStrutturale(elemStrutt);
-		int i = Integer.parseInt(cartellino);
-		p.setCartellino(i);
+		p.setCartellino(Integer.parseInt(cartellino));
 		p.setFirmato(firmato);
-		p.setNome(p.getCliente().getCognome()+" "+p.getData().getTime());
-		p.setData(Service.getDatadb(data));
+		p.setNome(p.getCliente().getCognome()+" "+p.getData());
+		//p.setData(Service.getDatadb(data));
 		ArrayList<ElementoDistinta> elementi = mp.getDistinta();
 		for (ElementoDistinta ed : elementi) {
 			ItemDAO.save(ed.getItem());
@@ -88,7 +88,7 @@ public class CtrlElaboraPreventivo {
 	}
 	
 
-	public void eliminaPreventivo(int index){
+	public void chiudiPreventivo(int index){
 		
 		this.preventivi.remove(index);
 		Coedil99View.getInstance().decreaseTabCount();
@@ -142,16 +142,8 @@ public class CtrlElaboraPreventivo {
 	}
 	
 	public void salvaNuovoCliente(String nome, String cognome, String indirizzo, String numero, String comune, String codiceFiscale, String partitaIva) {
-		Indirizzo i = new Indirizzo(); //setto prima l'indirizzo
-		i.setVia(indirizzo);
-		i.setComune(comune);
-		i.setNumero(Integer.valueOf(numero)); 
-		Cliente c = new Cliente();
-		c.setNome(nome);
-		c.setCognome(cognome);
-		c.setIndirizzo(i);
-		c.setCodiceFiscale(codiceFiscale);
-		c.setPartitaIva(partitaIva);
+		Indirizzo i = new Indirizzo(indirizzo,Integer.valueOf(numero),comune);
+		Cliente c = new Cliente(nome,cognome,i,codiceFiscale,partitaIva);
 		ClienteDAO.save(c);
 		this.apriCliente(c);		
 		Coedil99View.getInstance().hideClienti();
@@ -169,6 +161,4 @@ public class CtrlElaboraPreventivo {
 			Coedil99View.getInstance().hideClienti();
 		}
 	}
-
-
 }

@@ -171,36 +171,4 @@ public class MPreventivo extends Observable implements AModel {
 		}
 		return dlList;
 	}
-	
-	
-
-	public double totalePesiDistinte() {
-		throw new UnsupportedOperationException();
-	}
-
-	public double totaleCostiDistinteBarre() {
-		throw new UnsupportedOperationException();
-	}
-
-	public double totaleCostiDistinteLaminato() {
-		throw new UnsupportedOperationException();
-	}
-
-	public double calcolaPrezzo() {
-		double totale = 0;
-		try{
-			DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
-			int rows = d.elemento__List_.size();
-			Object [][] objD = this.getDistintaObj();
-			for(int r = 0; r < rows; r++){
-				int num = (int) objD[r][1];
-				double diam = (double) objD[r][2];
-				double mis = (double) objD[r][3];
-				int sagoma = (int) objD[r][4];
-				totale += ((diam*mis)*((sagoma+1)*10))*num;
-			}
-		}
-		catch(NullPointerException e){}
-		return totale;
-	}
 }
