@@ -73,6 +73,10 @@ public class CtrlElaboraPreventivo implements Observer {
 		for (ElementoDistinta ed : elementi) {
 			ItemDAO.save(ed.getItem());
 		}
+		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
+		MDistintaLavorazione dist = new MDistintaLavorazione();
+		dist.setPersistentModel(dl);
+		dist.calcolaPrezzo();
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");
@@ -126,7 +130,6 @@ public class CtrlElaboraPreventivo implements Observer {
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.addObserver(this);
 		dist.setPersistentModel(dl);
-		dist.totale();
 		dist.calcolaPrezzo();
 		
 	}

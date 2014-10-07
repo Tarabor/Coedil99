@@ -12,11 +12,9 @@
 	<target depends="init" name="build">
 		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
 			<classpath refid="build.classpath"/>
-			<include name="coedil99/Model/strategy/ITotaleStrategy.java"/>
-			<include name="coedil99/Model/strategy/SogliaDiscountStrategy.java"/>
-			<include name="coedil99/Model/strategy/BullonePercentDiscountStrategy.java"/>
-			<include name="coedil99/Model/MDistintaLavorazione.java"/>
-			<include name="coedil99/Model/MElementoDistinta.java"/>
+			<include name="coedil99/Model/MBullone.java"/>
+			<include name="coedil99/Model/MLastra.java"/>
+			<include name="coedil99/Model/MTrave.java"/>
 		</javac>
 	</target>
 </project>

@@ -108,10 +108,6 @@ public class MPreventivo implements AModel {
 			e.setItem(i);
 
 		}
-		MDistintaLavorazione dist = new MDistintaLavorazione();
-		dist.setPersistentModel(d);
-		dist.totale();
-		dist.calcolaPrezzo();
 	}
 	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
