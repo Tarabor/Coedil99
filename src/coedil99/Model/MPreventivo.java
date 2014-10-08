@@ -111,6 +111,9 @@ public class MPreventivo extends Observable implements AModel {
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.setPersistentModel(d);
 		dist.totale();
+		dist.calcolaPrezzo();
+		this.hasChanged();
+		this.notifyObservers(this);
 	}
 	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();

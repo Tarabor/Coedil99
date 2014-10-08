@@ -140,7 +140,7 @@ public class CtrlElaboraPreventivo {
 		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
 		mp.setDistinta(distinta);
 		
-
+/*
 		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
 		
 		MDistintaLavorazione dist = new MDistintaLavorazione();
@@ -148,7 +148,7 @@ public class CtrlElaboraPreventivo {
 
 		dist.setPersistentModel(dl);
 		dist.calcolaPrezzo();
-		
+		*/
 	}
 	
 	public void nuovoClientePopUp() { 
@@ -156,18 +156,7 @@ public class CtrlElaboraPreventivo {
 	}
 	
 	public void salvaNuovoCliente(String nome, String cognome, String indirizzo, String numero, String comune, String codiceFiscale, String partitaIva) {
-		Indirizzo i = new Indirizzo(indirizzo,Integer.valueOf(numero),comune);
-		Cliente c = new Cliente(nome,cognome,i,codiceFiscale,partitaIva);
-
-
-
-
-
-
-
-
-
-
+		Cliente c = new Cliente(nome,cognome,new Indirizzo(indirizzo,Integer.valueOf(numero),comune),codiceFiscale,partitaIva);
 		ClienteDAO.save(c);
 		this.apriCliente(c);		
 		Coedil99View.getInstance().hideClienti();

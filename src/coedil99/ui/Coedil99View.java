@@ -257,8 +257,10 @@ public class Coedil99View extends JFrame {
 		tb.setCartellino(Integer.toString(p.getCartellino()));
 		tb.setData(p.getData().toString());
 		tb.setFirma(p.getFirmato());
-		if( p.getDistinta()!= null)
+		if( p.getDistinta()!= null){
 			tb.setDistinta( mp.getDistintaArrayList());
+			tb.setTotale(p.getDistinta().getTotale());
+		}
 	}
 	
 	public void setStatusBar(String stato) {
@@ -504,11 +506,4 @@ public class Coedil99View extends JFrame {
 		splitPane.setLeftComponent(navigator);
 		navigator.setVisible(true);
 	}
-
-
-	
-
-
-	
-
 }

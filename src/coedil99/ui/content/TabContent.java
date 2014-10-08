@@ -446,7 +446,6 @@ public class TabContent extends JPanel implements Observer {
 		return instance;
 	}
 	
-	
 	public void setDistinta(ArrayList<Object[]> dati) {
 		this.distinta.setModel(new MyTableModel(dati, this.tableHeader));
 		this.setUpTipoColumn(distinta, distinta.getColumnModel().getColumn(0));
@@ -495,12 +494,13 @@ public class TabContent extends JPanel implements Observer {
 		this.pagina.setText(pagina);
 	}
 	
+	public void setTotale(double totale) {
+		campoTesto_1.setText(totale +" $");
+	}
+	
 	public void setUpTipoColumn(JTable table, TableColumn tipColumn) {
 		tipColumn.setCellEditor(new DefaultCellEditor(selectStatica));
-
-		//Set up tool tips for the sport cells.
-		DefaultTableCellRenderer renderer =
-				new DefaultTableCellRenderer();
+		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
 		renderer.setToolTipText("Click per la selezione");
 		tipColumn.setCellRenderer(renderer);
 	}
@@ -516,6 +516,7 @@ public class TabContent extends JPanel implements Observer {
 	}
 	
 	private class RowListener implements KeyListener {
+		 @Override
 		 public void keyPressed(KeyEvent e) {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
 				 CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
@@ -538,18 +539,14 @@ public class TabContent extends JPanel implements Observer {
 		    }
 		}
 	}
-
-	public void setTotale(double totale) {
-		campoTesto_1.setText(String.valueOf(totale)+" $");
-	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		
-		//Coedil99View.getInstance().setTotale(Double.parseDouble(arg1.toString()));	
-		Preventivo p = (Preventivo)(((MPreventivo)arg1).getPersistentModel());
-		setElementoStrutturale(p.getElementoStrutturale());
-		if( p.getDistinta()!= null)
-			setDistinta( ((MPreventivo)arg1).getDistintaArrayList());
+		Coedil99View.getInstance().updatePreventivo(Coedil99View.getInstance().getCurrentPreventivo(), ((MPreventivo)arg1));
 	}
 }
