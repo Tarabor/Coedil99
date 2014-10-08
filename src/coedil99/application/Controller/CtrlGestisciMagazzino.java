@@ -2,7 +2,6 @@ package coedil99.application.Controller;
 
 import java.util.ArrayList;
 
-import coedil99.Model.MMagazzino;
 import coedil99.PersistentModel.Bullone;
 import coedil99.PersistentModel.BulloneDAO;
 import coedil99.PersistentModel.Cliente;
@@ -19,6 +18,7 @@ import coedil99.PersistentModel.Magazzino;
 import coedil99.PersistentModel.MagazzinoDAO;
 import coedil99.PersistentModel.Trave;
 import coedil99.PersistentModel.TraveDAO;
+import coedil99.model.MMagazzino;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.content.newItem;
 

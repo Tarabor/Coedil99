@@ -1,12 +1,12 @@
 package coedil99.application.Controller;
 
 
-import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.ClienteDAO;
 import coedil99.PersistentModel.Fornitore;
 import coedil99.PersistentModel.FornitoreDAO;
 import coedil99.PersistentModel.Preventivo;
+import coedil99.model.MPreventivo;
 import coedil99.ui.Coedil99View;
 
 import java.util.ArrayList;

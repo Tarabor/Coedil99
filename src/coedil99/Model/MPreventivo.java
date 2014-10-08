@@ -1,7 +1,8 @@
-package coedil99.Model;
+package coedil99.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import coedil99.PersistentModel.APersistentModel;
 import coedil99.PersistentModel.Bullone;
@@ -15,7 +16,7 @@ import coedil99.PersistentModel.Preventivo;
 import coedil99.PersistentModel.Trave;
 import coedil99.PersistentModel.TraveDAO;
 
-public class MPreventivo implements AModel {
+public class MPreventivo extends Observable implements AModel {
 	
 	private int ITEM_INDEX 	 		 = 0;
 	private int INDICAZIONE_INDEX 	 = 1;
@@ -106,8 +107,10 @@ public class MPreventivo implements AModel {
 			}
 			
 			e.setItem(i);
-
 		}
+		MDistintaLavorazione dist = new MDistintaLavorazione();
+		dist.setPersistentModel(d);
+		dist.totale();
 	}
 	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();

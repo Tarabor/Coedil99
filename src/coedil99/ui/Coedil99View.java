@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -50,6 +51,8 @@ import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 import javax.swing.JInternalFrame;
 
+import coedil99.model.MDistintaLavorazione;
+import coedil99.model.MPreventivo;
 import coedil99.ui.content.OpenFornitoriView;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.TabMagazzino;
@@ -61,8 +64,6 @@ import coedil99.ui.template.btnToolBar;
 import coedil99.ui.content.Start;
 
 
-import coedil99.Model.MDistintaLavorazione;
-import coedil99.Model.MPreventivo;
 import coedil99.PersistentModel.Cliente;
 import coedil99.PersistentModel.Fornitore;
 import coedil99.PersistentModel.Item;
@@ -128,6 +129,11 @@ public class Coedil99View extends JFrame {
 	
 	public int getCurrentPreventivo(){
 		return this.tabbedPane.getSelectedIndex();
+	}
+	
+	public TabContent getObserver(int index){
+		
+		return ((TabContent)this.tabbedPane.getComponentAt(index));
 	}
 	
 	public int getNumberofPreventivo(){

@@ -1,4 +1,4 @@
-package coedil99.Model;
+package coedil99.model;
 
 import coedil99.PersistentModel.APersistentModel;
 
