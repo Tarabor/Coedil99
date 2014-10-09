@@ -2,14 +2,14 @@ package coedil99.model;
 
 import java.util.ArrayList;
 
-import coedil99.PersistentModel.APersistentModel;
-import coedil99.PersistentModel.Bullone;
-import coedil99.PersistentModel.MagazzinoDAO;
-import coedil99.PersistentModel.Trave;
-import coedil99.PersistentModel.Item;
-import coedil99.PersistentModel.Lastra;
-import coedil99.PersistentModel.Magazzino;
-import coedil99.PersistentModel.Preventivo;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Lastra;
+import coedil99.persistentmodel.Magazzino;
+import coedil99.persistentmodel.MagazzinoDAO;
+import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.Trave;
 
 public class MMagazzino implements AModel {
 	

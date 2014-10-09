@@ -5,7 +5,7 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.PersistentModel.Cliente" table="Cliente" lazy="false">
+	<class name="coedil99.persistentmodel.Cliente" table="Cliente" lazy="false">
 		<meta attribute="class-description">
 			Oggetto persistente Cliente, utilizzato per gestire la persistenza sul DataBase
 		</meta>
@@ -13,7 +13,7 @@ License Type: Purchased
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="indirizzo" column="IndirizzoID" class="coedil99.PersistentModel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="indirizzo" column="IndirizzoID" class="coedil99.persistentmodel.Indirizzo" cascade="save-update,lock" unique="true" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>

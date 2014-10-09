@@ -63,7 +63,7 @@ import coedil99.ui.template.MyTableModel;
 import coedil99.ui.template.SelectItem;
 import coedil99.utility.Service;
 import coedil99.model.MPreventivo;
-import coedil99.PersistentModel.Preventivo;
+import coedil99.persistentmodel.Preventivo;
 
 import javax.swing.JToggleButton;
 

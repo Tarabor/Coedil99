@@ -6,21 +6,21 @@ import coedil99.model.MDistintaLavorazione;
 import coedil99.model.MLastra;
 import coedil99.model.MPreventivo;
 import coedil99.model.MTrave;
-import coedil99.PersistentModel.Bullone;
-import coedil99.PersistentModel.BulloneDAO;
-import coedil99.PersistentModel.Cliente;
-import coedil99.PersistentModel.ClienteDAO;
-import coedil99.PersistentModel.DistintaLavorazione;
-import coedil99.PersistentModel.DistintaLavorazioneDAO;
-import coedil99.PersistentModel.ElementoDistinta;
-import coedil99.PersistentModel.Indirizzo;
-import coedil99.PersistentModel.ItemDAO;
-import coedil99.PersistentModel.Lastra;
-import coedil99.PersistentModel.LastraDAO;
-import coedil99.PersistentModel.Preventivo;
-import coedil99.PersistentModel.PreventivoDAO;
-import coedil99.PersistentModel.Trave;
-import coedil99.PersistentModel.TraveDAO;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.BulloneDAO;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.ClienteDAO;
+import coedil99.persistentmodel.DistintaLavorazione;
+import coedil99.persistentmodel.DistintaLavorazioneDAO;
+import coedil99.persistentmodel.ElementoDistinta;
+import coedil99.persistentmodel.Indirizzo;
+import coedil99.persistentmodel.ItemDAO;
+import coedil99.persistentmodel.Lastra;
+import coedil99.persistentmodel.LastraDAO;
+import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.PreventivoDAO;
+import coedil99.persistentmodel.Trave;
+import coedil99.persistentmodel.TraveDAO;
 
 
 

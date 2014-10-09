@@ -4,11 +4,11 @@ import java.awt.EventQueue;
 import java.util.List;
 import java.util.Observable;
 
-import coedil99.PersistentModel.APersistentModel;
-import coedil99.PersistentModel.DistintaLavorazione;
-import coedil99.PersistentModel.ElementoDistinta;
 import coedil99.factory.PricingStrategyFactory;
 import coedil99.model.strategy.ITotaleStrategy;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.DistintaLavorazione;
+import coedil99.persistentmodel.ElementoDistinta;
 
 public class MDistintaLavorazione extends Observable implements AModel {
 	

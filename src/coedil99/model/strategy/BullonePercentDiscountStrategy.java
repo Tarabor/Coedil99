@@ -1,8 +1,8 @@
 package coedil99.model.strategy;
 
 import coedil99.model.MDistintaLavorazione;
-import coedil99.PersistentModel.DistintaLavorazione;
-import coedil99.PersistentModel.ElementoDistinta;
+import coedil99.persistentmodel.DistintaLavorazione;
+import coedil99.persistentmodel.ElementoDistinta;
 
 public class BullonePercentDiscountStrategy implements ITotaleStrategy {
 	private int percentuale = 10;

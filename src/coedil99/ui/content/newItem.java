@@ -24,11 +24,11 @@ import javax.swing.Box;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
-import coedil99.PersistentModel.Fornitore;
-import coedil99.PersistentModel.Indirizzo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciFornitori;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.Indirizzo;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;

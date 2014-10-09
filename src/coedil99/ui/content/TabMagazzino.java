@@ -33,10 +33,10 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-import coedil99.PersistentModel.Item;
-import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.template.MagazzinoTableModel;
 
 public class TabMagazzino extends JPanel {

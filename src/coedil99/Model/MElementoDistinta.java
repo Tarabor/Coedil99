@@ -1,7 +1,7 @@
 package coedil99.model;
 
-import coedil99.PersistentModel.APersistentModel;
-import coedil99.PersistentModel.ElementoDistinta;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.ElementoDistinta;
 
 public class MElementoDistinta implements AModel {
 	

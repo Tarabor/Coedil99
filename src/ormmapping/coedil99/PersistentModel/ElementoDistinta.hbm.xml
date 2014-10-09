@@ -5,12 +5,12 @@ License Type: Purchased
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="coedil99.PersistentModel.ElementoDistinta" table="ElementoDistinta" lazy="false">
+	<class name="coedil99.persistentmodel.ElementoDistinta" table="ElementoDistinta" lazy="false">
 		<id name="ID" column="ID" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="item" cascade="lock" column="ItemID" class="coedil99.PersistentModel.Item" not-null="false" lazy="no-proxy" access="field">
+		<many-to-one name="item" cascade="lock" column="ItemID" class="coedil99.persistentmodel.Item" not-null="false" lazy="no-proxy" access="field">
 		</many-to-one>
 		<property name="indicazione" column="Indicazione" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="NPezzi" column="NPezzi" type="integer" not-null="true" lazy="false"/>

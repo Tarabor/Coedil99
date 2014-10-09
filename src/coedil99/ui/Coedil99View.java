@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -53,6 +54,10 @@ import javax.swing.JInternalFrame;
 
 import coedil99.model.MDistintaLavorazione;
 import coedil99.model.MPreventivo;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.content.OpenFornitoriView;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.TabMagazzino;
@@ -64,10 +69,6 @@ import coedil99.ui.template.btnToolBar;
 import coedil99.ui.content.Start;
 
 
-import coedil99.PersistentModel.Cliente;
-import coedil99.PersistentModel.Fornitore;
-import coedil99.PersistentModel.Item;
-import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
 

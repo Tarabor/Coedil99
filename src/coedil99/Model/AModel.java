@@ -1,6 +1,6 @@
 package coedil99.model;
 
-import coedil99.PersistentModel.APersistentModel;
+import coedil99.persistentmodel.APersistentModel;
 
 public interface AModel {
 	

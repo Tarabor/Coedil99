@@ -26,11 +26,11 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JComboBox;
 
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
-import coedil99.PersistentModel.Cliente;
-import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 
 import java.awt.Color;
