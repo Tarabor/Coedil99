@@ -73,15 +73,18 @@ public class CtrlGestisciMagazzino {
 			Bullone b1 = new Bullone();
 			b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
 			if(b1 != null){
-				if(ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID") == null){
+				if(ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID") == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
 					em.setItem(b1);
 					em.setQuantita(6);
 				}
-				else{
+				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID").setQuantita(10);
-					Iterator i = ElementoMagazzinoDAO.iterateElementoMagazzinoByQuery("", "ID"); //Iteratore agli elenti del magazzino
-					((ElementoMagazzino)i.next()).getItem().equals(b1); // elementoo corrente
+					em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
+					em.setQuantita(66);
+					//ElementoMagazzinoDAO.save(e);
+					//Iterator i = ElementoMagazzinoDAO.iterateElementoMagazzinoByQuery("item = " + b1, "ID"); //Iteratore agli elementi del magazzino
+					//((ElementoMagazzino)i.next()).getItem().equals(b1); // elemento corrente
+					
 				}
 			}
 			else{
