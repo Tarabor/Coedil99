@@ -6,8 +6,11 @@ ehthumbs.db
 Desktop.ini
 *.class
 *.cfg.xml
+*.hbm.xml
+*.erd.xml
 
 bin/
+lib/
 src/coedil99/PersistentModel/
 
 # Recycle Bin used on file shares
