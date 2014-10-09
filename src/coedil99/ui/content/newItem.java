@@ -24,12 +24,11 @@ import javax.swing.Box;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
-import coedil99.PersistentModel.Fornitore;
-import coedil99.PersistentModel.FornitoreDAO;
-import coedil99.PersistentModel.Indirizzo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciFornitori;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.Indirizzo;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
@@ -278,11 +277,9 @@ public class newItem extends JFrame {
 		String lunghezza = this.campoTesto_5.getText();
 		String peso = this.campoTesto_3.getText();
 		String prezzo = this.campoTesto_4.getText();
-		//String fornitore = this.campoTesto_7.getText();
-		String fornitore = this.campoTesto_7.getText();
-				
 		
-		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, fornitore);
+		
+		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo);
 	}
 	
 	public void updateFornitore(String d){

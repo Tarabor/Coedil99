@@ -1,20 +1,20 @@
-package coedil99.Model;
+package coedil99.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import coedil99.PersistentModel.APersistentModel;
-import coedil99.PersistentModel.Bullone;
-import coedil99.PersistentModel.BulloneDAO;
-import coedil99.PersistentModel.DistintaLavorazione;
-import coedil99.PersistentModel.DistintaLavorazioneDAO;
-import coedil99.PersistentModel.ElementoDistinta;
-import coedil99.PersistentModel.ElementoDistintaDAO;
-import coedil99.PersistentModel.Item;
-import coedil99.PersistentModel.Preventivo;
-import coedil99.PersistentModel.Trave;
-import coedil99.PersistentModel.TraveDAO;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.BulloneDAO;
+import coedil99.persistentmodel.DistintaLavorazione;
+import coedil99.persistentmodel.DistintaLavorazioneDAO;
+import coedil99.persistentmodel.ElementoDistinta;
+import coedil99.persistentmodel.ElementoDistintaDAO;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.Trave;
+import coedil99.persistentmodel.TraveDAO;
 
 public class MPreventivo extends Observable implements AModel {
 	
@@ -59,7 +59,7 @@ public class MPreventivo extends Observable implements AModel {
 				e = d.elemento__List_.get(r);
 			Class valueClass = null;
 			try {
-				valueClass = Class.forName((String) "coedil99.PersistentModel." + data[r][ITEM_INDEX]);
+				valueClass = Class.forName((String) "coedil99.persistentmodel." + data[r][ITEM_INDEX]);
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -74,7 +74,7 @@ public class MPreventivo extends Observable implements AModel {
 			}
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			if (i.getClass().getName().equals("coedil99.PersistentModel.Bullone")) {
+			if (i.getClass().getName().equals("coedil99.persistentmodel.Bullone")) {
 				((Bullone) i).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX])));
 			} else {
 				//e.getItem().setDiametro(0); item non ha ancora l'operazione setDiametro
@@ -89,17 +89,17 @@ public class MPreventivo extends Observable implements AModel {
 			
 			//imposto il prezzo
 			switch(i.getClass().getName()) {
-		    case "coedil99.PersistentModel.Bullone":
+		    case "coedil99.persistentmodel.Bullone":
 		    	MBullone bullone = new MBullone();
 		    	bullone.setPersistentModel(i);
 		    	bullone.setPrezzo(5);
 		    	break;
-		    case "coedil99.PersistentModel.Trave":
+		    case "coedil99.persistentmodel.Trave":
 		    	MTrave trave = new MTrave();
 		    	trave.setPersistentModel(i);
 		    	trave.setPrezzo(5);
 		    	break;
-		    case "coedil99.PersistentModel.Lastra":
+		    case "coedil99.persistentmodel.Lastra":
 		    	MLastra lastra = new MLastra();
 		    	lastra.setPersistentModel(i);
 		    	lastra.setPrezzo(5);
@@ -107,8 +107,13 @@ public class MPreventivo extends Observable implements AModel {
 			}
 			
 			e.setItem(i);
-
 		}
+		MDistintaLavorazione dist = new MDistintaLavorazione();
+		dist.setPersistentModel(d);
+		dist.totale();
+		dist.calcolaPrezzo();
+		this.hasChanged();
+		this.notifyObservers(this);
 	}
 	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
@@ -171,8 +176,6 @@ public class MPreventivo extends Observable implements AModel {
 		}
 		return dlList;
 	}
-	
-	
 
 	public double totalePesiDistinte() {
 		throw new UnsupportedOperationException();
@@ -202,5 +205,13 @@ public class MPreventivo extends Observable implements AModel {
 		}
 		catch(NullPointerException e){}
 		return totale;
+	}
+
+	public void importaCVS() {
+		throw new UnsupportedOperationException();
+	}
+
+	public void setElementoPreventivo(List<String> listElementi) {
+		throw new UnsupportedOperationException();
 	}
 }

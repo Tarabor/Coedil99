@@ -1,21 +1,20 @@
 package coedil99;
 
-import coedil99.PersistentModel.ElementoMagazzinoDAO;
-import coedil99.PersistentModel.Fornitore;
-import coedil99.PersistentModel.FornitoreDAO;
-import coedil99.PersistentModel.Item;
-import coedil99.PersistentModel.Bullone;
-import coedil99.PersistentModel.BulloneDAO;
-import coedil99.PersistentModel.Trave;
-import coedil99.PersistentModel.TraveDAO;
-import coedil99.PersistentModel.Magazzino;
-import coedil99.PersistentModel.ElementoMagazzino;
-
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.SwingUtilities;
 
-import coedil99.PersistentModel.MagazzinoDAO;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.BulloneDAO;
+import coedil99.persistentmodel.ElementoMagazzino;
+import coedil99.persistentmodel.ElementoMagazzinoDAO;
+import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.FornitoreDAO;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Magazzino;
+import coedil99.persistentmodel.MagazzinoDAO;
+import coedil99.persistentmodel.Trave;
+import coedil99.persistentmodel.TraveDAO;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.SplashScreen;
 

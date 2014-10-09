@@ -1,34 +1,18 @@
-package coedil99.Model;
+package coedil99.model;
 
 import java.awt.EventQueue;
 import java.util.List;
 import java.util.Observable;
 
-import coedil99.PersistentModel.APersistentModel;
-import coedil99.PersistentModel.DistintaLavorazione;
-import coedil99.PersistentModel.ElementoDistinta;
-import coedil99.ui.content.TabContent;
+import coedil99.factory.PricingStrategyFactory;
+import coedil99.model.strategy.ITotaleStrategy;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.DistintaLavorazione;
+import coedil99.persistentmodel.ElementoDistinta;
 
 public class MDistintaLavorazione extends Observable implements AModel {
 	
 	public APersistentModel model;
-
-	public void setDistintaLavorazione(List<String> listElementi) {
-		throw new UnsupportedOperationException();
-	}
-	
-	public void calcolaPrezzo() {
-		Double totale = 0.0;
-		DistintaLavorazione d = (DistintaLavorazione) this.getPersistentModel();
-		for (int i = 0; i < d.elemento__List_.size(); i++) {
-			ElementoDistinta el = d.elemento__List_.get(i);
-			totale += (el.getNPezzi() * el.getItem().getPrezzo());
-		}
-		d.setTotale(totale);
-		this.setChanged();
-        notifyObservers(totale);
-	}
-	
 	
 	public APersistentModel getPersistentModel() {
 		return this.model;
@@ -36,5 +20,27 @@ public class MDistintaLavorazione extends Observable implements AModel {
 
 	public void setPersistentModel(APersistentModel model) {
 		this.model = model;
+	}
+	
+	/*
+	 * Calcolo Totale
+	 */
+
+	public void totale() {
+		DistintaLavorazione d = (DistintaLavorazione) this.getPersistentModel();
+		Double totale = d.getTotale();
+		MElementoDistinta elem; 
+				for (int i = 0; i < d.elemento__List_.size(); i++) {
+					ElementoDistinta el = d.elemento__List_.get(i);
+					elem = new MElementoDistinta();
+					elem.setPersistentModel(el);
+					totale += elem.getSubTotale();
+				}			
+		d.setTotale(totale);
+	}
+
+	
+	public void calcolaPrezzo() {
+		PricingStrategyFactory.getInstance().getBullonePercentDiscountStrategy().calcolaPrezzo(this);
 	}
 }

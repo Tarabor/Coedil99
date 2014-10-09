@@ -99,7 +99,7 @@ public class Scheda extends JPanel{
 	            int i = pane.indexOfTabComponent(Scheda.this);
 	            if (i != -1) {
 	            	     	
-	            	CtrlElaboraPreventivo.getInstance().eliminaPreventivo(i);
+	            	CtrlElaboraPreventivo.getInstance().chiudiPreventivo(i);
 	            }
 	       }
 		 //paint the cross

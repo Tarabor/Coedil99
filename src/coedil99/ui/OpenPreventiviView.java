@@ -1,9 +1,13 @@
 package coedil99.ui;
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
+
 import java.awt.GridLayout;
+
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListCellRenderer;
@@ -22,9 +26,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JComboBox;
 
+import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
-import coedil99.PersistentModel.Preventivo;
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 
 import java.awt.Color;

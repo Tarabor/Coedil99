@@ -1,8 +1,8 @@
-package coedil99.Model;
+package coedil99.model;
 
-import coedil99.PersistentModel.APersistentModel;
-import coedil99.PersistentModel.Bullone;
-import coedil99.PersistentModel.BulloneDAO;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.BulloneDAO;
 
 public class MBullone implements AModel {
 	

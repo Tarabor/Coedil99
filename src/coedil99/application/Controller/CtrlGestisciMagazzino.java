@@ -1,26 +1,24 @@
 package coedil99.application.Controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import coedil99.Model.MMagazzino;
-import coedil99.PersistentModel.Bullone;
-import coedil99.PersistentModel.BulloneDAO;
-import coedil99.PersistentModel.Cliente;
-import coedil99.PersistentModel.ClienteDAO;
-import coedil99.PersistentModel.ElementoMagazzino;
-import coedil99.PersistentModel.ElementoMagazzinoDAO;
-import coedil99.PersistentModel.Fornitore;
-import coedil99.PersistentModel.FornitoreDAO;
-import coedil99.PersistentModel.Indirizzo;
-import coedil99.PersistentModel.Item;
-import coedil99.PersistentModel.ItemDAO;
-import coedil99.PersistentModel.Lastra;
-import coedil99.PersistentModel.LastraDAO;
-import coedil99.PersistentModel.Magazzino;
-import coedil99.PersistentModel.MagazzinoDAO;
-import coedil99.PersistentModel.Trave;
-import coedil99.PersistentModel.TraveDAO;
+import coedil99.model.MMagazzino;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.BulloneDAO;
+import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.ClienteDAO;
+import coedil99.persistentmodel.ElementoMagazzino;
+import coedil99.persistentmodel.ElementoMagazzinoDAO;
+import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.Indirizzo;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemDAO;
+import coedil99.persistentmodel.Lastra;
+import coedil99.persistentmodel.LastraDAO;
+import coedil99.persistentmodel.Magazzino;
+import coedil99.persistentmodel.MagazzinoDAO;
+import coedil99.persistentmodel.Trave;
+import coedil99.persistentmodel.TraveDAO;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.content.newItem;
 
@@ -62,14 +60,15 @@ public class CtrlGestisciMagazzino {
 	
 	
 	
-	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo, String fornitore) {
-		//aggiungere variabile quantità per la funzione 
+	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo) {
+		
 		if  ( tipoElemento.equals("Bullone") ) {
-			Bullone b = new Bullone();
+			Bullone b = new Bullone(); 
 			b.setDescrizione(descrizione);
 			b.setPeso(Integer.valueOf(peso));
 			b.setPrezzo(Integer.valueOf(prezzo));
 			b.setDiametro(Integer.valueOf(diametro));
+<<<<<<< HEAD
 			Bullone b1 = new Bullone();
 			b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
 			if(b1 != null){
@@ -92,6 +91,10 @@ public class CtrlGestisciMagazzino {
 				em.setItem(b);
 				em.setQuantita(7);
 			}	
+=======
+			BulloneDAO.save(b);	
+			em.setItem(b);
+>>>>>>> origin/master
 		}
 		else if  ( tipoElemento.equals("Lastra") ) {
 			Lastra l = new Lastra();
@@ -113,7 +116,8 @@ public class CtrlGestisciMagazzino {
 			TraveDAO.save(t);	
 			em.setItem(t);
 		}
-		//em.setQuantita(666);
+		//em.set_fornitore(f);
+		em.setQuantita(666);
 		Coedil99View.getInstance().hideNewItem();
 		
 		Magazzino m = MagazzinoDAO.loadMagazzinoByORMID(1);

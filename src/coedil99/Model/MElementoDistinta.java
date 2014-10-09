@@ -1,6 +1,7 @@
-package coedil99.Model;
+package coedil99.model;
 
-import coedil99.PersistentModel.APersistentModel;
+import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.ElementoDistinta;
 
 public class MElementoDistinta implements AModel {
 	
@@ -14,11 +15,9 @@ public class MElementoDistinta implements AModel {
 		this.model = model;
 	}
 
-	public MElementoDistinta() {
-		throw new UnsupportedOperationException();
+	public double getSubTotale() {
+		double totale = ( (ElementoDistinta) this.getPersistentModel()).getNPezzi() * ( (ElementoDistinta) this.getPersistentModel()).getItem().getPrezzo();
+		return totale;
 	}
-
-	public MElementoDistinta(int iD, String indicazione) {
-		throw new UnsupportedOperationException();
-	}
+	
 }
