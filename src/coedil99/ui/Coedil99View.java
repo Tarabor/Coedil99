@@ -71,6 +71,10 @@ import coedil99.ui.content.Start;
 
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
+import javax.swing.BoxLayout;
+import javax.swing.JTree;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 
 
@@ -502,6 +506,20 @@ public class Coedil99View extends JFrame {
 		JInternalFrame navigator = new JInternalFrame("Navigator");
 		navigator.setFrameIcon(new ImageIcon(Coedil99View.class.getResource(ICON_EXPLORER)));
 		navigator.getContentPane().setBackground(Color.WHITE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{129, 0};
+		gridBagLayout.rowHeights = new int[]{345, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		navigator.getContentPane().setLayout(gridBagLayout);
+		
+		JTree tree = new JTree();
+		GridBagConstraints gbc_tree = new GridBagConstraints();
+		gbc_tree.anchor = GridBagConstraints.NORTH;
+		gbc_tree.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tree.gridx = 0;
+		gbc_tree.gridy = 0;
+		navigator.getContentPane().add(tree, gbc_tree);
 		
 		navigator.setMinimumSize(new Dimension(MINIMUM_WIDTH_NAVIGATOR, MINIMUM_HEIGHT_NAVIGATOR));
 		splitPane.setLeftComponent(navigator);

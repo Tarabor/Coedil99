@@ -68,7 +68,6 @@ public class CtrlGestisciMagazzino {
 			b.setPeso(Integer.valueOf(peso));
 			b.setPrezzo(Integer.valueOf(prezzo));
 			b.setDiametro(Integer.valueOf(diametro));
-<<<<<<< HEAD
 			Bullone b1 = new Bullone();
 			b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
 			if(b1 != null){
@@ -91,10 +90,8 @@ public class CtrlGestisciMagazzino {
 				em.setItem(b);
 				em.setQuantita(7);
 			}	
-=======
 			BulloneDAO.save(b);	
 			em.setItem(b);
->>>>>>> origin/master
 		}
 		else if  ( tipoElemento.equals("Lastra") ) {
 			Lastra l = new Lastra();
