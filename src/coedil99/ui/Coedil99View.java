@@ -75,6 +75,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JTree;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 
 
@@ -514,6 +516,28 @@ public class Coedil99View extends JFrame {
 		navigator.getContentPane().setLayout(gridBagLayout);
 		
 		JTree tree = new JTree();
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Elenco Items") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Bulloni");
+						node_1.add(new DefaultMutableTreeNode("Diametro x"));
+						node_1.add(new DefaultMutableTreeNode("Diametro y"));
+						node_1.add(new DefaultMutableTreeNode("Diametro z"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Lastre");
+						node_1.add(new DefaultMutableTreeNode("Materiale x"));
+						node_1.add(new DefaultMutableTreeNode("Materiale y"));
+						node_1.add(new DefaultMutableTreeNode("Materiale z"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Travi");
+						node_1.add(new DefaultMutableTreeNode("Lunghezza x"));
+						node_1.add(new DefaultMutableTreeNode("Lunghezza y"));
+						node_1.add(new DefaultMutableTreeNode("Lunghezza z"));
+					add(node_1);
+				}
+			}
+		));
 		GridBagConstraints gbc_tree = new GridBagConstraints();
 		gbc_tree.anchor = GridBagConstraints.NORTH;
 		gbc_tree.fill = GridBagConstraints.HORIZONTAL;
