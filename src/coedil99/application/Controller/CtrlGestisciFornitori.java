@@ -31,7 +31,8 @@ public class CtrlGestisciFornitori {
 		FornitoreDAO.save(f);
 		Coedil99View.getInstance().hideNewFornitori();
 		Coedil99View.getInstance().hideFornitori();
-		Coedil99View.getInstance().updateFornitore(f.getDitta());
+		CtrlGestisciMagazzino.getInstance().apriFornitore(f);
+		
 	}	
 	
 	public void listaFornitori() {

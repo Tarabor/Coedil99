@@ -150,10 +150,8 @@ public class TabMagazzino extends JPanel {
 
 	}
 	
-	
 	public void setMagazzino(ArrayList<Object[]> dati) {
 		this.magazzino.setModel(new MagazzinoTableModel(dati, this.tableHeader));
 	}
 	
-
 }

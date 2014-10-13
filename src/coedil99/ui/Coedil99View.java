@@ -83,7 +83,6 @@ public class Coedil99View extends JFrame {
 	private OpenPreventiviView op;
 	private OpenClientiView oc;
 	private OpenFornitoriView of;
-	private TabMagazzino tb;
 	private newCliente nc;
 	private newItem ni;
 	private newFornitore nf;
@@ -157,7 +156,7 @@ public class Coedil99View extends JFrame {
 		this.tab_count++;
 	}
 	
-	public void nuovaSchedaMagazzino(ArrayList<Object[]> datiMagazzino){
+	public void nuovaSchedaMagazzino(ArrayList<Object[]> datiMagazzino){     //togliere
 		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.magazzino"), new TabMagazzino(datiMagazzino));
 		this.tabbedPane.setSelectedIndex(this.tab_count);
 		this.tab_count++;
@@ -203,14 +202,6 @@ public class Coedil99View extends JFrame {
 		this.nf.setVisible(false);
 	}
 	
-	public void showElementiMagazzino(ArrayList<Object[]> dati){
-		this.tb.setMagazzino(dati);
-		this.tb.setVisible(true);
-	}
-	
-	public void hideItems(){
-		this.tb.setVisible(false);
-	}
 	
 	public void showNewClienti(){
 		this.nc.setVisible(true);

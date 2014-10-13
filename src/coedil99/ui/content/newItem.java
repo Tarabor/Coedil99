@@ -83,10 +83,12 @@ public class newItem extends JFrame {
 	private CampoTesto campoTesto_6;
 	private CampoTesto campoTesto_1;
 	private CampoTesto campoTesto_7;
+	private CampoTesto campoTesto_8;
 	private SelectItem  comboBox;
 	private ImageSelector comboBox_1;
 	private JTextField textField;
 	private JLabel lblNewLabel;
+	private JTextField textField_1;
 	
 
 	/**
@@ -219,11 +221,23 @@ public class newItem extends JFrame {
 		campoTesto_4.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_4, "6, 18, fill, default");
 		
+		Etichetta tchtQuantita = new Etichetta("QUANTITA'");
+		tchtQuantita.setText("QUANTITA'");
+		tchtQuantita.setHorizontalTextPosition(SwingConstants.LEFT);
+		tchtQuantita.setHorizontalAlignment(SwingConstants.LEFT);
+		getContentPane().add(tchtQuantita, "2, 20");
+		
+		campoTesto_8 = new CampoTesto();
+		campoTesto_8.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		campoTesto_8.setAlignmentX(0.0f);
+		getContentPane().add(campoTesto_8, "6, 20, fill, default");
+		campoTesto_8.setColumns(10);
+		
 		Etichetta tchtFornitore = new Etichetta("FORNITORE");
 		tchtFornitore.setText("FORNITORE");
 		tchtFornitore.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtFornitore.setHorizontalAlignment(SwingConstants.LEFT);
-		getContentPane().add(tchtFornitore, "2, 20");
+		getContentPane().add(tchtFornitore, "2, 22");
 		
 		campoTesto_7 = new CampoTesto();
 		campoTesto_7.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
@@ -236,18 +250,13 @@ public class newItem extends JFrame {
 		});
 		campoTesto_7.setColumns(10);
 		campoTesto_7.setAlignmentX(0.0f);
-		getContentPane().add(campoTesto_7, "6, 20, fill, default");
+		getContentPane().add(campoTesto_7, "6, 22, fill, default");
 		
 		JButton btnSalva = new JButton("Salva");
 		btnSalva.setMaximumSize(new Dimension(50, 23));
 		btnSalva.setMinimumSize(new Dimension(50, 23));
 		btnSalva.setPreferredSize(new Dimension(150, 50));
-		getContentPane().add(btnSalva, "6, 22, center, default");
-
-		//setBorder(new LineBorder(SystemColor.desktop));
-		setMinimumSize(new Dimension(700, 400));
-		setPreferredSize(new Dimension(800, 700));
-		setBackground(Color.WHITE);
+		getContentPane().add(btnSalva, "6, 24, center, default");
 		
 		btnSalva.addActionListener(new ActionListener() {
 			 
@@ -257,6 +266,11 @@ public class newItem extends JFrame {
 	            	salvaItem();
 	            }
 	    });     
+
+		//setBorder(new LineBorder(SystemColor.desktop));
+		setMinimumSize(new Dimension(700, 450));
+		setPreferredSize(new Dimension(800, 700));
+		setBackground(Color.WHITE);
 		
 	}
 	
@@ -277,9 +291,10 @@ public class newItem extends JFrame {
 		String lunghezza = this.campoTesto_5.getText();
 		String peso = this.campoTesto_3.getText();
 		String prezzo = this.campoTesto_4.getText();
+		int quantita = (Integer.parseInt(this.campoTesto_8.getText()));
 		
 		
-		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo);
+		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, quantita);
 	}
 	
 	public void updateFornitore(String d){
