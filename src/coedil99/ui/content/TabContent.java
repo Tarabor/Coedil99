@@ -214,7 +214,6 @@ public class TabContent extends JPanel implements Observer {
 		panel_3.add(verticalBox_2);
 		
 		Etichetta tchtClienteimpresa = new Etichetta("CLIENTE/IMPRESA");
-		tchtClienteimpresa.setText("  CLIENTE/IMPRESA");
 		verticalBox_2.add(tchtClienteimpresa);
 		tchtClienteimpresa.setHorizontalAlignment(SwingConstants.LEFT);
 		
@@ -262,7 +261,6 @@ public class TabContent extends JPanel implements Observer {
 		panel_2.add(verticalBox);
 		
 		JLabel lblDestinazioneMateriale = new Etichetta("DESTINAZIONE MATERIALE");
-		lblDestinazioneMateriale.setText("  DESTINAZIONE MATERIALE");
 		verticalBox.add(lblDestinazioneMateriale);
 		
 		destinazioneMateriale = new CampoTesto();
@@ -273,7 +271,6 @@ public class TabContent extends JPanel implements Observer {
 		panel_2.add(verticalBox_4);
 		
 		JLabel lblElementoSttrutturale = new Etichetta("ELEMENTO STRUTTURALE");
-		lblElementoSttrutturale.setText("  ELEMENTO STRUTTURALE");
 		verticalBox_4.add(lblElementoSttrutturale);
 		
 		elementoStrutturale = new CampoTesto();
@@ -327,7 +324,6 @@ public class TabContent extends JPanel implements Observer {
 		panel_5.add(verticalBox_7);
 		
 		Etichetta etichetta_1 = new Etichetta("TOTALE");
-		etichetta_1.setText("  TOTALE");
 		verticalBox_7.add(etichetta_1);
 		
 		campoTesto_1 = new CampoTesto();
@@ -521,6 +517,7 @@ public class TabContent extends JPanel implements Observer {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
 				 CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
 				 ((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
+				 distinta.revalidate();
              }
 		    }
 		public void keyReleased(KeyEvent arg0){}
@@ -547,6 +544,6 @@ public class TabContent extends JPanel implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		
-		Coedil99View.getInstance().updatePreventivo(Coedil99View.getInstance().getCurrentPreventivo(), ((MPreventivo)arg1));
+		this.setTotale(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getDistinta().getTotale());
 	}
 }

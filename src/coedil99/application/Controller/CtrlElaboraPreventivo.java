@@ -115,13 +115,12 @@ public class CtrlElaboraPreventivo {
 		
 		this.preventivi.add( mp );	
 		Coedil99View.getInstance().nuovaScheda();
-		//Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
+		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().hidePreventivi();
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 1){
 			Coedil99View.getInstance().setSaveVisible(true);
 		}	
 		mp.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
-		mp.notifyObservers(mp);
 
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
@@ -139,16 +138,6 @@ public class CtrlElaboraPreventivo {
 	public void totalePreventivo(Object [][] distinta) {
 		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
 		mp.setDistinta(distinta);
-		
-/*
-		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
-		
-		MDistintaLavorazione dist = new MDistintaLavorazione();
-		dist.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
-
-		dist.setPersistentModel(dl);
-		dist.calcolaPrezzo();
-		*/
 	}
 	
 	public void nuovoClientePopUp() { 
