@@ -517,7 +517,6 @@ public class TabContent extends JPanel implements Observer {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
 				 CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
 				 ((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
-				 distinta.revalidate();
              }
 		    }
 		public void keyReleased(KeyEvent arg0){}

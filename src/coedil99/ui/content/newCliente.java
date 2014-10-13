@@ -1,46 +1,17 @@
 package coedil99.ui.content;
 
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
-
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.Dimension;
 
-import javax.swing.Icon;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.Box;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
-
 import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.persistentmodel.Indirizzo;
-import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
-
-import javax.swing.ScrollPaneConstants;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
-import javax.swing.DropMode;
-import javax.swing.border.EtchedBorder;
-import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-
-import java.awt.SystemColor;
+import coedil99.utility.StrictInputVerifier;
 
 import javax.swing.JButton;
 
@@ -51,11 +22,6 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
-import com.mchange.v2.codegen.bean.IndirectingSerializableExtension;
-
-import javax.swing.SpringLayout;
-
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 
@@ -73,7 +39,6 @@ public class newCliente extends JFrame {
 	private CampoTesto campoTesto_4;
 	private CampoTesto campoTesto_5;
 	private CampoTesto campoTesto_6;
-	
 
 	/**
 	 * Create the panel.
@@ -196,6 +161,12 @@ public class newCliente extends JFrame {
 		campoTesto_4.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_4, "6, 18, fill, default");
 		
+		/*
+		 * Gestione controllo input campi di testo
+		 */
+		campoTesto.setInputVerifier(new StrictInputVerifier(""));
+		campoTesto_1.setInputVerifier(new StrictInputVerifier(""));
+		
 		JButton btnSalva = new JButton("Salva");
 		btnSalva.setMaximumSize(new Dimension(50, 23));
 		btnSalva.setMinimumSize(new Dimension(50, 23));
@@ -208,25 +179,19 @@ public class newCliente extends JFrame {
 		setBackground(Color.WHITE);
 		
 		btnSalva.addActionListener(new ActionListener() {
-			 
 	            public void actionPerformed(ActionEvent e)
 	            {
-	                //Execute when button is pressed
 	            	salvaCliente();
 	            }
 	    });     
-		
 	}
 	public void salvaCliente() {
-		String nome = this.campoTesto.getText();
-		String cognome = this.campoTesto_1.getText();
-		String indirizzo = this.campoTesto_2.getText();
-		String numero = this.campoTesto_6.getText();
-		String comune = this.campoTesto_5.getText();
-		String codiceFiscale = this.campoTesto_3.getText();
-		String partitaIva = this.campoTesto_4.getText();
-		
-		
-		CtrlElaboraPreventivo.getInstance().salvaNuovoCliente(nome, cognome, indirizzo, numero, comune, codiceFiscale, partitaIva);
+		CtrlElaboraPreventivo.getInstance().salvaNuovoCliente(this.campoTesto.getText(), 
+															  this.campoTesto_1.getText(), 
+															  this.campoTesto_2.getText(), 
+															  this.campoTesto_6.getText(), 
+															  this.campoTesto_5.getText(),
+															  this.campoTesto_3.getText(), 
+															  this.campoTesto_4.getText());
 	}
 }
