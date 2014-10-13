@@ -60,7 +60,17 @@ public class CtrlGestisciMagazzino {
 	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo, int quantita) {
 		
 		if  ( tipoElemento.equals("Bullone") ) {
+<<<<<<< HEAD
 			Bullone b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
+=======
+			Bullone b = new Bullone(); 
+			b.setDescrizione(descrizione);
+			b.setPeso(Integer.valueOf(peso));
+			b.setPrezzo(Integer.valueOf(prezzo));
+			b.setDiametro(Integer.valueOf(diametro));
+			Bullone b1 = new Bullone();
+			b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
+>>>>>>> origin/master
 			if(b1 != null){
 				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
 				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
@@ -84,6 +94,11 @@ public class CtrlGestisciMagazzino {
 				em.setQuantita(quantita);
 				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
 			}	
+<<<<<<< HEAD
+=======
+			BulloneDAO.save(b);	
+			em.setItem(b);
+>>>>>>> origin/master
 		}
 		
 		else if  ( tipoElemento.equals("Lastra") ) {

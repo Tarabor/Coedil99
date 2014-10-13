@@ -71,6 +71,12 @@ import coedil99.ui.content.Start;
 
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
+import javax.swing.BoxLayout;
+import javax.swing.JTree;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 
 
@@ -493,6 +499,42 @@ public class Coedil99View extends JFrame {
 		JInternalFrame navigator = new JInternalFrame("Navigator");
 		navigator.setFrameIcon(new ImageIcon(Coedil99View.class.getResource(ICON_EXPLORER)));
 		navigator.getContentPane().setBackground(Color.WHITE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{129, 0};
+		gridBagLayout.rowHeights = new int[]{345, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		navigator.getContentPane().setLayout(gridBagLayout);
+		
+		JTree tree = new JTree();
+		tree.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Elenco Items") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Bulloni");
+						node_1.add(new DefaultMutableTreeNode("Diametro x"));
+						node_1.add(new DefaultMutableTreeNode("Diametro y"));
+						node_1.add(new DefaultMutableTreeNode("Diametro z"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Lastre");
+						node_1.add(new DefaultMutableTreeNode("Materiale x"));
+						node_1.add(new DefaultMutableTreeNode("Materiale y"));
+						node_1.add(new DefaultMutableTreeNode("Materiale z"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Travi");
+						node_1.add(new DefaultMutableTreeNode("Lunghezza x"));
+						node_1.add(new DefaultMutableTreeNode("Lunghezza y"));
+						node_1.add(new DefaultMutableTreeNode("Lunghezza z"));
+					add(node_1);
+				}
+			}
+		));
+		GridBagConstraints gbc_tree = new GridBagConstraints();
+		gbc_tree.anchor = GridBagConstraints.NORTH;
+		gbc_tree.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tree.gridx = 0;
+		gbc_tree.gridy = 0;
+		navigator.getContentPane().add(tree, gbc_tree);
 		
 		navigator.setMinimumSize(new Dimension(MINIMUM_WIDTH_NAVIGATOR, MINIMUM_HEIGHT_NAVIGATOR));
 		splitPane.setLeftComponent(navigator);

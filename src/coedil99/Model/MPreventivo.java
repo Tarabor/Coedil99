@@ -112,7 +112,7 @@ public class MPreventivo extends Observable implements AModel {
 		dist.setPersistentModel(d);
 		dist.totale();
 		dist.calcolaPrezzo();
-		this.hasChanged();
+		this.setChanged();
 		this.notifyObservers(this);
 	}
 	public Object [][] getDistintaObj(){
