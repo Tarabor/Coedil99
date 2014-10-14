@@ -1,7 +1,6 @@
 package coedil99.ui;
 
 import java.awt.Font;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.awt.Dimension;
@@ -11,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -29,7 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.JSplitPane;
-import javax.swing.JInternalFrame;
+
 
 
 import coedil99.model.MPreventivo;
@@ -43,18 +43,11 @@ import coedil99.ui.content.newCliente;
 import coedil99.ui.content.newFornitore;
 import coedil99.ui.template.Scheda;
 import coedil99.ui.template.btnToolBar;
-import coedil99.ui.content.Start;
 import coedil99.ui.template.ElencoItemsAlbero;
-import coedil99.ui.template.ItemTreeCellRenderer;
 
 
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
-import javax.swing.JTree;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.tree.DefaultTreeModel;
-
 
 
 public class Coedil99View extends JFrame {
@@ -74,7 +67,6 @@ public class Coedil99View extends JFrame {
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
 	private int tab_count = 0;
-	private Start startPanel;
 	
 	private JPopupMenu popNuovo;
 	private JMenuItem mntmSalva;
@@ -89,7 +81,6 @@ public class Coedil99View extends JFrame {
 	private final String BUNDLE     = "coedil99.ui.languages.it";
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_NEW   = "/coedil99/ui/img/nuovo_icon.png";
-	private final String ICON_EXPLORER = "/coedil99/ui/img/explorer-icon.png";
 	
 	
 	public Coedil99View(){		
@@ -458,28 +449,7 @@ public class Coedil99View extends JFrame {
 		splitPane.setRightComponent(tabbedPane);	
 		
 		
-		JInternalFrame navigator = new JInternalFrame("Navigator");
-		navigator.setFrameIcon(new ImageIcon(Coedil99View.class.getResource(ICON_EXPLORER)));
-		navigator.getContentPane().setBackground(Color.WHITE);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{129, 0};
-		gridBagLayout.rowHeights = new int[]{345, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		navigator.getContentPane().setLayout(gridBagLayout);
-		
-		JTree tree = new JTree();
-		tree.setModel(new DefaultTreeModel(
-			new ElencoItemsAlbero("Elenco Items")
-		));
-		tree.setCellRenderer(new ItemTreeCellRenderer());
-		GridBagConstraints gbc_tree = new GridBagConstraints();
-		
-		gbc_tree.anchor = GridBagConstraints.NORTH;
-		gbc_tree.fill = GridBagConstraints.HORIZONTAL;
-		gbc_tree.gridx = 0;
-		gbc_tree.gridy = 0;
-		navigator.getContentPane().add(tree, gbc_tree);
+		ElencoItemsAlbero navigator = new ElencoItemsAlbero("Navigator");
 		
 		navigator.setMinimumSize(new Dimension(MINIMUM_WIDTH_NAVIGATOR, MINIMUM_HEIGHT_NAVIGATOR));
 		splitPane.setLeftComponent(navigator);

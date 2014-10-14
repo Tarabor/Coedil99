@@ -6,14 +6,19 @@ import javax.swing.table.AbstractTableModel;
 
 public class MyTableModel extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String [] tableHeader = new String[] {
-			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "DIAM", "MISURA DI TAGLIO", "TIPO SAGOMA"
+			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "MISURA DI TAGLIO"
 		};
 	
 	private ArrayList<Object[]> data = new ArrayList<>();
 	
 	public MyTableModel() {
-        this.data.add( new Object[] {"", "", 0, 0, 0, "/"} );
+        //this.data.add( new Object[] {"", "", 0, 0} ); la tabella inizialmente è vuota
         }
 	
 	public MyTableModel(ArrayList<Object[]> data, String[] header) {
@@ -62,14 +67,9 @@ public class MyTableModel extends AbstractTableModel {
     public boolean isCellEditable(int row, int col) { 
         //Note that the data/cell address is constant,
         //no matter where the cell appears onscreen.
-    	String testo = (String) getValueAt(row,0).toString();
-        if ( ((testo.equals("Lastra") || testo.equals("Trave")) && col == 3 )  ) {
+        if ( col == 0 ) {
         	return false;
-        } 
-        if ((testo.equals("Bullone") && col == 5)) {
-        	setValueAt("/",row,5);
-        	return false;
-        }else {
+        } else {
             return true;
         }
     }

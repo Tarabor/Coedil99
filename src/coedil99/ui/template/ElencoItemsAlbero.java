@@ -1,16 +1,19 @@
 package coedil99.ui.template;
 
-import javax.swing.ImageIcon;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeNode;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
-import coedil99.persistentmodel.Bullone;
-import coedil99.persistentmodel.Trave;
-import coedil99.persistentmodel.Lastra;
+import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
+
 import coedil99.persistentmodel.Item;
+import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
 
 /*
@@ -19,15 +22,49 @@ import coedil99.utility.Service;
  * 
  */
 
-public class ElencoItemsAlbero extends DefaultMutableTreeNode {
+public class ElencoItemsAlbero extends JInternalFrame implements TreeSelectionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private final String ICON_EXPLORER = "/coedil99/ui/img/explorer-icon.png";
+	JTree tree;
 	
 	public ElencoItemsAlbero(String nome) {
 		super(nome);
+		
+		this.setFrameIcon(new ImageIcon(ElencoItemsAlbero.class.getResource(ICON_EXPLORER)));
+		this.getContentPane().setBackground(Color.WHITE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{129, 0};
+		gridBagLayout.rowHeights = new int[]{345, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		this.getContentPane().setLayout(gridBagLayout);
+		
+		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Elenco Items");
+		createNodes(top);
+
+		//Create a tree that allows one selection at a time.
+		tree = new JTree(top);
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+		//Listen for when the selection changes.
+		tree.addTreeSelectionListener(this);
+		
+		tree.setCellRenderer(new ItemTreeCellRenderer());
+		
+		GridBagConstraints gbc_tree = new GridBagConstraints();
+		gbc_tree.anchor = GridBagConstraints.NORTH;
+		gbc_tree.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tree.gridx = 0;
+		gbc_tree.gridy = 0;
+		getContentPane().add(tree, gbc_tree);
+	}
+	
+	private void createNodes(DefaultMutableTreeNode top) {
 		Item[] items = Service.loadDataItemsFromDB();
 		DefaultMutableTreeNode node_1 = new DefaultMutableTreeNode("Bulloni");
 		DefaultMutableTreeNode node_2 = new DefaultMutableTreeNode("Travi");
@@ -47,11 +84,11 @@ public class ElencoItemsAlbero extends DefaultMutableTreeNode {
 			}
 			
 		}
-		add(node_1);
-		add(node_2);
-		add(node_3);
+		top.add(node_1);
+		top.add(node_2);
+		top.add(node_3);
 	}
-	
+
 	/** Returns an ImageIcon, or null if the path was invalid. */
     protected static ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = ElencoItemsAlbero.class.getResource(path);
@@ -60,6 +97,22 @@ public class ElencoItemsAlbero extends DefaultMutableTreeNode {
         } else {
             System.err.println("Couldn't find file: " + path);
             return null;
+        }
+    }
+
+    /** Required by TreeSelectionListener interface. */
+	@Override
+    public void valueChanged(TreeSelectionEvent e) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+
+        if (node == null) return;
+
+        Object nodeInfo = node.getUserObject();
+        if (node.isLeaf()) {
+        	TabContent.getInstance().addRow(nodeInfo.getClass().getName().split("\\.")[2]);
+        	System.out.println("ciao, inserito elemento: " + nodeInfo.getClass().getName().split("\\.")[2]);
+        } else {
+            
         }
     }
 	

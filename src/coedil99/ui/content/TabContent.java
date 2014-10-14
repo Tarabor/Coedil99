@@ -87,7 +87,6 @@ public class TabContent extends JPanel implements Observer {
 	private JPanel panel_3;
 	private JPopupMenu popMenu;
 	private JToggleButton btnFirma;
-	private SelectItem selectStatica;
 	private ResourceBundle bundle = Coedil99View.getInstance().getBundle();
 	
 	private  final ImageIcon RED_ICON = new ImageIcon(TabContent.class.getResource(bundle.getString("gui.tabcontent.icon.redbullet")));
@@ -96,16 +95,14 @@ public class TabContent extends JPanel implements Observer {
 	private static final Font FONT_TABLE = new Font("Century Gothic", Font.PLAIN, 14);
 
 	private String [] tableHeader = new String[] {
-			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "DIAM", "MISURA DI TAGLIO", "TIPO SAGOMA"
+			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "MISURA DI TAGLIO"
 		};
 	
 	protected String[] columnToolTips = {
 			"Il tipo di elemento che si desidera inserire in distinta",
 		    null, // "First Name" assumed obvious
 		    null, // "Last Name" assumed obvious
-		    "Il diametro del bullone",
-		    "La misura di taglio dell'elemento",
-		    "Il tipo di sagoma della lastra o della trave"};
+		    "La misura di taglio dell'elemento"};
 	
 
 	/**
@@ -384,42 +381,7 @@ public class TabContent extends JPanel implements Observer {
 		distinta.setRowSelectionAllowed(true);
 		distinta.setRowHeight(30);
 		distinta.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		selectStatica = new SelectItem();
-		selectStatica.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) { //da l'aspetto di un campo disabilitato
-				SelectItem cb = (SelectItem) e.getSource();
-		        String itemName = (String) cb.getSelectedItem();
-				if (itemName.equals("Bullone")) {
-					final int selectedRow = distinta.getSelectedRow();
-					distinta.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer() {
-						public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-				                boolean hasFocus, int row, int column) {
-				            Component component =
-				                    super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				            component.setEnabled(selectedRow!=row);
-				            return component;
-				   }   
-					});
-				} else if (itemName.equals("Trave") || itemName.equals("Lastra")) {
-					final int selectedRow = distinta.getSelectedRow();
-					distinta.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
-						public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-				                boolean hasFocus, int row, int column) {
-				            Component component =
-				                    super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				            component.setEnabled(selectedRow!=row);
-				            return component;
-				   }   
-					});
-				}
-			}
-		});
-		this.setUpTipoColumn(distinta, distinta.getColumnModel().getColumn(0));
 		distinta.getColumnModel().getColumn(0).setPreferredWidth(100);
-		distinta.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(new ImageSelector()));
-		distinta.getColumnModel().getColumn(5).setPreferredWidth(226);
 		distinta.addKeyListener(new RowListener());
 		distinta.addMouseListener( new TableMouseListener());
 		JScrollPane scrollPane = new JScrollPane(distinta);
@@ -444,15 +406,12 @@ public class TabContent extends JPanel implements Observer {
 	
 	public void setDistinta(ArrayList<Object[]> dati) {
 		this.distinta.setModel(new MyTableModel(dati, this.tableHeader));
-		this.setUpTipoColumn(distinta, distinta.getColumnModel().getColumn(0));
-		this.distinta.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(new ImageSelector()));
-		this.distinta.getColumnModel().getColumn(5).setPreferredWidth(226);
 	}
 	
 	private void deleteRow(){
 		((MyTableModel)this.distinta.getModel()).removeRow( this.distinta.getSelectedRow());
 		if(this.distinta.getRowCount() == 0)
-			((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
+			((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0});
 	}
 	
 	public void setData(String data){
@@ -494,13 +453,6 @@ public class TabContent extends JPanel implements Observer {
 		campoTesto_1.setText(totale +" $");
 	}
 	
-	public void setUpTipoColumn(JTable table, TableColumn tipColumn) {
-		tipColumn.setCellEditor(new DefaultCellEditor(selectStatica));
-		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-		renderer.setToolTipText("Click per la selezione");
-		tipColumn.setCellRenderer(renderer);
-	}
-	
 	public void salva() {
 		this.distinta.changeSelection(0, 0, false, false);
 		CtrlElaboraPreventivo.getInstance().
@@ -514,9 +466,8 @@ public class TabContent extends JPanel implements Observer {
 	private class RowListener implements KeyListener {
 		 @Override
 		 public void keyPressed(KeyEvent e) {
-			 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-				 CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
-				 ((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0, 0, "/"});
+			 if(e.getKeyCode() == KeyEvent.VK_ENTER){ //a questo punto
+				 //addRow(); non dovrebbe fare niente più
              }
 		    }
 		public void keyReleased(KeyEvent arg0){}
@@ -534,6 +485,11 @@ public class TabContent extends JPanel implements Observer {
 		    	popMenu.show(e.getComponent(), e.getX(), e.getY());
 		    }
 		}
+	}
+	
+	public void addRow(String nome) {
+		CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
+		((MyTableModel) distinta.getModel()).addRow(new Object[] {nome, "", 0, 0});
 	}
 	
 	/*

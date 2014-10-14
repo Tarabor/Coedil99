@@ -21,9 +21,7 @@ public class MPreventivo extends Observable implements AModel {
 	private int ITEM_INDEX 	 		 = 0;
 	private int INDICAZIONE_INDEX 	 = 1;
 	private int N_PEZZI_INDEX 	     = 2;
-	private int DIAMETRO_INDEX 		 = 3;
-	private int MISURADITAGLIO_INDEX = 4;
-	private int TIPOSAGOMA_INDEX 	 = 5;
+	private int MISURADITAGLIO_INDEX = 3;
 	
 	public APersistentModel model;
 	
@@ -74,18 +72,7 @@ public class MPreventivo extends Observable implements AModel {
 			}
 			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
 			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			if (i.getClass().getName().equals("coedil99.persistentmodel.Bullone")) {
-				((Bullone) i).setDiametro(Float.parseFloat(String.valueOf(data[r][DIAMETRO_INDEX])));
-			} else {
-				//e.getItem().setDiametro(0); item non ha ancora l'operazione setDiametro
-			}
-			
 			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
-			if ((data[r][TIPOSAGOMA_INDEX]).equals("/")) {
-				i.setTipoSagoma(0);
-			} else {
-				i.setTipoSagoma(Integer.parseInt(String.valueOf(data[r][TIPOSAGOMA_INDEX]))+1);
-			}
 			
 			//imposto il prezzo
 			switch(i.getClass().getName()) {
@@ -123,13 +110,7 @@ public class MPreventivo extends Observable implements AModel {
 			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
 			objD[r][1] = (Object)(d.elemento__List_.get(r).getIndicazione());
 			objD[r][2] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			if (((Item) (d.elemento__List_.get(r)).getItem()).getClass().getName().equals("coedil99.PersistentModel.Bullone")) { //controllo se è un bullone e ha diametro
-				objD[r][3] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); 
-			} else {
-				objD[r][3] = 0; //altrimenti diametro è 0
-			}
-			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
-			objD[r][5] = (Object) ((Item) (d.elemento__List_.get(r)).getItem()).getTipoSagoma();
+			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 		}
 		return objD;
 	}
@@ -143,13 +124,7 @@ public class MPreventivo extends Observable implements AModel {
 			objD[0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
 			objD[1] = (Object)(d.elemento__List_.get(r).getIndicazione());
 			objD[2] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			if (((Item) (d.elemento__List_.get(r)).getItem()).getClass().getName().equals("coedil99.PersistentModel.Bullone")) { //controllo se è un bullone e ha diametro
-				objD[3] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); 
-			} else {
-				objD[3] = 0; //altrimenti diametro è 0
-			}
-			objD[4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
-			objD[5] = (Object) ((Item) (d.elemento__List_.get(r)).getItem()).getTipoSagoma();
+			objD[3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 			data.add(objD);
 		}
 		return data;
@@ -166,13 +141,7 @@ public class MPreventivo extends Observable implements AModel {
 			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName());
 			objD[r][1] = (Object)(d.elemento__List_.get(r).getIndicazione());
 			objD[r][2] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			if (((Item) (d.elemento__List_.get(r)).getItem()).getClass().getName().equals("Bullone")) {
-				objD[r][3] = (Object) ((Bullone) (d.elemento__List_.get(r)).getItem()).getDiametro(); 
-			} else {
-				objD[r][3] = 0;
-			}
-			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
-			objD[r][5] = (Object) ((Item) (d.elemento__List_.get(r)).getItem()).getTipoSagoma();
+			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 		}
 		return dlList;
 	}
@@ -187,24 +156,6 @@ public class MPreventivo extends Observable implements AModel {
 
 	public double totaleCostiDistinteLaminato() {
 		throw new UnsupportedOperationException();
-	}
-
-	public double calcolaPrezzo() {
-		double totale = 0;
-		try{
-			DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
-			int rows = d.elemento__List_.size();
-			Object [][] objD = this.getDistintaObj();
-			for(int r = 0; r < rows; r++){
-				int num = (int) objD[r][1];
-				double diam = (double) objD[r][2];
-				double mis = (double) objD[r][3];
-				int sagoma = (int) objD[r][4];
-				totale += ((diam*mis)*((sagoma+1)*10))*num;
-			}
-		}
-		catch(NullPointerException e){}
-		return totale;
 	}
 
 	public void importaCVS() {
