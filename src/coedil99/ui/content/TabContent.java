@@ -488,8 +488,8 @@ public class TabContent extends JPanel implements Observer {
 	}
 	
 	public void addRow(String nome) {
+		((MyTableModel) this.distinta.getModel()).addRow(new Object[] {nome, "", 0, 0});
 		CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
-		((MyTableModel) distinta.getModel()).addRow(new Object[] {nome, "", 0, 0});
 	}
 	
 	/*

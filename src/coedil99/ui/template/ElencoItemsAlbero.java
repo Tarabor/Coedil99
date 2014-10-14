@@ -13,6 +13,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 import coedil99.persistentmodel.Item;
+import coedil99.ui.Coedil99View;
 import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
 
@@ -109,7 +110,9 @@ public class ElencoItemsAlbero extends JInternalFrame implements TreeSelectionLi
 
         Object nodeInfo = node.getUserObject();
         if (node.isLeaf()) {
-        	TabContent.getInstance().addRow(nodeInfo.getClass().getName().split("\\.")[2]);
+        	Coedil99View.getInstance().
+        	getObserver(Coedil99View.getInstance().getCurrentPreventivo()).
+        	addRow(nodeInfo.getClass().getName().split("\\.")[2]);
         	System.out.println("ciao, inserito elemento: " + nodeInfo.getClass().getName().split("\\.")[2]);
         } else {
             
