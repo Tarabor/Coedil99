@@ -87,7 +87,7 @@ public class TabContent extends JPanel implements Observer {
 	private static final Font FONT_TABLE = new Font("Century Gothic", Font.PLAIN, 14);
 
 	private String [] tableHeader = new String[] {
-			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "MISURA DI TAGLIO"
+			"ID ARTICOLO", "ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "MISURA DI TAGLIO"
 		};
 	
 	protected String[] columnToolTips = {

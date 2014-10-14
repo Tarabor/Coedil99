@@ -69,10 +69,11 @@ public class MPreventivo extends Observable implements AModel {
 		int rows = d.elemento__List_.size();
 		Object [][] objD = new Object[rows][6];
 		for(int r = 0; r < rows; r++){
-			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
-			objD[r][1] = (Object)(d.elemento__List_.get(r).getIndicazione());
-			objD[r][2] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getORMID());
+			objD[r][1] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
+			objD[r][2] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[r][3] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 		}
 		return objD;
 	}
@@ -83,10 +84,11 @@ public class MPreventivo extends Observable implements AModel {
 		ArrayList<Object[]> data = new ArrayList<>();
 		for(int r = 0; r < rows; r++){
 			Object [] objD = new Object[6];
-			objD[0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
-			objD[1] = (Object)(d.elemento__List_.get(r).getIndicazione());
-			objD[2] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[0] = (Object)(d.elemento__List_.get(r).getItem().getORMID());
+			objD[1] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName().split("\\.")[2]); //prendo solo l'ultima parte del nome
+			objD[2] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[3] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			objD[4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 			data.add(objD);
 		}
 		return data;
@@ -100,10 +102,11 @@ public class MPreventivo extends Observable implements AModel {
 		for(int r = 0; r < rows; r++){
 			
 			dlList.add(d.elemento__List_.get(r));
-			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName());
-			objD[r][1] = (Object)(d.elemento__List_.get(r).getIndicazione());
-			objD[r][2] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][3] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getORMID());
+			objD[r][1] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName());
+			objD[r][2] = (Object)(d.elemento__List_.get(r).getIndicazione());
+			objD[r][3] = (Object)(d.elemento__List_.get(r).getNPezzi());
+			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
 		}
 		return dlList;
 	}
