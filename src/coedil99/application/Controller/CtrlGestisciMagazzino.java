@@ -29,6 +29,7 @@ public class CtrlGestisciMagazzino {
 	private static CtrlGestisciMagazzino instance;
 	private ElementoMagazzino em;
 	private MMagazzino magazzino;
+	private int MAGAZZINO_N  = 0;
 	
 	public static CtrlGestisciMagazzino getInstance(){
 		if(instance == null)
@@ -38,7 +39,7 @@ public class CtrlGestisciMagazzino {
 	}
 	
 	private CtrlGestisciMagazzino(){
-		Magazzino m = MagazzinoDAO.loadMagazzinoByORMID(1);
+		Magazzino m = MagazzinoDAO.loadMagazzinoByQuery("id <> " + MAGAZZINO_N, "ID");
 		if(m == null) 
 		{
 			m = new Magazzino();
@@ -95,7 +96,7 @@ public class CtrlGestisciMagazzino {
 		}
 		
 		else if  ( tipoElemento.equals("Lastra") ) {
-			Lastra b1 = LastraDAO.loadLastraByQuery("materiale = " + materiale, "ID");
+			Lastra b1 = LastraDAO.loadLastraByQuery("materiale = '" + materiale+"'", "ID");
 			if(b1 != null){
 				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
 				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
