@@ -67,7 +67,7 @@ public class MyTableModel extends AbstractTableModel {
     public boolean isCellEditable(int row, int col) { 
         //Note that the data/cell address is constant,
         //no matter where the cell appears onscreen.
-        if ( col == 0 ) {
+        if ( col == 0 || col == 1 ) {
         	return false;
         } else {
             return true;
