@@ -14,7 +14,6 @@ import javax.swing.tree.TreeSelectionModel;
 
 import coedil99.persistentmodel.Item;
 import coedil99.ui.Coedil99View;
-import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
 
 /*
@@ -73,15 +72,12 @@ public class ElencoItemsAlbero extends JInternalFrame implements TreeSelectionLi
 		for (int i = 0; i < items.length; i++) {
 			if(items[i].getClass().getName().split("\\.")[2].equalsIgnoreCase("Bullone")) {
 				node_1.add(new DefaultMutableTreeNode(items[i]));
-				//node_1.add(new DefaultMutableTreeNode("Diam: " + ((Bullone) items[i]).getDiametro() + " mm"));
 			}
 			if(items[i].getClass().getName().split("\\.")[2].equalsIgnoreCase("Trave")) {
 				node_2.add(new DefaultMutableTreeNode(items[i]));
-				//node_2.add(new DefaultMutableTreeNode("Lung: " + ((Trave) items[i]).getLunghezza() + " m"));
 			}
 			if(items[i].getClass().getName().split("\\.")[2].equalsIgnoreCase("Lastra")) {
 				node_3.add(new DefaultMutableTreeNode(items[i]));
-				//node_3.add(new DefaultMutableTreeNode("di: " + ((Lastra) items[i]).getMateriale()));
 			}
 			
 		}
@@ -109,10 +105,12 @@ public class ElencoItemsAlbero extends JInternalFrame implements TreeSelectionLi
         if (node == null) return;
 
         Object nodeInfo = node.getUserObject();
+        Item i = (Item) nodeInfo;
+        
         if (node.isLeaf()) {
         	Coedil99View.getInstance().
         	getObserver(Coedil99View.getInstance().getCurrentPreventivo()).
-        	addRow(nodeInfo.getClass().getName().split("\\.")[2]);
+        	addRow(i.getORMID(),nodeInfo.getClass().getName().split("\\.")[2]);
         	System.out.println("ciao, inserito elemento: " + nodeInfo.getClass().getName().split("\\.")[2]);
         } else {
             

@@ -1,38 +1,21 @@
 package coedil99.application.Controller;
 
 
-import coedil99.model.MBullone;
 import coedil99.model.MDistintaLavorazione;
-import coedil99.model.MLastra;
 import coedil99.model.MPreventivo;
-import coedil99.model.MTrave;
-import coedil99.persistentmodel.Bullone;
-import coedil99.persistentmodel.BulloneDAO;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.ClienteDAO;
 import coedil99.persistentmodel.DistintaLavorazione;
-import coedil99.persistentmodel.DistintaLavorazioneDAO;
 import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.Indirizzo;
-import coedil99.persistentmodel.ItemDAO;
-import coedil99.persistentmodel.Lastra;
-import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.PreventivoDAO;
-import coedil99.persistentmodel.Trave;
-import coedil99.persistentmodel.TraveDAO;
-
-
-
 
 
 import coedil99.ui.Coedil99View;
-import coedil99.ui.content.TabContent;
 import coedil99.utility.Service;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 public class CtrlElaboraPreventivo {
 	
@@ -72,23 +55,20 @@ public class CtrlElaboraPreventivo {
 		MPreventivo mp = this.getPreventivoCorrente();
 		Preventivo  p  = ((Preventivo)mp.getPersistentModel());
 		mp.setDistinta(distinta);
-
 		p.setDestinazioneMateriale(p.getCliente().getIndirizzo());
-
 		p.setElementoStrutturale(elemStrutt);
 		p.setCartellino(Integer.parseInt(cartellino));
-
 		p.setFirmato(firmato);
 		p.setNome(p.getCliente().getCognome()+" "+p.getData());
 		//p.setData(Service.getDatadb(data));
 		ArrayList<ElementoDistinta> elementi = mp.getDistinta();
 		for (ElementoDistinta ed : elementi) {
-			ItemDAO.save(ed.getItem());
+			//ItemDAO.save(ed.getItem()); non bisogna più salvare l'item, ma in un secondo momento bisognerà decrementare la quantità
 		}
 		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.setPersistentModel(dl);
-		dist.calcolaPrezzo();
+		//dist.calcolaPrezzo();
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");

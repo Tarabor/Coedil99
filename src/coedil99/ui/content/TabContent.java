@@ -13,8 +13,6 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
@@ -23,10 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.Box;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
 import javax.swing.ListSelectionModel;
 
 import java.awt.GridBagLayout;
@@ -54,13 +49,10 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.model.MDistintaLavorazione;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
-import coedil99.ui.template.ImageSelector;
 import coedil99.ui.template.MyTableModel;
-import coedil99.ui.template.SelectItem;
 import coedil99.utility.Service;
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Preventivo;
@@ -410,8 +402,6 @@ public class TabContent extends JPanel implements Observer {
 	
 	private void deleteRow(){
 		((MyTableModel)this.distinta.getModel()).removeRow( this.distinta.getSelectedRow());
-		if(this.distinta.getRowCount() == 0)
-			((MyTableModel) distinta.getModel()).addRow(new Object[] {"", "", 0, 0});
 	}
 	
 	public void setData(String data){
@@ -468,6 +458,7 @@ public class TabContent extends JPanel implements Observer {
 		 public void keyPressed(KeyEvent e) {
 			 if(e.getKeyCode() == KeyEvent.VK_ENTER){ //a questo punto
 				 //addRow(); non dovrebbe fare niente più
+				 CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
              }
 		    }
 		public void keyReleased(KeyEvent arg0){}
@@ -487,8 +478,8 @@ public class TabContent extends JPanel implements Observer {
 		}
 	}
 	
-	public void addRow(String nome) {
-		((MyTableModel) this.distinta.getModel()).addRow(new Object[] {nome, "", 0, 0});
+	public void addRow(int id, String nome) {
+		((MyTableModel) this.distinta.getModel()).addRow(new Object[] {id, nome, "", 0, 0});
 		CtrlElaboraPreventivo.getInstance().totalePreventivo(Service.getTableData((MyTableModel)distinta.getModel()));
 	}
 	
@@ -498,7 +489,6 @@ public class TabContent extends JPanel implements Observer {
 	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
 		this.setTotale(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getDistinta().getTotale());
 	}
 }

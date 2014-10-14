@@ -12,13 +12,13 @@ public class MyTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private String [] tableHeader = new String[] {
-			"ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "MISURA DI TAGLIO"
+			"ID ARTICOLO", "ARTICOLO", "INDICAZIONE", "N\u00B0 PEZZI", "MISURA DI TAGLIO"
 		};
 	
 	private ArrayList<Object[]> data = new ArrayList<>();
 	
 	public MyTableModel() {
-        //this.data.add( new Object[] {"", "", 0, 0} ); la tabella inizialmente è vuota
+        //this.data.add( new Object[] {"", "", "", 0, 0} ); la tabella inizialmente è vuota
         }
 	
 	public MyTableModel(ArrayList<Object[]> data, String[] header) {
