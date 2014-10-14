@@ -28,13 +28,23 @@ public class CtrlGestisciMagazzino {
 
 	private static CtrlGestisciMagazzino instance;
 	private ElementoMagazzino em;
-	private MMagazzino magazzino = new MMagazzino(MagazzinoDAO.loadMagazzinoByORMID(1));
+	private MMagazzino magazzino;
 	
 	public static CtrlGestisciMagazzino getInstance(){
 		if(instance == null)
 			instance = new CtrlGestisciMagazzino();
 		
 		return instance;
+	}
+	
+	private CtrlGestisciMagazzino(){
+		Magazzino m = MagazzinoDAO.loadMagazzinoByORMID(1);
+		if(m == null) 
+		{
+			m = new Magazzino();
+			MagazzinoDAO.save(m);
+		}
+		this.magazzino = new MMagazzino(m);
 	}
 	
 /*++++++++++++++++ Gestione Magazzino ++++++++++++++++*/
@@ -55,7 +65,7 @@ public class CtrlGestisciMagazzino {
 	
 	
 	
-	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo, int quantita) {
+	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita) {
 		
 		if  ( tipoElemento.equals("Bullone") ) {
 			Bullone b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
@@ -74,9 +84,9 @@ public class CtrlGestisciMagazzino {
 			else{
 				Bullone b = new Bullone(); 
 				b.setDescrizione(descrizione);
-				b.setPeso(Integer.valueOf(peso));
-				b.setPrezzo(Integer.valueOf(prezzo));
-				b.setDiametro(Integer.valueOf(diametro));
+				b.setPeso(peso);
+				b.setPrezzo(prezzo);
+				b.setDiametro(diametro);
 				BulloneDAO.save(b);
 				em.setItem(b);
 				em.setQuantita(quantita);
@@ -101,8 +111,8 @@ public class CtrlGestisciMagazzino {
 			else{	
 				Lastra l = new Lastra();
 				l.setDescrizione(descrizione);
-				l.setPeso(Integer.valueOf(peso));
-				l.setPrezzo(Integer.valueOf(prezzo));
+				l.setPeso(peso);
+				l.setPrezzo(prezzo);
 				l.setTipoSagoma(tipoSagoma);
 				l.setMateriale(materiale);
 				LastraDAO.save(l);	
@@ -128,9 +138,9 @@ public class CtrlGestisciMagazzino {
 			else{	
 				Trave t = new Trave();
 				t.setDescrizione(descrizione);
-				t.setPeso(Integer.valueOf(peso));
-				t.setPrezzo(Integer.valueOf(prezzo));
-				t.setLunghezza(Integer.valueOf(lunghezza));
+				t.setPeso(peso);
+				t.setPrezzo(prezzo);
+				t.setLunghezza(lunghezza);
 				t.setTipoSagoma(tipoSagoma);
 				TraveDAO.save(t);	
 				em.setItem(t);

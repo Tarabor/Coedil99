@@ -285,11 +285,11 @@ public class newItem extends JFrame {
 		String tipoElemento = (String)this.comboBox.getSelectedItem();
 		Integer tipoSagoma = (Integer)this.comboBox_1.getSelectedItem();
 		String descrizione = this.campoTesto_1.getText();
-		String diametro = this.campoTesto_2.getText();
+		Float diametro = Float.parseFloat(this.campoTesto_2.getText());
 		String materiale = this.campoTesto_6.getText();
-		String lunghezza = this.campoTesto_5.getText();
-		String peso = this.campoTesto_3.getText();
-		String prezzo = this.campoTesto_4.getText();
+		Float lunghezza = Float.parseFloat(this.campoTesto_5.getText());
+		Double peso = Double.parseDouble(this.campoTesto_3.getText());
+		Double prezzo = Double.parseDouble(this.campoTesto_4.getText());
 		int quantita = (Integer.parseInt(this.campoTesto_8.getText()));
 		
 		
