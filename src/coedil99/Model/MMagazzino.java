@@ -61,7 +61,12 @@ public class MMagazzino implements AModel {
 			objD[6] = (Object) e.getItem().getTipoSagoma();
 			objD[7] = (Object) e.getItem().getPrezzo();
 			objD[8] = (Object) e.getQuantita();
-			//objD[9] = (Object) e.get_fornitore().getDitta();
+			if((e.get_fornitore()) == null){
+				objD[9] = "/";
+				}
+			else{
+				objD[9] = (Object) e.get_fornitore().getCodice();
+			}
 			dati.add(objD);
 			}
 		}

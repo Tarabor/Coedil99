@@ -52,7 +52,7 @@ public class CtrlGestisciMagazzino {
 	
 	public void createElementoMagazzino() {
 		this.em = ElementoMagazzinoDAO.createElementoMagazzino();
-		Coedil99View.getInstance().showNewItem();		
+		MagazzinoView.getInstance().showNewItem();		
 	}
 	
 	
@@ -60,17 +60,7 @@ public class CtrlGestisciMagazzino {
 	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, String diametro, String materiale, String lunghezza, String peso, String prezzo, int quantita) {
 		
 		if  ( tipoElemento.equals("Bullone") ) {
-<<<<<<< HEAD
 			Bullone b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
-=======
-			Bullone b = new Bullone(); 
-			b.setDescrizione(descrizione);
-			b.setPeso(Integer.valueOf(peso));
-			b.setPrezzo(Integer.valueOf(prezzo));
-			b.setDiametro(Integer.valueOf(diametro));
-			Bullone b1 = new Bullone();
-			b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
->>>>>>> origin/master
 			if(b1 != null){
 				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
 				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
@@ -94,11 +84,6 @@ public class CtrlGestisciMagazzino {
 				em.setQuantita(quantita);
 				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
 			}	
-<<<<<<< HEAD
-=======
-			BulloneDAO.save(b);	
-			em.setItem(b);
->>>>>>> origin/master
 		}
 		
 		else if  ( tipoElemento.equals("Lastra") ) {
@@ -128,7 +113,7 @@ public class CtrlGestisciMagazzino {
 				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
 			}
 		}
-		else{
+		else if  ( tipoElemento.equals("Trave") ){
 			Trave b1 = TraveDAO.loadTraveByQuery("lunghezza = " + lunghezza, "ID");
 			if(b1 != null){
 				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
@@ -155,7 +140,7 @@ public class CtrlGestisciMagazzino {
 				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
 			}
 		}
-		Coedil99View.getInstance().hideNewItem();
+		MagazzinoView.getInstance().hideNewItem();
 		
 		MagazzinoDAO.save((Magazzino)this.magazzino.getPersistentModel());
 		MagazzinoView.getInstance().setMagazzino(this.estraiDatiForView());
@@ -166,7 +151,7 @@ public class CtrlGestisciMagazzino {
 	public void apriFornitore(Fornitore fornitore) {
 		if(fornitore != null){
 			this.em.set_fornitore(fornitore);
-			Coedil99View.getInstance().updateFornitore(fornitore.getDitta());
+			MagazzinoView.getInstance().updateFornitore(fornitore.getDitta());
 			Coedil99View.getInstance().hideFornitori();
 		}
 	}

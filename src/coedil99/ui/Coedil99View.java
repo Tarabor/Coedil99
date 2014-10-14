@@ -90,7 +90,6 @@ public class Coedil99View extends JFrame {
 	private OpenClientiView oc;
 	private OpenFornitoriView of;
 	private newCliente nc;
-	private newItem ni;
 	private newFornitore nf;
 	private ResourceBundle bundle;
 	
@@ -217,26 +216,13 @@ public class Coedil99View extends JFrame {
 		this.nc.setVisible(false);
 	}
 	
-	public void showNewItem(){
-		this.ni.setVisible(true);
-	}
-	
-	public void hideNewItem(){
-		this.ni.setVisible(false);
-	}
-	
 	public void updateUI(){
 		this.validate();
 		this.repaint();
 	}
 	
-	
 	public void updateCliente(String cliente){
 		((TabContent)this.tabbedPane.getSelectedComponent()).setCliente(cliente);
-	}
-	
-	public void updateFornitore(String ditta) {
-		this.ni.updateFornitore(ditta);
 	}
 	
 	public void updatePreventivo(int index, MPreventivo mp){
@@ -288,7 +274,6 @@ public class Coedil99View extends JFrame {
 		this.oc = new OpenClientiView();
 		this.of = new OpenFornitoriView();
 		this.nc = new newCliente();
-		this.ni = new newItem();
 		this.nf = new newFornitore();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Coedil99View.class.getResource(ICON_FRAME)));

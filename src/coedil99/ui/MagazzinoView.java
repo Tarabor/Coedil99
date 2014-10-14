@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import coedil99.ui.content.TabMagazzino;
+import coedil99.ui.content.newItem;
 
 import java.awt.Dimension;
 
@@ -20,6 +21,8 @@ public class MagazzinoView extends JFrame {
 	private static MagazzinoView instance;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private TabMagazzino tb;
+	private newItem ni;
+	
 
 	/**
 	 * Create the frame.
@@ -30,6 +33,7 @@ public class MagazzinoView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MagazzinoView.class.getResource(ICON_FRAME)));
+		this.ni = new newItem();
 		
 	}
 	
@@ -40,15 +44,26 @@ public class MagazzinoView extends JFrame {
 		
 		return instance;
 	}
-
 	
 	public void nuovaSchedaMagazzino(ArrayList<Object[]> datiMagazzino){
 		this.tb = new TabMagazzino(datiMagazzino);
 		add(tb);
 		//tb.setMagazzino(datiMagazzino);
 	}
+	
 	public void setMagazzino(ArrayList<Object[]> datiMagazzino){
 		tb.setMagazzino(datiMagazzino);
+	}
+	public void showNewItem(){
+		this.ni.setVisible(true);
+	}
+	
+	public void hideNewItem(){
+		this.ni.setVisible(false);
+	}
+	
+	public void updateFornitore(String ditta) {
+		this.ni.updateFornitore(ditta);
 	}
 	
 }
