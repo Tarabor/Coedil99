@@ -9,8 +9,12 @@ import java.util.GregorianCalendar;
 
 
 
+
+
 import javax.swing.table.DefaultTableModel;
 
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.template.MyTableModel;
 
 public class Service {
@@ -59,5 +63,10 @@ public class Service {
 				e.printStackTrace();
 			}
 			return data_db;
+		}
+		
+		public static Item[] loadDataItemsFromDB() {
+			return ItemDAO.listItemByQuery(null, "discriminator");
+			
 		}
 }

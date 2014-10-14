@@ -11,24 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -41,42 +23,37 @@ import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
-
-
 import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 import javax.swing.JInternalFrame;
 
-import coedil99.model.MDistintaLavorazione;
+
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.Fornitore;
-import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.content.OpenFornitoriView;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.TabMagazzino;
 import coedil99.ui.content.newCliente;
 import coedil99.ui.content.newFornitore;
-import coedil99.ui.content.newItem;
 import coedil99.ui.template.Scheda;
 import coedil99.ui.template.btnToolBar;
 import coedil99.ui.content.Start;
+import coedil99.ui.template.ElencoItemsAlbero;
+import coedil99.ui.template.ItemTreeCellRenderer;
 
 
 import coedil99.application.Controller.CtrlElaboraPreventivo;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
-import javax.swing.BoxLayout;
 import javax.swing.JTree;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 
 
@@ -493,28 +470,11 @@ public class Coedil99View extends JFrame {
 		
 		JTree tree = new JTree();
 		tree.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Elenco Items") {
-				{
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("Bulloni");
-						node_1.add(new DefaultMutableTreeNode("Diametro x"));
-						node_1.add(new DefaultMutableTreeNode("Diametro y"));
-						node_1.add(new DefaultMutableTreeNode("Diametro z"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Lastre");
-						node_1.add(new DefaultMutableTreeNode("Materiale x"));
-						node_1.add(new DefaultMutableTreeNode("Materiale y"));
-						node_1.add(new DefaultMutableTreeNode("Materiale z"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Travi");
-						node_1.add(new DefaultMutableTreeNode("Lunghezza x"));
-						node_1.add(new DefaultMutableTreeNode("Lunghezza y"));
-						node_1.add(new DefaultMutableTreeNode("Lunghezza z"));
-					add(node_1);
-				}
-			}
+			new ElencoItemsAlbero("Elenco Items")
 		));
+		tree.setCellRenderer(new ItemTreeCellRenderer());
 		GridBagConstraints gbc_tree = new GridBagConstraints();
+		
 		gbc_tree.anchor = GridBagConstraints.NORTH;
 		gbc_tree.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tree.gridx = 0;
