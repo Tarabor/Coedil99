@@ -14,7 +14,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 
-import coedil99.application.Controller.CtrlGestisciFornitori;
+import coedil99.application.Controller.CtrlGestisciMagazzino;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 
@@ -112,7 +112,7 @@ public class newFornitore extends JFrame {
 		String dittaF= this.textField_2.getText();
 		String tel = this.textField.getText();
 		
-		CtrlGestisciFornitori.getInstance().salvaNuovoFornitore(codiceF, tel, dittaF);
+		CtrlGestisciMagazzino.getInstance().salvaNuovoFornitore(codiceF, tel, dittaF);
 		
 	}
 

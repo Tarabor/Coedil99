@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import coedil99.persistentmodel.Fornitore;
+import coedil99.ui.content.OpenFornitoriView;
 import coedil99.ui.content.TabMagazzino;
 import coedil99.ui.content.newItem;
 
@@ -22,6 +24,7 @@ public class MagazzinoView extends JFrame {
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private TabMagazzino tb;
 	private newItem ni;
+	private OpenFornitoriView of;
 	
 
 	/**
@@ -30,10 +33,11 @@ public class MagazzinoView extends JFrame {
 	private MagazzinoView() {
 		setMinimumSize(new Dimension(500, 500));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MagazzinoView.class.getResource(ICON_FRAME)));
 		this.ni = new newItem();
+		this.of = new OpenFornitoriView();
 		
 	}
 	
@@ -60,6 +64,16 @@ public class MagazzinoView extends JFrame {
 	
 	public void hideNewItem(){
 		this.ni.setVisible(false);
+		this.ni.clearForm();
+	}
+	
+	public void showFornitori(Fornitore [] fornitori){
+		this.of.setElements(fornitori);
+		this.of.setVisible(true);
+	}
+	
+	public void hideFornitori(){
+		this.of.setVisible(false);
 	}
 	
 	public void updateFornitore(String ditta) {

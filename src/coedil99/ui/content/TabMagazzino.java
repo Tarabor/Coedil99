@@ -102,6 +102,7 @@ public class TabMagazzino extends JPanel {
 		panel_1.setLayout(new BorderLayout(25, 0));
 		
 		JButton btnNewItem = new JButton("Aggiungi Elementi al Magazzino");
+		btnNewItem.setPreferredSize(new Dimension(20, 20));
 		btnNewItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CtrlGestisciMagazzino.getInstance().createElementoMagazzino(); 

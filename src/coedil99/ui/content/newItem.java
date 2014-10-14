@@ -25,7 +25,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
 import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.application.Controller.CtrlGestisciFornitori;
 import coedil99.application.Controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Indirizzo;
@@ -245,7 +244,7 @@ public class newItem extends JFrame {
 		campoTesto_7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				CtrlGestisciFornitori.getInstance().listaFornitori();
+				CtrlGestisciMagazzino.getInstance().listaFornitori();
 			}
 		});
 		campoTesto_7.setColumns(10);
@@ -300,5 +299,19 @@ public class newItem extends JFrame {
 	public void updateFornitore(String d){
 		this.campoTesto_7.setText(d);
 	}
+	
+	public void clearForm(){
+		this.comboBox.setSelectedIndex(0);
+		this.comboBox_1.setSelectedIndex(0);
+		this.campoTesto_1.setText("");
+		this.campoTesto_2.setText("");
+		this.campoTesto_3.setText("");	
+		this.campoTesto_4.setText("");
+		this.campoTesto_5.setText("");
+		this.campoTesto_6.setText("");
+		this.campoTesto_7.setText("");
+		this.campoTesto_8.setText("");
+	}
+	
 	
 }

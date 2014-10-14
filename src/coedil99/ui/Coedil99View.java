@@ -58,7 +58,6 @@ public class Coedil99View extends JFrame {
 	private static Coedil99View instance;
 	private OpenPreventiviView op;
 	private OpenClientiView oc;
-	private OpenFornitoriView of;
 	private newCliente nc;
 	private newFornitore nf;
 	private ResourceBundle bundle;
@@ -158,14 +157,6 @@ public class Coedil99View extends JFrame {
 		this.nc.setVisible(false);
 	}
 	
-	public void showFornitori(Fornitore [] fornitori){
-		this.of.setElements(fornitori);
-		this.of.setVisible(true);
-	}
-	
-	public void hideFornitori(){
-		this.of.setVisible(false);
-	}
 	
 	public void showNewFornitori() {
 		this.nf.setVisible(true);
@@ -240,7 +231,6 @@ public class Coedil99View extends JFrame {
 		}
 	    this.op = new OpenPreventiviView();
 		this.oc = new OpenClientiView();
-		this.of = new OpenFornitoriView();
 		this.nc = new newCliente();
 		this.nf = new newFornitore();
 

@@ -10,6 +10,7 @@ import coedil99.persistentmodel.ClienteDAO;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.FornitoreDAO;
 import coedil99.persistentmodel.Indirizzo;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
@@ -39,8 +40,6 @@ public class CtrlGestisciMagazzino {
 /*++++++++++++++++ Gestione Magazzino ++++++++++++++++*/
 	
 	public void apriMagazzino() {
-		//Coedil99View.getInstance().nuovaSchedaMagazzino(this.estraiDatiForView());
-		//Coedil99View.getInstance().setStatusBar("Elenco Elementi in Magazzino");
 		MagazzinoView.getInstance().nuovaSchedaMagazzino(this.estraiDatiForView());
 		MagazzinoView.getInstance().setVisible(true);
 	}
@@ -48,7 +47,6 @@ public class CtrlGestisciMagazzino {
 	public ArrayList<Object[]> estraiDatiForView() {
 		return magazzino.getElementiMagazzino();
 	}
-	
 	
 	public void createElementoMagazzino() {
 		this.em = ElementoMagazzinoDAO.createElementoMagazzino();
@@ -152,9 +150,31 @@ public class CtrlGestisciMagazzino {
 		if(fornitore != null){
 			this.em.set_fornitore(fornitore);
 			MagazzinoView.getInstance().updateFornitore(fornitore.getDitta());
-			Coedil99View.getInstance().hideFornitori();
+			MagazzinoView.getInstance().hideFornitori();
 		}
 	}
 	
+	
+	
+	/*++++++++++++++++ Gestione Fornitori ++++++++++++++++*/
+	
+	public void salvaNuovoFornitore(String codice, String telefono, String ditta) {	
+		Fornitore f = new Fornitore();
+		f.setCodice(codice);
+		f.setTelefono(telefono);
+		f.setDitta(ditta);
+		FornitoreDAO.save(f);
+		Coedil99View.getInstance().hideNewFornitori();
+		MagazzinoView.getInstance().hideFornitori();
+		CtrlGestisciMagazzino.getInstance().apriFornitore(f);	
+	}
+	
+	public void listaFornitori() {
+		MagazzinoView.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null)); 
+	}
+	
+	public void nuovoFornitorePopUp() { 
+		Coedil99View.getInstance().showNewFornitori();
+	}
 	
 }
