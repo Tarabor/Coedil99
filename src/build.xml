@@ -12,9 +12,8 @@
 	<target depends="init" name="build">
 		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
 			<classpath refid="build.classpath"/>
-			<include name="coedil99/Model/MBullone.java"/>
-			<include name="coedil99/Model/MLastra.java"/>
-			<include name="coedil99/Model/MTrave.java"/>
+			<include name="coedil99/Model/MRaccoglitoreRDA.java"/>
+			<include name="coedil99/Model/MOrdine.java"/>
 		</javac>
 	</target>
 </project>

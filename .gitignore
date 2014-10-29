@@ -8,6 +8,7 @@ Desktop.ini
 *.cfg.xml
 *.hbm.xml
 *.erd.xml
+*.xml
 
 bin/
 lib/
