@@ -6,7 +6,6 @@ import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.ClienteDAO;
 import coedil99.persistentmodel.DistintaLavorazione;
-import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.Indirizzo;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.PreventivoDAO;
@@ -61,10 +60,10 @@ public class CtrlElaboraPreventivo {
 		p.setFirmato(firmato);
 		p.setNome(p.getCliente().getCognome()+" "+p.getData());
 		//p.setData(Service.getDatadb(data));
-		ArrayList<ElementoDistinta> elementi = mp.getDistinta();
+		/*ArrayList<ElementoDistinta> elementi = mp.getDistinta();
 		for (ElementoDistinta ed : elementi) {
 			//ItemDAO.save(ed.getItem()); non bisogna più salvare l'item, ma in un secondo momento bisognerà decrementare la quantità
-		}
+		}*/
 		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.setPersistentModel(dl);
@@ -83,6 +82,7 @@ public class CtrlElaboraPreventivo {
 	public void chiudiPreventivo(int index){
 		
 		this.preventivi.remove(index);
+		this.preventivi.get(index).deleteObservers();
 		Coedil99View.getInstance().decreaseTabCount();
 		Coedil99View.getInstance().eliminaScheda(index);
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 0){
@@ -101,7 +101,7 @@ public class CtrlElaboraPreventivo {
 			Coedil99View.getInstance().setSaveVisible(true);
 		}	
 		mp.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
-
+		mp.addObserver(CtrlGestisciMagazzino.getInstance().getMagazzino());
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
 	

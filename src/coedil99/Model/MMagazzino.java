@@ -2,6 +2,8 @@ package coedil99.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
 
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Bullone;
@@ -9,11 +11,10 @@ import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Magazzino;
-import coedil99.persistentmodel.MagazzinoDAO;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.Trave;
 
-public class MMagazzino implements AModel {
+public class MMagazzino implements AModel,Observer {
 	
 	public APersistentModel model;
 
@@ -71,6 +72,17 @@ public class MMagazzino implements AModel {
 			}
 		}
 		return dati;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		/*
+		 * Preventivo firmato
+		 */
+		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){
+			
+		}
+		
 	}
 
 }

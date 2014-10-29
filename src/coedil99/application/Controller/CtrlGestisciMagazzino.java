@@ -48,6 +48,10 @@ public class CtrlGestisciMagazzino {
 		this.magazzino = new MMagazzino(m);
 	}
 	
+	public MMagazzino getMagazzino(){
+		return this.magazzino;
+	}
+	
 /*++++++++++++++++ Gestione Magazzino ++++++++++++++++*/
 	
 	public void apriMagazzino() {

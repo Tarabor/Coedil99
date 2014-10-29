@@ -35,6 +35,7 @@ public class MPreventivo extends Observable implements AModel {
 		this.setPersistentModel(p);
 	}
 
+
 	public void setDistinta(Object [][] data){
 		Preventivo p = (Preventivo)this.getPersistentModel();
 		DistintaLavorazione d = (p.getDistinta());
