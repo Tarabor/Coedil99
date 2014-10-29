@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Lastra;
@@ -74,15 +75,29 @@ public class MMagazzino implements AModel,Observer {
 		return dati;
 	}
 
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		/*
-		 * Preventivo firmato
-		 */
-		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){
-			
-		}
+		ArrayList<ElementoDistinta> distinta = ((MPreventivo)arg1).getDistinta();
+		coedil99.persistentmodel.ElementoMagazzinoListCollection magazzino = ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_;
+		
+		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){		
+			for (int i = 0; i < ((MPreventivo)arg1).getDistinta().size(); i++) {
+				for (int j = 0; j < magazzino.size(); j++) {
+					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino
+						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
+							int quantita = magazzino.get(j).getQuantita() - distinta.get(i).getNPezzi();
+							magazzino.get(j).setQuantita(quantita);
+						}	
+						else{
+							//Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
+						}
+					}
+				}	
+			}			
+		} 	
 		
 	}
 
+	
 }
