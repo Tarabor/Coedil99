@@ -24,8 +24,8 @@ import javax.swing.Box;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 
-import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.application.controller.CtrlElaboraPreventivo;
+import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Indirizzo;
 import coedil99.ui.Coedil99View;

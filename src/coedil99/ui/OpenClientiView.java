@@ -31,7 +31,7 @@ import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
-import coedil99.application.Controller.CtrlElaboraPreventivo;
+import coedil99.application.controller.CtrlElaboraPreventivo;
 
 import java.awt.Color;
 import java.awt.Component;

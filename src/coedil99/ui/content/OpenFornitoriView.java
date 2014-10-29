@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.ui.template.Etichetta;
 

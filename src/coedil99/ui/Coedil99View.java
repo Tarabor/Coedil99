@@ -32,6 +32,7 @@ import javax.swing.JSplitPane;
 
 
 
+
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.Fornitore;
@@ -46,8 +47,8 @@ import coedil99.ui.template.btnToolBar;
 import coedil99.ui.template.ElencoItemsAlbero;
 
 
-import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.application.controller.CtrlElaboraPreventivo;
+import coedil99.application.controller.CtrlGestisciMagazzino;
 
 
 public class Coedil99View extends JFrame {

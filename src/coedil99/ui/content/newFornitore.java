@@ -14,7 +14,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 
-import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 

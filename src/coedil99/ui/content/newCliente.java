@@ -8,7 +8,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import coedil99.application.Controller.CtrlElaboraPreventivo;
+
+import coedil99.application.controller.CtrlElaboraPreventivo;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
 import coedil99.utility.StrictInputVerifier;
@@ -22,6 +23,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
+
 import java.awt.Toolkit;
 
 

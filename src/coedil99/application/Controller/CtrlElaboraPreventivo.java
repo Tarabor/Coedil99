@@ -1,4 +1,4 @@
-package coedil99.application.Controller;
+package coedil99.application.controller;
 
 
 import coedil99.model.MDistintaLavorazione;

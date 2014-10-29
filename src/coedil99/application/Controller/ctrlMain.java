@@ -1,4 +1,4 @@
-package coedil99.application.Controller;
+package coedil99.application.controller;
 
 public class ctrlMain {
 }

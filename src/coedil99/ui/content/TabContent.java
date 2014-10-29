@@ -48,7 +48,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-import coedil99.application.Controller.CtrlElaboraPreventivo;
+import coedil99.application.controller.CtrlElaboraPreventivo;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;

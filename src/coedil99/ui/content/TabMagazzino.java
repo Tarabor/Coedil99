@@ -33,8 +33,8 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-import coedil99.application.Controller.CtrlElaboraPreventivo;
-import coedil99.application.Controller.CtrlGestisciMagazzino;
+import coedil99.application.controller.CtrlElaboraPreventivo;
+import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.template.MagazzinoTableModel;
