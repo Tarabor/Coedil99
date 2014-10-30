@@ -6,6 +6,7 @@ import java.util.HashMap;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.content.RdaView;
+import coedil99.ui.content.OrdiniView;
 import coedil99.utility.Service;
 
 
@@ -57,5 +58,13 @@ public class CtrlGestisciRDA {
 	public void apriRDA() {
 		RdaView.getInstance().nuovaSchedaRda(this.loadItems());
 		RdaView.getInstance().setVisible(true);
+	}
+
+	
+	/*
+	 * SEZIONE ORDINI
+	 */
+	public void apriOrdini() {
+		OrdiniView.getInstance().setVisible(true);
 	}
 }

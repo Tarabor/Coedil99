@@ -340,6 +340,16 @@ public class Coedil99View extends JFrame {
 		});
 		mnFile.add(mntmGestioneRDA);
 		
+		/*++++++Gestione ORDINI++++++*/
+		JMenuItem mntmGestioneOrdini = new JMenuItem(bundle.getString("gui.menu.file.ordini"));
+		mntmGestioneOrdini.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				CtrlGestisciRDA.getInstance().apriOrdini();
+			}
+		});
+		mnFile.add(mntmGestioneOrdini);
+		
 		
 		JSeparator separatore = new JSeparator();
 		mnFile.add(separatore);
