@@ -8,10 +8,8 @@ import javax.swing.JPanel;
 
 import java.awt.GridLayout;
 
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -24,10 +22,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JComboBox;
-
 import coedil99.persistentmodel.Item;
-import coedil99.ui.template.CampoTesto;
+import coedil99.persistentmodel.Bullone;
+import coedil99.persistentmodel.Lastra;
+import coedil99.persistentmodel.Trave;
 import coedil99.ui.template.Etichetta;
 import coedil99.application.controller.CtrlGestisciRDA;
 
@@ -35,6 +33,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JSpinner;
+import java.awt.Font;
+import javax.swing.SpinnerNumberModel;
 
 
 public class PopupNewLineRDA extends JFrame{
@@ -44,10 +45,11 @@ public class PopupNewLineRDA extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JList<Item> element;
-	private JComboBox comboBox;
+	JSpinner spinner;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
-	private final String ICON_USER = "/coedil99/ui/img/user_icon.png";
-	private final String ICON_ADD = "/coedil99/ui/img/add_cliente.png";
+	private final String ICON_LASTRA = "/coedil99/ui/img/lastra.png";
+	private final String ICON_BULLONE = "/coedil99/ui/img/bullone.png";
+	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
 	
 	
 	public PopupNewLineRDA() {
@@ -64,12 +66,11 @@ public class PopupNewLineRDA extends JFrame{
 	private void init(){
 		this.element = new JList<Item>();
 		this.element.setCellRenderer(new ListCellRenderer());
-		this.comboBox = new JComboBox();
 	}
 	
 	private void initGui(){
-		setMinimumSize(new Dimension(600, 400));
-		setPreferredSize(new Dimension(700, 400));
+		setMinimumSize(new Dimension(700, 400));
+		setPreferredSize(new Dimension(800, 400));
 		setTitle("Apri...");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopupNewLineRDA.class.getResource(ICON_FRAME)));
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -80,6 +81,7 @@ public class PopupNewLineRDA extends JFrame{
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		JLabel lblNewLabel = new Etichetta("<html>Seleziona l'elemento dalla lista</html>");
+		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		panel.add(lblNewLabel);
 		
 		
@@ -108,13 +110,16 @@ public class PopupNewLineRDA extends JFrame{
 		panel_2.add(panel_3);
 		
 		JLabel lblNewLabel_1 = new Etichetta("Elemento:");
+		lblNewLabel_1.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		lblNewLabel_1.setText("Indica la quantit\u00E0 da inserire:");
 		panel_3.add(lblNewLabel_1);
 		
-		 
-		comboBox.setPreferredSize(new Dimension(200, 25));
-		comboBox.setMinimumSize(new Dimension(100, 30));
-		comboBox.setEditable(true);
-		panel_3.add(comboBox);
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(0, null, 999, 1));
+		spinner.setToolTipText("Inserisci la quantit\u00E0 da ordinare per l'elemento che hai selezionato");
+		spinner.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		spinner.setPreferredSize(new Dimension(50, 30));
+		panel_3.add(spinner);
 		
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);
@@ -127,7 +132,8 @@ public class PopupNewLineRDA extends JFrame{
 		    }
 		});
 		
-		JButton btnNewButton = new JButton("Seleziona");
+		JButton btnNewButton = new JButton("Aggiungi");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				aggiungiItem();
@@ -136,6 +142,7 @@ public class PopupNewLineRDA extends JFrame{
 		panel_4.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Annulla");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -146,13 +153,22 @@ public class PopupNewLineRDA extends JFrame{
 	
 	
 	public void aggiungiItem() {
-		/*String tipoElemento = (String)this.comboBox.getSelectedItem();
-		Float diametro = Float.parseFloat(this.campoTesto_2.getText());
-		String materiale = this.campoTesto_6.getText();
-		Float lunghezza = Float.parseFloat(this.campoTesto_5.getText());
-		int quantita = (Integer.parseInt(this.campoTesto_8.getText()));
-		element.getSelectedValue().
-		CtrlGestisciRDA.getInstance().createLineRDA(tipoElemento, diametro, materiale, lunghezza, quantita);*/
+		String id = String.valueOf(element.getSelectedValue().getID());
+		String tipoElemento = (String)element.getSelectedValue().getClass().getName().split("\\.")[2];
+		String lunghezza = "-";
+		String materiale = "-";
+		String diametro = "-";
+		if(tipoElemento.equalsIgnoreCase("Trave")){
+			lunghezza = String.valueOf( ((Trave) element.getSelectedValue()).getLunghezza() );
+		} 
+		if(tipoElemento.equalsIgnoreCase("Lastra")){
+			materiale = ((Lastra) element.getSelectedValue()).getMateriale();
+		} 
+		if(tipoElemento.equalsIgnoreCase("Bullone")){
+			diametro = String.valueOf( ((Bullone) element.getSelectedValue()).getDiametro() );
+		} 
+		int value = (Integer) spinner.getValue();
+		CtrlGestisciRDA.getInstance().createLineRDA(id,tipoElemento, diametro, materiale, lunghezza, value);
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
@@ -167,7 +183,7 @@ public class PopupNewLineRDA extends JFrame{
 	    ListCellRenderer() {
 	        label = new Etichetta();
 	        label.setOpaque(true);
-	        label.setBorder(new EmptyBorder(3,6,3,3));
+	        label.setBorder(new EmptyBorder(3,6,3,50));
 	    }
 	    @Override
 	    public Component getListCellRendererComponent(
@@ -177,16 +193,33 @@ public class PopupNewLineRDA extends JFrame{
 	            boolean selected,
 	            boolean expanded) {
 	    	
-	        label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(PopupNewLineRDA.class.getResource(ICON_USER))));
-	        label.setText("<html>"+((Item) value).getDescrizione()+
-	        		" "+
-	        		((Item) value).getID()+
-	        		"<br><p style='color:gray'>"+
-	        		" "+
-	        		((Item) value).getPeso()+
-	        		" "+
-	        		((Item) value).getPrezzo()+
-	        		"</p></html>");
+	    	if(((Item) value).getClass().getName().split("\\.")[2].equalsIgnoreCase("Trave")){
+	    		label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(PopupNewLineRDA.class.getResource(ICON_TRAVE))));
+	    		label.setText("<html>"+((Trave) value).getDescrizione()+
+	    				"<br><p style='color:black'>"+"Lunghezza:"+
+		        		"<span  style='color:gray'>"+" "+((Trave) value).getLunghezza()+
+		        		"</p></p></html>");
+			} 
+	    	if(((Item) value).getClass().getName().split("\\.")[2].equalsIgnoreCase("Lastra")){
+	    		label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(PopupNewLineRDA.class.getResource(ICON_LASTRA))));
+	    		label.setText("<html>"+((Lastra) value).getDescrizione()+
+	    				"<br>"+"Materiale:"+
+		        		"<span  style='color:gray'>"+
+		        		" "+
+		        		((Lastra) value).getMateriale()+
+		        		"</p></html>");
+			} 
+	    	if(((Item) value).getClass().getName().split("\\.")[2].equalsIgnoreCase("Bullone")){
+	    		label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(PopupNewLineRDA.class.getResource(ICON_BULLONE))));
+	    		label.setText("<html>"+((Bullone) value).getDescrizione()+
+		        		"<br>"+"Diametro:"+
+		        		"<span  style='color:gray'>"+
+		        		" "+
+		        		((Bullone) value).getDiametro()+
+		        		"</p></html>");
+			} 
+	    	
+	        
 
 	        if (selected) {
 	            label.setBackground(backgroundSelectionColor);

@@ -7,7 +7,6 @@ import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.content.RdaView;
 import coedil99.ui.content.OrdiniView;
-import coedil99.utility.Service;
 
 
 public class CtrlGestisciRDA {
@@ -45,8 +44,8 @@ public class CtrlGestisciRDA {
 		
 	}
 	
-	public void createLineRDA(String tipoElemento, Float diametro, String materiale, Float lunghezza, int quantita) {
-		Object[] obj = {tipoElemento,diametro,materiale,lunghezza,quantita};
+	public void createLineRDA(String id, String tipoElemento, String diametro, String materiale, String lunghezza, int quantita) {
+		Object[] obj = {id, tipoElemento,diametro,materiale,lunghezza,quantita};
 		RdaView.getInstance().aggiungiRiga(obj);
 		RdaView.getInstance().hideMakeNewLineRda();
 	}
@@ -66,5 +65,10 @@ public class CtrlGestisciRDA {
 	 */
 	public void apriOrdini() {
 		OrdiniView.getInstance().setVisible(true);
+	}
+
+	public void inviaRda(ArrayList<Object[]> tableData) {
+		// TODO Auto-generated method stub
+		
 	}
 }
