@@ -33,6 +33,7 @@ import javax.swing.JSplitPane;
 
 
 
+
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.Fornitore;
@@ -49,6 +50,7 @@ import coedil99.ui.template.ElencoItemsAlbero;
 
 import coedil99.application.controller.CtrlElaboraPreventivo;
 import coedil99.application.controller.CtrlGestisciMagazzino;
+import coedil99.application.controller.CtrlGestisciRDA;
 
 
 public class Coedil99View extends JFrame {
@@ -327,6 +329,20 @@ public class Coedil99View extends JFrame {
 		
 		JSeparator separator = new JSeparator();
 		mnFile.add(separator);
+		
+		/*++++++Gestione RDA++++++*/
+		JMenuItem mntmGestioneRDA = new JMenuItem(bundle.getString("gui.menu.file.rda"));
+		mntmGestioneRDA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				CtrlGestisciRDA.getInstance().apriRDA();
+			}
+		});
+		mnFile.add(mntmGestioneRDA);
+		
+		
+		JSeparator separatore = new JSeparator();
+		mnFile.add(separatore);
 		
 		JMenuItem mntmEsci = new JMenuItem(bundle.getString("gui.menu.file.exit"));
 		mnFile.add(mntmEsci);
