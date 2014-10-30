@@ -2,7 +2,11 @@ package coedil99.application.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemDAO;
+import coedil99.ui.content.RdaView;
+import coedil99.utility.Service;
 
 
 public class CtrlGestisciRDA {
@@ -32,5 +36,26 @@ public class CtrlGestisciRDA {
 	public ArrayList<Item> getListaRDA(){
 		
 		return null;
+	}
+	
+	
+	public Item[] loadItems() {
+		return ItemDAO.listItemByQuery(null, "discriminator");
+		
+	}
+	
+	public void createLineRDA(String tipoElemento, Float diametro, String materiale, Float lunghezza, int quantita) {
+		Object[] obj = {tipoElemento,diametro,materiale,lunghezza,quantita};
+		RdaView.getInstance().aggiungiRiga(obj);
+		RdaView.getInstance().hideMakeNewLineRda();
+	}
+	
+	public void popupNewLineRda() {
+		RdaView.getInstance().showMakeNewLineRda();
+	}
+
+	public void apriRDA() {
+		RdaView.getInstance().nuovaSchedaRda(this.loadItems());
+		RdaView.getInstance().setVisible(true);
 	}
 }
