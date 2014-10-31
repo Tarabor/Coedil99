@@ -1,18 +1,25 @@
 package coedil99.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
+
+import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Magazzino;
 import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.Trave;
 
 public class MMagazzino implements AModel,Observer {
@@ -89,8 +96,13 @@ public class MMagazzino implements AModel,Observer {
 							int quantita = magazzino.get(j).getQuantita() - distinta.get(i).getNPezzi();
 							magazzino.get(j).setQuantita(quantita);
 						}	
-						else{
-							//Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
+						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
+							Item t = ItemDAO.getItemByORMID(1);
+							HashMap< Item , Integer > rda = new HashMap<Item , Integer >();
+							rda.put(t, 1);
+							rda.put(t, 2);
+							rda.put(t, 3);
+							MRaccoglitoreRDA.getInstance().insertRDA(rda);
 						}
 					}
 				}	
