@@ -1,6 +1,7 @@
 package coedil99.ui.content;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -37,6 +38,8 @@ public class TabRda extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JTable rda;
+	private JButton btnInviaRda;
+	private JButton btnNewItem;
 	
 	private String [] tableHeader = new String[] {
 			"ID ARTICOLO", "ARTICOLO", "MATERIALE", "DIAMETRO", "LUNGHEZZA", "N\u00B0 PEZZI"
@@ -129,12 +132,12 @@ public class TabRda extends JPanel {
 		gbc_panel.gridy = 1;
 		add(panel, gbc_panel);
 		
-		JButton btnNewItem = new JButton("Aggiungi Elementi alla RDA");
+		btnNewItem = new JButton("Aggiungi Elementi alla RDA");
 		btnNewItem.setBounds(10, 11, 159, 23);
 		panel.add(btnNewItem);
 		btnNewItem.setPreferredSize(new Dimension(100, 20));
 		
-		JButton btnInviaRda = new JButton("Invia RDA");
+		btnInviaRda = new JButton("Invia RDA");
 		btnInviaRda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//la view invia il contenuto della tabella al controller
@@ -156,6 +159,14 @@ public class TabRda extends JPanel {
 	public void aggiungiRigaRda(Object[] insert) {
 		((RdaTableModel) this.rda.getModel()).addRow(insert);
 		((RdaTableModel) this.rda.getModel()).fireTableDataChanged(); //utile per visualizzare subito l'aggiunta della riga
+	}
+
+
+
+	public void setSalvaInvisible() {
+		JOptionPane.showMessageDialog(this, "RDA Inviata!");
+		btnInviaRda.setVisible(false);
+		btnNewItem.setVisible(false);
 	}
 
 

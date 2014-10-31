@@ -3,6 +3,7 @@ package coedil99.application.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import coedil99.model.MRaccoglitoreRDA;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.content.RdaView;
@@ -54,7 +55,7 @@ public class CtrlGestisciRDA {
 		RdaView.getInstance().showMakeNewLineRda();
 	}
 
-	public void apriRDA() {
+	public void apriNuovaRDADirettore() {
 		RdaView.getInstance().nuovaSchedaRda(this.loadItems());
 		RdaView.getInstance().setVisible(true);
 	}
@@ -68,7 +69,11 @@ public class CtrlGestisciRDA {
 	}
 
 	public void inviaRda(ArrayList<Object[]> tableData) {
-		// TODO Auto-generated method stub
+		MRaccoglitoreRDA.getInstance().creaPrincipaleRDA(tableData);
+	}
+
+	public void salvataRda() {
+		RdaView.getInstance().setButtonSalvaInvisible();
 		
 	}
 }

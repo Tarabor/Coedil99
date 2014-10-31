@@ -335,7 +335,7 @@ public class Coedil99View extends JFrame {
 		mntmGestioneRDA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				CtrlGestisciRDA.getInstance().apriRDA();
+				CtrlGestisciRDA.getInstance().apriNuovaRDADirettore();
 			}
 		});
 		mnFile.add(mntmGestioneRDA);

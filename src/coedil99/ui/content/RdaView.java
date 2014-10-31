@@ -20,7 +20,6 @@ public class RdaView extends JFrame {
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private TabRda tb;
 	private PopupNewLineRDA nlRrda;
-	private OpenFornitoriView of;
 	
 
 	/**
@@ -65,12 +64,15 @@ public class RdaView extends JFrame {
 	}
 	
 	
-	public void hideFornitori(){
-		this.of.setVisible(false);
-	}
 	
 	public void aggiungiRiga(Object[] insert) {
 		this.tb.aggiungiRigaRda(insert);
+	}
+
+
+	public void setButtonSalvaInvisible() {
+		this.tb.setSalvaInvisible();
+		
 	}
 	
 }
