@@ -87,26 +87,24 @@ public class MMagazzino implements AModel,Observer {
 	public void update(Observable arg0, Object arg1) {
 		ArrayList<ElementoDistinta> distinta = ((MPreventivo)arg1).getDistinta();
 		coedil99.persistentmodel.ElementoMagazzinoListCollection magazzino = ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_;
+		HashMap< Item , Integer > rda = new HashMap<Item , Integer >();
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){		
 			for (int i = 0; i < ((MPreventivo)arg1).getDistinta().size(); i++) {
 				for (int j = 0; j < magazzino.size(); j++) {
-					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino
+					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
 						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
 							int quantita = magazzino.get(j).getQuantita() - distinta.get(i).getNPezzi();
 							magazzino.get(j).setQuantita(quantita);
 						}	
 						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
 							Item t = ItemDAO.getItemByORMID(1);
-							HashMap< Item , Integer > rda = new HashMap<Item , Integer >();
-							rda.put(t, 1);
-							rda.put(t, 2);
-							rda.put(t, 3);
-							MRaccoglitoreRDA.getInstance().insertRDA(rda);
+							rda.put(distinta.get(i).getItem(), distinta.get(i).getNPezzi());
 						}
 					}
 				}	
-			}			
+			}	
+			MRaccoglitoreRDA.getInstance().insertRDA(rda);
 		} 	
 		
 	}
