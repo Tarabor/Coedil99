@@ -14,6 +14,8 @@ import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoMagazzino;
+import coedil99.persistentmodel.ElementoRDA;
+import coedil99.persistentmodel.ElementoRDADAO;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Lastra;
@@ -87,7 +89,7 @@ public class MMagazzino implements AModel,Observer {
 	public void update(Observable arg0, Object arg1) {
 		ArrayList<ElementoDistinta> distinta = ((MPreventivo)arg1).getDistinta();
 		coedil99.persistentmodel.ElementoMagazzinoListCollection magazzino = ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_;
-		HashMap< Item , Integer > rda = new HashMap<Item , Integer >();
+		ArrayList<ElementoRDA> rda = new ArrayList<ElementoRDA>();
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){		
 			for (int i = 0; i < ((MPreventivo)arg1).getDistinta().size(); i++) {
@@ -98,15 +100,16 @@ public class MMagazzino implements AModel,Observer {
 							magazzino.get(j).setQuantita(quantita);
 						}	
 						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
-							Item t = ItemDAO.getItemByORMID(1);
-							rda.put(distinta.get(i).getItem(), distinta.get(i).getNPezzi());
+							ElementoRDA elemento = new ElementoRDA();
+							elemento.setItem(distinta.get(i).getItem());
+							elemento.setQuantita(distinta.get(i).getNPezzi());
+							rda.add(elemento);
 						}
 					}
 				}	
 			}	
 			MRaccoglitoreRDA.getInstance().insertRDA(rda);
 		} 	
-		
 	}
 
 	

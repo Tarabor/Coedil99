@@ -2,6 +2,7 @@ package coedil99.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
@@ -34,9 +35,17 @@ public class MRaccoglitoreRDA implements AModel {
 		this.model = model;
 	}
 
-	public void insertRDA( HashMap<Item, Integer> rda) {
-		//((RaccoglitoreRDA)(this.getPersistentModel())).items__Map_.putAll(rda);
-		RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
+	public void insertRDA( ArrayList<ElementoRDA> rda) {
+		if(rda.size() != 0){
+			RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
+			this.setPersistentModel(raccoglitore);
+			for (int i = 0; i < rda.size(); i++) {
+				ElementoRDA elemento = ElementoRDADAO.createElementoRDA();
+				elemento = rda.get(i);
+				((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
+				RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
+			}
+		}
 	}
 
 	public void creaPrincipaleRDA(ArrayList<Object[]> tableData) {
