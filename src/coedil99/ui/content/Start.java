@@ -44,7 +44,7 @@ public class Start extends JPanel {
 		setBackground(Color.WHITE);
 		setOpaque(false);
 				
-				NuovoProgetto = new JButton("Nuovo progetto");
+				NuovoProgetto = new JButton("Nuovo ordine");
 				NuovoProgetto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						new creaProgetto();
@@ -54,11 +54,11 @@ public class Start extends JPanel {
 				NuovoProgetto.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseEntered(MouseEvent arg0) {
-						textPane.setText("Clicca qui per creare un nuovo progetto.");
+						textPane.setText("Clicca qui per creare un nuovo ordine.");
 					}
 					@Override
 					public void mouseExited(MouseEvent e) {
-						textPane.setText("Benvenuto in coedil99");
+						textPane.setText("Benvenuto nella sezione ordini");
 					}
 				});
 				NuovoProgetto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

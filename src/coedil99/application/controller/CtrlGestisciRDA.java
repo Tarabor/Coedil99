@@ -3,17 +3,18 @@ package coedil99.application.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import coedil99.model.MOrdine;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.content.RdaView;
 import coedil99.ui.content.OrdiniView;
-import coedil99.utility.Service;
 
 
 public class CtrlGestisciRDA {
 	
 	
 	private HashMap< Item , Integer > rda;
+	private ArrayList<MOrdine> ordini = new ArrayList<MOrdine>();
 	
 	private static CtrlGestisciRDA instance;
 	
@@ -66,5 +67,13 @@ public class CtrlGestisciRDA {
 	 */
 	public void apriOrdini() {
 		OrdiniView.getInstance().setVisible(true);
+	}
+	
+	public void createOrdine(){
+		this.ordini.add(new MOrdine());
+	}
+	
+	public void closeOrdine(int index){
+		this.ordini.remove(index);
 	}
 }
