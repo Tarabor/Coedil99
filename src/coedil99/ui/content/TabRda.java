@@ -1,6 +1,7 @@
 package coedil99.ui.content;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -9,7 +10,6 @@ import javax.swing.ListSelectionModel;
 import java.awt.Color;
 
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import java.awt.Dimension;
@@ -19,31 +19,30 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
-import javax.swing.JList;
-
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 
 import coedil99.application.controller.CtrlGestisciRDA;
-import coedil99.persistentmodel.Item;
-import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.template.RdaTableModel;
 
 public class TabRda extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JTable rda;
+	private JButton btnInviaRda;
+	private JButton btnNewItem;
 	
 	private String [] tableHeader = new String[] {
-			"ARTICOLO", "MATERIALE", "DIAMETRO", "LUNGHEZZA", "N\u00B0 PEZZI"
+			"ID ARTICOLO", "ARTICOLO", "MATERIALE", "DIAMETRO", "LUNGHEZZA", "N\u00B0 PEZZI"
 		};
 	
 	private static final Font FONT_TABLE_HEADER = new Font("Century Gothic", Font.BOLD, 14);
@@ -52,6 +51,7 @@ public class TabRda extends JPanel {
 	
 	
 	protected String[] columnToolTips = {
+			"ID univoco dell'elemento",
 			"Il tipo di elemento",
 		    "Il materiale della lastra",
 		    "Il diametro del bullone",
@@ -98,7 +98,6 @@ public class TabRda extends JPanel {
 		    protected JTableHeader createDefaultTableHeader() {
 		        return new JTableHeader(columnModel) {
 		            public String getToolTipText(MouseEvent e) {
-		                String tip = null;
 		                java.awt.Point p = e.getPoint();
 		                int index = columnModel.getColumnIndexAtX(p.x);
 		                int realIndex = 
@@ -133,16 +132,16 @@ public class TabRda extends JPanel {
 		gbc_panel.gridy = 1;
 		add(panel, gbc_panel);
 		
-		JButton btnNewItem = new JButton("Aggiungi Elementi alla RDA");
+		btnNewItem = new JButton("Aggiungi Elementi alla RDA");
 		btnNewItem.setBounds(10, 11, 159, 23);
 		panel.add(btnNewItem);
 		btnNewItem.setPreferredSize(new Dimension(100, 20));
 		
-		JButton btnInviaRda = new JButton("Invia RDA");
+		btnInviaRda = new JButton("Invia RDA");
 		btnInviaRda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//la view invia il contenuto della tabella al controller
-				
+				CtrlGestisciRDA.getInstance().inviaRda(((RdaTableModel) rda.getModel()).getTableData());
 			}
 		});
 		btnInviaRda.setBounds(10, 97, 89, 23);
@@ -163,8 +162,12 @@ public class TabRda extends JPanel {
 	}
 
 
-	
-	/*public void setMagazzino(ArrayList<Object[]> dati) {
-		this.rda.setModel(new RdaTableModel(dati, this.tableHeader));
-	}*/
+
+	public void setSalvaInvisible() {
+		JOptionPane.showMessageDialog(this, "RDA Inviata!");
+		btnInviaRda.setVisible(false);
+		btnNewItem.setVisible(false);
+	}
+
+
 }

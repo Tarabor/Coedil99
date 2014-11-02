@@ -1,33 +1,25 @@
 package coedil99.ui.content;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-
+import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.SwingConstants;
 
 import coedil99.persistentmodel.Item;
 import coedil99.ui.content.PopupNewLineRDA;
 import coedil99.ui.template.CampoTesto;
 
-import java.awt.Dimension;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 public class RdaView extends JFrame {
 
-	private Container contentPane;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static RdaView instance;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private TabRda tb;
 	private PopupNewLineRDA nlRrda;
-	private OpenFornitoriView of;
 	
 
 	/**
@@ -63,10 +55,6 @@ public class RdaView extends JFrame {
 		add(tb);
 	}
 	
-	/*public void setRda(ArrayList<Object[]> datiMagazzino){
-		tb.setMagazzino(datiMagazzino);
-	}*/
-	
 	public void showMakeNewLineRda(){
 		this.nlRrda.setVisible(true);
 	}
@@ -76,12 +64,15 @@ public class RdaView extends JFrame {
 	}
 	
 	
-	public void hideFornitori(){
-		this.of.setVisible(false);
-	}
 	
 	public void aggiungiRiga(Object[] insert) {
 		this.tb.aggiungiRigaRda(insert);
+	}
+
+
+	public void setButtonSalvaInvisible() {
+		this.tb.setSalvaInvisible();
+		
 	}
 	
 }

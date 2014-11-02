@@ -7,8 +7,13 @@ import javax.swing.table.AbstractTableModel;
 
 public class RdaTableModel extends AbstractTableModel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String [] tableHeader = new String[] {
-			"ARTICOLO", "MATERIALE", "DIAMETRO", "LUNGHEZZA", "N\u00B0 PEZZI"
+			"ID ARTICOLO", "ARTICOLO", "MATERIALE", "DIAMETRO", "LUNGHEZZA", "N\u00B0 PEZZI"
 		};
 	
 	private ArrayList<Object[]> data = new ArrayList<>();
@@ -58,6 +63,10 @@ public class RdaTableModel extends AbstractTableModel {
 	
     public boolean isCellEditable(int row, int col) { 
         return false;
+    }
+    
+    public ArrayList<Object[]> getTableData() {
+    	return this.data;
     }
 
 }
