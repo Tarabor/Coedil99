@@ -1,13 +1,11 @@
 package coedil99.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-
 import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
+import coedil99.persistentmodel.ElementoRDAListCollection;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.Item;
@@ -23,6 +21,10 @@ public class MRaccoglitoreRDA implements AModel {
 			instance = new MRaccoglitoreRDA();
 		
 		return instance;
+	}
+	
+	private MRaccoglitoreRDA(){
+		this.setPersistentModel(RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1));
 	}
 	
 	private APersistentModel model;
@@ -64,5 +66,14 @@ public class MRaccoglitoreRDA implements AModel {
 			RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 		}
 		CtrlGestisciRDA.getInstance().salvataRda();
+	}
+	
+	public ElementoRDA[] getRDAArray(){
+		ElementoRDAListCollection list =((RaccoglitoreRDA)this.model).elementoRDAs;
+		int l = list.size();
+		ElementoRDA[] elements = new ElementoRDA[l];
+		for(int i = 0; i<l; i++)
+			elements[i] = list.get(i);
+		return elements;
 	}
 }

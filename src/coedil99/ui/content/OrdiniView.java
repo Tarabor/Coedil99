@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.HashMap;
-
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,9 +15,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
 
 
+import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.Item;
 import coedil99.ui.template.Etichetta;
-import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
 
 public class OrdiniView extends JFrame {
@@ -27,9 +25,11 @@ public class OrdiniView extends JFrame {
 	private JPanel contentPane;
 	private static OrdiniView instance;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
-	private final String ICON_USER = "/coedil99/ui/img/user_icon.png";
+	private final String ICON_LASTRA = "/coedil99/ui/img/lastra.png";
+	private final String ICON_BULLONE = "/coedil99/ui/img/bullone.png";
+	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
 	private JPanel panel;
-	private JList<Item> element;
+	private JList<ElementoRDA> element;
 	
 	private final String TITLE_FRAME  = "Gestione Ordini";
 
@@ -44,7 +44,7 @@ public class OrdiniView extends JFrame {
 	}
 	
 	private void init(){
-		this.element = new JList<Item>();
+		this.element = new JList<ElementoRDA>();
 		element.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		this.element.setCellRenderer(new ListCellRenderer());
 	}
@@ -94,8 +94,8 @@ public class OrdiniView extends JFrame {
 		return instance;
 	}
 	
-	public void setElements(HashMap< Item , Integer> listData){
-		this.element.setListData((Item [] ) listData.keySet().toArray());
+	public void setElements(ElementoRDA [] listData){
+		this.element.setListData(listData);
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
@@ -119,12 +119,24 @@ public class OrdiniView extends JFrame {
 	            int index,
 	            boolean selected,
 	            boolean expanded) {
-	    	
-	        label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(OrdiniView.class.getResource(ICON_USER))));
-	        label.setText("<html>"+((Item) value).getDescrizione()+
+	    	String icon = "";
+	    	String name = ((ElementoRDA) value).getItem().getClass().getName().split("\\.")[2];
+	    	switch(name){
+	    	case "Trave":
+	    		icon = ICON_TRAVE;
+	    		break;
+	    	case "Bullone":
+	    		icon = ICON_BULLONE;
+	    		break;
+	    	case "Lastra":
+	    		icon = ICON_LASTRA;
+	    		break;
+	    	}
+	        label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(OrdiniView.class.getResource(icon))));
+	        label.setText("<html>"+name+
 	        		"<br><p style='color:gray'>"+
 	        		" "+
-	        		((Item) value).getPeso()+
+	        		((ElementoRDA) value).getQuantita()+
 	        		"</p></html>");
 
 	        if (selected) {
