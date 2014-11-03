@@ -53,6 +53,7 @@ public class MRaccoglitoreRDA implements AModel {
 	public void creaPrincipaleRDA(ArrayList<Object[]> tableData) {
 		//se decidiamo che esisterà un unico raccoglitore, questo dovrà essere creato una sola volta all'inizio
 		RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
+		//RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.createRaccoglitoreRDA();
 		this.setPersistentModel(raccoglitore);
 		Item item;
 		int quantita = 0;
@@ -62,10 +63,31 @@ public class MRaccoglitoreRDA implements AModel {
 			quantita = (Integer) tableData.get(i)[5];
 			elemento.setItem(item);
 			elemento.setQuantita(quantita);
-			((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
+			this.checkPresenzaElemento(raccoglitore, item, quantita, elemento);
 			RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 		}
 		CtrlGestisciRDA.getInstance().salvataRda();
+	}
+
+	public void checkPresenzaElemento(RaccoglitoreRDA raccoglitore, Item item,
+			int quantita, ElementoRDA elemento) {
+		if(raccoglitore.elementoRDAs.size() != 0) {
+			Boolean trovato = false;
+			for (int j = 0; j < raccoglitore.elementoRDAs.size(); j++) {
+				ElementoRDA elemento2 = raccoglitore.elementoRDAs.get(j);
+				if(elemento2.getItem().equals(item)) {
+					elemento2.setQuantita(elemento2.getQuantita() + quantita);
+					((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.set(j,elemento2);
+					trovato = true;
+				} 
+			}
+			if(!trovato) {
+				((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
+			}
+		}
+		else {
+			((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
+		}
 	}
 	
 	public ElementoRDA[] getRDAArray(){
