@@ -4,21 +4,39 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
 
 
+import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.ElementoRDA;
-import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Lastra;
+import coedil99.persistentmodel.Ordine;
+import coedil99.persistentmodel.Trave;
 import coedil99.ui.template.Etichetta;
+import coedil99.ui.template.RdaTableModel;
+
 import javax.swing.border.LineBorder;
+import javax.swing.table.JTableHeader;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 public class OrdiniView extends JFrame {
 
@@ -28,10 +46,27 @@ public class OrdiniView extends JFrame {
 	private final String ICON_LASTRA = "/coedil99/ui/img/lastra.png";
 	private final String ICON_BULLONE = "/coedil99/ui/img/bullone.png";
 	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
+	private final String ICON_ARROW = "/coedil99/ui/img/arrow_icon.png";
 	private JPanel panel;
 	private JList<ElementoRDA> element;
 	
+	private JTabbedPane tabbedPane;
+	
 	private final String TITLE_FRAME  = "Gestione Ordini";
+	private JTable rda;
+	private String [] tableHeader = new String[] {
+			"ID ORDINE", "CONSEGNA PREVISTA", "CONSEGNA EFFETTIVA", "RITARDO"};
+	private static final Font FONT_TABLE_HEADER = new Font("Century Gothic", Font.BOLD, 14);
+	private static final Font FONT_TABLE = new Font("Century Gothic", Font.PLAIN, 14);
+	
+	protected String[] columnToolTips = {
+			"ID univoco dell'elemento",
+			"Il tipo di elemento",
+		    "Il materiale della lastra",
+		    "Il diametro del bullone",
+		    "La lunghezza dell'elemento",
+		    "Numero di pezzi da ordinare"};
+	
 
 
 	/**
@@ -45,7 +80,7 @@ public class OrdiniView extends JFrame {
 	
 	private void init(){
 		this.element = new JList<ElementoRDA>();
-		element.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		
 		this.element.setCellRenderer(new ListCellRenderer());
 	}
 	
@@ -54,7 +89,7 @@ public class OrdiniView extends JFrame {
 		setTitle(TITLE_FRAME);
 		setMinimumSize(new Dimension(500, 500));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(RdaView.class.getResource(ICON_FRAME)));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OrdiniView.class.getResource(ICON_FRAME)));
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -66,23 +101,83 @@ public class OrdiniView extends JFrame {
 		nord.setBackground(Color.WHITE);
 		JLabel lblCoedilSrl = new JLabel("COEDIL 99 srl associato GEA s.c.r.l.");
 		lblCoedilSrl.setMaximumSize(new Dimension(172, 80));
-		lblCoedilSrl.setIcon(new ImageIcon(TabContent.class.getResource("/coedil99/ui/content/img/logo-scheda.png")));
+		lblCoedilSrl.setIcon(new ImageIcon(OrdiniView.class.getResource("/coedil99/ui/content/img/logo-scheda.png")));
 		nord.add(lblCoedilSrl);
 		contentPane.add(nord, BorderLayout.NORTH);
 		
 		JSplitPane splitPane = new JSplitPane();
 		contentPane.add(splitPane, BorderLayout.CENTER);
-		splitPane.setRightComponent(new OrdinePanel());
+		
 		
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(20, 20, 20, 20));
-		panel.setMinimumSize(new Dimension(400, 0));
+		panel.setMinimumSize(new Dimension(500, 0));
 		panel.setLayout(new BorderLayout(0, 0));
 		Etichetta rda_label = new Etichetta("RICHIESTE DI ACQUISTO");
 		rda_label.setMaximumSize(new Dimension(200,30));
 		panel.add(rda_label , BorderLayout.NORTH);
+		element.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		panel.add(element, BorderLayout.CENTER);
 		splitPane.setLeftComponent(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panel.add(panel_1, BorderLayout.EAST);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2);
+		
+		JButton addButton = new JButton();
+		addButton.setIcon(new ImageIcon(OrdiniView.class.getResource(ICON_ARROW)));
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				element.getSelectedValue();
+			}
+		});
+		panel_2.add(addButton);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new EmptyBorder(20, 20, 20, 20));
+		splitPane.setRightComponent(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		Etichetta ordini_label = new Etichetta("ORDINI");
+		ordini_label.setMaximumSize(new Dimension(200,30));
+		panel_3.add(ordini_label , BorderLayout.NORTH);
+		
+		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		//this.tabbedPane.add(new OrdinePanel());
+		panel_3.add(tabbedPane);
+		
+		rda = new JTable(new RdaTableModel(tableHeader)) { //Alla creazione della tabella inseriamo i tooltips
+		  
+		    //Implement table header tool tips.
+		    protected JTableHeader createDefaultTableHeader() {
+		        return new JTableHeader(columnModel) {
+		            public String getToolTipText(MouseEvent e) {
+		                java.awt.Point p = e.getPoint();
+		                int index = columnModel.getColumnIndexAtX(p.x);
+		                int realIndex = 
+		                        columnModel.getColumn(index).getModelIndex();
+		                return columnToolTips[realIndex];
+		            }
+		        };
+		    }
+		};
+		rda.setEnabled(false);
+		rda.setFont(FONT_TABLE);
+		rda.setSelectionForeground(new Color(0, 0, 0));
+		rda.setSelectionBackground(new Color(173, 216, 230));
+		rda.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);	
+		rda.getTableHeader().setReorderingAllowed(false);
+		rda.getTableHeader().setFont(FONT_TABLE_HEADER);
+		rda.setRowSelectionAllowed(true);
+		rda.setRowHeight(30);
+		rda.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		JSplitPane sp = new JSplitPane();
+		sp.setLeftComponent(new JScrollPane(rda));
+		sp.setRightComponent(new OrdinePanel());
+		tabbedPane.addTab("Storico Ordini", null, sp, null);
 	
 	}
 
@@ -96,6 +191,10 @@ public class OrdiniView extends JFrame {
 	
 	public void setElements(ElementoRDA [] listData){
 		this.element.setListData(listData);
+	}
+	
+	public void setOrdini(Ordine [] listData){
+		
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
@@ -114,30 +213,39 @@ public class OrdiniView extends JFrame {
 	    }
 	    @Override
 	    public Component getListCellRendererComponent(
-	            JList<?> list,
-	            Object value,
+	            JList<?> list, Object value,
 	            int index,
-	            boolean selected,
-	            boolean expanded) {
+	            boolean selected, boolean expanded) {
+	    	
 	    	String icon = "";
 	    	String name = ((ElementoRDA) value).getItem().getClass().getName().split("\\.")[2];
+	    	String discriminatorLabel = "";
+	    	String discriminator = "";
 	    	switch(name){
 	    	case "Trave":
 	    		icon = ICON_TRAVE;
+	    		discriminatorLabel = "Lunghezza";
+	    		discriminator += ((Trave)((ElementoRDA) value).getItem()).getLunghezza();
 	    		break;
 	    	case "Bullone":
 	    		icon = ICON_BULLONE;
+	    		discriminatorLabel = "Diametro";
+	    		discriminator +=((Bullone)((ElementoRDA) value).getItem()).getDiametro();
 	    		break;
 	    	case "Lastra":
 	    		icon = ICON_LASTRA;
+	    		discriminatorLabel = "Materiale";
+	    		discriminator =((Lastra)((ElementoRDA) value).getItem()).getMateriale();
 	    		break;
 	    	}
 	        label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(OrdiniView.class.getResource(icon))));
-	        label.setText("<html>"+name+
-	        		"<br><p style='color:gray'>"+
-	        		" "+
-	        		((ElementoRDA) value).getQuantita()+
-	        		"</p></html>");
+	        label.setText("<html><span style='font-weight: bold;'>"+name+"</span>"+
+	        		"<br><span style='color:gray'>"+
+	        			  discriminatorLabel+
+	        			  ": </span>"+
+	        			  "<span style='color:black'>"+
+	        			  discriminator+
+	        			  "</span></html>");
 
 	        if (selected) {
 	            label.setBackground(backgroundSelectionColor);
@@ -146,7 +254,12 @@ public class OrdiniView extends JFrame {
 	            label.setBackground(backgroundNonSelectionColor);
 	            label.setForeground(textNonSelectionColor);
 	        }
-	        return label;
+	        JPanel p = new JPanel(new BorderLayout(0, 0));
+	        p.add(label, BorderLayout.CENTER);
+	        JButton b = new JButton(((ElementoRDA) value).getQuantita()+"");
+	        b.setFont(new Font("sansserif",Font.BOLD,14));
+	        p.add(b, BorderLayout.EAST);
+	        return p;
 	    }
 	}
 }

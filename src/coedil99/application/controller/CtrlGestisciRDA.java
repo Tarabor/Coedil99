@@ -6,7 +6,6 @@ import java.util.HashMap;
 import coedil99.model.MOrdine;
 import coedil99.model.MRaccoglitoreRDA;
 import coedil99.persistentmodel.Item;
-import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.content.RdaView;
 import coedil99.ui.content.OrdiniView;
