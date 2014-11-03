@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import coedil99.model.MOrdine;
+import coedil99.model.MRaccoglitoreRDA;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.content.RdaView;
@@ -46,8 +47,9 @@ public class CtrlGestisciRDA {
 		
 	}
 	
-	public void createLineRDA(String tipoElemento, Float diametro, String materiale, Float lunghezza, int quantita) {
-		Object[] obj = {tipoElemento,diametro,materiale,lunghezza,quantita};
+	
+	public void createLineRDA(String id, String tipoElemento, String diametro, String materiale, String lunghezza, int quantita) {
+		Object[] obj = {id, tipoElemento,diametro,materiale,lunghezza,quantita};
 		RdaView.getInstance().aggiungiRiga(obj);
 		RdaView.getInstance().hideMakeNewLineRda();
 	}
@@ -61,6 +63,10 @@ public class CtrlGestisciRDA {
 		RdaView.getInstance().setVisible(true);
 	}
 
+	public void apriNuovaRDADirettore() {
+		RdaView.getInstance().nuovaSchedaRda(this.loadItems());
+		RdaView.getInstance().setVisible(true);
+	}
 	
 	/*
 	 * SEZIONE ORDINI
@@ -75,5 +81,14 @@ public class CtrlGestisciRDA {
 	
 	public void closeOrdine(int index){
 		this.ordini.remove(index);
+	}
+	
+	public void inviaRda(ArrayList<Object[]> tableData) {
+		MRaccoglitoreRDA.getInstance().creaPrincipaleRDA(tableData);
+	}
+
+	public void salvataRda() {
+		RdaView.getInstance().setButtonSalvaInvisible();
+		
 	}
 }
