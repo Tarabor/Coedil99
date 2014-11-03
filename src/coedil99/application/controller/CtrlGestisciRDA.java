@@ -54,16 +54,12 @@ public class CtrlGestisciRDA {
 	}
 	
 	public void popupNewLineRda() {
-		RdaView.getInstance().showMakeNewLineRda();
+		RdaView.getInstance().showMakeNewLineRda(this.loadItems());
 	}
 
-	public void apriRDA() {
-		RdaView.getInstance().nuovaSchedaRda(this.loadItems());
-		RdaView.getInstance().setVisible(true);
-	}
 
 	public void apriNuovaRDADirettore() {
-		RdaView.getInstance().nuovaSchedaRda(this.loadItems());
+		RdaView.getInstance().nuovaSchedaRda();
 		RdaView.getInstance().setVisible(true);
 	}
 	
@@ -90,6 +86,8 @@ public class CtrlGestisciRDA {
 
 	public void salvataRda() {
 		RdaView.getInstance().setButtonSalvaInvisible();
-		
+		RdaView.getInstance().dispose();
+		RdaView.getInstance().revalidate();
+		RdaView.getInstance().repaint();
 	}
 }

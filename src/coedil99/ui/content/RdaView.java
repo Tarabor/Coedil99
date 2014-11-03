@@ -3,6 +3,9 @@ package coedil99.ui.content;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
@@ -28,7 +31,7 @@ public class RdaView extends JFrame {
 	private RdaView() {
 		setMinimumSize(new Dimension(500, 500));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RdaView.class.getResource(ICON_FRAME)));
 		
@@ -37,6 +40,14 @@ public class RdaView extends JFrame {
 		lblCompilazioneRichestaDacquisto.setText("Compilazione Richesta D'Acquisto");
 		lblCompilazioneRichestaDacquisto.setEditable(false);
 		getContentPane().add(lblCompilazioneRichestaDacquisto, BorderLayout.NORTH);
+		
+		this.addWindowListener(new WindowAdapter() {
+			   public void windowClosing(WindowEvent evt) {
+				   remove(tb);
+				   remove(nlRrda);
+				   dispose();
+				   }
+				  });
 		
 	}
 	
@@ -48,19 +59,20 @@ public class RdaView extends JFrame {
 		return instance;
 	}
 	
-	public void nuovaSchedaRda(Item[] datiItems){
+	public void nuovaSchedaRda(){
 		this.tb = new TabRda();
-		this.nlRrda = new PopupNewLineRDA();
-		this.nlRrda.setElements(datiItems);
 		add(tb);
 	}
 	
-	public void showMakeNewLineRda(){
+	public void showMakeNewLineRda(Item[] datiItems){
+		this.nlRrda = new PopupNewLineRDA();
+		this.nlRrda.setElements(datiItems);
 		this.nlRrda.setVisible(true);
 	}
 	
 	public void hideMakeNewLineRda(){
 		this.nlRrda.setVisible(false);
+		this.remove(nlRrda);
 	}
 	
 	
@@ -72,7 +84,8 @@ public class RdaView extends JFrame {
 
 	public void setButtonSalvaInvisible() {
 		this.tb.setSalvaInvisible();
-		
+		this.remove(tb);
+		this.remove(nlRrda);
 	}
 	
 }

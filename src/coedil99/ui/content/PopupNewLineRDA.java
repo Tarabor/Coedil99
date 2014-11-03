@@ -71,6 +71,7 @@ public class PopupNewLineRDA extends JFrame{
 	private void initGui(){
 		setMinimumSize(new Dimension(700, 400));
 		setPreferredSize(new Dimension(800, 400));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Apri...");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopupNewLineRDA.class.getResource(ICON_FRAME)));
 		getContentPane().setLayout(new BorderLayout(0, 0));
