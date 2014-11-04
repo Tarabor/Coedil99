@@ -1,21 +1,20 @@
 package coedil99.application.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import coedil99.model.MOrdine;
 import coedil99.model.MRaccoglitoreRDA;
+import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
+import coedil99.persistentmodel.OrdineDAO;
 import coedil99.ui.content.RdaView;
 import coedil99.ui.content.OrdiniView;
 
 
-public class CtrlGestisciRDA {
+public class CtrlGestisciRDA implements Controller{
 	
-	
-	private HashMap< Item , Integer > rda;
-	private ArrayList<MOrdine> ordini = new ArrayList<MOrdine>();
+
+	private MOrdine newOrdine;
 	
 	private static CtrlGestisciRDA instance;
 	
@@ -26,20 +25,7 @@ public class CtrlGestisciRDA {
 		return instance;
 	}
 	
-	/*
-	 * Creazione RDA 
-	 */
-	public void creaRDA(){
-		this.rda = new HashMap<Item , Integer >();
-	}
-	
-	/*
-	 * Metodo che restituisce Il contenuto di raccoglitore
-	 */
-	public ArrayList<Item> getListaRDA(){
-		
-		return null;
-	}
+	private CtrlGestisciRDA(){}
 	
 	
 	public Item[] loadItems() {
@@ -67,17 +53,18 @@ public class CtrlGestisciRDA {
 	 * SEZIONE ORDINI
 	 */
 	public void apriOrdini() {
-
+		OrdiniView.getInstance().setOrdini(OrdineDAO.listOrdineByQuery(null, null));
 		OrdiniView.getInstance().setElements(MRaccoglitoreRDA.getInstance().getRDAArray());
+		this.createOrdine();
 		OrdiniView.getInstance().setVisible(true);
 	}
 	
 	public void createOrdine(){
-		this.ordini.add(new MOrdine());
+		this.newOrdine = new MOrdine();
 	}
 	
-	public void closeOrdine(int index){
-		this.ordini.remove(index);
+	public void apriFornitore(Fornitore f){
+		this.newOrdine.setFornitore(f);
 	}
 	
 	public void inviaRda(ArrayList<Object[]> tableData) {
@@ -89,5 +76,10 @@ public class CtrlGestisciRDA {
 		RdaView.getInstance().dispose();
 		RdaView.getInstance().revalidate();
 		RdaView.getInstance().repaint();
+	}
+
+	public void salvaOrdine(String consegnaPrevista, Object[] elements) {
+		this.newOrdine.salva(consegnaPrevista, elements);
+		
 	}
 }

@@ -30,11 +30,9 @@ import coedil99.ui.template.RdaTableModel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.FlowLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
@@ -48,6 +46,7 @@ public class OrdiniView extends JFrame {
 	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
 	private final String ICON_ARROW = "/coedil99/ui/img/arrow_icon.png";
 	private JPanel panel;
+	private OrdinePanel newOrdine;
 	private JList<ElementoRDA> element;
 	
 	private JTabbedPane tabbedPane;
@@ -55,17 +54,15 @@ public class OrdiniView extends JFrame {
 	private final String TITLE_FRAME  = "Gestione Ordini";
 	private JTable rda;
 	private String [] tableHeader = new String[] {
-			"ID ORDINE", "CONSEGNA PREVISTA", "CONSEGNA EFFETTIVA", "RITARDO"};
+			"ID", "CONSEGNA PREVISTA", "CONSEGNA EFFETTIVA", "RITARDO"};
 	private static final Font FONT_TABLE_HEADER = new Font("Century Gothic", Font.BOLD, 14);
 	private static final Font FONT_TABLE = new Font("Century Gothic", Font.PLAIN, 14);
 	
 	protected String[] columnToolTips = {
-			"ID univoco dell'elemento",
-			"Il tipo di elemento",
-		    "Il materiale della lastra",
-		    "Il diametro del bullone",
-		    "La lunghezza dell'elemento",
-		    "Numero di pezzi da ordinare"};
+			"ID univoco dell'ordine",
+			"Data di consegna prevista",
+		    "Data di consegna effettiva",
+		    "Ritardo"};
 	
 
 
@@ -111,13 +108,13 @@ public class OrdiniView extends JFrame {
 		
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(20, 20, 20, 20));
-		panel.setMinimumSize(new Dimension(500, 0));
+		panel.setMinimumSize(new Dimension(400, 0));
 		panel.setLayout(new BorderLayout(0, 0));
 		Etichetta rda_label = new Etichetta("RICHIESTE DI ACQUISTO");
 		rda_label.setMaximumSize(new Dimension(200,30));
 		panel.add(rda_label , BorderLayout.NORTH);
 		element.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		panel.add(element, BorderLayout.CENTER);
+		panel.add(new JScrollPane(element), BorderLayout.CENTER);
 		splitPane.setLeftComponent(panel);
 		
 		JPanel panel_1 = new JPanel();
@@ -132,7 +129,7 @@ public class OrdiniView extends JFrame {
 		addButton.setIcon(new ImageIcon(OrdiniView.class.getResource(ICON_ARROW)));
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				element.getSelectedValue();
+				newOrdine.addElement( element.getSelectedValue());
 			}
 		});
 		panel_2.add(addButton);
@@ -175,10 +172,16 @@ public class OrdiniView extends JFrame {
 		rda.setRowHeight(30);
 		rda.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JSplitPane sp = new JSplitPane();
-		sp.setLeftComponent(new JScrollPane(rda));
-		sp.setRightComponent(new OrdinePanel());
+		sp.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		JScrollPane scrollPane = new JScrollPane(rda);
+		scrollPane.setMinimumSize(new Dimension(23, 100));
+		sp.setLeftComponent(scrollPane);
+		this.newOrdine = new OrdinePanel();
+		sp.setRightComponent(this.newOrdine);
+		
+		JLabel lblNuo = new Etichetta("Nuovo Ordine");
+		newOrdine.add(lblNuo, BorderLayout.NORTH);
 		tabbedPane.addTab("Storico Ordini", null, sp, null);
-	
 	}
 
 
@@ -194,7 +197,13 @@ public class OrdiniView extends JFrame {
 	}
 	
 	public void setOrdini(Ordine [] listData){
-		
+		for(Ordine o : listData){
+			((RdaTableModel) this.rda.getModel()).
+			 addRow(new Object[]{o.getID(),
+					             o.getDataConsegnaPrevista(),
+					             o.getDataConsegnaEffettiva(),
+					             o.getRitardo()});
+		}
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
@@ -257,6 +266,7 @@ public class OrdiniView extends JFrame {
 	        JPanel p = new JPanel(new BorderLayout(0, 0));
 	        p.add(label, BorderLayout.CENTER);
 	        JButton b = new JButton(((ElementoRDA) value).getQuantita()+"");
+	        b.setMinimumSize(new Dimension(10,50));
 	        b.setFont(new Font("sansserif",Font.BOLD,14));
 	        p.add(b, BorderLayout.EAST);
 	        return p;

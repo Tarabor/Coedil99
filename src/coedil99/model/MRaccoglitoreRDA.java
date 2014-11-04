@@ -91,7 +91,9 @@ public class MRaccoglitoreRDA implements AModel {
 	}
 	
 	public ElementoRDA[] getRDAArray(){
-		ElementoRDAListCollection list =((RaccoglitoreRDA)this.model).elementoRDAs;
+		RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
+		this.setPersistentModel(raccoglitore);
+		ElementoRDAListCollection list = raccoglitore.elementoRDAs;
 		int l = list.size();
 		ElementoRDA[] elements = new ElementoRDA[l];
 		for(int i = 0; i<l; i++)

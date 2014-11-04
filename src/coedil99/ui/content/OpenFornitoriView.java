@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
+import coedil99.application.controller.Controller;
 import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.ui.template.Etichetta;
@@ -37,12 +38,17 @@ public class OpenFornitoriView extends JFrame {
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_USER = "/coedil99/ui/img/user_icon.png";
 	private final String ICON_ADD = "/coedil99/ui/img/add_cliente.png";
+	private Controller controller;
 	
 	
 	public OpenFornitoriView() {
 		super();
 		this.init();
 		this.initGui();
+	}
+	
+	public void setController(Controller c){
+		this.controller = c;
 	}
 	
 	
@@ -143,7 +149,7 @@ public class OpenFornitoriView extends JFrame {
 	}
 	
 	private void apriFornitore(){
-		CtrlGestisciMagazzino.getInstance().apriFornitore(element.getSelectedValue());
+		this.controller.apriFornitore(element.getSelectedValue());
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
