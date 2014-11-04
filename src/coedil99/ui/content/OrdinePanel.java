@@ -11,7 +11,6 @@ import java.awt.Toolkit;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.ElementoRDA;
@@ -42,8 +41,6 @@ public class OrdinePanel extends JPanel {
 	private final String ICON_BULLONE = "/coedil99/ui/img/bullone.png";
 	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
 	private JTextField consegnaPrevista;
-	private JTextField consegnaEffettiva;
-	private JTextField ritardo;
 	private JButton fornitoreButton;
 	private JButton salvaButton;
 	
@@ -71,31 +68,9 @@ public class OrdinePanel extends JPanel {
 		consegnaPrevista = new CampoTesto();
 		verticalBox.add(consegnaPrevista);
 		consegnaPrevista.setColumns(10);
-		
-		Box verticalBox_2 = Box.createVerticalBox();
-		verticalBox_1.add(verticalBox_2);
-		
-		Etichetta tchtConsegnaEffettiva = new Etichetta("CONSEGNA PREVISTA");
-		tchtConsegnaEffettiva.setText("CONSEGNA EFFETTIVA");
-		verticalBox_2.add(tchtConsegnaEffettiva);
-		
-		consegnaEffettiva = new CampoTesto();
-		consegnaEffettiva.setColumns(10);
-		verticalBox_2.add(consegnaEffettiva);
-		
-		Box verticalBox_3 = Box.createVerticalBox();
-		verticalBox_1.add(verticalBox_3);
-		
-		Etichetta tchtRitardo = new Etichetta("CONSEGNA PREVISTA");
-		tchtRitardo.setText("RITARDO\r\n");
-		verticalBox_3.add(tchtRitardo);
-		
-		ritardo = new CampoTesto();
-		ritardo.setColumns(10);
-		verticalBox_3.add(ritardo);
 		fornitoreButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CtrlGestisciMagazzino.getInstance().listaFornitori();
+				CtrlGestisciRDA.getInstance().listaFornitori();
 			}
 		});
 		
@@ -112,10 +87,7 @@ public class OrdinePanel extends JPanel {
 		JButton btnNewButton_1 = new JButton("Salva");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CtrlGestisciRDA.getInstance().salvaOrdine(
-						getConsegnaPrevista(),
-						getElements()
-						);
+				CtrlGestisciRDA.getInstance().salvaOrdine(getConsegnaPrevista());
 			}
 		});
 		panel_1.add(btnNewButton_1, BorderLayout.EAST);
@@ -124,8 +96,9 @@ public class OrdinePanel extends JPanel {
 	}
 	
 	public void initFornitoreButton(){
-		this.fornitoreButton = new JButton("Aggiungi Fornitore");
+		this.fornitoreButton.setText("Aggiungi Fornitore");
 		this.fornitoreButton.setMinimumSize(new Dimension(100, 9));
+		this.fornitoreButton.setEnabled(true);
 		this.fornitoreButton.setIcon(new ImageIcon(OrdinePanel.class.getResource("/coedil99/ui/img/add_cliente.png")));
 	}
 	
@@ -145,6 +118,7 @@ public class OrdinePanel extends JPanel {
 	
 	public void setFornitore(Fornitore f){
 		this.fornitoreButton.setText(f.getDitta());
+		this.fornitoreButton.setIcon(new ImageIcon(OrdinePanel.class.getResource("/coedil99/ui/img/user_icon.png")));
 		this.fornitoreButton.setEnabled(false);
 	}
 	
@@ -152,13 +126,6 @@ public class OrdinePanel extends JPanel {
 		return this.consegnaPrevista.getText();
 	}
 	
-	public String getConsegnaEffettiva(){
-		return this.consegnaEffettiva.getText();
-	}
-	
-	public String getRitardo(){
-		return this.ritardo.getText();
-	}
 	
 	public Object[] getElements(){
 		return ((DefaultListModel<ElementoRDA>)this.elements.getModel()).toArray();

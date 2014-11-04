@@ -24,7 +24,6 @@ public class MagazzinoView extends JFrame {
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private TabMagazzino tb;
 	private newItem ni;
-	private OpenFornitoriView of;
 	
 
 	/**
@@ -37,7 +36,6 @@ public class MagazzinoView extends JFrame {
 		setBounds(100, 100, 450, 300);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MagazzinoView.class.getResource(ICON_FRAME)));
 		this.ni = new newItem();
-		this.of = new OpenFornitoriView();
 		
 	}
 	
@@ -68,12 +66,12 @@ public class MagazzinoView extends JFrame {
 	}
 	
 	public void showFornitori(Fornitore [] fornitori){
-		this.of.setElements(fornitori);
-		this.of.setVisible(true);
+		OpenFornitoriView.getInstance().setElements(fornitori);
+		OpenFornitoriView.getInstance().setVisible(true);
 	}
 	
 	public void hideFornitori(){
-		this.of.setVisible(false);
+		OpenFornitoriView.getInstance().setVisible(false);
 	}
 	
 	public void updateFornitore(String ditta) {

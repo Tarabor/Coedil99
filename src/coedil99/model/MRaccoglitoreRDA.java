@@ -100,4 +100,17 @@ public class MRaccoglitoreRDA implements AModel {
 			elements[i] = list.get(i);
 		return elements;
 	}
+	
+	public ElementoRDA getElementAt(int index){
+		return ((RaccoglitoreRDA)this.getPersistentModel()).elementoRDAs.get(index);
+	}
+	
+	public void removeElementoRDA(int index){
+		 ((RaccoglitoreRDA)this.getPersistentModel()).elementoRDAs.remove(index);
+	}
+
+	public void salva() {
+		RaccoglitoreRDADAO.save(((RaccoglitoreRDA)this.getPersistentModel()));
+		
+	}
 }

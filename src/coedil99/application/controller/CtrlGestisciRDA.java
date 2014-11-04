@@ -3,9 +3,12 @@ package coedil99.application.controller;
 import java.util.ArrayList;
 import coedil99.model.MOrdine;
 import coedil99.model.MRaccoglitoreRDA;
+import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.FornitoreDAO;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
+import coedil99.persistentmodel.Ordine;
 import coedil99.persistentmodel.OrdineDAO;
 import coedil99.ui.content.RdaView;
 import coedil99.ui.content.OrdiniView;
@@ -53,18 +56,31 @@ public class CtrlGestisciRDA implements Controller{
 	 * SEZIONE ORDINI
 	 */
 	public void apriOrdini() {
+
 		OrdiniView.getInstance().setOrdini(OrdineDAO.listOrdineByQuery(null, null));
 		OrdiniView.getInstance().setElements(MRaccoglitoreRDA.getInstance().getRDAArray());
 		this.createOrdine();
+		OrdiniView.getInstance().reset();
 		OrdiniView.getInstance().setVisible(true);
+	}
+	
+	public void removeElementoRDA(int index){
+		MRaccoglitoreRDA.getInstance().removeElementoRDA(index);
+		OrdiniView.getInstance().removeElementRDA(index);
 	}
 	
 	public void createOrdine(){
 		this.newOrdine = new MOrdine();
 	}
 	
+	public void listaFornitori(){
+		OrdiniView.getInstance().showFornitori(FornitoreDAO.listFornitoreByQuery(null, null));
+	}
+	
 	public void apriFornitore(Fornitore f){
 		this.newOrdine.setFornitore(f);
+		OrdiniView.getInstance().getNewOrdine().setFornitore(f);
+		OrdiniView.getInstance().hideFornitori();
 	}
 	
 	public void inviaRda(ArrayList<Object[]> tableData) {
@@ -78,8 +94,17 @@ public class CtrlGestisciRDA implements Controller{
 		RdaView.getInstance().repaint();
 	}
 
-	public void salvaOrdine(String consegnaPrevista, Object[] elements) {
-		this.newOrdine.salva(consegnaPrevista, elements);
-		
+	public void salvaOrdine(String consegnaPrevista) {
+		this.newOrdine.salva(consegnaPrevista);
+		MRaccoglitoreRDA.getInstance().salva();
+		OrdiniView.getInstance().reset();
+		OrdiniView.getInstance().updateOrdini((Ordine)this.newOrdine.getPersistentModel());
+		this.createOrdine();
+	}
+
+	public void addElementoRDAtoOrdine(int index) {
+		ElementoRDA e = MRaccoglitoreRDA.getInstance().getElementAt(index);
+		this.newOrdine.aggiungiElemento( e);
+		OrdiniView.getInstance().getNewOrdine().addElement(e);
 	}
 }

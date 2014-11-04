@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,8 +20,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
 
 
+import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.ElementoRDA;
+import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Ordine;
 import coedil99.persistentmodel.Trave;
@@ -54,7 +57,7 @@ public class OrdiniView extends JFrame {
 	private final String TITLE_FRAME  = "Gestione Ordini";
 	private JTable rda;
 	private String [] tableHeader = new String[] {
-			"ID", "CONSEGNA PREVISTA", "CONSEGNA EFFETTIVA", "RITARDO"};
+			"ID", "CONSEGNA PREVISTA", "CONSEGNA EFFETTIVA", "RITARDO", "FORNITORE"};
 	private static final Font FONT_TABLE_HEADER = new Font("Century Gothic", Font.BOLD, 14);
 	private static final Font FONT_TABLE = new Font("Century Gothic", Font.PLAIN, 14);
 	
@@ -76,8 +79,7 @@ public class OrdiniView extends JFrame {
 	}
 	
 	private void init(){
-		this.element = new JList<ElementoRDA>();
-		
+		this.element = new JList<ElementoRDA>(new DefaultListModel<ElementoRDA>());
 		this.element.setCellRenderer(new ListCellRenderer());
 	}
 	
@@ -129,7 +131,12 @@ public class OrdiniView extends JFrame {
 		addButton.setIcon(new ImageIcon(OrdiniView.class.getResource(ICON_ARROW)));
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				newOrdine.addElement( element.getSelectedValue());
+				
+					int index = element.getSelectedIndex();
+					if( index >= 0){
+						CtrlGestisciRDA.getInstance().addElementoRDAtoOrdine(index);
+						CtrlGestisciRDA.getInstance().removeElementoRDA(index);
+					}
 			}
 		});
 		panel_2.add(addButton);
@@ -192,8 +199,18 @@ public class OrdiniView extends JFrame {
 		return instance;
 	}
 	
+	public OrdinePanel getNewOrdine(){
+		return this.newOrdine;
+	}
+	
 	public void setElements(ElementoRDA [] listData){
-		this.element.setListData(listData);
+		((DefaultListModel<ElementoRDA>) this.element.getModel()).clear();
+		for( int i = 0 ; i < listData.length ; i++)
+		((DefaultListModel<ElementoRDA>) this.element.getModel()).addElement(listData[i]);
+	}
+	
+	public void removeElementRDA(int i){
+		((DefaultListModel<ElementoRDA>) this.element.getModel()).remove(i);
 	}
 	
 	public void setOrdini(Ordine [] listData){
@@ -202,8 +219,18 @@ public class OrdiniView extends JFrame {
 			 addRow(new Object[]{o.getID(),
 					             o.getDataConsegnaPrevista(),
 					             o.getDataConsegnaEffettiva(),
-					             o.getRitardo()});
+					             o.getRitardo(),
+					             o.getFornitore().getDitta()});
 		}
+	}
+	
+	public void updateOrdini(Ordine o){
+		((RdaTableModel) this.rda.getModel()).
+		 addRow(new Object[]{o.getID(),
+				             o.getDataConsegnaPrevista(),
+				             o.getDataConsegnaEffettiva(),
+				             o.getRitardo(),
+				             o.getFornitore().getDitta()});
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
@@ -271,5 +298,20 @@ public class OrdiniView extends JFrame {
 	        p.add(b, BorderLayout.EAST);
 	        return p;
 	    }
+	}
+
+	public void showFornitori(Fornitore[] listFornitoreByQuery) {
+		OpenFornitoriView of = OpenFornitoriView.getInstance();
+		of.setElements(listFornitoreByQuery);
+		of.setController(CtrlGestisciRDA.getInstance());
+		of.setVisible(true);	
+	}
+
+	public void hideFornitori() {
+		OpenFornitoriView.getInstance().setVisible(false);
+	}
+
+	public void reset() {
+		this.newOrdine.reset();
 	}
 }

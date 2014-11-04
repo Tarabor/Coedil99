@@ -34,15 +34,22 @@ public class OpenFornitoriView extends JFrame {
 
 	private JList<Fornitore> element;
 	
+	private static OpenFornitoriView instance;
+	
 	private JComboBox comboBox;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_USER = "/coedil99/ui/img/user_icon.png";
 	private final String ICON_ADD = "/coedil99/ui/img/add_cliente.png";
-	private Controller controller;
+	private Controller controller = CtrlGestisciMagazzino.getInstance();
 	
+	public static OpenFornitoriView getInstance() {
+		if(instance == null)
+			instance = new OpenFornitoriView();
+		
+		return instance;
+	}
 	
-	public OpenFornitoriView() {
-		super();
+	private OpenFornitoriView() {
 		this.init();
 		this.initGui();
 	}

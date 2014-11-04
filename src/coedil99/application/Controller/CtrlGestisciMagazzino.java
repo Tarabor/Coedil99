@@ -5,15 +5,10 @@ import java.util.ArrayList;
 import coedil99.model.MMagazzino;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.BulloneDAO;
-import coedil99.persistentmodel.Cliente;
-import coedil99.persistentmodel.ClienteDAO;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.FornitoreDAO;
-import coedil99.persistentmodel.Indirizzo;
-import coedil99.persistentmodel.Item;
-import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Magazzino;
@@ -22,9 +17,8 @@ import coedil99.persistentmodel.Trave;
 import coedil99.persistentmodel.TraveDAO;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.MagazzinoView;
-import coedil99.ui.content.newItem;
 
-public class CtrlGestisciMagazzino {
+public class CtrlGestisciMagazzino implements Controller{
 
 	private static CtrlGestisciMagazzino instance;
 	private ElementoMagazzino em;

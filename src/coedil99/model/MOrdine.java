@@ -24,15 +24,18 @@ public class MOrdine implements AModel {
 		this.model = model;
 	}
 
-	public void salva(String consegnaPrevista, Object[] elements) {
+	public void salva(String consegnaPrevista) {
 		Ordine o = ((Ordine) this.model);
-		for(int i=0; i<elements.length; i++)
-			o.elementoRDAs.add(i, (ElementoRDA)elements[i]);
 		o.setDataConsegnaPrevista(Service.getDatadb(consegnaPrevista));
 		OrdineDAO.save(o);
 	}
 
 	public void setFornitore(Fornitore f) {
 		((Ordine) this.model).setFornitore(f);
+	}
+
+	public void aggiungiElemento(ElementoRDA value) {
+		((Ordine) this.model).elementoRDAs.add(value);
+		
 	}
 }
