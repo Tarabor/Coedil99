@@ -326,14 +326,14 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox_8 = Box.createVerticalBox();
 		panel_5.add(verticalBox_8);
 				
-				Etichetta etichetta = new Etichetta("SALVA");
-				etichetta.setText("  SALVA");
-				verticalBox_8.add(etichetta);
+		Etichetta etichetta = new Etichetta("SALVA");
+		etichetta.setText("  SALVA");
+		verticalBox_8.add(etichetta);
 				
-						JButton btnSalvaPreventivo = new JButton("Salva Preventivo");
-						btnSalvaPreventivo.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-						verticalBox_8.add(btnSalvaPreventivo);
-				btnSalvaPreventivo.addActionListener(new ActionListener() {
+		JButton btnSalvaPreventivo = new JButton("Salva Preventivo");
+		btnSalvaPreventivo.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		verticalBox_8.add(btnSalvaPreventivo);
+		btnSalvaPreventivo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						salva();
 					}
@@ -398,6 +398,7 @@ public class TabContent extends JPanel implements Observer {
 	
 	public void setDistinta(ArrayList<Object[]> dati) {
 		this.distinta.setModel(new MyTableModel(dati, this.tableHeader));
+		((MyTableModel)this.distinta.getModel()).fireTableDataChanged();
 	}
 	
 	private void deleteRow(){

@@ -1,16 +1,11 @@
 package coedil99.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
 import coedil99.application.controller.CtrlGestisciMagazzino;
-import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.BulloneDAO;
@@ -18,10 +13,8 @@ import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.ElementoRDA;
-import coedil99.persistentmodel.ElementoRDADAO;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Item;
-import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Magazzino;
@@ -31,10 +24,10 @@ import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.RaccoglitoreRDADAO;
 import coedil99.persistentmodel.Trave;
 import coedil99.persistentmodel.TraveDAO;
-import coedil99.ui.MagazzinoView;
 
 public class MMagazzino implements AModel,Observer {
 	
+	private static final int MAGAZZINO_N = 0;
 	public APersistentModel model;
 	private ElementoMagazzino em;
 
@@ -53,9 +46,10 @@ public class MMagazzino implements AModel,Observer {
 	}
 	
 	public ArrayList<Object[]> getElementiMagazzino() {
-		ArrayList<Object[]> dati = new ArrayList<>();
+		ArrayList<Object[]> dati = new ArrayList<Object[]>();
 		
-		Magazzino magazzino = (Magazzino)this.getPersistentModel();
+		Magazzino magazzino = MagazzinoDAO.loadMagazzinoByQuery("id <> " + MAGAZZINO_N, "ID");
+		this.model = magazzino;
 		Iterator i = magazzino.elementoMagazzino__List_.getIterator();
 		while(i.hasNext()){
 			ElementoMagazzino e = (ElementoMagazzino)i.next();

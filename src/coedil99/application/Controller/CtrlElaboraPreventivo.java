@@ -1,11 +1,9 @@
 package coedil99.application.controller;
 
 
-import coedil99.model.MDistintaLavorazione;
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.ClienteDAO;
-import coedil99.persistentmodel.DistintaLavorazione;
 import coedil99.persistentmodel.Indirizzo;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.PreventivoDAO;
@@ -81,9 +79,8 @@ public class CtrlElaboraPreventivo {
 	
 
 	public void chiudiPreventivo(int index){
-		
-		this.preventivi.remove(index);
 		this.preventivi.get(index).deleteObservers();
+		this.preventivi.remove(index);
 		Coedil99View.getInstance().decreaseTabCount();
 		Coedil99View.getInstance().eliminaScheda(index);
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 0){
