@@ -58,6 +58,10 @@ public class OpenFornitoriView extends JFrame {
 		this.controller = c;
 	}
 	
+	public Controller getController(){
+		return this.controller;
+	}
+	
 	
 	public void setElements(Fornitore[] listData){
 		this.element.setListData(listData);

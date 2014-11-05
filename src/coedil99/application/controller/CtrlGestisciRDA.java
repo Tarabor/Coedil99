@@ -107,4 +107,11 @@ public class CtrlGestisciRDA implements Controller{
 		this.newOrdine.aggiungiElemento( e);
 		OrdiniView.getInstance().getNewOrdine().addElement(e);
 	}
+
+	@Override
+	public void nuovoFornitore(String codice, String telefono, String ditta) {
+		
+		//this.apriFornitore( );
+		
+	}
 }

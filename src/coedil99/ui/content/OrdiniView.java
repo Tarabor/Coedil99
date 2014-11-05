@@ -181,7 +181,7 @@ public class OrdiniView extends JFrame {
 		JSplitPane sp = new JSplitPane();
 		sp.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		JScrollPane scrollPane = new JScrollPane(rda);
-		scrollPane.setMinimumSize(new Dimension(23, 100));
+		scrollPane.setMinimumSize(new Dimension(23, 200));
 		sp.setLeftComponent(scrollPane);
 		this.newOrdine = new OrdinePanel();
 		sp.setRightComponent(this.newOrdine);
@@ -220,7 +220,7 @@ public class OrdiniView extends JFrame {
 					             o.getDataConsegnaPrevista(),
 					             o.getDataConsegnaEffettiva(),
 					             o.getRitardo(),
-					             o.getFornitore().getDitta()});
+					            (o.getFornitore() == null) ? "" :  o.getFornitore().getDitta()});
 		}
 	}
 	
@@ -230,7 +230,8 @@ public class OrdiniView extends JFrame {
 				             o.getDataConsegnaPrevista(),
 				             o.getDataConsegnaEffettiva(),
 				             o.getRitardo(),
-				             o.getFornitore().getDitta()});
+				             (o.getFornitore() == null) ? "" :  o.getFornitore().getDitta()});
+		((RdaTableModel) this.rda.getModel()).fireTableDataChanged();
 	}
 	
 	private class ListCellRenderer extends DefaultListCellRenderer {
