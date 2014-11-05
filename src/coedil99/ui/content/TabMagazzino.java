@@ -23,9 +23,6 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import javax.swing.JList;
-
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -33,10 +30,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-import coedil99.application.controller.CtrlElaboraPreventivo;
 import coedil99.application.controller.CtrlGestisciMagazzino;
-import coedil99.persistentmodel.Item;
-import coedil99.persistentmodel.Preventivo;
 import coedil99.ui.template.MagazzinoTableModel;
 
 public class TabMagazzino extends JPanel {
@@ -67,7 +61,7 @@ public class TabMagazzino extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TabMagazzino(ArrayList<Object[]> data) {
+	public TabMagazzino() {
 		setBorder(new EmptyBorder(50, 0, 0, 0));
 		setMinimumSize(new Dimension(0, 0));
 		setBackground(Color.WHITE);
@@ -119,7 +113,7 @@ public class TabMagazzino extends JPanel {
 		add(panel_2, gbc_panel_2);
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		magazzino = new JTable(new MagazzinoTableModel(data,tableHeader)) { //Alla creazione della tabella inseriamo i tooltips
+		magazzino = new JTable(new DefaultTableModel()) { //Alla creazione della tabella inseriamo i tooltips
 		  
 		    //Implement table header tool tips.
 		    protected JTableHeader createDefaultTableHeader() {

@@ -17,6 +17,7 @@ import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Trave;
+import coedil99.ui.OrdiniView;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 

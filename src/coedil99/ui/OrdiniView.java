@@ -1,4 +1,4 @@
-package coedil99.ui.content;
+package coedil99.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,6 +27,8 @@ import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Ordine;
 import coedil99.persistentmodel.Trave;
+import coedil99.ui.content.OpenFornitoriView;
+import coedil99.ui.content.OrdinePanel;
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.RdaTableModel;
 

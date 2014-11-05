@@ -42,7 +42,7 @@ public class CtrlGestisciMagazzino implements CtrlFornitore{
 /*++++++++++++++++ Gestione Magazzino ++++++++++++++++*/
 	
 	public void apriMagazzino() {
-		MagazzinoView.getInstance().nuovaSchedaMagazzino(this.estraiDatiForView());
+		MagazzinoView.getInstance().setMagazzino(this.estraiDatiForView());
 		MagazzinoView.getInstance().setVisible(true);
 	}
 	

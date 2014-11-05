@@ -13,8 +13,8 @@ import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Ordine;
 import coedil99.persistentmodel.OrdineDAO;
 import coedil99.ui.Coedil99View;
+import coedil99.ui.OrdiniView;
 import coedil99.ui.content.RdaView;
-import coedil99.ui.content.OrdiniView;
 
 
 public class CtrlGestisciRDA implements CtrlFornitore{

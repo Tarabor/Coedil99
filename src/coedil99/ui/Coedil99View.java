@@ -8,7 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -36,11 +35,8 @@ import javax.swing.JSplitPane;
 
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
-import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Preventivo;
-import coedil99.ui.content.OpenFornitoriView;
 import coedil99.ui.content.TabContent;
-import coedil99.ui.content.TabMagazzino;
 import coedil99.ui.content.newCliente;
 import coedil99.ui.content.newFornitore;
 import coedil99.ui.template.Scheda;
@@ -127,12 +123,6 @@ public class Coedil99View extends JFrame {
 	public void nuovaScheda(){
 		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.defaulttitle"), new TabContent());
 		this.tabbedPane.setTabComponentAt(this.tab_count , new Scheda(this.tabbedPane));
-		this.tabbedPane.setSelectedIndex(this.tab_count);
-		this.tab_count++;
-	}
-	
-	public void nuovaSchedaMagazzino(ArrayList<Object[]> datiMagazzino){     //togliere
-		this.tabbedPane.addTab(bundle.getString("gui.tabcontent.magazzino"), new TabMagazzino(datiMagazzino));
 		this.tabbedPane.setSelectedIndex(this.tab_count);
 		this.tab_count++;
 	}
