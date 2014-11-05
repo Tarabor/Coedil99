@@ -2,19 +2,12 @@ package coedil99.ui.content;
 
 import javax.swing.JFrame;
 
-import java.awt.GridLayout;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 import javax.swing.JButton;
 
-import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 
@@ -112,7 +105,7 @@ public class newFornitore extends JFrame {
 		String dittaF= this.textField_2.getText();
 		String tel = this.textField.getText();
 		
-		CtrlGestisciMagazzino.getInstance().nuovoFornitore(codiceF, tel, dittaF);
+		OpenFornitoriView.getInstance().getController().nuovoFornitore(codiceF, tel, dittaF);
 		
 	}
 

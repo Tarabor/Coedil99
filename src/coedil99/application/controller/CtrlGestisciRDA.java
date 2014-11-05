@@ -1,6 +1,8 @@
 package coedil99.application.controller;
 
 import java.util.ArrayList;
+
+import coedil99.model.MFornitore;
 import coedil99.model.MOrdine;
 import coedil99.model.MRaccoglitoreRDA;
 import coedil99.persistentmodel.ElementoRDA;
@@ -10,11 +12,12 @@ import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Ordine;
 import coedil99.persistentmodel.OrdineDAO;
+import coedil99.ui.Coedil99View;
 import coedil99.ui.content.RdaView;
 import coedil99.ui.content.OrdiniView;
 
 
-public class CtrlGestisciRDA implements Controller{
+public class CtrlGestisciRDA implements CtrlFornitore{
 	
 
 	private MOrdine newOrdine;
@@ -110,8 +113,10 @@ public class CtrlGestisciRDA implements Controller{
 
 	@Override
 	public void nuovoFornitore(String codice, String telefono, String ditta) {
-		
-		//this.apriFornitore( );
+		MFornitore f = new MFornitore();
+		f.salvaNuovoFornitore(codice, telefono, ditta);	
+		Coedil99View.getInstance().hideNewFornitori();
+		this.apriFornitore((Fornitore)f.getPersistentModel());	
 		
 	}
 }

@@ -4,25 +4,17 @@ import java.util.ArrayList;
 
 import coedil99.model.MFornitore;
 import coedil99.model.MMagazzino;
-import coedil99.persistentmodel.Bullone;
-import coedil99.persistentmodel.BulloneDAO;
-import coedil99.persistentmodel.ElementoMagazzino;
-import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.FornitoreDAO;
-import coedil99.persistentmodel.Lastra;
-import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Magazzino;
 import coedil99.persistentmodel.MagazzinoDAO;
-import coedil99.persistentmodel.Trave;
-import coedil99.persistentmodel.TraveDAO;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.MagazzinoView;
 
-public class CtrlGestisciMagazzino implements Controller{
+public class CtrlGestisciMagazzino implements CtrlFornitore{
 
 	private static CtrlGestisciMagazzino instance;
-	private ElementoMagazzino em;
+
 	private MMagazzino magazzino;
 	private int MAGAZZINO_N  = 0;
 	
@@ -87,6 +79,8 @@ public class CtrlGestisciMagazzino implements Controller{
 	public void nuovoFornitore(String codice, String telefono, String ditta) {	
 		MFornitore f = new MFornitore();
 		f.salvaNuovoFornitore(codice, telefono, ditta);	
+		Coedil99View.getInstance().hideNewFornitori();
+		this.apriFornitore((Fornitore)f.getPersistentModel());	
 	}
 	
 	public void listaFornitori() {

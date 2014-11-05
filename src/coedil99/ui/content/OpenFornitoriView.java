@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,7 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import coedil99.application.controller.Controller;
+import coedil99.application.controller.CtrlFornitore;
 import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.ui.template.Etichetta;
@@ -36,11 +35,10 @@ public class OpenFornitoriView extends JFrame {
 	
 	private static OpenFornitoriView instance;
 	
-	private JComboBox comboBox;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_USER = "/coedil99/ui/img/user_icon.png";
 	private final String ICON_ADD = "/coedil99/ui/img/add_cliente.png";
-	private Controller controller = CtrlGestisciMagazzino.getInstance();
+	private CtrlFornitore controller = CtrlGestisciMagazzino.getInstance();
 	
 	public static OpenFornitoriView getInstance() {
 		if(instance == null)
@@ -54,11 +52,11 @@ public class OpenFornitoriView extends JFrame {
 		this.initGui();
 	}
 	
-	public void setController(Controller c){
+	public void setController(CtrlFornitore c){
 		this.controller = c;
 	}
 	
-	public Controller getController(){
+	public CtrlFornitore getController(){
 		return this.controller;
 	}
 	
@@ -70,7 +68,6 @@ public class OpenFornitoriView extends JFrame {
 	private void init(){
 		this.element = new JList<Fornitore>();
 		this.element.setCellRenderer(new ListCellRenderer());
-		this.comboBox = new JComboBox();
 	}
 	
 	private void initGui(){
@@ -121,16 +118,7 @@ public class OpenFornitoriView extends JFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3);
-		
-		JLabel lblNewLabel_1 = new Etichetta("Nome:");
-		panel_3.add(lblNewLabel_1);
-		
-		 
-		comboBox.setPreferredSize(new Dimension(200, 25));
-		comboBox.setMinimumSize(new Dimension(100, 30));
-		comboBox.setEditable(true);
-		panel_3.add(comboBox);
-		
+
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);
 		

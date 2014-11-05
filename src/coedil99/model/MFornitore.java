@@ -23,9 +23,7 @@ public class MFornitore implements AModel {
 		f.setCodice(codice);
 		f.setTelefono(telefono);
 		f.setDitta(ditta);
+		this.model = f;
 		FornitoreDAO.save(f);
-		Coedil99View.getInstance().hideNewFornitori();
-		MagazzinoView.getInstance().hideFornitori();
-		CtrlGestisciMagazzino.getInstance().apriFornitore(f);	
 	}
 }
