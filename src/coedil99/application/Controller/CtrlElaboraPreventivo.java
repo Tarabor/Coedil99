@@ -64,9 +64,9 @@ public class CtrlElaboraPreventivo {
 		for (ElementoDistinta ed : elementi) {
 			//ItemDAO.save(ed.getItem()); non bisogna più salvare l'item, ma in un secondo momento bisognerà decrementare la quantità
 		}*/
-		DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
-		MDistintaLavorazione dist = new MDistintaLavorazione();
-		dist.setPersistentModel(dl);
+		//DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
+		//MDistintaLavorazione dist = new MDistintaLavorazione();
+		//dist.setPersistentModel(dl);
 		//dist.calcolaPrezzo();
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);

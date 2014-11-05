@@ -7,8 +7,17 @@ import coedil99.factory.PricingStrategyFactory;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.DistintaLavorazione;
 import coedil99.persistentmodel.ElementoDistinta;
+import coedil99.persistentmodel.ElementoDistintaDAO;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemDAO;
 
 public class MDistintaLavorazione extends Observable implements AModel {
+	
+	private int ITEM_ID 	 		 = 0;
+	private int ITEM	 	 		 = 1;
+	private int INDICAZIONE_INDEX 	 = 2;
+	private int N_PEZZI_INDEX 	     = 3;
+	private int MISURADITAGLIO_INDEX = 4;
 	
 	public APersistentModel model;
 	
@@ -40,5 +49,24 @@ public class MDistintaLavorazione extends Observable implements AModel {
 	
 	public void calcolaPrezzo() {
 		PricingStrategyFactory.getInstance().getBullonePercentDiscountStrategy().calcolaPrezzo(this);
+	}
+
+	public void createElementoDistinta(Object [][] data) {
+		ElementoDistinta e;
+		
+		for(int r = 0; r < data.length; r++){
+
+			if(r >= ((DistintaLavorazione) this.getPersistentModel()).elemento__List_.size()) {
+				e = ElementoDistintaDAO.createElementoDistinta();
+				((DistintaLavorazione) this.getPersistentModel()).elemento__List_.add(e);
+			}
+			else
+				e = ((DistintaLavorazione) this.getPersistentModel()).elemento__List_.get(r);
+			Item i = ItemDAO.loadItemByORMID((int)data[r][ITEM_ID]);
+			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
+			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
+			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
+			e.setItem(i);
+		}
 	}
 }

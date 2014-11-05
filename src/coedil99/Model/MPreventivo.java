@@ -13,11 +13,7 @@ import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Preventivo;
 
 public class MPreventivo extends Observable implements AModel {
-	private int ITEM_ID 	 		 = 0;
-	private int ITEM	 	 		 = 1;
-	private int INDICAZIONE_INDEX 	 = 2;
-	private int N_PEZZI_INDEX 	     = 3;
-	private int MISURADITAGLIO_INDEX = 4;
+
 	
 	public APersistentModel model;
 	
@@ -42,24 +38,11 @@ public class MPreventivo extends Observable implements AModel {
 		if(d  == null){
 			 d = DistintaLavorazioneDAO.createDistintaLavorazione();
 			 p.setDistinta(d);
-		}							
-		ElementoDistinta e;
-		for(int r = 0; r < data.length; r++){
-
-			if(r >= d.elemento__List_.size()){
-				e = ElementoDistintaDAO.createElementoDistinta();
-				d.elemento__List_.add(e);
-			}
-			else
-				e = d.elemento__List_.get(r);
-			Item i = ItemDAO.loadItemByORMID((int)data[r][ITEM_ID]);
-			e.setIndicazione((String)data[r][INDICAZIONE_INDEX]);
-			e.setNPezzi(Integer.parseInt(String.valueOf(data[r][N_PEZZI_INDEX])));
-			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
-			e.setItem(i);
 		}
+		
 		MDistintaLavorazione dist = new MDistintaLavorazione();
 		dist.setPersistentModel(d);
+		dist.createElementoDistinta(data);
 		dist.totale();
 		dist.calcolaPrezzo();
 		this.setChanged();
