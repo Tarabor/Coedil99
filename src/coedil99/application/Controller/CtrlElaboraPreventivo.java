@@ -52,13 +52,14 @@ public class CtrlElaboraPreventivo {
 	
 	public void salvaPreventivo( String data, String elemStrutt, String cartellino,boolean firmato, Object [][] distinta) {
 		MPreventivo mp = this.getPreventivoCorrente();
-		Preventivo  p  = ((Preventivo)mp.getPersistentModel());
-		mp.setDistinta(distinta);
+		mp.addObserver(CtrlGestisciMagazzino.getInstance().getMagazzino());
+		Preventivo  p  = ((Preventivo)mp.getPersistentModel());	
 		p.setDestinazioneMateriale(p.getCliente().getIndirizzo());
 		p.setElementoStrutturale(elemStrutt);
 		p.setCartellino(Integer.parseInt(cartellino));
 		p.setFirmato(firmato);
 		p.setNome(p.getCliente().getCognome()+" "+p.getData());
+		mp.setDistinta(distinta);
 		//p.setData(Service.getDatadb(data));
 		/*ArrayList<ElementoDistinta> elementi = mp.getDistinta();
 		for (ElementoDistinta ed : elementi) {
@@ -101,7 +102,6 @@ public class CtrlElaboraPreventivo {
 			Coedil99View.getInstance().setSaveVisible(true);
 		}	
 		mp.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
-		mp.addObserver(CtrlGestisciMagazzino.getInstance().getMagazzino());
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
 	
