@@ -112,7 +112,7 @@ public class newFornitore extends JFrame {
 		String dittaF= this.textField_2.getText();
 		String tel = this.textField.getText();
 		
-		CtrlGestisciMagazzino.getInstance().salvaNuovoFornitore(codiceF, tel, dittaF);
+		CtrlGestisciMagazzino.getInstance().nuovoFornitore(codiceF, tel, dittaF);
 		
 	}
 

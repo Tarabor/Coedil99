@@ -2,6 +2,7 @@ package coedil99.application.controller;
 
 import java.util.ArrayList;
 
+import coedil99.model.MFornitore;
 import coedil99.model.MMagazzino;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.BulloneDAO;
@@ -58,124 +59,34 @@ public class CtrlGestisciMagazzino implements Controller{
 	}
 	
 	public void createElementoMagazzino() {
-		this.em = ElementoMagazzinoDAO.createElementoMagazzino();
+		this.magazzino.createElementoMagazzino();
 		MagazzinoView.getInstance().showNewItem();		
 	}
 	
 	
-	
 	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita) {
-		
-		if  ( tipoElemento.equals("Bullone") ) {
-			Bullone b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
-			if(b1 != null){
-				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
-					em.setItem(b1);
-					em.setQuantita(quantita);
-					((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
-				}
-				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
-					//incremento quantità em già esistente
-					em1.setQuantita(em1.getQuantita() + quantita);	
-				}
-			}
-			else{
-				Bullone b = new Bullone(); 
-				b.setDescrizione(descrizione);
-				b.setPeso(peso);
-				b.setPrezzo(prezzo);
-				b.setDiametro(diametro);
-				BulloneDAO.save(b);
-				em.setItem(b);
-				em.setQuantita(quantita);
-				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
-			}	
-		}
-		
-		else if  ( tipoElemento.equals("Lastra") ) {
-			Lastra b1 = LastraDAO.loadLastraByQuery("materiale = '" + materiale+"'", "ID");
-			if(b1 != null){
-				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
-					em.setItem(b1);
-					em.setQuantita(quantita);
-					((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
-				}
-				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
-					//incremento quantità em già esistente
-					em1.setQuantita(em1.getQuantita() + quantita);	
-				}
-			}
-			else{	
-				Lastra l = new Lastra();
-				l.setDescrizione(descrizione);
-				l.setPeso(peso);
-				l.setPrezzo(prezzo);
-				l.setTipoSagoma(tipoSagoma);
-				l.setMateriale(materiale);
-				LastraDAO.save(l);	
-				em.setItem(l);
-				em.setQuantita(quantita);
-				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
-			}
-		}
-		else if  ( tipoElemento.equals("Trave") ){
-			Trave b1 = TraveDAO.loadTraveByQuery("lunghezza = " + lunghezza, "ID");
-			if(b1 != null){
-				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
-					em.setItem(b1);
-					em.setQuantita(quantita);
-					((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
-				}
-				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
-					//incremento quantità em già esistente
-					em1.setQuantita(em1.getQuantita() + quantita);	
-				}
-			}
-			else{	
-				Trave t = new Trave();
-				t.setDescrizione(descrizione);
-				t.setPeso(peso);
-				t.setPrezzo(prezzo);
-				t.setLunghezza(lunghezza);
-				t.setTipoSagoma(tipoSagoma);
-				TraveDAO.save(t);	
-				em.setItem(t);
-				em.setQuantita(quantita);
-				((Magazzino)this.magazzino.getPersistentModel()).elementoMagazzino__List_.add(em);
-			}
-		}
-		MagazzinoView.getInstance().hideNewItem();
-		
-		MagazzinoDAO.save((Magazzino)this.magazzino.getPersistentModel());
-		MagazzinoView.getInstance().setMagazzino(this.estraiDatiForView());
+		this.magazzino.salvaElementoMagazzino(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, quantita);
 	}	
 	
+	public void aggiornaMagazzino(){ //Aggiorna il magazzino dopo una aggiunta (richiamato da MMagazzino in salvaElementoMagazzino)
+		MagazzinoView.getInstance().hideNewItem();
+		MagazzinoView.getInstance().setMagazzino(this.estraiDatiForView());
+	}
 	
 	
 	public void apriFornitore(Fornitore fornitore) {
-		if(fornitore != null){
-			this.em.set_fornitore(fornitore);
-			MagazzinoView.getInstance().updateFornitore(fornitore.getDitta());
-			MagazzinoView.getInstance().hideFornitori();
-		}
+		this.magazzino.setFornitoreElemento(fornitore);
+		MagazzinoView.getInstance().updateFornitore(fornitore.getDitta());
+		MagazzinoView.getInstance().hideFornitori();
 	}
 	
 	
 	
 	/*++++++++++++++++ Gestione Fornitori ++++++++++++++++*/
 	
-	public void salvaNuovoFornitore(String codice, String telefono, String ditta) {	
-		Fornitore f = new Fornitore();
-		f.setCodice(codice);
-		f.setTelefono(telefono);
-		f.setDitta(ditta);
-		FornitoreDAO.save(f);
-		Coedil99View.getInstance().hideNewFornitori();
-		MagazzinoView.getInstance().hideFornitori();
-		CtrlGestisciMagazzino.getInstance().apriFornitore(f);	
+	public void nuovoFornitore(String codice, String telefono, String ditta) {	
+		MFornitore f = new MFornitore();
+		f.salvaNuovoFornitore(codice, telefono, ditta);	
 	}
 	
 	public void listaFornitori() {

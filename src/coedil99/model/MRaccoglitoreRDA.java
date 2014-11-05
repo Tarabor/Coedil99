@@ -37,6 +37,7 @@ public class MRaccoglitoreRDA implements AModel {
 		this.model = model;
 	}
 
+	//Creazione delle RDA da parte del sistema
 	public void insertRDA( ArrayList<ElementoRDA> rda) {
 		if(rda.size() != 0){
 			RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
@@ -44,12 +45,14 @@ public class MRaccoglitoreRDA implements AModel {
 			for (int i = 0; i < rda.size(); i++) {
 				ElementoRDA elemento = ElementoRDADAO.createElementoRDA();
 				elemento = rda.get(i);
-				((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
+				this.checkPresenzaElemento(raccoglitore, elemento.getItem(), elemento.getQuantita(), elemento);
+				//((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
 				RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 			}
 		}
 	}
-
+	
+	//Creazione delle RDA da parte del principale
 	public void creaPrincipaleRDA(ArrayList<Object[]> tableData) {
 		//se decidiamo che esisterà un unico raccoglitore, questo dovrà essere creato una sola volta all'inizio
 		RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
