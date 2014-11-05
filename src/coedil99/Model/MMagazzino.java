@@ -109,7 +109,12 @@ public class MMagazzino implements AModel,Observer {
 								rda.add(elemento);
 							}
 							int quantita = magazzino.get(j).getQuantita() - distinta.get(i).getNPezzi();
-							magazzino.get(j).setQuantita(quantita);
+							if (quantita != 0){				//se la quantità e maggiore di zero allora aggiorno l'elemento magazzino, se è uguale a zero elimino l'elemento magazzino
+								magazzino.get(j).setQuantita(quantita);
+							}
+							else{
+								magazzino.remove(j);
+							}
 						}	
 						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
 							ElementoRDA elemento = new ElementoRDA();
