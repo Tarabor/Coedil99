@@ -1,8 +1,10 @@
 package coedil99.model;
 
 import java.util.ArrayList;
+
 import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
+import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
 import coedil99.persistentmodel.ElementoRDAListCollection;
@@ -93,6 +95,19 @@ public class MRaccoglitoreRDA implements AModel {
 		}
 	}
 	
+	public boolean checkElemento(RaccoglitoreRDA raccoglitore, Item item) {
+		Boolean trovato = false;
+		if(raccoglitore.elementoRDAs.size() != 0) {
+			for (int j = 0; j < raccoglitore.elementoRDAs.size(); j++) {
+				ElementoRDA elemento2 = raccoglitore.elementoRDAs.get(j);
+				if(elemento2.getItem().equals(item)) {
+					trovato = true;
+				} 
+			}
+		}
+		return trovato;
+	}
+	
 	public ElementoRDA[] getRDAArray(){
 		RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
 		this.setPersistentModel(raccoglitore);
@@ -116,4 +131,6 @@ public class MRaccoglitoreRDA implements AModel {
 		RaccoglitoreRDADAO.save(((RaccoglitoreRDA)this.getPersistentModel()));
 		
 	}
+
+	
 }

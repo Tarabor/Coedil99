@@ -28,6 +28,7 @@ import coedil99.persistentmodel.Magazzino;
 import coedil99.persistentmodel.MagazzinoDAO;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.RaccoglitoreRDA;
+import coedil99.persistentmodel.RaccoglitoreRDADAO;
 import coedil99.persistentmodel.Trave;
 import coedil99.persistentmodel.TraveDAO;
 import coedil99.ui.MagazzinoView;
@@ -100,18 +101,26 @@ public class MMagazzino implements AModel,Observer {
 		coedil99.persistentmodel.ElementoMagazzinoListCollection magazzino = ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_;
 		ArrayList<ElementoRDA> rda = new ArrayList<ElementoRDA>();
 		
-		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){		
+		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){	
+			RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
 			for (int i = 0; i < ((MPreventivo)arg1).getDistinta().size(); i++) {
 				for (int j = 0; j < magazzino.size(); j++) {
 					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
 						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
+							
+							if(MRaccoglitoreRDA.getInstance().checkElemento(raccoglitore, distinta.get(i).getItem())){//controlla se è già presente un'rda per lo stesso item (se si decremento x dal magazzino e aggiungo x alla quantità dell'elementoRDA)
+								ElementoRDA elemento = new ElementoRDA();
+								elemento.setItem(distinta.get(i).getItem());
+								elemento.setQuantita(distinta.get(i).getNPezzi());
+								rda.add(elemento);
+							}
 							int quantita = magazzino.get(j).getQuantita() - distinta.get(i).getNPezzi();
 							magazzino.get(j).setQuantita(quantita);
 						}	
 						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
 							ElementoRDA elemento = new ElementoRDA();
 							elemento.setItem(distinta.get(i).getItem());
-							elemento.setQuantita(distinta.get(i).getNPezzi());
+							elemento.setQuantita(distinta.get(i).getNPezzi() - magazzino.get(j).getQuantita());
 							rda.add(elemento);
 						}
 					}
