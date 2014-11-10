@@ -13,13 +13,18 @@ import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.ElementoRDA;
+import coedil99.persistentmodel.EvasoState;
+import coedil99.persistentmodel.EvasoStateDAO;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Magazzino;
 import coedil99.persistentmodel.MagazzinoDAO;
+import coedil99.persistentmodel.NonEvasoState;
+import coedil99.persistentmodel.NonEvasoStateDAO;
 import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.PreventivoDAO;
 import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.RaccoglitoreRDADAO;
 import coedil99.persistentmodel.Trave;
@@ -126,6 +131,23 @@ public class MMagazzino implements AModel,Observer {
 				}	
 			}	
 			MRaccoglitoreRDA.getInstance().insertRDA(rda);
+			
+			//       *****Prova*****
+			// Creazione dello stato relativo all' "evasione" da associare al preventivo
+			Preventivo p = (Preventivo) (((MPreventivo)arg1).getPersistentModel());
+			if(rda.isEmpty()){ //Prova creazione preventivo evaso
+				EvasoState stato = new EvasoState();
+				EvasoStateDAO.save(stato);
+				p.setPreventivoState(stato);
+				PreventivoDAO.save(p);
+			}
+			else{
+				NonEvasoState stato = new NonEvasoState();
+				NonEvasoStateDAO.save(stato);
+				p.setPreventivoState(stato);
+				PreventivoDAO.save(p);
+			}
+			
 		} 	
 	}
 	
