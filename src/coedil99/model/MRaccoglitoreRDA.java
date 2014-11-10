@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
-import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
 import coedil99.persistentmodel.ElementoRDAListCollection;

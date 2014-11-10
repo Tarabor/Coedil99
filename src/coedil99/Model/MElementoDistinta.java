@@ -5,7 +5,7 @@ import coedil99.persistentmodel.ElementoDistinta;
 
 public class MElementoDistinta implements AModel {
 	
-	public APersistentModel model;
+	private APersistentModel model;
 	
 	public APersistentModel getPersistentModel() {
 		return this.model;

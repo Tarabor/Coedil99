@@ -1,13 +1,11 @@
 package coedil99.model;
 
-import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.FornitoreDAO;
-import coedil99.ui.Coedil99View;
-import coedil99.ui.MagazzinoView;
 
 public class MFornitore implements AModel {
+	
 	private APersistentModel model;
 
 	public APersistentModel getPersistentModel() {

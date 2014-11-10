@@ -7,15 +7,12 @@ import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.DistintaLavorazione;
 import coedil99.persistentmodel.DistintaLavorazioneDAO;
 import coedil99.persistentmodel.ElementoDistinta;
-import coedil99.persistentmodel.ElementoDistintaDAO;
-import coedil99.persistentmodel.Item;
-import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Preventivo;
 
 public class MPreventivo extends Observable implements AModel {
 
 	
-	public APersistentModel model;
+	private APersistentModel model;
 	
 	public APersistentModel getPersistentModel() {
 		return this.model;
@@ -80,19 +77,24 @@ public class MPreventivo extends Observable implements AModel {
 	
 	public ArrayList<ElementoDistinta> getDistinta(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
-		int rows = d.elemento__List_.size();
-		Object [][] objD = new Object[rows][6];
 		ArrayList<ElementoDistinta> dlList = new ArrayList<>();
-		for(int r = 0; r < rows; r++){
-			
-			dlList.add(d.elemento__List_.get(r));
-			objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getORMID());
-			objD[r][1] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName());
-			objD[r][2] = (Object)(d.elemento__List_.get(r).getIndicazione());
-			objD[r][3] = (Object)(d.elemento__List_.get(r).getNPezzi());
-			objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+		if(d!=null) {
+			int rows = d.elemento__List_.size();
+			Object [][] objD = new Object[rows][6];
+
+			for(int r = 0; r < rows; r++){
+
+				dlList.add(d.elemento__List_.get(r));
+				objD[r][0] = (Object)(d.elemento__List_.get(r).getItem().getORMID());
+				objD[r][1] = (Object)(d.elemento__List_.get(r).getItem().getClass().getName());
+				objD[r][2] = (Object)(d.elemento__List_.get(r).getIndicazione());
+				objD[r][3] = (Object)(d.elemento__List_.get(r).getNPezzi());
+				objD[r][4] = (Object)(d.elemento__List_.get(r).getMisuraDiTaglio());
+			}
+			return dlList;
+		} else {
+			return dlList;
 		}
-		return dlList;
 	}
 
 }

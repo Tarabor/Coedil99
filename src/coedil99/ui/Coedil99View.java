@@ -1,5 +1,7 @@
 package coedil99.ui;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -13,11 +15,16 @@ import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
@@ -29,16 +36,17 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.JSplitPane;
 
-
-
-
-
 import coedil99.model.MPreventivo;
+import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.Cliente;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.Trave;
 import coedil99.ui.content.TabContent;
 import coedil99.ui.content.newCliente;
 import coedil99.ui.content.newFornitore;
+import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.Scheda;
 import coedil99.ui.template.btnToolBar;
 import coedil99.ui.template.ElencoItemsAlbero;
@@ -60,9 +68,11 @@ public class Coedil99View extends JFrame {
 	private newCliente nc;
 	private newFornitore nf;
 	private ResourceBundle bundle;
+	private ElencoItemsAlbero navigator;
 	
 	private JLabel lblStatusBar;
 	private JPanel contentPane;
+	private JPanel panel;
 	private JTabbedPane tabbedPane;
 	private int tab_count = 0;
 	
@@ -70,18 +80,24 @@ public class Coedil99View extends JFrame {
 	private JMenuItem mntmSalva;
 	private JButton btnSave;
 	
+	private JList<Item> element;
+	
 	private final int MINIMUM_WIDTH = 500;
 	private final int MINIMUM_HEIGHT = 500;
 	
-	private final int MINIMUM_WIDTH_NAVIGATOR = 150;
-	private final int MINIMUM_HEIGHT_NAVIGATOR = 150;
+	//private final int MINIMUM_WIDTH_NAVIGATOR = 150;
+	//private final int MINIMUM_HEIGHT_NAVIGATOR = 150;
 
 	private final String BUNDLE     = "coedil99.ui.languages.it";
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_NEW   = "/coedil99/ui/img/nuovo_icon.png";
-	
+	private final String ICON_LASTRA = "/coedil99/ui/img/lastra.png";
+	private final String ICON_BULLONE = "/coedil99/ui/img/bullone.png";
+	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
+	private final String ICON_ARROW = "/coedil99/ui/img/arrow_icon.png";
 	
 	public Coedil99View(){		
+		this.init();
 		this.initComponents();
 	}
 	
@@ -199,6 +215,22 @@ public class Coedil99View extends JFrame {
 		}
 	}
 	
+	public void setItemsTreeVisible() {
+		this.navigator.setVisible(true);
+	}
+	
+	public void setItemsTreeNotVisible() {
+		this.navigator.setVisible(false);
+	}
+	
+	public void setItemsNotVisible() {
+		this.element.setVisible(false);
+	}
+	
+	public void setItemsVisible() {
+		this.element.setVisible(true);
+	}
+	
 	public void setStatusBar(String stato) {
 		lblStatusBar.setText(stato);
 		System.out.println(stato);
@@ -206,6 +238,29 @@ public class Coedil99View extends JFrame {
 	
 	public void setTotale(double totale) {
 		((TabContent)this.tabbedPane.getSelectedComponent()).setTotale(totale);
+	}
+	
+	public void setElements(Item [] listData){
+		((DefaultListModel<Item>) this.element.getModel()).clear();
+		for( int i = 0 ; i < listData.length ; i++)
+		((DefaultListModel<Item>) this.element.getModel()).addElement(listData[i]);
+	}
+	
+	public void removeElementRDA(int i){
+		((DefaultListModel<Item>) this.element.getModel()).remove(i);
+	}
+	
+	public void alertItemSelected() {
+		JOptionPane.showMessageDialog(this, "Hai già selezionato questo elemento, se desideri aumentare la quantità aggiorna il numero dei pezzi", "Warning Selezione Item", JOptionPane.WARNING_MESSAGE);
+	}
+	
+	public void alertPreventivoSaved() {
+		JOptionPane.showMessageDialog(this, "Preventivo salvato correttamente.");
+	}
+	
+	private void init(){
+		this.element = new JList<Item>(new DefaultListModel<Item>());
+		this.element.setCellRenderer(new ListCellRenderer());
 	}
 
 	/**
@@ -455,11 +510,109 @@ public class Coedil99View extends JFrame {
 
 		splitPane.setRightComponent(tabbedPane);	
 		
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(20, 20, 20, 20));
+		panel.setPreferredSize(new Dimension(300, 0));
+		panel.setMinimumSize(new Dimension(250, 0));
+		panel.setLayout(new BorderLayout(0, 0));
+		Etichetta label = new Etichetta("ELENCO ITEMS");
+		label.setMaximumSize(new Dimension(200,30));
+		panel.add(label , BorderLayout.NORTH);
+		element.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		panel.add(new JScrollPane(element), BorderLayout.CENTER);
+		splitPane.setLeftComponent(panel);
 		
-		ElencoItemsAlbero navigator = new ElencoItemsAlbero("Navigator");
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panel.add(panel_1, BorderLayout.EAST);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		panel.setEnabled(false);
+		JPanel panel_2 = new JPanel();
+		panel_1.add(panel_2);
+		
+		JButton addButton = new JButton();
+		addButton.setIcon(new ImageIcon(Coedil99View.class.getResource(ICON_ARROW)));
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+					int index = element.getSelectedIndex();
+					if( index >= 0){
+						CtrlElaboraPreventivo.getInstance().addItemtoPreventivo(element.getSelectedValue());
+					}
+			}
+		});
+		panel_2.add(addButton);
+		
+		/*
+		 * CODICE PER IL NAVIGATOR AD ALBERO
+		 * 
+		navigator = new ElencoItemsAlbero("Elenco Items");
+		panel.add(navigator);
 		
 		navigator.setMinimumSize(new Dimension(MINIMUM_WIDTH_NAVIGATOR, MINIMUM_HEIGHT_NAVIGATOR));
-		splitPane.setLeftComponent(navigator);
-		navigator.setVisible(true);
+		navigator.setVisible(true);*/
+	}
+	
+	private class ListCellRenderer extends DefaultListCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+		private JLabel label;
+	    private Color textSelectionColor = Color.BLACK;
+	    private Color backgroundSelectionColor = new Color(220, 242, 248);
+	    private Color textNonSelectionColor = Color.BLACK;
+	    private Color backgroundNonSelectionColor = Color.WHITE;
+
+	    ListCellRenderer() {
+	        label = new Etichetta();
+	        label.setOpaque(true);
+	        label.setBorder(new EmptyBorder(3,6,3,3));
+	    }
+	    @Override
+	    public Component getListCellRendererComponent(
+	            JList<?> list, Object value,
+	            int index,
+	            boolean selected, boolean expanded) {
+	    	
+	    	String icon = "";
+	    	String name = ((Item) value).getClass().getName().split("\\.")[2];
+	    	String discriminatorLabel = "";
+	    	String discriminator = "";
+	    	switch(name){
+	    	case "Trave":
+	    		icon = ICON_TRAVE;
+	    		discriminatorLabel = "Lunghezza";
+	    		discriminator += ((Trave) (value)).getLunghezza();
+	    		break;
+	    	case "Bullone":
+	    		icon = ICON_BULLONE;
+	    		discriminatorLabel = "Diametro";
+	    		discriminator +=((Bullone) (value)).getDiametro();
+	    		break;
+	    	case "Lastra":
+	    		icon = ICON_LASTRA;
+	    		discriminatorLabel = "Materiale";
+	    		discriminator =((Lastra) (value)).getMateriale();
+	    		break;
+	    	}
+	        label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(OrdiniView.class.getResource(icon))));
+	        label.setText("<html><span style='font-weight: bold;'>"+name+"</span>"+
+	        		"<br><span style='color:gray'>"+
+	        			  discriminatorLabel+
+	        			  ": </span>"+
+	        			  "<span style='color:black'>"+
+	        			  discriminator+
+	        			  "</span></html>");
+
+	        if (selected) {
+	            label.setBackground(backgroundSelectionColor);
+	            label.setForeground(textSelectionColor);
+	        } else {
+	            label.setBackground(backgroundNonSelectionColor);
+	            label.setForeground(textNonSelectionColor);
+	        }
+	        JPanel p = new JPanel(new BorderLayout(0, 0));
+	        p.add(label, BorderLayout.CENTER);
+	        return p;
+	    }
 	}
 }

@@ -1,7 +1,5 @@
 package coedil99.model;
 
-import java.util.Date;
-
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.Fornitore;
@@ -10,6 +8,7 @@ import coedil99.persistentmodel.OrdineDAO;
 import coedil99.utility.Service;
 
 public class MOrdine implements AModel {
+	
 	private APersistentModel model;
 	
 	public MOrdine(){

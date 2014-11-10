@@ -4,7 +4,7 @@ import coedil99.persistentmodel.APersistentModel;
 
 public class MElementoMagazzino implements AModel {
 	
-	public APersistentModel model;
+	private APersistentModel model;
 
 	public APersistentModel getPersistentModel() {
 		return this.model;

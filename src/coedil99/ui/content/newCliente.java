@@ -3,11 +3,9 @@ package coedil99.ui.content;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.InputVerifier;
-import javax.swing.JComponent;
+
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 
 import coedil99.application.controller.CtrlElaboraPreventivo;
 import coedil99.ui.template.Etichetta;

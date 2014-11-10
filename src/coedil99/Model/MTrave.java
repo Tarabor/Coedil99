@@ -1,14 +1,11 @@
 package coedil99.model;
 
 import coedil99.persistentmodel.APersistentModel;
-import coedil99.persistentmodel.Lastra;
-import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Trave;
-import coedil99.persistentmodel.TraveDAO;
 
 public class MTrave implements AModel {
 	
-	public APersistentModel model;
+	private APersistentModel model;
 
 	public APersistentModel getPersistentModel() {
 		return this.model;

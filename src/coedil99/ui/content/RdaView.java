@@ -44,7 +44,6 @@ public class RdaView extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			   public void windowClosing(WindowEvent evt) {
 				   remove(tb);
-				   remove(nlRrda);
 				   dispose();
 				   }
 				  });

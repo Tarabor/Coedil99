@@ -19,7 +19,7 @@ public class MDistintaLavorazione extends Observable implements AModel {
 	private int N_PEZZI_INDEX 	     = 3;
 	private int MISURADITAGLIO_INDEX = 4;
 	
-	public APersistentModel model;
+	private APersistentModel model;
 	
 	public APersistentModel getPersistentModel() {
 		return this.model;

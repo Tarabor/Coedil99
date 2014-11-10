@@ -4,11 +4,12 @@ package coedil99.application.controller;
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.ClienteDAO;
+import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.Indirizzo;
+import coedil99.persistentmodel.Item;
+import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.PreventivoDAO;
-
-
 import coedil99.ui.Coedil99View;
 import coedil99.utility.Service;
 
@@ -69,6 +70,7 @@ public class CtrlElaboraPreventivo {
 		//dist.calcolaPrezzo();
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
+		Coedil99View.getInstance().alertPreventivoSaved();
 		Coedil99View.getInstance().setStatusBar("Salvataggio effettuato");
 	}
 	
@@ -85,14 +87,15 @@ public class CtrlElaboraPreventivo {
 		Coedil99View.getInstance().eliminaScheda(index);
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 0){
 			Coedil99View.getInstance().setSaveVisible(false);
+			Coedil99View.getInstance().setItemsNotVisible();
 		}
 	}
 
 	public void apriPreventivo(Preventivo p) {
 		MPreventivo mp = new MPreventivo(p);
-		
 		this.preventivi.add( mp );	
 		Coedil99View.getInstance().nuovaScheda();
+		this.setElementiItem();
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().hidePreventivi();
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 1){
@@ -101,7 +104,11 @@ public class CtrlElaboraPreventivo {
 		mp.addObserver(Coedil99View.getInstance().getObserver(this.preventivi.indexOf(mp)));
 		Coedil99View.getInstance().setStatusBar("Preventivo disponibile");
 	}
-	
+
+	public void setElementiItem() {
+		Coedil99View.getInstance().setItemsVisible();
+		Coedil99View.getInstance().setElements(ItemDAO.listItemByQuery(null, "discriminator"));
+	}
 	
 	public MPreventivo getPreventivoCorrente() {
 		return this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
@@ -141,10 +148,21 @@ public class CtrlElaboraPreventivo {
 		}
 	}
 
-
-
-
-
-
-
+	public void addItemtoPreventivo(Item item) {
+		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
+		ArrayList<ElementoDistinta> elementoDistinta = mp.getDistinta();
+		Boolean trovato = false;
+		for (ElementoDistinta ed : elementoDistinta) {
+			if(ed.getItem().equals(item))
+				trovato = true;
+		}
+		if(trovato) {
+			Coedil99View.getInstance().alertItemSelected();
+		} else {
+			Coedil99View.getInstance().
+	    	getObserver(Coedil99View.getInstance().getCurrentPreventivo()).
+	    	addRow(item.getORMID(),item.getClass().getName().split("\\.")[2]);
+		}
+		
+	}
 }

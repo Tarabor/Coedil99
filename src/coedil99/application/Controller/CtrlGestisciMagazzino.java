@@ -63,6 +63,7 @@ public class CtrlGestisciMagazzino implements CtrlFornitore{
 	public void aggiornaMagazzino(){ //Aggiorna il magazzino dopo una aggiunta (richiamato da MMagazzino in salvaElementoMagazzino)
 		MagazzinoView.getInstance().hideNewItem();
 		MagazzinoView.getInstance().setMagazzino(this.estraiDatiForView());
+		CtrlElaboraPreventivo.getInstance().setElementiItem();
 	}
 	
 	
