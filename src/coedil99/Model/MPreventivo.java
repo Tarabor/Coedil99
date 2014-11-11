@@ -3,11 +3,17 @@ package coedil99.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import coedil99.factory.EvasioneStateFactory;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.DistintaLavorazione;
 import coedil99.persistentmodel.DistintaLavorazioneDAO;
 import coedil99.persistentmodel.ElementoDistinta;
+import coedil99.persistentmodel.EvasoState;
+import coedil99.persistentmodel.EvasoStateDAO;
+import coedil99.persistentmodel.NonEvasoState;
+import coedil99.persistentmodel.NonEvasoStateDAO;
 import coedil99.persistentmodel.Preventivo;
+import coedil99.persistentmodel.PreventivoDAO;
 
 public class MPreventivo extends Observable implements AModel {
 
@@ -94,6 +100,20 @@ public class MPreventivo extends Observable implements AModel {
 			return dlList;
 		} else {
 			return dlList;
+		}
+	}
+	
+	
+	//Settare stato del preventivo per quanto riguard l'evasione
+	public void  statoEvasione(boolean stato){
+		Preventivo p = (Preventivo)(this.getPersistentModel());
+		if (stato){
+			p.setPreventivoState(EvasioneStateFactory.getInstance().getEvasoState());
+			PreventivoDAO.save(p);
+		}
+		else{
+			p.setPreventivoState(EvasioneStateFactory.getInstance().getNonEvasoState());
+			PreventivoDAO.save(p);
 		}
 	}
 

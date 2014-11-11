@@ -8,6 +8,8 @@ import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
 import coedil99.persistentmodel.ElementoRDAListCollection;
 import coedil99.persistentmodel.ItemDAO;
+import coedil99.persistentmodel.Magazzino;
+import coedil99.persistentmodel.MagazzinoDAO;
 import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.RaccoglitoreRDADAO;
@@ -16,6 +18,7 @@ public class MRaccoglitoreRDA implements AModel {
 	
 	/** Rendiamo RaccoglitoreRDA Singleton */
 	private static MRaccoglitoreRDA instance;
+	private int _RACCOGLITORE  = 1;
 	
 	public static MRaccoglitoreRDA getInstance(){
 		if(instance == null)
@@ -25,7 +28,13 @@ public class MRaccoglitoreRDA implements AModel {
 	}
 	
 	private MRaccoglitoreRDA(){
-		this.setPersistentModel(RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1));
+		RaccoglitoreRDA r = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(_RACCOGLITORE);
+		if(r == null) 
+		{
+			r = new RaccoglitoreRDA();
+			RaccoglitoreRDADAO.save(r);
+		}
+		this.setPersistentModel(r);
 	}
 	
 	private APersistentModel model;

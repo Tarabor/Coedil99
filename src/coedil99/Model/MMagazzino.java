@@ -99,6 +99,7 @@ public class MMagazzino implements AModel,Observer {
 		ArrayList<ElementoDistinta> distinta = ((MPreventivo)arg1).getDistinta();
 		coedil99.persistentmodel.ElementoMagazzinoListCollection magazzino = ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_;
 		ArrayList<ElementoRDA> rda = new ArrayList<ElementoRDA>();
+		boolean evaso = true;
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){	
 			RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
@@ -126,30 +127,21 @@ public class MMagazzino implements AModel,Observer {
 							elemento.setItem(distinta.get(i).getItem());
 							elemento.setQuantita(distinta.get(i).getNPezzi() - magazzino.get(j).getQuantita());
 							rda.add(elemento);
+							evaso = false;
 						}
 					}
 				}	
 			}	
-			MRaccoglitoreRDA.getInstance().insertRDA(rda);
 			
-			//       *****Prova*****
-			// Creazione dello stato relativo all' "evasione" da associare al preventivo
-			Preventivo p = (Preventivo) (((MPreventivo)arg1).getPersistentModel());
-			if(rda.isEmpty()){ //Prova creazione preventivo evaso
-				EvasoState stato = new EvasoState();
-				EvasoStateDAO.save(stato);
-				p.setPreventivoState(stato);
-				PreventivoDAO.save(p);
+			//setta lo stato di evasione di un preventivo firmato
+			((MPreventivo)arg1).statoEvasione(evaso);
+			if(!rda.isEmpty()){ //Se l'RDA non è vuota la invio
+				MRaccoglitoreRDA.getInstance().insertRDA(rda);
 			}
-			else{
-				NonEvasoState stato = new NonEvasoState();
-				NonEvasoStateDAO.save(stato);
-				p.setPreventivoState(stato);
-				PreventivoDAO.save(p);
-			}
-			
 		} 	
+		
 	}
+	
 	
 	//salva o aggiorna un elemento del magazzino (e nel caso crea un nuovo item)
 	public void salvaElementoMagazzino(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita){
@@ -249,6 +241,11 @@ public class MMagazzino implements AModel,Observer {
 			this.em.set_fornitore(fornitore);
 		}
 		
+	}
+	
+	//controlla se l'elemento magazzino inserito può riuscire a soddisfare un preventivo non evaso.
+	public void checkPreventiviNonEvasi(ElementoMagazzino elemento){
+		Preventivo[] preventivi = PreventivoDAO.listPreventivoByQuery("preventivostateid = 2", "ID");
 	}
 
 }
