@@ -18,7 +18,7 @@ public class MRaccoglitoreRDA implements AModel {
 	
 	/** Rendiamo RaccoglitoreRDA Singleton */
 	private static MRaccoglitoreRDA instance;
-	private int _RACCOGLITORE  = 1;
+	private int _RACCOGLITORE  = 0;
 	
 	public static MRaccoglitoreRDA getInstance(){
 		if(instance == null)
@@ -28,7 +28,7 @@ public class MRaccoglitoreRDA implements AModel {
 	}
 	
 	private MRaccoglitoreRDA(){
-		RaccoglitoreRDA r = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(_RACCOGLITORE);
+		RaccoglitoreRDA r = RaccoglitoreRDADAO.loadRaccoglitoreRDAByQuery("id <> " + _RACCOGLITORE, "ID");
 		if(r == null) 
 		{
 			r = new RaccoglitoreRDA();
@@ -55,7 +55,7 @@ public class MRaccoglitoreRDA implements AModel {
 			for (int i = 0; i < rda.size(); i++) {
 				ElementoRDA elemento = ElementoRDADAO.createElementoRDA();
 				elemento = rda.get(i);
-				this.checkPresenzaElemento(raccoglitore, elemento.getItem(), elemento.getQuantita(), elemento);
+				this.checkPresenzaElemento(elemento.getItem(), elemento.getQuantita(), elemento);
 				//((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
 				RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 			}
@@ -76,14 +76,14 @@ public class MRaccoglitoreRDA implements AModel {
 			quantita = (Integer) tableData.get(i)[5];
 			elemento.setItem(item);
 			elemento.setQuantita(quantita);
-			this.checkPresenzaElemento(raccoglitore, item, quantita, elemento);
+			this.checkPresenzaElemento(item, quantita, elemento);
 			RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 		}
 		CtrlGestisciRDA.getInstance().salvataRda();
 	}
 
-	public void checkPresenzaElemento(RaccoglitoreRDA raccoglitore, Item item,
-			int quantita, ElementoRDA elemento) {
+	public void checkPresenzaElemento(Item item, int quantita, ElementoRDA elemento) {
+		RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) this.getPersistentModel();
 		if(raccoglitore.elementoRDAs.size() != 0) {
 			Boolean trovato = false;
 			for (int j = 0; j < raccoglitore.elementoRDAs.size(); j++) {
@@ -103,7 +103,8 @@ public class MRaccoglitoreRDA implements AModel {
 		}
 	}
 	
-	public boolean checkElemento(RaccoglitoreRDA raccoglitore, Item item) {
+	public boolean checkElemento(Item item) {
+		RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) this.getPersistentModel();
 		Boolean trovato = false;
 		if(raccoglitore.elementoRDAs.size() != 0) {
 			for (int j = 0; j < raccoglitore.elementoRDAs.size(); j++) {

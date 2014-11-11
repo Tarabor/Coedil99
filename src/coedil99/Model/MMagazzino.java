@@ -102,13 +102,13 @@ public class MMagazzino implements AModel,Observer {
 		boolean evaso = true;
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){	
-			RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByORMID(1);
+			RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) MRaccoglitoreRDA.getInstance().getPersistentModel();
 			for (int i = 0; i < ((MPreventivo)arg1).getDistinta().size(); i++) {
 				for (int j = 0; j < magazzino.size(); j++) {
 					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
 						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
 							
-							if(MRaccoglitoreRDA.getInstance().checkElemento(raccoglitore, distinta.get(i).getItem())){//controlla se è già presente un'rda per lo stesso item (se si decremento x dal magazzino e aggiungo x alla quantità dell'elementoRDA)
+							if(MRaccoglitoreRDA.getInstance().checkElemento(distinta.get(i).getItem())){//controlla se è già presente un'rda per lo stesso item (se si decremento x dal magazzino e aggiungo x alla quantità dell'elementoRDA)
 								ElementoRDA elemento = new ElementoRDA();
 								elemento.setItem(distinta.get(i).getItem());
 								elemento.setQuantita(distinta.get(i).getNPezzi());
@@ -125,7 +125,13 @@ public class MMagazzino implements AModel,Observer {
 						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
 							ElementoRDA elemento = new ElementoRDA();
 							elemento.setItem(distinta.get(i).getItem());
-							elemento.setQuantita(distinta.get(i).getNPezzi() - magazzino.get(j).getQuantita());
+							if(MRaccoglitoreRDA.getInstance().checkElemento(elemento.getItem())){
+								elemento.setQuantita(distinta.get(i).getNPezzi());
+							}
+							else{
+								elemento.setQuantita(distinta.get(i).getNPezzi() - magazzino.get(j).getQuantita());
+								// la quantità in  magazzino va sottratta solo se non esiste una rda per quell'elemento magazzino
+							}
 							rda.add(elemento);
 							evaso = false;
 						}
@@ -227,7 +233,7 @@ public class MMagazzino implements AModel,Observer {
 				((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 			}
 		}
-		
+		this.checkPreventiviNonEvasi();
 		MagazzinoDAO.save((Magazzino)this.getPersistentModel());
 		CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
 	}
@@ -244,8 +250,13 @@ public class MMagazzino implements AModel,Observer {
 	}
 	
 	//controlla se l'elemento magazzino inserito può riuscire a soddisfare un preventivo non evaso.
-	public void checkPreventiviNonEvasi(ElementoMagazzino elemento){
+	public void checkPreventiviNonEvasi(){
 		Preventivo[] preventivi = PreventivoDAO.listPreventivoByQuery("preventivostateid = 2", "ID");
+		if (preventivi.length !=0){
+			for (int i = 0; i < preventivi.length; i++) {
+				System.out.print(preventivi[i].getID());
+			}
+		}
 	}
 
 }
