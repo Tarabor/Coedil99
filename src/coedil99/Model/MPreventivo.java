@@ -103,6 +103,19 @@ public class MPreventivo extends Observable implements AModel {
 		}
 	}
 	
+	public static MPreventivo[] getPreventiviNonEvasi(){
+		
+		Preventivo[] preventivi = PreventivoDAO.listPreventivoByQuery("preventivostateid = 2", "ID");
+		MPreventivo[] mp = null;
+		if (preventivi.length > 0){
+			mp = new MPreventivo[preventivi.length];
+			for( int i = 0; i < preventivi.length; i++)
+				mp[i] = new MPreventivo(preventivi[i]);
+
+		}
+		return mp;
+	}
+	
 	
 	//Settare stato del preventivo per quanto riguard l'evasione
 	public void  statoEvasione(boolean stato){

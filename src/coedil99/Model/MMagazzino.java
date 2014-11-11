@@ -10,6 +10,7 @@ import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.Bullone;
 import coedil99.persistentmodel.BulloneDAO;
 import coedil99.persistentmodel.ElementoDistinta;
+import coedil99.persistentmodel.ElementoDistintaListCollection;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.ElementoRDA;
@@ -107,7 +108,6 @@ public class MMagazzino implements AModel,Observer {
 				for (int j = 0; j < magazzino.size(); j++) {
 					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
 						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
-							
 							if(MRaccoglitoreRDA.getInstance().checkElemento(distinta.get(i).getItem())){//controlla se è già presente un'rda per lo stesso item (se si decremento x dal magazzino e aggiungo x alla quantità dell'elementoRDA)
 								ElementoRDA elemento = new ElementoRDA();
 								elemento.setItem(distinta.get(i).getItem());
@@ -121,6 +121,7 @@ public class MMagazzino implements AModel,Observer {
 							else{
 								magazzino.remove(j);
 							}
+							distinta.get(i).setEvaso(true);
 						}	
 						else{ //Se la quantità richiesta è superiore alla giacenza in magazzino, aggiungi alla lista della RDA
 							ElementoRDA elemento = new ElementoRDA();
@@ -155,15 +156,16 @@ public class MMagazzino implements AModel,Observer {
 		if  ( tipoElemento.equals("Bullone") ) {
 			Bullone b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
 			if(b1 != null){
-				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
+				if(em == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+					this.createElementoMagazzino();
 					em.setItem(b1);
 					em.setQuantita(quantita);
 					((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 				}
 				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					em1.setQuantita(em1.getQuantita() + quantita);	
+					em.setQuantita(em.getQuantita() + quantita);	
 				}
 			}
 			else{
@@ -182,15 +184,16 @@ public class MMagazzino implements AModel,Observer {
 		else if  ( tipoElemento.equals("Lastra") ) {
 			Lastra b1 = LastraDAO.loadLastraByQuery("materiale = '" + materiale+"'", "ID");
 			if(b1 != null){
-				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
+				if(this.em == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+					this.createElementoMagazzino();
 					em.setItem(b1);
 					em.setQuantita(quantita);
 					((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 				}
 				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					em1.setQuantita(em1.getQuantita() + quantita);	
+					em.setQuantita(em.getQuantita() + quantita);	
 				}
 			}
 			else{	
@@ -209,15 +212,16 @@ public class MMagazzino implements AModel,Observer {
 		else if  ( tipoElemento.equals("Trave") ){
 			Trave b1 = TraveDAO.loadTraveByQuery("lunghezza = " + lunghezza, "ID");
 			if(b1 != null){
-				ElementoMagazzino em1 = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em1 == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+				em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
+				if(em == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+					this.createElementoMagazzino();
 					em.setItem(b1);
 					em.setQuantita(quantita);
 					((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 				}
 				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					em1.setQuantita(em1.getQuantita() + quantita);	
+					em.setQuantita(em.getQuantita() + quantita);	
 				}
 			}
 			else{	
@@ -233,7 +237,8 @@ public class MMagazzino implements AModel,Observer {
 				((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 			}
 		}
-		this.checkPreventiviNonEvasi();
+		this.checkPreventiviNonEvasi(em);
+		if(em.getQuantita() == 0) ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.remove(em);
 		MagazzinoDAO.save((Magazzino)this.getPersistentModel());
 		CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
 	}
@@ -250,11 +255,28 @@ public class MMagazzino implements AModel,Observer {
 	}
 	
 	//controlla se l'elemento magazzino inserito può riuscire a soddisfare un preventivo non evaso.
-	public void checkPreventiviNonEvasi(){
-		Preventivo[] preventivi = PreventivoDAO.listPreventivoByQuery("preventivostateid = 2", "ID");
-		if (preventivi.length !=0){
-			for (int i = 0; i < preventivi.length; i++) {
-				System.out.print(preventivi[i].getID());
+	public void checkPreventiviNonEvasi(ElementoMagazzino elemento){
+		MPreventivo[] mp = MPreventivo.getPreventiviNonEvasi();
+		if (mp != null){
+			ElementoDistintaListCollection list;
+			boolean evaso= true;
+			for (int i = 0; i < mp.length; i++) {
+				
+				list = ((Preventivo)mp[i].getPersistentModel()).getDistinta().elemento__List_;
+				
+				for( int j = 0 ; j< list.size(); j++){
+					
+					if ( list.get(j).getItem().equals(elemento.getItem()) && list.get(j).getNPezzi() <= elemento.getQuantita() ){
+						list.get(j).setEvaso(true);
+						elemento.setQuantita(elemento.getQuantita() - list.get(j).getNPezzi());
+					}
+					else
+						evaso &=list.get(i).getEvaso();
+				}
+				if(evaso) mp[i].statoEvasione(true);
+				
+				
+				
 			}
 		}
 	}
