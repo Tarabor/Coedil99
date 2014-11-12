@@ -88,6 +88,7 @@ public class CtrlGestisciRDA implements CtrlFornitore{
 	
 	public void inviaRda(ArrayList<Object[]> tableData) {
 		MRaccoglitoreRDA.getInstance().creaPrincipaleRDA(tableData);
+		this.salvataRda();
 	}
 
 	public void salvataRda() {

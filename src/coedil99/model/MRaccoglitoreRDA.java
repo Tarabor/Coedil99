@@ -2,14 +2,11 @@ package coedil99.model;
 
 import java.util.ArrayList;
 
-import coedil99.application.controller.CtrlGestisciRDA;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
 import coedil99.persistentmodel.ElementoRDAListCollection;
 import coedil99.persistentmodel.ItemDAO;
-import coedil99.persistentmodel.Magazzino;
-import coedil99.persistentmodel.MagazzinoDAO;
 import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.RaccoglitoreRDADAO;
@@ -75,7 +72,6 @@ public class MRaccoglitoreRDA implements AModel {
 			this.checkPresenzaElemento(item, quantita, elemento);
 			RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 		}
-		CtrlGestisciRDA.getInstance().salvataRda();
 	}
 
 	public void checkPresenzaElemento(Item item, int quantita, ElementoRDA elemento) {
