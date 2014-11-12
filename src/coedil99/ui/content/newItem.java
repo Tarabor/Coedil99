@@ -33,6 +33,7 @@ import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.ImageSelector;
 import coedil99.ui.template.SelectItem;
+import coedil99.utility.StrictInputVerifier;
 
 import javax.swing.ScrollPaneConstants;
 
@@ -59,6 +60,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.mchange.v2.codegen.bean.IndirectingSerializableExtension;
+import com.sun.glass.events.WindowEvent;
 
 import javax.swing.SpringLayout;
 
@@ -168,24 +170,31 @@ public class newItem extends JFrame {
 		campoTesto_1.setColumns(10);
 		campoTesto_1.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_1, "6, 8, fill, default");
+		campoTesto_1.setText("0");
 		
 		Etichetta tchtDiamentro = new Etichetta("DIAMETRO");
 		tchtDiamentro.setText("DIAMETRO");
 		getContentPane().add(tchtDiamentro, "2, 10");
-		
+		tchtDiamentro.setVisible(false);
+	 	 
 		campoTesto_2 = new CampoTesto();
 		campoTesto_2.setColumns(10);
 		campoTesto_2.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_2, "6, 10, fill, default");
+		campoTesto_2.setVisible(false);
+		campoTesto_2.setText("0");
 		
 		Etichetta tchtMateriale = new Etichetta("MATERIALE");
 		tchtMateriale.setText("MATERIALE");
 		getContentPane().add(tchtMateriale, "2, 12");
+		tchtMateriale.setVisible(false);  
 		
 		campoTesto_6 = new CampoTesto();
 		campoTesto_6.setColumns(10);
 		campoTesto_6.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_6, "6, 12, left, default");
+		campoTesto_6.setVisible(false);
+		campoTesto_6.setText("0");
 		
 		Etichetta tchtLunghezza = new Etichetta("LUNGHEZZA");
 		tchtLunghezza.setText("LUNGHEZZA");
@@ -197,6 +206,7 @@ public class newItem extends JFrame {
 		campoTesto_5.setColumns(10);
 		campoTesto_5.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_5, "6, 14, fill, default");
+		campoTesto_5.setText("0");
 		
 		Etichetta tchtPeso = new Etichetta("PESO");
 		tchtPeso.setText("PESO");
@@ -208,6 +218,7 @@ public class newItem extends JFrame {
 		campoTesto_3.setColumns(10);
 		campoTesto_3.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_3, "6, 16, fill, default");
+		campoTesto_3.setText("0");
 		
 		Etichetta tchtPrezzo = new Etichetta("PREZZO");
 		tchtPrezzo.setText("PREZZO");
@@ -219,6 +230,7 @@ public class newItem extends JFrame {
 		campoTesto_4.setColumns(10);
 		campoTesto_4.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_4, "6, 18, fill, default");
+		campoTesto_4.setText("0");
 		
 		Etichetta tchtQuantita = new Etichetta("QUANTITA'");
 		tchtQuantita.setText("QUANTITA'");
@@ -231,6 +243,7 @@ public class newItem extends JFrame {
 		campoTesto_8.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_8, "6, 20, fill, default");
 		campoTesto_8.setColumns(10);
+		campoTesto_8.setText("0");
 		
 		Etichetta tchtFornitore = new Etichetta("FORNITORE");
 		tchtFornitore.setText("FORNITORE");
@@ -241,6 +254,7 @@ public class newItem extends JFrame {
 		campoTesto_7 = new CampoTesto();
 		campoTesto_7.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		campoTesto_7.setEditable(false);
+		campoTesto_7.setText("0");
 		campoTesto_7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -250,6 +264,44 @@ public class newItem extends JFrame {
 		campoTesto_7.setColumns(10);
 		campoTesto_7.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_7, "6, 22, fill, default");
+		
+		
+		comboBox.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	 Object selected = comboBox.getSelectedItem();
+		    	 if(selected.toString().equals("Trave")){
+		    		 tchtDiamentro.setVisible(false);
+		    	 	 campoTesto_2.setVisible(false);
+		    	     tchtMateriale.setVisible(false);
+		    	     campoTesto_6.setVisible(false);
+		    	     tchtLunghezza.setVisible(true);
+		    	     campoTesto_5.setVisible(true);
+		    	     tchtTipoSagoma.setVisible(true);
+		    	     comboBox_1.setVisible(true);
+		    	     }
+		    	 else if(selected.toString().equals("Bullone")){
+		    		 tchtMateriale.setVisible(false);
+		    	     campoTesto_6.setVisible(false);
+		    	     tchtLunghezza.setVisible(false);
+		    	     campoTesto_5.setVisible(false);
+		    	     tchtDiamentro.setVisible(true);
+		    	 	 campoTesto_2.setVisible(true);
+		    	 	 tchtTipoSagoma.setVisible(false);
+		    	     comboBox_1.setVisible(false);
+		    	 }
+		    	 else if(selected.toString().equals("Lastra")){
+		    		 tchtDiamentro.setVisible(false);
+		    	 	 campoTesto_2.setVisible(false);
+		    	 	tchtLunghezza.setVisible(false);
+		    	     campoTesto_5.setVisible(false);
+		    	     tchtMateriale.setVisible(true);
+		    	     campoTesto_6.setVisible(true);
+		    	     tchtTipoSagoma.setVisible(true);
+		    	     comboBox_1.setVisible(true);
+		    	 }
+		    }
+		});
+		
 		
 		JButton btnSalva = new JButton("Salva");
 		btnSalva.setMaximumSize(new Dimension(50, 23));
@@ -269,15 +321,13 @@ public class newItem extends JFrame {
 		//setBorder(new LineBorder(SystemColor.desktop));
 		setMinimumSize(new Dimension(700, 450));
 		setPreferredSize(new Dimension(800, 700));
-		setBackground(Color.WHITE);
-		
+		setBackground(Color.WHITE);		
 	}
 	
 	
 	public static newItem getInstance(){
 		if(instance == null)
 			instance = new newItem();
-		
 		return instance;
 	}
 	
@@ -303,14 +353,14 @@ public class newItem extends JFrame {
 	public void clearForm(){
 		this.comboBox.setSelectedIndex(0);
 		this.comboBox_1.setSelectedIndex(0);
-		this.campoTesto_1.setText("");
-		this.campoTesto_2.setText("");
-		this.campoTesto_3.setText("");	
-		this.campoTesto_4.setText("");
-		this.campoTesto_5.setText("");
-		this.campoTesto_6.setText("");
-		this.campoTesto_7.setText("");
-		this.campoTesto_8.setText("");
+		this.campoTesto_1.setText(null);
+		this.campoTesto_2.setText(null);
+		this.campoTesto_3.setText(null);	
+		this.campoTesto_4.setText(null);
+		this.campoTesto_5.setText(null);
+		this.campoTesto_6.setText(null);
+		this.campoTesto_7.setText(null);
+		this.campoTesto_8.setText(null);
 	}
 	
 	

@@ -14,12 +14,14 @@ public class EvasioneStateFactory {
 	private NonEvasoState nonevaso;
 	
 	private EvasioneStateFactory(){
-		this.evaso = EvasoStateDAO.loadEvasoStateByORMID(_EVASOID);
+		//this.evaso = EvasoStateDAO.loadEvasoStateByORMID(_EVASOID);
+		this.evaso = EvasoStateDAO.loadEvasoStateByQuery("ID =" + _EVASOID, "ID");
 		if(this.evaso == null){
 			this.evaso = new EvasoState();
 			EvasoStateDAO.save(this.evaso);
 		}
-		this.nonevaso = NonEvasoStateDAO.loadNonEvasoStateByORMID(_NONEVASOID);
+		//this.nonevaso = NonEvasoStateDAO.loadNonEvasoStateByORMID(_NONEVASOID);
+		this.nonevaso = NonEvasoStateDAO.loadNonEvasoStateByQuery("ID =" + _NONEVASOID, "ID");
 		if(this.nonevaso == null){
 			this.nonevaso = new NonEvasoState();
 			NonEvasoStateDAO.save(this.nonevaso);
