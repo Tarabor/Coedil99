@@ -402,7 +402,14 @@ public class TabContent extends JPanel implements Observer {
 	}
 	
 	private void deleteRow(){
-		((MyTableModel)this.distinta.getModel()).removeRow( this.distinta.getSelectedRow());
+		if(this.distinta.getSelectedRow()>=0){
+			CtrlElaboraPreventivo.getInstance().removeElementoDistinta(this.distinta.getSelectedRow());
+		}
+	}
+	
+	public void removeRow(int index){
+		((MyTableModel)this.distinta.getModel()).removeRow( index);
+		((MyTableModel)this.distinta.getModel()).fireTableDataChanged();
 	}
 	
 	public void setData(String data){

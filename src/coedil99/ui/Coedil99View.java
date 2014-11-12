@@ -246,9 +246,6 @@ public class Coedil99View extends JFrame {
 		((DefaultListModel<Item>) this.element.getModel()).addElement(listData[i]);
 	}
 	
-	public void removeElementRDA(int i){
-		((DefaultListModel<Item>) this.element.getModel()).remove(i);
-	}
 	
 	public void alertItemSelected() {
 		JOptionPane.showMessageDialog(this, "Hai già selezionato questo elemento, se desideri aumentare la quantità aggiorna il numero dei pezzi", "Warning Selezione Item", JOptionPane.WARNING_MESSAGE);

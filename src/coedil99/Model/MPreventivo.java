@@ -8,10 +8,7 @@ import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.DistintaLavorazione;
 import coedil99.persistentmodel.DistintaLavorazioneDAO;
 import coedil99.persistentmodel.ElementoDistinta;
-import coedil99.persistentmodel.EvasoState;
-import coedil99.persistentmodel.EvasoStateDAO;
-import coedil99.persistentmodel.NonEvasoState;
-import coedil99.persistentmodel.NonEvasoStateDAO;
+import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Preventivo;
 import coedil99.persistentmodel.PreventivoDAO;
 
@@ -51,6 +48,7 @@ public class MPreventivo extends Observable implements AModel {
 		this.setChanged();
 		this.notifyObservers(this);
 	}
+	
 	public Object [][] getDistintaObj(){
 		DistintaLavorazione d = ((Preventivo)this.getPersistentModel()).getDistinta();
 		int rows = d.elemento__List_.size();
@@ -103,15 +101,24 @@ public class MPreventivo extends Observable implements AModel {
 		}
 	}
 	
+	
+	
+	
+	
+	public Boolean addItem(Item item) {
+		return new MDistintaLavorazione(((Preventivo)this.getPersistentModel()).getDistinta()).addItem(item);
+	}
+	
+	
+	
+	
 	public static MPreventivo[] getPreventiviNonEvasi(){
-		
 		Preventivo[] preventivi = PreventivoDAO.listPreventivoByQuery("preventivostateid = 2", "ID");
 		MPreventivo[] mp = null;
 		if (preventivi.length > 0){
 			mp = new MPreventivo[preventivi.length];
 			for( int i = 0; i < preventivi.length; i++)
 				mp[i] = new MPreventivo(preventivi[i]);
-
 		}
 		return mp;
 	}
@@ -128,6 +135,16 @@ public class MPreventivo extends Observable implements AModel {
 			p.setPreventivoState(EvasioneStateFactory.getInstance().getNonEvasoState());
 			PreventivoDAO.save(p);
 		}
+	}
+
+	public void removeElementoDistinta(int selectedRow) {
+		MDistintaLavorazione dist = 
+		new MDistintaLavorazione(((Preventivo)this.getPersistentModel()).getDistinta());
+		dist.removeElementoDistinta(selectedRow);
+		dist.totale();
+		dist.calcolaPrezzo();
+		this.setChanged();
+		this.notifyObservers(this);
 	}
 
 }

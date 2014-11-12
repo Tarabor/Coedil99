@@ -8,6 +8,7 @@ import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.DistintaLavorazione;
 import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.ElementoDistintaDAO;
+import coedil99.persistentmodel.ElementoDistintaListCollection;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 
@@ -26,6 +27,12 @@ public class MDistintaLavorazione extends Observable implements AModel {
 	}
 
 	public void setPersistentModel(APersistentModel model) {
+		this.model = model;
+	}
+	
+	public MDistintaLavorazione(){}
+	
+	public MDistintaLavorazione(APersistentModel model){
 		this.model = model;
 	}
 	
@@ -68,5 +75,20 @@ public class MDistintaLavorazione extends Observable implements AModel {
 			e.setMisuraDiTaglio(Double.parseDouble(String.valueOf(data[r][MISURADITAGLIO_INDEX])));
 			e.setItem(i);
 		}
+	}
+	
+	public Boolean addItem(Item item) {
+		Boolean trovato = false;
+		if(this.getPersistentModel() != null){
+			ElementoDistintaListCollection list = ((DistintaLavorazione)this.getPersistentModel()).elemento__List_;			
+			for (int i = 0; i < list.size() && !trovato; i++) 
+				if(list.get(i).getItem().equals(item))
+					trovato = true;
+		}
+		return trovato;
+	}
+
+	public void removeElementoDistinta(int selectedRow) {	
+    ((DistintaLavorazione)this.getPersistentModel()).elemento__List_.remove(selectedRow);	
 	}
 }

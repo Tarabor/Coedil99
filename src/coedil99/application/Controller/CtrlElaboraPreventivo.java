@@ -4,7 +4,6 @@ package coedil99.application.controller;
 import coedil99.model.MPreventivo;
 import coedil99.persistentmodel.Cliente;
 import coedil99.persistentmodel.ClienteDAO;
-import coedil99.persistentmodel.ElementoDistinta;
 import coedil99.persistentmodel.Indirizzo;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
@@ -59,15 +58,6 @@ public class CtrlElaboraPreventivo {
 		p.setFirmato(firmato);
 		p.setNome(p.getCliente().getCognome()+" "+p.getData());
 		mp.setDistinta(distinta);
-		//p.setData(Service.getDatadb(data));
-		/*ArrayList<ElementoDistinta> elementi = mp.getDistinta();
-		for (ElementoDistinta ed : elementi) {
-			//ItemDAO.save(ed.getItem()); non bisogna più salvare l'item, ma in un secondo momento bisognerà decrementare la quantità
-		}*/
-		//DistintaLavorazione dl = ((Preventivo) mp.getPersistentModel()).getDistinta();
-		//MDistintaLavorazione dist = new MDistintaLavorazione();
-		//dist.setPersistentModel(dl);
-		//dist.calcolaPrezzo();
 		PreventivoDAO.save(p);
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().alertPreventivoSaved();
@@ -149,20 +139,20 @@ public class CtrlElaboraPreventivo {
 	}
 
 	public void addItemtoPreventivo(Item item) {
-		MPreventivo mp = this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo());
-		ArrayList<ElementoDistinta> elementoDistinta = mp.getDistinta();
-		Boolean trovato = false;
-		for (ElementoDistinta ed : elementoDistinta) {
-			if(ed.getItem().equals(item))
-				trovato = true;
-		}
-		if(trovato) {
+		if(this.preventivi.get(Coedil99View.getInstance().
+				getCurrentPreventivo()).
+				addItem(item)) {
 			Coedil99View.getInstance().alertItemSelected();
 		} else {
 			Coedil99View.getInstance().
 	    	getObserver(Coedil99View.getInstance().getCurrentPreventivo()).
 	    	addRow(item.getORMID(),item.getClass().getName().split("\\.")[2]);
 		}
-		
 	}
+
+	public void removeElementoDistinta(int selectedRow) {
+		this.preventivi.get(Coedil99View.getInstance().getCurrentPreventivo()).removeElementoDistinta(selectedRow);
+		Coedil99View.getInstance().getObserver(Coedil99View.getInstance().getCurrentPreventivo()).removeRow(selectedRow);
+		
+	}	
 }

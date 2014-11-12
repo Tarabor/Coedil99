@@ -43,6 +43,10 @@ import javax.swing.JTable;
 
 public class OrdiniView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static OrdiniView instance;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
