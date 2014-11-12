@@ -51,13 +51,13 @@ public class CtrlGestisciMagazzino implements CtrlFornitore{
 	}
 	
 	public void createElementoMagazzino() {
-		this.magazzino.createElementoMagazzino();
 		MagazzinoView.getInstance().showNewItem();		
 	}
 	
 	
-	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita) {
-		this.magazzino.salvaElementoMagazzino(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, quantita);
+	public void salvaNuovoItem(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita, int idFornitore) {
+		this.magazzino.salvaElementoMagazzino(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, quantita, idFornitore);
+		this.aggiornaMagazzino();
 	}	
 	
 	public void aggiornaMagazzino(){ //Aggiorna il magazzino dopo una aggiunta (richiamato da MMagazzino in salvaElementoMagazzino)
@@ -68,8 +68,8 @@ public class CtrlGestisciMagazzino implements CtrlFornitore{
 	
 	
 	public void apriFornitore(Fornitore fornitore) {
-		this.magazzino.setFornitoreElemento(fornitore);
-		MagazzinoView.getInstance().updateFornitore(fornitore.getDitta());
+		//this.magazzino.setFornitoreElemento(fornitore);
+		MagazzinoView.getInstance().updateFornitore(fornitore.getID()+"");
 		MagazzinoView.getInstance().hideFornitori();
 	}
 	

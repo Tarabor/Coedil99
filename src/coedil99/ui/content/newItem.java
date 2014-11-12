@@ -243,8 +243,10 @@ public class newItem extends JFrame {
 		    	 if(selected.toString().equals("Trave")){
 		    		 tchtDiamentro.setVisible(false);
 		    	 	 campoTesto_2.setVisible(false);
+		    	 	 campoTesto_2.setText("0");
 		    	     tchtMateriale.setVisible(false);
 		    	     campoTesto_6.setVisible(false);
+		    	     campoTesto_6.setText("0");
 		    	     tchtLunghezza.setVisible(true);
 		    	     campoTesto_5.setVisible(true);
 		    	     tchtTipoSagoma.setVisible(true);
@@ -253,8 +255,10 @@ public class newItem extends JFrame {
 		    	 else if(selected.toString().equals("Bullone")){
 		    		 tchtMateriale.setVisible(false);
 		    	     campoTesto_6.setVisible(false);
+		    	     campoTesto_6.setText("0");
 		    	     tchtLunghezza.setVisible(false);
 		    	     campoTesto_5.setVisible(false);
+		    	     campoTesto_5.setText("0");
 		    	     tchtDiamentro.setVisible(true);
 		    	 	 campoTesto_2.setVisible(true);
 		    	 	 tchtTipoSagoma.setVisible(false);
@@ -263,8 +267,10 @@ public class newItem extends JFrame {
 		    	 else if(selected.toString().equals("Lastra")){
 		    		 tchtDiamentro.setVisible(false);
 		    	 	 campoTesto_2.setVisible(false);
+		    	 	 campoTesto_2.setText("0");
 		    	 	 tchtLunghezza.setVisible(false);
 		    	     campoTesto_5.setVisible(false);
+		    	     campoTesto_5.setText("0");
 		    	     tchtMateriale.setVisible(true);
 		    	     campoTesto_6.setVisible(true);
 		    	     tchtTipoSagoma.setVisible(true);
@@ -312,9 +318,10 @@ public class newItem extends JFrame {
 		Double peso = Double.parseDouble(this.campoTesto_3.getText());
 		Double prezzo = Double.parseDouble(this.campoTesto_4.getText());
 		int quantita = (Integer.parseInt(this.campoTesto_8.getText()));
+		int idFornitore = (Integer.parseInt(this.campoTesto_7.getText()));
 		
 		
-		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, quantita);
+		CtrlGestisciMagazzino.getInstance().salvaNuovoItem(tipoElemento, tipoSagoma, descrizione, diametro, materiale, lunghezza, peso, prezzo, quantita, idFornitore);
 	}
 	
 	public void updateFornitore(String d){
@@ -324,14 +331,14 @@ public class newItem extends JFrame {
 	public void clearForm(){
 		this.comboBox.setSelectedIndex(0);
 		this.comboBox_1.setSelectedIndex(0);
-		this.campoTesto_1.setText(null);
-		this.campoTesto_2.setText(null);
-		this.campoTesto_3.setText(null);	
-		this.campoTesto_4.setText(null);
-		this.campoTesto_5.setText(null);
-		this.campoTesto_6.setText(null);
-		this.campoTesto_7.setText(null);
-		this.campoTesto_8.setText(null);
+		this.campoTesto_1.setText("0");
+		this.campoTesto_2.setText("0");
+		this.campoTesto_3.setText("0");	
+		this.campoTesto_4.setText("0");
+		this.campoTesto_5.setText("0");
+		this.campoTesto_6.setText("0");
+		this.campoTesto_7.setText("0");
+		this.campoTesto_8.setText("0");
 	}
 	
 	

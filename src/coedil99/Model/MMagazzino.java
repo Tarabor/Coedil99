@@ -17,6 +17,7 @@ import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.EvasoState;
 import coedil99.persistentmodel.EvasoStateDAO;
 import coedil99.persistentmodel.Fornitore;
+import coedil99.persistentmodel.FornitoreDAO;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.LastraDAO;
@@ -151,100 +152,96 @@ public class MMagazzino implements AModel,Observer {
 	
 	
 	//salva o aggiorna un elemento del magazzino (e nel caso crea un nuovo item)
-	public void salvaElementoMagazzino(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita){
+	public void salvaElementoMagazzino(String tipoElemento, Integer tipoSagoma, String descrizione, Float diametro, String materiale, Float lunghezza, Double peso, Double prezzo, int quantita, int idFornitore){
 		 //Prova, nel caso verrà fatto nel controller e passato come paramentro (se la creazione di em spetta al controller)
 		if  ( tipoElemento.equals("Bullone") ) {
-			Bullone b1 = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
-			if(b1 != null){
-				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+			Bullone b = BulloneDAO.loadBulloneByQuery("diametro = " + diametro, "ID");
+			if(b != null){
+				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b, "ID");
+				if(em == null){ //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
 					this.createElementoMagazzino();
-					em.setItem(b1);
-					em.setQuantita(quantita);
-					((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 				}
 				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					em.setQuantita(em.getQuantita() + quantita);	
+					quantita+=em.getQuantita();
 				}
 			}
 			else{
-				Bullone b = new Bullone(); 
+				b = new Bullone(); 
 				b.setDescrizione(descrizione);
 				b.setPeso(peso);
 				b.setPrezzo(prezzo);
 				b.setDiametro(diametro);
 				BulloneDAO.save(b);
-				em.setItem(b);
-				em.setQuantita(quantita);
-				((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
+				this.createElementoMagazzino();
 			}	
+			setEMProperty(quantita, idFornitore, b);
 		}
 		
 		else if  ( tipoElemento.equals("Lastra") ) {
-			Lastra b1 = LastraDAO.loadLastraByQuery("materiale = '" + materiale+"'", "ID");
-			if(b1 != null){
-				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(this.em == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+			Lastra l = LastraDAO.loadLastraByQuery("materiale = '" + materiale+"'", "ID");
+			if(l != null){
+				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + l, "ID");
+				if(em == null){ //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
 					this.createElementoMagazzino();
-					em.setItem(b1);
-					em.setQuantita(quantita);
-					((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 				}
 				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					em.setQuantita(em.getQuantita() + quantita);	
+					quantita+=em.getQuantita();
 				}
 			}
 			else{	
-				Lastra l = new Lastra();
+				l = new Lastra();
 				l.setDescrizione(descrizione);
 				l.setPeso(peso);
 				l.setPrezzo(prezzo);
 				l.setTipoSagoma(tipoSagoma);
 				l.setMateriale(materiale);
 				LastraDAO.save(l);	
-				em.setItem(l);
-				em.setQuantita(quantita);
-				((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
+				this.createElementoMagazzino();
 			}
+			setEMProperty(quantita, idFornitore, l);
 		}
 		else if  ( tipoElemento.equals("Trave") ){
-			Trave b1 = TraveDAO.loadTraveByQuery("lunghezza = " + lunghezza, "ID");
-			if(b1 != null){
-				em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + b1, "ID");
-				if(em == null){          //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
-					this.createElementoMagazzino();
-					em.setItem(b1);
-					em.setQuantita(quantita);
-					((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
+			Trave t = TraveDAO.loadTraveByQuery("lunghezza = " + lunghezza, "ID");
+			if(t != null){
+				this.em = ElementoMagazzinoDAO.loadElementoMagazzinoByQuery("item = " + t, "ID");
+				if(em == null){ //se esiste l'item ma non l'elemento magazzino, crea un nuovo elemento magazzino
+					this.createElementoMagazzino();		
 				}
 				else{                                                                                         //se esiste l'item e l'elemento magazzino aggiorna la quantità
 					//incremento quantità em già esistente
-					em.setQuantita(em.getQuantita() + quantita);	
+					quantita+=em.getQuantita();
 				}
 			}
 			else{	
-				Trave t = new Trave();
+				t = new Trave();
 				t.setDescrizione(descrizione);
 				t.setPeso(peso);
 				t.setPrezzo(prezzo);
 				t.setLunghezza(lunghezza);
 				t.setTipoSagoma(tipoSagoma);
 				TraveDAO.save(t);	
-				em.setItem(t);
-				em.setQuantita(quantita);
-				((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
+				this.createElementoMagazzino();
+				
 			}
+			setEMProperty(quantita, idFornitore, t);
 		}
 		this.checkPreventiviNonEvasi(em);
 		if(em.getQuantita() == 0) ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.remove(em);
 		MagazzinoDAO.save((Magazzino)this.getPersistentModel());
-		CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
+		//CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
+	}
+
+	private void setEMProperty(int quantita, int idFornitore, Item i) {
+		em.set_fornitore(FornitoreDAO.loadFornitoreByQuery("ID =" + idFornitore, "ID"));
+		em.setQuantita(quantita);
+		em.setItem(i);
 	}
 
 	public void createElementoMagazzino() {
 		this.em = ElementoMagazzinoDAO.createElementoMagazzino();
+		((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 	}
 
 	public void setFornitoreElemento(Fornitore fornitore) {
