@@ -9,9 +9,6 @@ public class PricingStrategyFactory {
 
 	private static PricingStrategyFactory instance;
 	
-	private BullonePercentDiscountStrategy bulloneStrategy = new BullonePercentDiscountStrategy();
-	private SogliaDiscountStrategy sogliaStrategy = new SogliaDiscountStrategy();
-	
 	public static PricingStrategyFactory getInstance(){
 		if(instance == null)
 			instance = new PricingStrategyFactory();
@@ -20,11 +17,11 @@ public class PricingStrategyFactory {
 	}
 	
 	public ITotaleStrategy getBullonePercentDiscountStrategy() {
-		return bulloneStrategy;
+		return new BullonePercentDiscountStrategy();
 	}
 	
 	public ITotaleStrategy getSogliaDiscountStrategy() {
-		return sogliaStrategy;
+		return new SogliaDiscountStrategy();
 	}
 	
 }
