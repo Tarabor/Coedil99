@@ -53,7 +53,14 @@ public class newItem extends JFrame {
 	private ImageSelector comboBox_1;
 	private Etichetta  tchtDiamentro;
 	private Etichetta tchtTipoSagoma;
-
+	private Etichetta tchtTipoElemento;
+	private Etichetta tchtDescrizione;
+	private Etichetta tchtMateriale;
+	private Etichetta tchtLunghezza;
+	private Etichetta tchtPeso;
+	private Etichetta tchtPrezzo;
+	private Etichetta tchtQuantita;
+	private Etichetta tchtFornitore;
 	
 
 	/**
@@ -105,7 +112,7 @@ public class newItem extends JFrame {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		Etichetta tchtTipoElemento = new Etichetta("TIPO ELEMENTO");
+		tchtTipoElemento = new Etichetta("TIPO ELEMENTO");
 		tchtTipoElemento.setText("TIPO ELEMENTO");
 		tchtTipoElemento.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtTipoElemento.setHorizontalAlignment(SwingConstants.LEFT);
@@ -124,7 +131,7 @@ public class newItem extends JFrame {
 		getContentPane().add(comboBox_1, "6, 6, fill, default");
 		
 		
-		Etichetta tchtDescrizione = new Etichetta("DESCRIZIONE");
+		tchtDescrizione = new Etichetta("DESCRIZIONE");
 		tchtDescrizione.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtDescrizione.setText("DESCRIZIONE");
 		tchtDescrizione.setHorizontalAlignment(SwingConstants.LEFT);
@@ -148,7 +155,7 @@ public class newItem extends JFrame {
 		campoTesto_2.setVisible(false);
 		campoTesto_2.setText("0");
 		
-		Etichetta tchtMateriale = new Etichetta("MATERIALE");
+		tchtMateriale = new Etichetta("MATERIALE");
 		tchtMateriale.setText("MATERIALE");
 		getContentPane().add(tchtMateriale, "2, 12");
 		tchtMateriale.setVisible(false);  
@@ -160,7 +167,7 @@ public class newItem extends JFrame {
 		campoTesto_6.setVisible(false);
 		campoTesto_6.setText("0");
 		
-		Etichetta tchtLunghezza = new Etichetta("LUNGHEZZA");
+		tchtLunghezza = new Etichetta("LUNGHEZZA");
 		tchtLunghezza.setText("LUNGHEZZA");
 		tchtLunghezza.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtLunghezza.setHorizontalAlignment(SwingConstants.LEFT);
@@ -172,7 +179,7 @@ public class newItem extends JFrame {
 		getContentPane().add(campoTesto_5, "6, 14, fill, default");
 		campoTesto_5.setText("0");
 		
-		Etichetta tchtPeso = new Etichetta("PESO");
+		tchtPeso = new Etichetta("PESO");
 		tchtPeso.setText("PESO");
 		tchtPeso.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtPeso.setHorizontalAlignment(SwingConstants.LEFT);
@@ -184,7 +191,7 @@ public class newItem extends JFrame {
 		getContentPane().add(campoTesto_3, "6, 16, fill, default");
 		campoTesto_3.setText("0");
 		
-		Etichetta tchtPrezzo = new Etichetta("PREZZO");
+		tchtPrezzo = new Etichetta("PREZZO");
 		tchtPrezzo.setText("PREZZO");
 		tchtPrezzo.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtPrezzo.setHorizontalAlignment(SwingConstants.LEFT);
@@ -196,7 +203,7 @@ public class newItem extends JFrame {
 		getContentPane().add(campoTesto_4, "6, 18, fill, default");
 		campoTesto_4.setText("0");
 		
-		Etichetta tchtQuantita = new Etichetta("QUANTITA'");
+		tchtQuantita = new Etichetta("QUANTITA'");
 		tchtQuantita.setText("QUANTITA'");
 		tchtQuantita.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtQuantita.setHorizontalAlignment(SwingConstants.LEFT);
@@ -209,7 +216,7 @@ public class newItem extends JFrame {
 		campoTesto_8.setColumns(10);
 		campoTesto_8.setText("0");
 		
-		Etichetta tchtFornitore = new Etichetta("FORNITORE");
+		tchtFornitore = new Etichetta("FORNITORE");
 		tchtFornitore.setText("FORNITORE");
 		tchtFornitore.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtFornitore.setHorizontalAlignment(SwingConstants.LEFT);
