@@ -1,52 +1,22 @@
 package coedil99.ui.content;
 
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
 
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.Dimension;
 
-import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.Box;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
 
-import coedil99.application.controller.CtrlElaboraPreventivo;
 import coedil99.application.controller.CtrlGestisciMagazzino;
-import coedil99.persistentmodel.Fornitore;
-import coedil99.persistentmodel.Indirizzo;
-import coedil99.ui.Coedil99View;
+
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.ImageSelector;
 import coedil99.ui.template.SelectItem;
-import coedil99.utility.StrictInputVerifier;
-
-import javax.swing.ScrollPaneConstants;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
-import javax.swing.DropMode;
-import javax.swing.border.EtchedBorder;
-import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-
-import java.awt.SystemColor;
 
 import javax.swing.JButton;
 
@@ -59,15 +29,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
-import com.mchange.v2.codegen.bean.IndirectingSerializableExtension;
-import com.sun.glass.events.WindowEvent;
 
-import javax.swing.SpringLayout;
-
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
-import javax.swing.JComboBox;
 
 
 public class newItem extends JFrame {
@@ -87,9 +51,9 @@ public class newItem extends JFrame {
 	private CampoTesto campoTesto_8;
 	private SelectItem  comboBox;
 	private ImageSelector comboBox_1;
-	private JTextField textField;
-	private JLabel lblNewLabel;
-	private JTextField textField_1;
+	private Etichetta  tchtDiamentro;
+	private Etichetta tchtTipoSagoma;
+
 	
 
 	/**
@@ -150,7 +114,7 @@ public class newItem extends JFrame {
 		comboBox = new SelectItem();
 		getContentPane().add(comboBox, "6, 4, fill, default");
 		
-		Etichetta tchtTipoSagoma = new Etichetta("TIPO SAGOMA");
+		tchtTipoSagoma = new Etichetta("TIPO SAGOMA");
 		tchtTipoSagoma.setText("TIPO SAGOMA");
 		tchtTipoSagoma.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtTipoSagoma.setHorizontalAlignment(SwingConstants.LEFT);
@@ -172,7 +136,7 @@ public class newItem extends JFrame {
 		getContentPane().add(campoTesto_1, "6, 8, fill, default");
 		campoTesto_1.setText("0");
 		
-		Etichetta tchtDiamentro = new Etichetta("DIAMETRO");
+		tchtDiamentro = new Etichetta("DIAMETRO");
 		tchtDiamentro.setText("DIAMETRO");
 		getContentPane().add(tchtDiamentro, "2, 10");
 		tchtDiamentro.setVisible(false);
@@ -292,7 +256,7 @@ public class newItem extends JFrame {
 		    	 else if(selected.toString().equals("Lastra")){
 		    		 tchtDiamentro.setVisible(false);
 		    	 	 campoTesto_2.setVisible(false);
-		    	 	tchtLunghezza.setVisible(false);
+		    	 	 tchtLunghezza.setVisible(false);
 		    	     campoTesto_5.setVisible(false);
 		    	     tchtMateriale.setVisible(true);
 		    	     campoTesto_6.setVisible(true);
