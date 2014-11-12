@@ -86,6 +86,7 @@ public class CtrlElaboraPreventivo {
 		this.preventivi.add( mp );	
 		Coedil99View.getInstance().nuovaScheda();
 		this.setElementiItem();
+		Coedil99View.getInstance().setItemsVisible();
 		Coedil99View.getInstance().updatePreventivo(this.preventivi.indexOf(mp), mp);
 		Coedil99View.getInstance().hidePreventivi();
 		if(Coedil99View.getInstance().getNumberofPreventivo() == 1){
@@ -96,8 +97,10 @@ public class CtrlElaboraPreventivo {
 	}
 
 	public void setElementiItem() {
-		Coedil99View.getInstance().setItemsVisible();
-		Coedil99View.getInstance().setElements(ItemDAO.listItemByQuery(null, "discriminator"));
+		if (!Coedil99View.getInstance().isItemsVisible()) {
+			//Coedil99View.getInstance().setItemsVisible();
+			Coedil99View.getInstance().setElements(ItemDAO.listItemByQuery(null, "discriminator"));
+		}
 	}
 	
 	public MPreventivo getPreventivoCorrente() {

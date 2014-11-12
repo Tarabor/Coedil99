@@ -231,6 +231,10 @@ public class Coedil99View extends JFrame {
 		this.element.setVisible(true);
 	}
 	
+	public Boolean isItemsVisible() {
+		return this.element.isVisible();
+	}
+	
 	public void setStatusBar(String stato) {
 		lblStatusBar.setText(stato);
 		System.out.println(stato);
@@ -517,6 +521,7 @@ public class Coedil99View extends JFrame {
 		panel.add(label , BorderLayout.NORTH);
 		element.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		panel.add(new JScrollPane(element), BorderLayout.CENTER);
+		this.element.setVisible(false);
 		splitPane.setLeftComponent(panel);
 		
 		JPanel panel_1 = new JPanel();
