@@ -1,13 +1,11 @@
 package coedil99.application.controller;
 
 import java.util.ArrayList;
-
+import coedil99.factory.CostantFactory;
 import coedil99.model.MFornitore;
 import coedil99.model.MMagazzino;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.FornitoreDAO;
-import coedil99.persistentmodel.Magazzino;
-import coedil99.persistentmodel.MagazzinoDAO;
 import coedil99.ui.Coedil99View;
 import coedil99.ui.MagazzinoView;
 
@@ -16,8 +14,6 @@ public class CtrlGestisciMagazzino implements CtrlFornitore{
 	private static CtrlGestisciMagazzino instance;
 
 	private MMagazzino magazzino;
-	private int MAGAZZINO_N  = 0;
-	
 	public static CtrlGestisciMagazzino getInstance(){
 		if(instance == null)
 			instance = new CtrlGestisciMagazzino();
@@ -26,17 +22,15 @@ public class CtrlGestisciMagazzino implements CtrlFornitore{
 	}
 	
 	private CtrlGestisciMagazzino(){
-		Magazzino m = MagazzinoDAO.loadMagazzinoByQuery("id <> " + MAGAZZINO_N, "ID");
-		if(m == null) 
-		{
-			m = new Magazzino();
-			MagazzinoDAO.save(m);
-		}
-		this.magazzino = new MMagazzino(m);
+		this.magazzino = new MMagazzino(CostantFactory.MAGAZZINO_1);
 	}
 	
 	public MMagazzino getMagazzino(){
 		return this.magazzino;
+	}
+	
+	public void setMMagazzino(int index){
+		this.magazzino = new MMagazzino(index);
 	}
 	
 /*++++++++++++++++ Gestione Magazzino ++++++++++++++++*/

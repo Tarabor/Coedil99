@@ -12,9 +12,9 @@ public interface AbstractFactory {
 
 	public NonEvasoState creaNonEvasoState();
 
-	public MMagazzino creaMMagazzino();
+	public void creaMMagazzino(int id);
 
-	public MRaccoglitoreRDA creaMRaccoglitoreRDA();
+	public void creaMRaccoglitoreRDA(int id);
 
 	public ITotaleStrategy getSogliaDiscountStrategy();
 

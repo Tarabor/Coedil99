@@ -28,13 +28,6 @@ public class StatiPreventivoFactory implements AbstractFactory {
 		throw new UnsupportedOperationException();
 	}
 
-	public MMagazzino creaMMagazzino() {
-		throw new UnsupportedOperationException();
-	}
-
-	public MRaccoglitoreRDA creaMRaccoglitoreRDA() {
-		throw new UnsupportedOperationException();
-	}
 
 	public ITotaleStrategy getSogliaDiscountStrategy() {
 		throw new UnsupportedOperationException();
@@ -43,4 +36,10 @@ public class StatiPreventivoFactory implements AbstractFactory {
 	public ITotaleStrategy getBullonePercentDiscountStrategy() {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public void creaMMagazzino(int id) {}
+
+	@Override
+	public void creaMRaccoglitoreRDA(int id) {}
 }

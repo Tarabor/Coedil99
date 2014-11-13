@@ -210,7 +210,8 @@ public class OrdiniView extends JFrame {
 	}
 	
 	public void setElements(ElementoRDA [] listData){
-		((DefaultListModel<ElementoRDA>) this.element.getModel()).clear();
+		DefaultListModel<ElementoRDA> m = ((DefaultListModel<ElementoRDA>) this.element.getModel());
+		for( int i = 0; i < m.getSize(); i++) m.remove(i);
 		for( int i = 0 ; i < listData.length ; i++)
 		((DefaultListModel<ElementoRDA>) this.element.getModel()).addElement(listData[i]);
 	}
@@ -220,9 +221,10 @@ public class OrdiniView extends JFrame {
 	}
 	
 	public void setOrdini(Ordine [] listData){
+		RdaTableModel m = ((RdaTableModel) this.rda.getModel());
+		for (int i = m.getRowCount() - 1; i > -1; i--) m.deleteRow(i);
 		for(Ordine o : listData){
-			((RdaTableModel) this.rda.getModel()).
-			 addRow(new Object[]{o.getID(),
+			m.addRow(new Object[]{o.getID(),
 					             o.getDataConsegnaPrevista(),
 					             o.getDataConsegnaEffettiva(),
 					             o.getRitardo(),

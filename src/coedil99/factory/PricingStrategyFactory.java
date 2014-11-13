@@ -34,11 +34,16 @@ public class PricingStrategyFactory implements AbstractFactory {
 		throw new UnsupportedOperationException();
 	}
 
-	public MMagazzino creaMMagazzino() {
-		throw new UnsupportedOperationException();
+
+	@Override
+	public void creaMMagazzino(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public MRaccoglitoreRDA creaMRaccoglitoreRDA() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void creaMRaccoglitoreRDA(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 }

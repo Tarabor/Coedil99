@@ -14,8 +14,6 @@ import coedil99.persistentmodel.ElementoDistintaListCollection;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.ElementoRDA;
-import coedil99.persistentmodel.EvasoState;
-import coedil99.persistentmodel.EvasoStateDAO;
 import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.FornitoreDAO;
 import coedil99.persistentmodel.Item;
@@ -23,19 +21,13 @@ import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.LastraDAO;
 import coedil99.persistentmodel.Magazzino;
 import coedil99.persistentmodel.MagazzinoDAO;
-import coedil99.persistentmodel.NonEvasoState;
-import coedil99.persistentmodel.NonEvasoStateDAO;
 import coedil99.persistentmodel.Preventivo;
-import coedil99.persistentmodel.PreventivoDAO;
-import coedil99.persistentmodel.RaccoglitoreRDA;
-import coedil99.persistentmodel.RaccoglitoreRDADAO;
 import coedil99.persistentmodel.Trave;
 import coedil99.persistentmodel.TraveDAO;
 
 public class MMagazzino implements AModel,Observer {
 	
-	private static final int MAGAZZINO_N = 0;
-	public APersistentModel model;
+	private APersistentModel model;
 	private ElementoMagazzino em;
 
 	public APersistentModel getPersistentModel() {
@@ -46,17 +38,13 @@ public class MMagazzino implements AModel,Observer {
 		this.model = model;
 	}
 	
-	public MMagazzino(){}
-	
-	public MMagazzino( Magazzino m ){
-		this.setPersistentModel(m);
+	public MMagazzino(int index){
+		this.model = MagazzinoDAO.loadMagazzinoByQuery("id = " + index, "ID");
 	}
 	
 	public ArrayList<Object[]> getElementiMagazzino() {
-		ArrayList<Object[]> dati = new ArrayList<Object[]>();
-		
-		Magazzino magazzino = MagazzinoDAO.loadMagazzinoByQuery("id <> " + MAGAZZINO_N, "ID");
-		this.model = magazzino;
+		ArrayList<Object[]> dati = new ArrayList<Object[]>();		
+		Magazzino magazzino = (Magazzino)this.model;
 		Iterator i = magazzino.elementoMagazzino__List_.getIterator();
 		while(i.hasNext()){
 			ElementoMagazzino e = (ElementoMagazzino)i.next();

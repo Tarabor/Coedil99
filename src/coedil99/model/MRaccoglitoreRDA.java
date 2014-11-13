@@ -2,6 +2,7 @@ package coedil99.model;
 
 import java.util.ArrayList;
 
+import coedil99.factory.CostantFactory;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
@@ -13,9 +14,7 @@ import coedil99.persistentmodel.RaccoglitoreRDADAO;
 
 public class MRaccoglitoreRDA implements AModel {
 	
-	/** Rendiamo RaccoglitoreRDA Singleton */
 	private static MRaccoglitoreRDA instance;
-	private int _RACCOGLITORE  = 0;
 	
 	public static MRaccoglitoreRDA getInstance(){
 		if(instance == null)
@@ -25,13 +24,11 @@ public class MRaccoglitoreRDA implements AModel {
 	}
 	
 	private MRaccoglitoreRDA(){
-		RaccoglitoreRDA r = RaccoglitoreRDADAO.loadRaccoglitoreRDAByQuery("id <> " + _RACCOGLITORE, "ID");
-		if(r == null) 
-		{
-			r = new RaccoglitoreRDA();
-			RaccoglitoreRDADAO.save(r);
-		}
-		this.setPersistentModel(r);
+		this.loadPersistentModel();
+	}
+	
+	public void loadPersistentModel(){
+		this.model = RaccoglitoreRDADAO.loadRaccoglitoreRDAByQuery("id = " + CostantFactory.RACCOGLITORE_1, "ID");
 	}
 	
 	private APersistentModel model;
@@ -44,44 +41,46 @@ public class MRaccoglitoreRDA implements AModel {
 		this.model = model;
 	}
 
-	//Creazione delle RDA da parte del sistema
+	/*
+	 * Creazione delle RDA da parte del sistema
+	 */
 	public void insertRDA( ArrayList<ElementoRDA> rda) {
 		if(rda.size() != 0){
+			ElementoRDA elemento;
 			for (int i = 0; i < rda.size(); i++) {
-				ElementoRDA elemento = ElementoRDADAO.createElementoRDA();
 				elemento = rda.get(i);
-				this.checkPresenzaElemento(elemento.getItem(), elemento.getQuantita(), elemento);
-				//((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.add(elemento);
+				this.checkPresenzaElemento(elemento);
 				RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 			}
 		}
 	}
 	
-	//Creazione delle RDA da parte del principale
+	/*
+	 * Creazione delle RDA da parte del principale
+	 */
 	public void creaPrincipaleRDA(ArrayList<Object[]> tableData) {
-		//se decidiamo che esisterà un unico raccoglitore, questo dovrà essere creato una sola volta all'inizio
-		//RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.createRaccoglitoreRDA();
 		Item item;
+		ElementoRDA elemento;
 		int quantita = 0;
 		for (int i = 0; i < tableData.size(); i++) {
-			ElementoRDA elemento = ElementoRDADAO.createElementoRDA(); //ogni volta deve essere creato un nuovo elemento, sennò salva solo il primo
+			elemento = ElementoRDADAO.createElementoRDA(); 
 			item = ItemDAO.loadItemByORMID(Integer.valueOf((String)tableData.get(i)[0]));
 			quantita = (Integer) tableData.get(i)[5];
 			elemento.setItem(item);
 			elemento.setQuantita(quantita);
-			this.checkPresenzaElemento(item, quantita, elemento);
+			this.checkPresenzaElemento(elemento);
 			RaccoglitoreRDADAO.save(((RaccoglitoreRDA)(this.getPersistentModel())));
 		}
 	}
 
-	public void checkPresenzaElemento(Item item, int quantita, ElementoRDA elemento) {
+	public void checkPresenzaElemento(ElementoRDA elemento) {
 		RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) this.getPersistentModel();
 		if(raccoglitore.elementoRDAs.size() != 0) {
 			Boolean trovato = false;
 			for (int j = 0; j < raccoglitore.elementoRDAs.size(); j++) {
 				ElementoRDA elemento2 = raccoglitore.elementoRDAs.get(j);
-				if(elemento2.getItem().equals(item)) {
-					elemento2.setQuantita(elemento2.getQuantita() + quantita);
+				if(elemento2.getItem().equals(elemento.getItem())) {
+					elemento2.setQuantita(elemento2.getQuantita() + elemento.getQuantita());
 					((RaccoglitoreRDA) this.getPersistentModel()).elementoRDAs.set(j,elemento2);
 					trovato = true;
 				} 
@@ -110,13 +109,8 @@ public class MRaccoglitoreRDA implements AModel {
 	}
 	
 	public ElementoRDA[] getRDAArray(){
-		RaccoglitoreRDA raccoglitore = RaccoglitoreRDADAO.loadRaccoglitoreRDAByQuery("id <> " + _RACCOGLITORE, "ID");
-		ElementoRDAListCollection list = raccoglitore.elementoRDAs;
-		int l = list.size();
-		ElementoRDA[] elements = new ElementoRDA[l];
-		for(int i = 0; i<l; i++)
-			elements[i] = list.get(i);
-		return elements;
+		RaccoglitoreRDADAO.refresh(((RaccoglitoreRDA)this.model));
+		return ((RaccoglitoreRDA)this.model).elementoRDAs.toArray();
 	}
 	
 	public ElementoRDA getElementAt(int index){
@@ -129,7 +123,6 @@ public class MRaccoglitoreRDA implements AModel {
 
 	public void salva() {
 		RaccoglitoreRDADAO.save(((RaccoglitoreRDA)this.getPersistentModel()));
-		
 	}
 
 	
