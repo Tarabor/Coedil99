@@ -95,7 +95,7 @@ public class MRaccoglitoreRDA implements AModel {
 		}
 	}
 	
-	public boolean checkElemento(Item item) {
+	public boolean checkElemento(Item item) { //Lo uso nel magazzio. Dato un item controllo se esiste già un elementoRDA con associato questo item.
 		RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) this.getPersistentModel();
 		Boolean trovato = false;
 		if(raccoglitore.elementoRDAs.size() != 0) {

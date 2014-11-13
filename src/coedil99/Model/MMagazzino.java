@@ -104,8 +104,8 @@ public class MMagazzino implements AModel,Observer {
 		boolean evaso = true;
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){	
-			RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) MRaccoglitoreRDA.getInstance().getPersistentModel();
-			for (int i = 0; i < ((MPreventivo)arg1).getDistinta().size(); i++) {
+			//RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) MRaccoglitoreRDA.getInstance().getPersistentModel();
+			for (int i = 0; i < distinta.size(); i++) {
 				for (int j = 0; j < magazzino.size(); j++) {
 					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
 						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
@@ -146,6 +146,7 @@ public class MMagazzino implements AModel,Observer {
 			if(!rda.isEmpty()){ //Se l'RDA non è vuota la invio
 				MRaccoglitoreRDA.getInstance().insertRDA(rda);
 			}
+			CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
 		} 	
 		
 	}
@@ -230,7 +231,6 @@ public class MMagazzino implements AModel,Observer {
 		this.checkPreventiviNonEvasi(em);
 		if(em.getQuantita() == 0) ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.remove(em);
 		MagazzinoDAO.save((Magazzino)this.getPersistentModel());
-		//CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
 	}
 
 	private void setEMProperty(int quantita, int idFornitore, Item i) {
