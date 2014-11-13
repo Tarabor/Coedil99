@@ -74,7 +74,7 @@ public class TabMagazzino extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setMaximumSize(new Dimension(32767, 50));
-		panel.setBorder(new EmptyBorder(0, 100, 1, 100));
+		panel.setBorder(new EmptyBorder(0, 100, 60, 100));
 		panel.setBackground(Color.WHITE);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -96,7 +96,9 @@ public class TabMagazzino extends JPanel {
 		panel_1.setLayout(new BorderLayout(25, 0));
 		
 		JButton btnNewItem = new JButton("Aggiungi Elementi al Magazzino");
-		btnNewItem.setPreferredSize(new Dimension(20, 20));
+		btnNewItem.setMinimumSize(new Dimension(100, 23));
+		btnNewItem.setMaximumSize(new Dimension(100, 23));
+		btnNewItem.setPreferredSize(new Dimension(100, 23));
 		btnNewItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CtrlGestisciMagazzino.getInstance().createElementoMagazzino(); 
