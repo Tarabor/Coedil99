@@ -331,6 +331,7 @@ public class Coedil99View extends JFrame {
 		
 		
 		JMenuItem mntmApri = new JMenuItem(bundle.getString("gui.menu.file.open"));
+		mntmApri.setIcon(new ImageIcon(Coedil99View.class.getResource("/coedil99/ui/img/explorer-icon.png")));
 		mntmApri.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CtrlElaboraPreventivo.getInstance().listaPreventivi();
@@ -376,15 +377,18 @@ public class Coedil99View extends JFrame {
 		JSeparator separator = new JSeparator();
 		mnFile.add(separator);
 		
+		
+		
+		
 		/*++++++Gestione RDA++++++*/
-		JMenuItem mntmGestioneRDA = new JMenuItem(bundle.getString("gui.menu.file.rda"));
+		JMenuItem mntmGestioneRDA = new JMenuItem(bundle.getString("gui.menu.file.newRDA"));
 		mntmGestioneRDA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				CtrlGestisciRDA.getInstance().apriNuovaRDADirettore();
 			}
 		});
-		mnFile.add(mntmGestioneRDA);
+		//mnFile.add(mntmGestioneRDA);
 		
 		/*++++++Gestione ORDINI++++++*/
 		JMenuItem mntmGestioneOrdini = new JMenuItem(bundle.getString("gui.menu.file.ordini"));
@@ -394,8 +398,13 @@ public class Coedil99View extends JFrame {
 				CtrlGestisciRDA.getInstance().apriOrdini();
 			}
 		});
-		mnFile.add(mntmGestioneOrdini);
+		//mnFile.add(mntmGestioneOrdini);
 		
+		JMenu gestOrdini = new JMenu(bundle.getString("gui.menu.file.rda"));
+		gestOrdini.setIcon(new ImageIcon(Coedil99View.class.getResource("/coedil99/ui/img/magazzino_icon.png")));
+		gestOrdini.add(mntmGestioneRDA);
+		gestOrdini.add(mntmGestioneOrdini);
+		mnFile.add(gestOrdini);
 		
 		JSeparator separatore = new JSeparator();
 		mnFile.add(separatore);
