@@ -7,16 +7,19 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 import coedil99.application.controller.CtrlGestisciMagazzino;
-
 import coedil99.ui.template.Etichetta;
 import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.ImageSelector;
 import coedil99.ui.template.SelectItem;
+import coedil99.utility.DoubleVerifier;
+import coedil99.utility.FloatVerifier;
+import coedil99.utility.StrictInputVerifier;
 
 import javax.swing.JButton;
 
@@ -31,6 +34,9 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 
 
@@ -147,6 +153,7 @@ public class newItem extends JFrame {
 		tchtDiamentro.setText("DIAMETRO");
 		getContentPane().add(tchtDiamentro, "2, 10");
 		tchtDiamentro.setVisible(false);
+		
 	 	 
 		campoTesto_2 = new CampoTesto();
 		campoTesto_2.setColumns(10);
@@ -154,6 +161,7 @@ public class newItem extends JFrame {
 		getContentPane().add(campoTesto_2, "6, 10, fill, default");
 		campoTesto_2.setVisible(false);
 		campoTesto_2.setText("0");
+		campoTesto_2.setInputVerifier(new FloatVerifier("")); //Controllo sull'inserimento
 		
 		tchtMateriale = new Etichetta("MATERIALE");
 		tchtMateriale.setText("MATERIALE");
@@ -178,6 +186,8 @@ public class newItem extends JFrame {
 		campoTesto_5.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_5, "6, 14, fill, default");
 		campoTesto_5.setText("0");
+		campoTesto_5.setInputVerifier(new FloatVerifier("")); //Controllo sull'inserimento
+
 		
 		tchtPeso = new Etichetta("PESO");
 		tchtPeso.setText("PESO");
@@ -190,6 +200,7 @@ public class newItem extends JFrame {
 		campoTesto_3.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_3, "6, 16, fill, default");
 		campoTesto_3.setText("0");
+		campoTesto_3.setInputVerifier(new DoubleVerifier("")); //Controllo sull'inserimento
 		
 		tchtPrezzo = new Etichetta("PREZZO");
 		tchtPrezzo.setText("PREZZO");
@@ -202,6 +213,7 @@ public class newItem extends JFrame {
 		campoTesto_4.setAlignmentX(0.0f);
 		getContentPane().add(campoTesto_4, "6, 18, fill, default");
 		campoTesto_4.setText("0");
+		campoTesto_4.setInputVerifier(new DoubleVerifier("")); //Controllo sull'inserimento
 		
 		tchtQuantita = new Etichetta("QUANTITA'");
 		tchtQuantita.setText("QUANTITA'");
