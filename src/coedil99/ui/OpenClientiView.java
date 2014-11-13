@@ -46,7 +46,6 @@ public class OpenClientiView extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JList<Cliente> element;
-	private JComboBox comboBox;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_USER = "/coedil99/ui/img/user_icon.png";
 	private final String ICON_ADD = "/coedil99/ui/img/add_cliente.png";
@@ -66,7 +65,6 @@ public class OpenClientiView extends JFrame{
 	private void init(){
 		this.element = new JList<Cliente>();
 		this.element.setCellRenderer(new ListCellRenderer());
-		this.comboBox = new JComboBox();
 	}
 	
 	private void initGui(){
@@ -117,15 +115,6 @@ public class OpenClientiView extends JFrame{
 		
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3);
-		
-		JLabel lblNewLabel_1 = new Etichetta("Nome:");
-		panel_3.add(lblNewLabel_1);
-		
-		 
-		comboBox.setPreferredSize(new Dimension(200, 25));
-		comboBox.setMinimumSize(new Dimension(100, 30));
-		comboBox.setEditable(true);
-		panel_3.add(comboBox);
 		
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);

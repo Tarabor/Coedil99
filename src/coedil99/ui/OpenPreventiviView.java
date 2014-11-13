@@ -43,9 +43,7 @@ public class OpenPreventiviView extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtCerca;
 	private JList<Preventivo> element;
-	private JComboBox comboBox;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private final String ICON_DOC = "/coedil99/ui/img/document_icon.png";
 	
@@ -63,8 +61,6 @@ public class OpenPreventiviView extends JFrame{
 	private void init(){
 		this.element = new JList<Preventivo>();
 		this.element.setCellRenderer(new ListCellRenderer());
-		this.txtCerca = new CampoTesto();
-		this.comboBox = new JComboBox();
 	}
 	
 	private void initGui(){
@@ -82,11 +78,6 @@ public class OpenPreventiviView extends JFrame{
 		
 		JLabel lblNewLabel = new Etichetta("Seleziona l'elemento da aprire...");
 		panel.add(lblNewLabel);
-		
-		
-		txtCerca.setText("Cerca ");
-		panel.add(txtCerca);
-		txtCerca.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -117,15 +108,6 @@ public class OpenPreventiviView extends JFrame{
 		
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3);
-		
-		JLabel lblNewLabel_1 = new Etichetta("Nome:");
-		panel_3.add(lblNewLabel_1);
-		
-		 
-		comboBox.setPreferredSize(new Dimension(200, 25));
-		comboBox.setMinimumSize(new Dimension(100, 30));
-		comboBox.setEditable(true);
-		panel_3.add(comboBox);
 		
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);

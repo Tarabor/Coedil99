@@ -19,6 +19,7 @@ import coedil99.ui.template.ImageSelector;
 import coedil99.ui.template.SelectItem;
 import coedil99.utility.DoubleVerifier;
 import coedil99.utility.FloatVerifier;
+import coedil99.utility.IntegerVerifier;
 import coedil99.utility.StrictInputVerifier;
 
 import javax.swing.JButton;
@@ -227,6 +228,8 @@ public class newItem extends JFrame {
 		getContentPane().add(campoTesto_8, "6, 20, fill, default");
 		campoTesto_8.setColumns(10);
 		campoTesto_8.setText("0");
+		campoTesto_8.setInputVerifier(new IntegerVerifier("")); //Controllo sull'inserimento
+
 		
 		tchtFornitore = new Etichetta("FORNITORE");
 		tchtFornitore.setText("FORNITORE");
