@@ -1,16 +1,12 @@
 package coedil99.ui.content;
 
 
-import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 
 import coedil99.application.controller.CtrlGestisciMagazzino;
 import coedil99.ui.template.Etichetta;
@@ -20,7 +16,6 @@ import coedil99.ui.template.SelectItem;
 import coedil99.utility.DoubleVerifier;
 import coedil99.utility.FloatVerifier;
 import coedil99.utility.IntegerVerifier;
-import coedil99.utility.StrictInputVerifier;
 
 import javax.swing.JButton;
 
@@ -35,10 +30,6 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
 import java.awt.Toolkit;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
-
 
 
 public class newItem extends JFrame {

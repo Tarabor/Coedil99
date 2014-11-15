@@ -4,6 +4,10 @@ import javax.swing.JTabbedPane;
 
 public class TabSchede extends JTabbedPane{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int tab_counter;
 	
 	public TabSchede(){

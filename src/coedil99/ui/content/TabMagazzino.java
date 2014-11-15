@@ -35,6 +35,11 @@ import coedil99.ui.template.MagazzinoTableModel;
 
 public class TabMagazzino extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JTable magazzino;
 	
 	private String [] tableHeader = new String[] {

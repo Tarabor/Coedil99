@@ -26,7 +26,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 import coedil99.application.controller.CtrlElaboraPreventivo;
-import coedil99.ui.Coedil99View;
 
 
 public class Scheda extends JPanel{

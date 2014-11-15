@@ -1,6 +1,5 @@
 package coedil99.ui;
 
-import java.awt.Container;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
@@ -14,6 +13,10 @@ import java.awt.Dimension;
 
 public class MagazzinoView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static MagazzinoView instance;
 	private final String ICON_FRAME = "/coedil99/ui/img/frame-icon.png";
 	private TabMagazzino tb;

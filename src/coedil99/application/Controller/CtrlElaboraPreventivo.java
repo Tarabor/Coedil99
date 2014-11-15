@@ -98,7 +98,6 @@ public class CtrlElaboraPreventivo {
 
 	public void setElementiItem() {
 		if (!Coedil99View.getInstance().isItemsVisible()) {
-			//Coedil99View.getInstance().setItemsVisible();
 			Coedil99View.getInstance().setElements(ItemDAO.listItemByQuery(null, "discriminator"));
 		}
 	}

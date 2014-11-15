@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,6 +12,10 @@ import javax.swing.ListCellRenderer;
 
 public class ImageSelector extends JComboBox{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String[] elementi = { "Sagoma1", "Sagoma2", "Sagoma3"};
 	ImageIcon[] images;
 

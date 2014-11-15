@@ -6,13 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-
-
-
-
-
-import javax.swing.table.DefaultTableModel;
-
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.ui.template.MyTableModel;
