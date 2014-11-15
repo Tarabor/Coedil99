@@ -14,7 +14,6 @@ import coedil99.persistentmodel.ElementoDistintaListCollection;
 import coedil99.persistentmodel.ElementoMagazzino;
 import coedil99.persistentmodel.ElementoMagazzinoDAO;
 import coedil99.persistentmodel.ElementoRDA;
-import coedil99.persistentmodel.Fornitore;
 import coedil99.persistentmodel.FornitoreDAO;
 import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Lastra;
@@ -92,7 +91,6 @@ public class MMagazzino implements AModel,Observer {
 		boolean evaso = true;
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){	
-			//RaccoglitoreRDA raccoglitore = (RaccoglitoreRDA) MRaccoglitoreRDA.getInstance().getPersistentModel();
 			for (int i = 0; i < distinta.size(); i++) {
 				for (int j = 0; j < magazzino.size(); j++) {
 					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
@@ -128,15 +126,11 @@ public class MMagazzino implements AModel,Observer {
 					}
 				}	
 			}	
-			
 			//setta lo stato di evasione di un preventivo firmato
 			((MPreventivo)arg1).statoEvasione(evaso);
-			if(!rda.isEmpty()){ //Se l'RDA non è vuota la invio
-				MRaccoglitoreRDA.getInstance().insertRDA(rda);
-			}
+			if(!rda.isEmpty()) MRaccoglitoreRDA.getInstance().insertRDA(rda);
 			CtrlGestisciMagazzino.getInstance().aggiornaMagazzino();
 		} 	
-		
 	}
 	
 	
@@ -232,12 +226,6 @@ public class MMagazzino implements AModel,Observer {
 		((Magazzino)this.getPersistentModel()).elementoMagazzino__List_.add(em);
 	}
 
-	public void setFornitoreElemento(Fornitore fornitore) {
-		if(fornitore != null){
-			this.em.set_fornitore(fornitore);
-		}
-		
-	}
 	
 	//controlla se l'elemento magazzino inserito può riuscire a soddisfare un preventivo non evaso.
 	public void checkPreventiviNonEvasi(ElementoMagazzino elemento){
@@ -245,12 +233,9 @@ public class MMagazzino implements AModel,Observer {
 		if (mp != null){
 			ElementoDistintaListCollection list;
 			boolean evaso= true;
-			for (int i = 0; i < mp.length; i++) {
-				
+			for (int i = 0; i < mp.length; i++) {	
 				list = ((Preventivo)mp[i].getPersistentModel()).getDistinta().elemento__List_;
-				
 				for( int j = 0 ; j< list.size(); j++){
-					
 					if ( list.get(j).getItem().equals(elemento.getItem()) && list.get(j).getNPezzi() <= elemento.getQuantita() ){
 						list.get(j).setEvaso(true);
 						elemento.setQuantita(elemento.getQuantita() - list.get(j).getNPezzi());
@@ -258,12 +243,8 @@ public class MMagazzino implements AModel,Observer {
 					else
 						evaso &=list.get(i).getEvaso();
 				}
-				if(evaso) mp[i].statoEvasione(true);
-				
-				
-				
+				if(evaso) mp[i].statoEvasione(true);	
 			}
 		}
 	}
-
 }
