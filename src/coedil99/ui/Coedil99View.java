@@ -79,6 +79,7 @@ public class Coedil99View extends JFrame {
 	private JPopupMenu popNuovo;
 	private JMenuItem mntmSalva;
 	private JButton btnSave;
+	private JButton addButton;
 	
 	private JList<Item> element;
 	
@@ -213,7 +214,10 @@ public class Coedil99View extends JFrame {
 			tb.setDistinta( mp.getDistintaArrayList());
 			tb.setTotale(p.getDistinta().getTotale());
 		}
-		tb.disableIfFirmato();
+		if(p.getFirmato()==true){
+			this.addButton.setEnabled(false);
+			tb.disableIfFirmato();
+		}
 	}
 	
 	public void setItemsTreeVisible() {
@@ -542,7 +546,7 @@ public class Coedil99View extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
 		
-		JButton addButton = new JButton();
+		addButton = new JButton();
 		addButton.setIcon(new ImageIcon(Coedil99View.class.getResource(ICON_ARROW)));
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
