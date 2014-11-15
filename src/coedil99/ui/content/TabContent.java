@@ -82,6 +82,8 @@ public class TabContent extends JPanel implements Observer {
 	private JPopupMenu popMenu;
 	private JToggleButton btnFirma;
 	private ResourceBundle bundle = Coedil99View.getInstance().getBundle();
+	
+	private MouseListener m1;
 
 	private  final ImageIcon COEDIL_ICON = new ImageIcon(TabContent.class.getResource(bundle.getString("gui.tabcontent.icon.coedil")));
 	private  final ImageIcon RED_ICON = new ImageIcon(TabContent.class.getResource(bundle.getString("gui.tabcontent.icon.redbullet")));
@@ -212,12 +214,13 @@ public class TabContent extends JPanel implements Observer {
 		cliente = new CampoTesto();
 		cliente.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		cliente.setEditable(false);
-		cliente.addMouseListener(new MouseAdapter() {
+		m1 = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				CtrlElaboraPreventivo.getInstance().listaClienti();
 			}
-		});
+		};
+		cliente.addMouseListener(m1);
 		cliente.setBackground(Color.WHITE);
 		verticalBox_2.add(cliente);
 		cliente.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -396,6 +399,7 @@ public class TabContent extends JPanel implements Observer {
 			for (int a = 0; a < com.length; a++)   
 				com[a].setEnabled(false);
 		}
+		this.cliente.removeMouseListener(m1);
 	}
 	
 	

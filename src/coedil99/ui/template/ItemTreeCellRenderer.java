@@ -9,7 +9,6 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.DefaultMutableTreeNode; 
 
 import coedil99.persistentmodel.Bullone;
-import coedil99.persistentmodel.Item;
 import coedil99.persistentmodel.Lastra;
 import coedil99.persistentmodel.Trave;
 

@@ -6,7 +6,6 @@ import coedil99.factory.CostantFactory;
 import coedil99.persistentmodel.APersistentModel;
 import coedil99.persistentmodel.ElementoRDA;
 import coedil99.persistentmodel.ElementoRDADAO;
-import coedil99.persistentmodel.ElementoRDAListCollection;
 import coedil99.persistentmodel.ItemDAO;
 import coedil99.persistentmodel.RaccoglitoreRDA;
 import coedil99.persistentmodel.Item;

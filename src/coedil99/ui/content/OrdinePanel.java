@@ -37,13 +37,16 @@ import javax.swing.JTextField;
 
 public class OrdinePanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JList<ElementoRDA> elements;
 	private final String ICON_LASTRA = "/coedil99/ui/img/lastra.png";
 	private final String ICON_BULLONE = "/coedil99/ui/img/bullone.png";
 	private final String ICON_TRAVE = "/coedil99/ui/img/trave.png";
 	private JTextField consegnaPrevista;
 	private JButton fornitoreButton;
-	private JButton salvaButton;
 	
 	public OrdinePanel() {
 		setLayout(new BorderLayout(0, 0));

@@ -5,8 +5,6 @@ import coedil99.model.strategy.ITotaleStrategy;
 import coedil99.model.strategy.SogliaDiscountStrategy;
 import coedil99.persistentmodel.EvasoState;
 import coedil99.persistentmodel.NonEvasoState;
-import coedil99.model.MMagazzino;
-import coedil99.model.MRaccoglitoreRDA;
 
 public class PricingStrategyFactory implements AbstractFactory {
 	private static PricingStrategyFactory instance;
