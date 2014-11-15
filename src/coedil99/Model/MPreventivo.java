@@ -113,7 +113,13 @@ public class MPreventivo extends Observable implements AModel {
 	
 	
 	public static MPreventivo[] getPreventiviNonEvasi(){
-		Preventivo[] preventivi = PreventivoDAO.listPreventivoByQuery("preventivostateid = 2", "ID");
+		/*
+		 * Cambiando la condizione di ordinamento si cambia l'ordine con cui i preventivi
+		 * devono essere controllati.
+		 * Per ora li si ordinano by ID cioè temporalmente.
+		 */
+		Preventivo[] preventivi = 
+				PreventivoDAO.listPreventivoByQuery("preventivoState = " + EvasioneStateFactory.getInstance().getNonEvasoState(), "ID");
 		MPreventivo[] mp = null;
 		if (preventivi.length > 0){
 			mp = new MPreventivo[preventivi.length];
