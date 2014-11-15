@@ -8,10 +8,8 @@ import javax.swing.JPanel;
 
 import java.awt.GridLayout;
 
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -24,10 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JComboBox;
-
 import coedil99.persistentmodel.Preventivo;
-import coedil99.ui.template.CampoTesto;
 import coedil99.ui.template.Etichetta;
 import coedil99.application.controller.CtrlElaboraPreventivo;
 
@@ -152,14 +147,15 @@ public class OpenPreventiviView extends JFrame{
 	            int index,
 	            boolean selected,
 	            boolean expanded) {
-	    	
+	    	String color = (((Preventivo) value).getFirmato())? "green":"red";
 	        label.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(OpenPreventiviView.class.getResource(ICON_DOC))));
 	        label.setText("<html>"+((Preventivo) value).getID() +
 	        		"<br><p style='color:gray'>Cliente:"+
 	        		((Preventivo) value).getCliente().getCognome()+
 	        		" "+
 	        		((Preventivo) value).getCliente().getNome()+
-	        		"</p></html>");
+	        		"<br><span style = 'color:"+color+"'>Firmato: "+((Preventivo) value).getFirmato()+
+	        		"</span></p></html>");
 
 	        if (selected) {
 	            label.setBackground(backgroundSelectionColor);
