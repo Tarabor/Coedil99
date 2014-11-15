@@ -213,6 +213,7 @@ public class Coedil99View extends JFrame {
 			tb.setDistinta( mp.getDistintaArrayList());
 			tb.setTotale(p.getDistinta().getTotale());
 		}
+		tb.disableIfFirmato();
 	}
 	
 	public void setItemsTreeVisible() {

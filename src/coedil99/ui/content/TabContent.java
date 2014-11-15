@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -44,6 +45,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -80,7 +82,8 @@ public class TabContent extends JPanel implements Observer {
 	private JPopupMenu popMenu;
 	private JToggleButton btnFirma;
 	private ResourceBundle bundle = Coedil99View.getInstance().getBundle();
-	
+
+	private  final ImageIcon COEDIL_ICON = new ImageIcon(TabContent.class.getResource(bundle.getString("gui.tabcontent.icon.coedil")));
 	private  final ImageIcon RED_ICON = new ImageIcon(TabContent.class.getResource(bundle.getString("gui.tabcontent.icon.redbullet")));
 	private  final ImageIcon GREEN_ICON = new ImageIcon(TabContent.class.getResource(bundle.getString("gui.tabcontent.icon.greenbullet")));
 	private static final Font FONT_TABLE_HEADER = new Font("Century Gothic", Font.BOLD, 14);
@@ -92,8 +95,8 @@ public class TabContent extends JPanel implements Observer {
 	
 	protected String[] columnToolTips = {
 			"Il tipo di elemento che si desidera inserire in distinta",
-		    null, // "First Name" assumed obvious
-		    null, // "Last Name" assumed obvious
+		    null, 
+		    null, 
 		    "La misura di taglio dell'elemento"};
 	
 
@@ -125,10 +128,10 @@ public class TabContent extends JPanel implements Observer {
 		add(panel, gbc_panel);
 		panel.setLayout(new GridLayout(0, 2, 5, 1));
 		
-		JLabel lblCoedilSrl = new JLabel("COEDIL 99 srl associato GEA s.c.r.l.");
+		JLabel lblCoedilSrl = new JLabel(bundle.getString("gui.tabcontent.label.coedil"));
 		lblCoedilSrl.setMaximumSize(new Dimension(172, 80));
 		panel.add(lblCoedilSrl);
-		lblCoedilSrl.setIcon(new ImageIcon(TabContent.class.getResource("/coedil99/ui/content/img/logo-scheda.png")));
+		lblCoedilSrl.setIcon(COEDIL_ICON);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setMaximumSize(new Dimension(350, 400));
@@ -139,7 +142,7 @@ public class TabContent extends JPanel implements Observer {
 		Box horizontalBox_2 = Box.createHorizontalBox();
 		panel_1.add(horizontalBox_2, BorderLayout.EAST);
 		
-		JLabel lblData = new JLabel("Data:");
+		JLabel lblData = new JLabel(bundle.getString("gui.tabcontent.label.data"));
 		horizontalBox_2.add(lblData);
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -147,12 +150,12 @@ public class TabContent extends JPanel implements Observer {
 		horizontalBox_2.add(data_1);
 		data_1.setColumns(10);
 		
-		JLabel lblDistintaLavorazione = new Etichetta("DISTINTA DI LAVORAZIONE");
+		JLabel lblDistintaLavorazione = new Etichetta(bundle.getString("gui.tabcontent.label.distintalavorazione"));
 		lblDistintaLavorazione.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblDistintaLavorazione, BorderLayout.NORTH);
 		lblDistintaLavorazione.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel lblNewLabel = new JLabel("MO7.51-03");
+		JLabel lblNewLabel = new JLabel(bundle.getString("gui.tabcontent.label.mo7"));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel, BorderLayout.WEST);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 10));
@@ -160,7 +163,7 @@ public class TabContent extends JPanel implements Observer {
 		Box horizontalBox = Box.createHorizontalBox();
 		panel_1.add(horizontalBox, BorderLayout.CENTER);
 		
-		JLabel lblRev = new JLabel("Rev.:");
+		JLabel lblRev = new JLabel(bundle.getString("gui.tabcontent.label.rev"));
 		horizontalBox.add(lblRev);
 		lblRev.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblRev.setPreferredSize(new Dimension(30, 14));
@@ -187,8 +190,7 @@ public class TabContent extends JPanel implements Observer {
 		verticalBox_1.setPreferredSize(new Dimension(0, 50));
 		panel_3.add(verticalBox_1);
 		
-		Etichetta tchtData = new Etichetta("DATA");
-		tchtData.setText("  DATA");
+		Etichetta tchtData = new Etichetta(bundle.getString("gui.tabcontent.label.dataconsegna"));
 		verticalBox_1.add(tchtData);
 		tchtData.setHorizontalTextPosition(SwingConstants.LEFT);
 		tchtData.setHorizontalAlignment(SwingConstants.LEFT);
@@ -202,7 +204,7 @@ public class TabContent extends JPanel implements Observer {
 		verticalBox_2.setPreferredSize(new Dimension(0, 50));
 		panel_3.add(verticalBox_2);
 		
-		Etichetta tchtClienteimpresa = new Etichetta("CLIENTE/IMPRESA");
+		Etichetta tchtClienteimpresa = new Etichetta(bundle.getString("gui.tabcontent.label.cliente"));
 		verticalBox_2.add(tchtClienteimpresa);
 		tchtClienteimpresa.setHorizontalAlignment(SwingConstants.LEFT);
 		
@@ -225,8 +227,7 @@ public class TabContent extends JPanel implements Observer {
 		verticalBox_3.setPreferredSize(new Dimension(0, 50));
 		panel_3.add(verticalBox_3);
 		
-		Etichetta tchtPag = new Etichetta("PAG.");
-		tchtPag.setText("  PAG.");
+		Etichetta tchtPag = new Etichetta(bundle.getString("gui.tabcontent.label.pagina"));
 		verticalBox_3.add(tchtPag);
 		
 		pagina = new CampoTesto();
@@ -249,7 +250,7 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox = Box.createVerticalBox();
 		panel_2.add(verticalBox);
 		
-		JLabel lblDestinazioneMateriale = new Etichetta("DESTINAZIONE MATERIALE");
+		JLabel lblDestinazioneMateriale = new Etichetta(bundle.getString("gui.tabcontent.label.destinazionemateriale"));
 		verticalBox.add(lblDestinazioneMateriale);
 		
 		destinazioneMateriale = new CampoTesto();
@@ -259,7 +260,7 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox_4 = Box.createVerticalBox();
 		panel_2.add(verticalBox_4);
 		
-		JLabel lblElementoSttrutturale = new Etichetta("ELEMENTO STRUTTURALE");
+		JLabel lblElementoSttrutturale = new Etichetta(bundle.getString("gui.tabcontent.label.elementostrutturale"));
 		verticalBox_4.add(lblElementoSttrutturale);
 		
 		elementoStrutturale = new CampoTesto();
@@ -269,7 +270,7 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox_5 = Box.createVerticalBox();
 		panel_2.add(verticalBox_5);
 		
-		JLabel lblCartellino = new Etichetta("CARTELLINO");
+		JLabel lblCartellino = new Etichetta(bundle.getString("gui.tabcontent.label.cartellino"));
 		verticalBox_5.add(lblCartellino);
 		
 		cartellino = new CampoTesto();
@@ -291,7 +292,7 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox_6 = Box.createVerticalBox();
 		panel_5.add(verticalBox_6);
 		
-		Etichetta etichetta_Firmato = new Etichetta("FIRMATO");
+		Etichetta etichetta_Firmato = new Etichetta(bundle.getString("gui.tabcontent.label.firmato"));
 		verticalBox_6.add(etichetta_Firmato);
 		
 		btnFirma = new JToggleButton();
@@ -312,11 +313,11 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox_7 = Box.createVerticalBox();
 		panel_5.add(verticalBox_7);
 		
-		Etichetta etichetta_1 = new Etichetta("TOTALE");
+		Etichetta etichetta_1 = new Etichetta(bundle.getString("gui.tabcontent.label.totale"));
 		verticalBox_7.add(etichetta_1);
 		
 		campoTesto_1 = new CampoTesto();
-		campoTesto_1.setToolTipText("Totale del preventivo");
+		campoTesto_1.setToolTipText(bundle.getString("gui.tabcontent.text.totalepreventivo"));
 		campoTesto_1.setBackground(Color.WHITE);
 		campoTesto_1.setEditable(false);
 		campoTesto_1.setColumns(10);
@@ -326,11 +327,10 @@ public class TabContent extends JPanel implements Observer {
 		Box verticalBox_8 = Box.createVerticalBox();
 		panel_5.add(verticalBox_8);
 				
-		Etichetta etichetta = new Etichetta("SALVA");
-		etichetta.setText("  SALVA");
+		Etichetta etichetta = new Etichetta(bundle.getString("gui.tabcontent.label.salva"));
 		verticalBox_8.add(etichetta);
 				
-		JButton btnSalvaPreventivo = new JButton("Salva Preventivo");
+		JButton btnSalvaPreventivo = new JButton(bundle.getString("gui.tabcontent.button.salva"));
 		btnSalvaPreventivo.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		verticalBox_8.add(btnSalvaPreventivo);
 		btnSalvaPreventivo.addActionListener(new ActionListener() {
@@ -380,7 +380,7 @@ public class TabContent extends JPanel implements Observer {
 		panel_4.add(scrollPane);
 		
 		this.popMenu = new JPopupMenu();
-		JMenuItem cancItem = new JMenuItem("Cancella riga");
+		JMenuItem cancItem = new JMenuItem(bundle.getString("gui.tabcontent.table.popUp"));
 		cancItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deleteRow();
@@ -388,6 +388,34 @@ public class TabContent extends JPanel implements Observer {
 		});
 		popMenu.add(cancItem);
 	}
+
+	public void disableIfFirmato() {
+		if(btnFirma.isSelected()){
+			
+			Component[] com = this.getComponents(this); 
+			for (int a = 0; a < com.length; a++)   
+				com[a].setEnabled(false);
+		}
+	}
+	
+	
+	private Component[] getComponents(Component container) {
+        ArrayList<Component> list = null;
+
+        try {
+            list = new ArrayList<Component>(Arrays.asList(
+                  ((Container) container).getComponents()));
+            for (int index = 0; index < list.size(); index++) {
+            for (Component currentComponent : getComponents(list.get(index))) {
+                list.add(currentComponent);
+            }
+            }
+        } catch (ClassCastException e) {
+            list = new ArrayList<Component>();
+        }
+
+        return list.toArray(new Component[list.size()]);
+        }
 	
 	public static TabContent getInstance(){
 		if(instance == null)
@@ -418,6 +446,7 @@ public class TabContent extends JPanel implements Observer {
 	}
 	
 	public void setFirma(boolean b){
+		btnFirma.setSelected(b);
 		if(b){
 			btnFirma.setIcon(GREEN_ICON);
 			btnFirma.setText(bundle.getString("gui.tabcontent.text.firmato"));
