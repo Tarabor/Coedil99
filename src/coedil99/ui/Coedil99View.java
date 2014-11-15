@@ -217,6 +217,8 @@ public class Coedil99View extends JFrame {
 		if(p.getFirmato()==true){
 			this.addButton.setEnabled(false);
 			tb.disableIfFirmato();
+		} else {
+			this.addButton.setEnabled(true);
 		}
 	}
 	
