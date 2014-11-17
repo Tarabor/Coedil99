@@ -89,11 +89,13 @@ public class MMagazzino implements AModel,Observer {
 		coedil99.persistentmodel.ElementoMagazzinoListCollection magazzino = ((Magazzino)this.getPersistentModel()).elementoMagazzino__List_;
 		ArrayList<ElementoRDA> rda = new ArrayList<ElementoRDA>();
 		boolean evaso = true;
+		Boolean trovato = false;
 		
 		if(((Preventivo)((MPreventivo)arg1).getPersistentModel()).getFirmato()){	
 			for (int i = 0; i < distinta.size(); i++) {
 				for (int j = 0; j < magazzino.size(); j++) {
 					if (distinta.get(i).getItem().getID() == magazzino.get(j).getItem().getID()){    // Cerca l'item dell'ElementoDistinta tra item degli ElemetoMagazzino (aggiungere controllo: se l'item nella distinta non si trova nel magazzino?)
+						trovato = true;
 						if (distinta.get(i).getNPezzi() <= magazzino.get(j).getQuantita()){          // Sei il numero di pezzi richiesto nel preventivo lo riesco a coprire con quello che già ho, allora decremento la quantità in magazzino
 							if(MRaccoglitoreRDA.getInstance().checkElemento(distinta.get(i).getItem())){//controlla se è già presente un'rda per lo stesso item (se si decremento x dal magazzino e aggiungo x alla quantità dell'elementoRDA)
 								ElementoRDA elemento = new ElementoRDA();
@@ -124,7 +126,13 @@ public class MMagazzino implements AModel,Observer {
 							evaso = false;
 						}
 					}
-				}	
+				}
+				if(!trovato) { //se l'elemento non è presente nel magazzino, dopo che ho scorso tutto il magazzino creo direttamente una RDA
+					ElementoRDA elemento = new ElementoRDA();
+					elemento.setItem(distinta.get(i).getItem());
+					elemento.setQuantita(distinta.get(i).getNPezzi());
+					rda.add(elemento);
+				}
 			}	
 			//setta lo stato di evasione di un preventivo firmato
 			((MPreventivo)arg1).statoEvasione(evaso);

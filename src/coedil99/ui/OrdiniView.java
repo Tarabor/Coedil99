@@ -211,7 +211,7 @@ public class OrdiniView extends JFrame {
 	
 	public void setElements(ElementoRDA [] listData){
 		DefaultListModel<ElementoRDA> m = ((DefaultListModel<ElementoRDA>) this.element.getModel());
-		for( int i = 0; i < m.getSize(); i++) m.remove(i);
+		m.clear();
 		for( int i = 0 ; i < listData.length ; i++)
 		((DefaultListModel<ElementoRDA>) this.element.getModel()).addElement(listData[i]);
 	}
